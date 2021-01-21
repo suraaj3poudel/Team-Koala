@@ -1,0 +1,2 @@
+# AIMS-Android-Project
+CSCI4060-62715-Spring 2021 - PRIN OF SOFTWARE ENGINEERING Capstone Project
