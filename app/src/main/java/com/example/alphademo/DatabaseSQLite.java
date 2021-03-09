@@ -1,5 +1,6 @@
 package com.example.alphademo;
 
+
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -8,14 +9,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseSQLite extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "mylist.db";
-    public static final String TABLE_NAME = "mylist_data";
-    public static final String COL1 = "ID";
-    public static final String COL2 = "FNAME";
-    public static final String COL3 = "LNAME";
-    public static final String COL4 = "GENDER";
-    public static final String COL5 = "LAT";
-    public static final String COL6 = "LON";
+    public static final String DATABASE_NAME = "userlist.db";
+    public static final String TABLE_NAME = "user_list";
+    public static final String COL2 = "IDS";
+    public static final String COL3 = "PASSWORD";
+
+
 
 
 
@@ -26,7 +25,7 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, FNAME TEXT, LNAME TEXT, GENDER TEXT, LAT DOUBLE, LON DOUBLE)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (IDS TEXT PRIMARY KEY, PASSWORD TEXT)";
         db.execSQL(createTable);
     }
 
@@ -36,14 +35,11 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String fname,String lname, String gender,double lat, double lon) {
+    public boolean addData(String id,String password) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL2, fname);
-        contentValues.put(COL3, lname);
-        contentValues.put(COL4, gender);
-        contentValues.put(COL5, lat);
-        contentValues.put(COL6, lon);
+        contentValues.put(COL2, id);
+        contentValues.put(COL3, password);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
@@ -54,9 +50,16 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
             return true;
         }
     }
-    public Cursor showData(){
+
+    public Cursor checkUser(String userName, String password){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
-        return res;
+        Cursor users = db.rawQuery("SELECT * FROM " + TABLE_NAME ,null);
+
+        return users;
     }
+//    public Cursor showData(){
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+//        return res;
+//    }
 }
