@@ -50,29 +50,28 @@
         android:id="@+id/whiteBox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_marginStart="50dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="25dp"
         android:background="@drawable/white_background"
         android:backgroundTint="@color/light"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
 
         <ImageView
             android:id="@+id/aims"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginRight="100dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginRight="400dp"
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.141"
@@ -85,9 +84,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="28dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="10dp"
+
             android:background="@drawable/driveridbox"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -113,9 +112,10 @@
             android:layout_height="0dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="10dp"
+
             android:background="@drawable/driveridbox"
-            app:layout_constraintBottom_toTopOf="@+id/layout3"
+            app:layout_constraintBottom_toTopOf="@+id/login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layout">
@@ -141,35 +141,21 @@
 
         </LinearLayout>
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:id="@+id/layout3"
+        <Button
+            android:id="@+id/login"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/driveridbox"
-            android:layout_marginLeft="70dp"
+            android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="10dp"
+            android:background="#972d12"
+            android:backgroundTint="#FFFFFF"
+            android:text="Log in"
+
+            android:textColor="#F44336"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-            <Button
-                android:id="@+id/login"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-
-                android:backgroundTint="#ED1616"
-                android:text="Log in"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-
-                android:textColor="#F4EEEE"
-                android:textColorLink="@color/white"
-                android:textSize="24sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
