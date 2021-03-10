@@ -1,0 +1,400 @@
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:backgroundTint=\"#50FFFFFF\"\n    android:backgroundTintMode=\"src_over\"\n    android:gravity=\"center_horizontal\"\n    android:orientation=\"vertical\"\n    android:padding=\"16dp\"\n    android:visibility=\"visible\"\n    tools:context=\".MainActivity\">\n\n    <ProgressBar\n        android:id=\"@+id/progressBar\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"34dp\" />\n\n\n    <Button\n        android:id=\"@+id/btlocation\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"25dp\"\n        android:backgroundTint=\"#00C55757\"\n        android:text=\"Get Location\" />\n\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"55dp\"\n        android:orientation=\"horizontal\">\n\n        <TextView\n            android:id=\"@+id/text_view1\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\" />\n\n        <TextView\n            android:id=\"@+id/text_view2\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\" />\n\n    </LinearLayout>\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"16dp\"\n        android:orientation=\"horizontal\">\n\n        <TextView\n            android:id=\"@+id/text_view3\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\" />\n\n        <TextView\n            android:id=\"@+id/text_view4\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\" />\n\n    </LinearLayout>\n\n    <TextView\n        android:id=\"@+id/text_view5\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"16dp\" />\n\n    <EditText\n        android:id=\"@+id/input1\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"100dp\"\n        android:ems=\"10\"\n        android:hint=\"First Name\"\n        android:inputType=\"textPersonName\" />\n\n    <EditText\n        android:id=\"@+id/input2\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"3dp\"\n        android:ems=\"10\"\n        android:hint=\"Last Name\"\n        android:inputType=\"textPersonName\" />\n\n    <TextView\n        android:id=\"@+id/selectGender\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"35dp\"\n        android:layout_marginBottom=\"15dp\"\n        android:text=\"Select Your Gender\"\n        android:textStyle=\"normal|bold\"\n        android:typeface=\"sans\"\n        tools:visibility=\"visible\" />\n\n    <GridLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"127dp\">\n\n        <RadioGroup android:id=\"@+id/radioGroup\">\n\n            <RadioButton\n                android:id=\"@+id/Male\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_row=\"0\"\n                android:layout_column=\"0\"\n                android:onClick=\"checkButton\"\n                android:text=\"Male\" />\n\n            <RadioButton\n                android:id=\"@+id/Female\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_row=\"0\"\n                android:layout_column=\"1\"\n                android:onClick=\"checkButton\"\n                android:text=\"Female\" />\n\n        </RadioGroup>\n\n\n        <Button\n            android:id=\"@+id/add\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_row=\"2\"\n            android:layout_column=\"0\"\n            android:text=\"Add Data\" />\n\n        <Button\n            android:id=\"@+id/view\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_row=\"2\"\n            android:layout_column=\"1\"\n            android:text=\"View My Data\" />\n\n\n    </GridLayout>\n\n\n</LinearLayout>\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision b5f5f032e5b0a9c56a8e38be17a3271d6be86ebb)
++++ app/src/main/res/layout/activity_main.xml	(date 1615173371000)
+@@ -1,153 +1,178 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent"
+-    android:backgroundTint="#50FFFFFF"
+-    android:backgroundTintMode="src_over"
+-    android:gravity="center_horizontal"
+-    android:orientation="vertical"
+-    android:padding="16dp"
+-    android:visibility="visible"
++    android:background="@color/peach"
+     tools:context=".MainActivity">
+ 
+-    <ProgressBar
+-        android:id="@+id/progressBar"
++    <ImageView
++        android:id="@+id/imageView4"
++        android:layout_width="0dp"
++        android:layout_height="0dp"
++        android:scaleType="fitStart"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:srcCompat="@drawable/img" />
++
++    <androidx.constraintlayout.widget.Guideline
++        android:id="@+id/guideline1"
+         android:layout_width="wrap_content"
+-        android:layout_height="34dp" />
++        android:layout_height="wrap_content"
++        android:orientation="vertical"
++        app:layout_constraintGuide_begin="20dp" />
+ 
+-
+-    <Button
+-        android:id="@+id/btlocation"
++    <androidx.constraintlayout.widget.Guideline
++        android:id="@+id/guideline2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="25dp"
+-        android:backgroundTint="#00C55757"
+-        android:text="Get Location" />
++        android:orientation="vertical"
++        app:layout_constraintGuide_end="20dp" />
+ 
+-
+-    <LinearLayout
+-        android:layout_width="match_parent"
++    <androidx.constraintlayout.widget.Guideline
++        android:id="@+id/guideline3"
++        android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+-        android:layout_marginTop="55dp"
+-        android:orientation="horizontal">
++        android:orientation="horizontal"
++        app:layout_constraintGuide_begin="20dp" />
+ 
+-        <TextView
+-            android:id="@+id/text_view1"
+-            android:layout_width="0dp"
+-            android:layout_height="wrap_content"
+-            android:layout_weight="1" />
++    <androidx.constraintlayout.widget.Guideline
++        android:id="@+id/guideline4"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:orientation="horizontal"
++        app:layout_constraintGuide_end="20dp" />
++
++    <androidx.constraintlayout.widget.ConstraintLayout
++        android:id="@+id/whiteBox"
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
+ 
+-        <TextView
+-            android:id="@+id/text_view2"
++        android:layout_marginStart="50dp"
++        android:layout_marginTop="150dp"
++        android:layout_marginEnd="50dp"
++        android:layout_marginBottom="75dp"
++        android:background="@drawable/white_background"
++        android:backgroundTint="@color/light"
++        android:orientation="horizontal"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:layout_constraintVertical_bias="0.0">
++
++
++        <ImageView
++            android:id="@+id/aims"
+             android:layout_width="0dp"
+             android:layout_height="wrap_content"
+-            android:layout_weight="1" />
+-
+-    </LinearLayout>
++            android:layout_marginLeft="10dp"
++            android:layout_marginTop="6dp"
++            android:layout_marginRight="100dp"
++            android:scaleType="fitCenter"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintHorizontal_bias="0.141"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toTopOf="parent"
++            app:srcCompat="@drawable/aims" />
+ 
+-    <LinearLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp"
+-        android:orientation="horizontal">
+-
+-        <TextView
+-            android:id="@+id/text_view3"
++        <LinearLayout
++            android:id="@+id/layout"
+             android:layout_width="0dp"
+-            android:layout_height="wrap_content"
+-            android:layout_weight="1" />
+-
+-        <TextView
+-            android:id="@+id/text_view4"
+-            android:layout_width="0dp"
+-            android:layout_height="wrap_content"
+-            android:layout_weight="1" />
+-
+-    </LinearLayout>
+-
+-    <TextView
+-        android:id="@+id/text_view5"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="16dp" />
++            android:layout_height="0dp"
++            android:layout_marginLeft="30dp"
++            android:layout_marginTop="28dp"
++            android:layout_marginRight="30dp"
++            android:layout_marginBottom="60dp"
++            android:background="@drawable/driveridbox"
++            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toBottomOf="@+id/aims">
+ 
+-    <EditText
+-        android:id="@+id/input1"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="100dp"
+-        android:ems="10"
+-        android:hint="First Name"
+-        android:inputType="textPersonName" />
++            <EditText
++                android:id="@+id/email"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:layout_weight="1"
++                android:ems="10"
++                android:hint="Driver Id"
++                android:inputType="textEmailAddress"
++                android:paddingHorizontal="30dp"
++                android:textColorHint="#F44336"
++                android:textSize="18sp" />
++        </LinearLayout>
++
++        <LinearLayout
++            android:id="@+id/linearLayout"
++            android:layout_width="0dp"
++            android:layout_height="0dp"
++            android:layout_marginLeft="30dp"
++            android:layout_marginRight="30dp"
++            android:layout_marginBottom="100dp"
++            android:background="@drawable/driveridbox"
++            app:layout_constraintBottom_toTopOf="@+id/layout3"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toBottomOf="@id/layout">
+ 
+-    <EditText
+-        android:id="@+id/input2"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="3dp"
+-        android:ems="10"
+-        android:hint="Last Name"
+-        android:inputType="textPersonName" />
+-
+-    <TextView
+-        android:id="@+id/selectGender"
+-        android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:layout_marginTop="35dp"
+-        android:layout_marginBottom="15dp"
+-        android:text="Select Your Gender"
+-        android:textStyle="normal|bold"
+-        android:typeface="sans"
+-        tools:visibility="visible" />
+-
+-    <GridLayout
+-        android:layout_width="match_parent"
+-        android:layout_height="127dp">
+-
+-        <RadioGroup android:id="@+id/radioGroup">
++            <EditText
++                android:id="@+id/password"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:layout_weight="1"
++                android:ems="10"
++                android:hint="Password"
++                android:inputType="textPassword"
++                android:paddingHorizontal="30dp"
++                android:textColorHint="#F44336"
++                android:textSize="18sp" />
+ 
+-            <RadioButton
+-                android:id="@+id/Male"
+-                android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:layout_row="0"
+-                android:layout_column="0"
+-                android:onClick="checkButton"
+-                android:text="Male" />
+-
+-            <RadioButton
+-                android:id="@+id/Female"
++            <ImageView
++                android:id="@+id/imageView2"
+                 android:layout_width="wrap_content"
+-                android:layout_height="wrap_content"
+-                android:layout_row="0"
+-                android:layout_column="1"
+-                android:onClick="checkButton"
+-                android:text="Female" />
+-
+-        </RadioGroup>
+-
++                android:layout_height="match_parent"
++
++                app:srcCompat="@android:drawable/ic_menu_view" />
++
++        </LinearLayout>
++
++        <androidx.appcompat.widget.LinearLayoutCompat
++            android:id="@+id/layout3"
++            android:layout_width="0dp"
++            android:layout_height="wrap_content"
++            android:background="@drawable/driveridbox"
++            android:layout_marginLeft="70dp"
++            android:layout_marginRight="50dp"
++            android:layout_marginBottom="70dp"
++            app:layout_constraintBottom_toBottomOf="parent"
++            app:layout_constraintEnd_toEndOf="parent"
++            app:layout_constraintStart_toStartOf="parent"
++            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+ 
+-        <Button
+-            android:id="@+id/add"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_row="2"
+-            android:layout_column="0"
+-            android:text="Add Data" />
++            <Button
++                android:id="@+id/login"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
+ 
+-        <Button
+-            android:id="@+id/view"
+-            android:layout_width="wrap_content"
+-            android:layout_height="wrap_content"
+-            android:layout_row="2"
+-            android:layout_column="1"
+-            android:text="View My Data" />
++                android:backgroundTint="#ED1616"
++                android:text="Log in"
++                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+ 
++                android:textColor="#F4EEEE"
++                android:textColorLink="@color/white"
++                android:textSize="24sp"
++                app:layout_constraintBottom_toBottomOf="parent"
++                app:layout_constraintEnd_toEndOf="parent"
++                app:layout_constraintStart_toStartOf="parent" />
++        </androidx.appcompat.widget.LinearLayoutCompat>
+ 
+-    </GridLayout>
+ 
++    </androidx.constraintlayout.widget.ConstraintLayout>
+ 
+-</LinearLayout>
+ 
++</androidx.constraintlayout.widget.ConstraintLayout>
+Index: app/src/main/res/layout/activity_main2.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main2.xml	(date 1615173388000)
++++ app/src/main/res/layout/activity_main2.xml	(date 1615173388000)
+@@ -0,0 +1,20 @@
++<?xml version="1.0" encoding="utf-8"?>
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    xmlns:app="http://schemas.android.com/apk/res-auto"
++    xmlns:tools="http://schemas.android.com/tools"
++    android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:background="@color/peach"
++    tools:context=".MainActivity2">
++    <ImageView
++        android:id="@+id/imageView4"
++        android:layout_width="0dp"
++        android:layout_height="0dp"
++        android:scaleType="fitStart"
++        app:layout_constraintBottom_toBottomOf="parent"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        app:srcCompat="@drawable/img" />
++
++</androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/example/aimslogin/MainActivity2.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/aimslogin/MainActivity2.java	(date 1615173388000)
++++ app/src/main/java/com/example/aimslogin/MainActivity2.java	(date 1615173388000)
+@@ -0,0 +1,15 @@
++package com.example.aimslogin;
++
++import androidx.appcompat.app.AppCompatActivity;
++
++import android.os.Bundle;
++
++public class MainActivity2 extends AppCompatActivity {
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_main2);
++        getSupportActionBar().hide();
++    }
++}
+\ No newline at end of file
+Index: app/src/main/AndroidManifest.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.alphademo\">\n\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\n    <uses-permission android:name=\"android.permission.ACCESS_BACKGROUND_LOCATION\" />\n\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/AppTheme\">\n        <activity android:name=\".LoginActivity\"></activity>\n        <activity android:name=\".MainActivity\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/AndroidManifest.xml	(revision b5f5f032e5b0a9c56a8e38be17a3271d6be86ebb)
++++ app/src/main/AndroidManifest.xml	(date 1615173388000)
+@@ -1,10 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+-    package="com.example.alphademo">
+-
+-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
++    package="com.example.aimslogin">
+ 
+     <application
+         android:allowBackup="true"
+@@ -12,9 +8,11 @@
+         android:label="@string/app_name"
+         android:roundIcon="@mipmap/ic_launcher_round"
+         android:supportsRtl="true"
+-        android:theme="@style/AppTheme">
+-        <activity android:name=".LoginActivity"></activity>
+-        <activity android:name=".MainActivity">
++        android:theme="@style/Theme.AimsLogIn">
++        <activity android:name=".MainActivity2"></activity>
++        <activity
++            android:name=".MainActivity"
++            android:screenOrientation="sensor">
+             <intent-filter>
+                 <action android:name="android.intent.action.MAIN" />
+ 
