@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button login,register;
+    Button login;
     EditText username, password;
     com.example.alphademo.DatabaseSQLite myDB = new com.example.alphademo.DatabaseSQLite(this);
 
@@ -24,29 +24,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         login = findViewById(R.id.login);
-        register = findViewById(R.id.register);
+
         username = findViewById(R.id.id);
         password = findViewById(R.id.password);
 
-        onClickRegister();
+
         onClickLogin();
 
-    }
-
-    private void onClickRegister() {
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean isInserted =  myDB.addData(username.getText().toString(), password.getText().toString());
-                if(isInserted){
-                    Toast.makeText(MainActivity.this, "Succesfully Registered", Toast.LENGTH_LONG).show();
-                }
-
-                else{
-                    Toast.makeText(MainActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
     }
 
     private void onClickLogin(){
