@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name='AlphaDemo'
+rootProject.name = "Parse JSON"
