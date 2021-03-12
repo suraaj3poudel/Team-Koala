@@ -3,6 +3,7 @@ package com.example.myapplication;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,13 +36,18 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
 
-                    showMessage("Message", "Successfully logged in!");
+                    openTripDetails();
                 }
                 else{
                     showMessage("Message", "Error Logging In!");
                 }
             }
         });
+    }
+
+    private void openTripDetails() {
+        Intent intent = new Intent(this, TripDetails.class);
+        startActivity(intent);
     }
 
     private void showMessage(String title, String message) {
