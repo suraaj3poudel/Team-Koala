@@ -8,7 +8,7 @@
 
     <EditText
         android:id="@+id/id"
-        android:layout_width="wrap_content"
+        android:layoutwidth="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
