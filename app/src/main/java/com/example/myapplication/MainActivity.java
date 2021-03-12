@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                if(username.getText().toString().equals("admi") && password.getText().toString().equals("admin")){
                    showMessage("Message", "Successfully logged in!");
                 }
                 else{
