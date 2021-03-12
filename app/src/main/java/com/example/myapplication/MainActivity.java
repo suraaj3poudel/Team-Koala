@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
-                   showMessage("Message", "Successfully logged in!");
+
+                    showMessage("Message", "Successfully logged in!");
                 }
                 else{
                     showMessage("Message", "Error Logging In!");
