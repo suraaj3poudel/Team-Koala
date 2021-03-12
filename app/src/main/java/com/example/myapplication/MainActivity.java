@@ -33,11 +33,11 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(username.equals("admin") && password.equals("admin")){
+                if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
                    showMessage("Message", "Successfully logged in!");
                 }
                 else{
-                    showMessage("Message", "Wrong Username/Password!");
+                    showMessage("Message", "Error Logging In!");
                 }
             }
         });
