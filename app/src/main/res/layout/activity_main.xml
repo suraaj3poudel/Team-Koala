@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/img" />
+        app:srcCompat="@drawable/pic" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline1"
@@ -51,9 +51,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="150dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="75dp"
         android:background="@drawable/white_background"
         android:backgroundTint="@color/light"
@@ -104,7 +104,8 @@
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="30dp"
                 android:textColorHint="#F44336"
-                android:textSize="18sp" />
+                android:textSize="20sp"
+                />
         </LinearLayout>
 
         <LinearLayout

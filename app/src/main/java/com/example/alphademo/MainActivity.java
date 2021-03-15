@@ -3,6 +3,7 @@ package com.example.alphademo;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -33,17 +34,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void onClickLogin(){
+    private void onClickLogin() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor result = myDB.checkUser(username.getText().toString(), password.getText().toString() ) ;
+                openActivity2();
+                Cursor result = myDB.checkUser(username.getText().toString(), password.getText().toString());
 
-                StringBuffer buffer  = new StringBuffer();
-                while(result.moveToNext()){
+                StringBuffer buffer = new StringBuffer();
+                while (result.moveToNext()) {
 
-                    buffer.append("UserName: "  + result.getString(1)+  "\n");
-                    buffer.append("    Password: " +result.getString(2) +  "\n");
+                    buffer.append("UserName: " + result.getString(1) + "\n");
+                    buffer.append("    Password: " + result.getString(2) + "\n");
 
                 }
 
@@ -51,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+        public void openActivity2(){
+            Intent intent= new Intent(this, MainActivity2.class);
+            startActivity(intent);
+        }
+
 
     private void showMessage(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
