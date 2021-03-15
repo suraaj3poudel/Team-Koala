@@ -24,6 +24,7 @@ import java.util.ArrayList;
 
 public class TripDetails extends AppCompatActivity {
 
+
     RecyclerView recyclerView;
     ArrayList<TripInfoClass> driverNames;
     private static String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef&Code=%7BCode%7D&Active=true";
