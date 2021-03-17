@@ -68,6 +68,7 @@ public class TripDetails extends AppCompatActivity {
 
                 adapter = new RecyclerViewAdapter(getApplicationContext(), driverNames);
 
+
                 recyclerView.setAdapter(adapter);
             }
         }, new Response.ErrorListener() {
