@@ -45,7 +45,6 @@ public class TripDetails extends AppCompatActivity {
         pbar = findViewById(R.id.progressBar2);
         driverNames = new ArrayList<TripInfoClass>();
 
-
         extractDriverNames();
         onClickAddNotes();
 
