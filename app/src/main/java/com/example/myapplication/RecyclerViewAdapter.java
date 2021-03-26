@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -62,7 +63,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.sistate.setText(mDriverNames.get(position).getSiteState());
         holder.sizip.setText(mDriverNames.get(position).getSiteZIP());
 
-        holder.typeSpaceSource.setText("Type your shit here");
+
+
+
+
+
 
     }
 
@@ -76,10 +81,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView driverName, driverCode, truckid, transport, tripid, tripname, sourcename, sourcecode;
         TextView address, scity, sstate, szipcode, site, sitecode, siaddress, sicity, sistate, sizip;
+        TextView sourcenote1, sourcenote2, sourcenote3;
         ProgressBar progressBar;
         LinearLayout parentLayout;
         Button addsourceNotes, siteNotes1, siteNotes2;
         EditText typeSpaceSource, typeSpaceSite1, typeSpaceSite2;
+        DatabaseSQLite myDB;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -106,6 +114,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             parentLayout = itemView.findViewById(R.id.parent_layout);
 
+            myDB = new DatabaseSQLite(itemView.getContext());
+
             addsourceNotes = itemView.findViewById(R.id.sourceNotes);
 
             typeSpaceSource = itemView.findViewById(R.id.typeSpaceSource);
@@ -118,16 +128,50 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             typeSpaceSite1.setVisibility(View.GONE);
             typeSpaceSite2.setVisibility(View.GONE);
 
+            sourcenote1 = itemView.findViewById(R.id.sourcenotes1);
+            sourcenote2 = itemView.findViewById(R.id.sourcenotes2);
+            sourcenote3 = itemView.findViewById(R.id.sourcenotes3);
+
+
+
+
             addsourceNotes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String id = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
+
                     if(typeSpaceSource.getVisibility() == View.VISIBLE){
                         addsourceNotes.setText("+ Add Notes");
                         typeSpaceSource.setVisibility(View.GONE);
+                        //boolean isInserted =  myDB.addData(id,
+                                //typeSpaceSource.getText().toString());
+
+                        boolean isInserted =  myDB.addData(id,
+                                "Your Notes Here");
+                        Toast.makeText(v.getContext(), myDB.addData(id,
+                                "Your Notes Here") +"", Toast.LENGTH_SHORT).show();
+
+                        if(isInserted){
+                           // Toast.makeText(v.getContext(), myDB.getNotes(id).getString(1)+ " Hi!" , Toast.LENGTH_SHORT).show();
+                            String toShow = "Notes: \n";
+                            //toShow += myDB.getNotes(id).getString(1);
+                            sourcenote1.setText(toShow);
+
+                        }
+
+
                     }
+
                     else{
                         addsourceNotes.setText("Done");
                         typeSpaceSource.setVisibility(View.VISIBLE);
+
+                       // if(myDB.getNotes(id) !=  null) {
+                        //    typeSpaceSource.setText(myDB.getNotes(id).getString(1));
+                       // }
+                       // else{
+                            typeSpaceSource.setText("Hi");
+                       // }
                     }
                 }
             });
@@ -142,6 +186,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     else{
                         siteNotes1.setText("Done");
                         typeSpaceSite1.setVisibility(View.VISIBLE);
+
                     }
                 }
             });

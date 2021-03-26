@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
-    />
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
@@ -49,12 +48,12 @@
             android:text="Driver Code: "/>
 
         <TextView
+            android:id="@+id/driverCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
-            android:id="@+id/driverCode"
             android:layout_marginTop="5dp"
-            android:text="Driver Code"/>
+            android:text="dc"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
@@ -193,12 +192,12 @@
             android:text="Source Code: "/>
 
         <TextView
+            android:id="@+id/sourceCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/sourceCode"
-            android:textColor="@android:color/white"
             android:layout_marginTop="5dp"
-            android:text="Source Code"/>
+            android:text="sc"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
@@ -310,6 +309,12 @@
         android:background="@android:color/white"/>
 
 
+    <TextView
+        android:id="@+id/sourcenotes1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="15dp"/>
 
 
     <View
@@ -485,6 +490,10 @@
         android:background="@android:color/white"/>
 
 
+    <TextView
+        android:id="@+id/sourcenotes2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <View
         android:id="@+id/divider3"
@@ -649,6 +658,10 @@
     android:layout_height="70dp"
     android:background="@android:color/white"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/sourcenotes3"/>
 
 
 </LinearLayout>
