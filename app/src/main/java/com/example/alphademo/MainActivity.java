@@ -3,6 +3,7 @@ package com.example.alphademo;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button login,register;
+    Button login;
     EditText username, password;
     com.example.alphademo.DatabaseSQLite myDB = new com.example.alphademo.DatabaseSQLite(this);
 
@@ -24,42 +25,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         login = findViewById(R.id.login);
-        register = findViewById(R.id.register);
+
         username = findViewById(R.id.id);
         password = findViewById(R.id.password);
 
-        onClickRegister();
+
         onClickLogin();
 
     }
 
-    private void onClickRegister() {
-        register.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean isInserted =  myDB.addData(username.getText().toString(), password.getText().toString());
-                if(isInserted){
-                    Toast.makeText(MainActivity.this, "Succesfully Registered", Toast.LENGTH_LONG).show();
-                }
-
-                else{
-                    Toast.makeText(MainActivity.this, "Already Registered", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-    }
-
-    private void onClickLogin(){
+    private void onClickLogin() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor result = myDB.checkUser(username.getText().toString(), password.getText().toString() ) ;
+                openActivity2();
+                Cursor result = myDB.checkUser(username.getText().toString(), password.getText().toString());
 
-                StringBuffer buffer  = new StringBuffer();
-                while(result.moveToNext()){
+                StringBuffer buffer = new StringBuffer();
+                while (result.moveToNext()) {
 
-                    buffer.append("UserName: "  + result.getString(1)+  "\n");
-                    buffer.append("    Password: " +result.getString(2) +  "\n");
+                    buffer.append("UserName: " + result.getString(1) + "\n");
+                    buffer.append("    Password: " + result.getString(2) + "\n");
 
                 }
 
@@ -67,6 +53,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+        public void openActivity2(){
+            Intent intent= new Intent(this, MainActivity2.class);
+            startActivity(intent);
+        }
+
 
     private void showMessage(String title, String message) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
