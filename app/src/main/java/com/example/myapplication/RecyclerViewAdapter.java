@@ -89,6 +89,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         DatabaseSQLite myDB;
 
 
+
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             progressBar =itemView.findViewById(R.id.progressBar2);
@@ -132,46 +134,52 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             sourcenote2 = itemView.findViewById(R.id.sourcenotes2);
             sourcenote3 = itemView.findViewById(R.id.sourcenotes3);
 
+            final String id = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
+            final String[] notes = {myDB.getNotes(id)};
+
+            if(notes[0] != null) {
+                String toShow = "Notes: \n";
+                toShow += notes[0];
+                sourcenote1.setText(toShow);
+            }
+
 
 
 
             addsourceNotes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String id = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
-
+                    String notes = myDB.getNotes(id);
+                    //String oldnote = "EMPTY";
                     if(typeSpaceSource.getVisibility() == View.VISIBLE){
                         addsourceNotes.setText("+ Add Notes");
                         typeSpaceSource.setVisibility(View.GONE);
-                        //boolean isInserted =  myDB.addData(id,
-                                //typeSpaceSource.getText().toString());
-
-                        boolean isInserted =  myDB.addData(id,
-                                "Your Notes Here");
-                        Toast.makeText(v.getContext(), myDB.addData(id,
-                                "Your Notes Here") +"", Toast.LENGTH_SHORT).show();
-
-                        if(isInserted){
-                           // Toast.makeText(v.getContext(), myDB.getNotes(id).getString(1)+ " Hi!" , Toast.LENGTH_SHORT).show();
-                            String toShow = "Notes: \n";
-                            //toShow += myDB.getNotes(id).getString(1);
-                            sourcenote1.setText(toShow);
-
+                        String type = typeSpaceSource.getText().toString();
+                        if(!myDB.getNotes(id).equals("")){
+                            myDB.updateNotes(id, type);
                         }
-
-
+                        else {
+                            boolean isInserted = myDB.addData(id,
+                                    type);
+                        }
+                        String text = myDB.getNotes(id);
+                        if(!text.equals("")) {
+                            String toShow = "Notes: \n";
+                            toShow += text;
+                            sourcenote1.setText(toShow);
+                        }
                     }
 
                     else{
                         addsourceNotes.setText("Done");
                         typeSpaceSource.setVisibility(View.VISIBLE);
-
-                       // if(myDB.getNotes(id) !=  null) {
-                        //    typeSpaceSource.setText(myDB.getNotes(id).getString(1));
-                       // }
-                       // else{
-                            typeSpaceSource.setText("Hi");
-                       // }
+                        notes= myDB.getNotes(id);
+                        if(notes !=  null) {
+                            typeSpaceSource.setText(notes);
+                       }
+                       else{
+                            typeSpaceSource.setHint("Your Notes..");
+                       }
                     }
                 }
             });
