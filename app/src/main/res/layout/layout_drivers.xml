@@ -375,12 +375,12 @@
             android:text="Site Code: "/>
 
         <TextView
+            android:id="@+id/siteCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/siteCode"
-            android:textColor="@android:color/white"
             android:layout_marginTop="5dp"
-            android:text="Site Code"/>
+            android:text="sc1"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
@@ -493,7 +493,9 @@
     <TextView
         android:id="@+id/sourcenotes2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="105dp"
+        android:textColor="@android:color/white"
+        android:textSize="20dp" />
 
     <View
         android:id="@+id/divider3"
@@ -543,12 +545,12 @@
             android:text="Site Code: "/>
 
         <TextView
+            android:id="@+id/siteCode1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/siteCode1"
-            android:textColor="@android:color/white"
             android:layout_marginTop="5dp"
-            android:text="Site Code"/>
+            android:text="sc2"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 
@@ -661,7 +663,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/sourcenotes3"/>
+        android:id="@+id/sourcenotes3"
+        android:textColor="@android:color/white"
+        android:textSize="20dp" />
 
 
 </LinearLayout>

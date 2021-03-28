@@ -91,7 +91,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
 
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             progressBar =itemView.findViewById(R.id.progressBar2);
             driverName = itemView.findViewById(R.id.driver);
@@ -134,13 +134,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             sourcenote2 = itemView.findViewById(R.id.sourcenotes2);
             sourcenote3 = itemView.findViewById(R.id.sourcenotes3);
 
-            final String id = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
-            final String[] notes = {myDB.getNotes(id)};
+            final String sourceID = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
+            final String siteID1 = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sitecode.getText().toString().trim();
+            final String siteID2 = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sitecode.getText().toString().trim();
+            final String[] sourceNotes = {myDB.getNotes(sourceID),myDB.getNotes(siteID1),myDB.getNotes(siteID2)};
 
-            if(notes[0] != null) {
+            if(sourceNotes[0] != null) {
                 String toShow = "Notes: \n";
-                toShow += notes[0];
+                toShow += sourceNotes[0];
                 sourcenote1.setText(toShow);
+            }
+
+            if(sourceNotes[1] != null) {
+                String toShow = "Notes: \n";
+                toShow += sourceNotes[0];
+                sourcenote2.setText(toShow);
+            }
+
+            if(sourceNotes[2] != null) {
+                String toShow = "Notes: \n";
+                toShow += sourceNotes[0];
+                sourcenote3.setText(toShow);
             }
 
 
@@ -149,20 +163,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             addsourceNotes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String notes = myDB.getNotes(id);
+                    String notes;
                     //String oldnote = "EMPTY";
                     if(typeSpaceSource.getVisibility() == View.VISIBLE){
                         addsourceNotes.setText("+ Add Notes");
                         typeSpaceSource.setVisibility(View.GONE);
                         String type = typeSpaceSource.getText().toString();
-                        if(!myDB.getNotes(id).equals("")){
-                            myDB.updateNotes(id, type);
+                        if(!myDB.getNotes(sourceID).equals("")){
+                            myDB.updateNotes(sourceID, type);
                         }
                         else {
-                            boolean isInserted = myDB.addData(id,
+                            boolean isInserted = myDB.addData(sourceID,
                                     type);
                         }
-                        String text = myDB.getNotes(id);
+                        String text = myDB.getNotes(sourceID);
                         if(!text.equals("")) {
                             String toShow = "Notes: \n";
                             toShow += text;
@@ -173,7 +187,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     else{
                         addsourceNotes.setText("Done");
                         typeSpaceSource.setVisibility(View.VISIBLE);
-                        notes= myDB.getNotes(id);
+                        notes= myDB.getNotes(sourceID);
                         if(notes !=  null) {
                             typeSpaceSource.setText(notes);
                        }
@@ -187,14 +201,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             siteNotes1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String notes;
+                    //String oldnote = "EMPTY";
+
                     if(typeSpaceSite1.getVisibility() == View.VISIBLE){
                         siteNotes1.setText("+ Add Notes");
                         typeSpaceSite1.setVisibility(View.GONE);
+                        String type = typeSpaceSite1.getText().toString();
+                        if(!myDB.getNotes(siteID1).equals("")){
+                            myDB.updateNotes(siteID1, type);
+                        }
+                        else {
+                            boolean isInserted = myDB.addData(siteID1,
+                                    type);
+                            Log.i(" Status", ""+isInserted);
+                        }
+                        String text = myDB.getNotes(siteID1);
+                        if(!text.equals("")) {
+                            String toShow = "Notes: \n";
+                            toShow += text;
+                            sourcenote2.setText(toShow);
+                        }
                     }
+
                     else{
                         siteNotes1.setText("Done");
                         typeSpaceSite1.setVisibility(View.VISIBLE);
+                        notes= myDB.getNotes(siteID1);
 
+                        Log.i("INFO: ", siteID1 +" "+ sourceID);
+                        if(notes !=  null) {
+                            typeSpaceSite1.setText(notes);
+                        }
+                        else{
+                            typeSpaceSite1.setHint("Your Notes..");
+                        }
                     }
                 }
             });
