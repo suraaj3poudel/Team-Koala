@@ -147,13 +147,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             if(sourceNotes[1] != null) {
                 String toShow = "Notes: \n";
-                toShow += sourceNotes[0];
+                toShow += sourceNotes[1];
                 sourcenote2.setText(toShow);
             }
 
             if(sourceNotes[2] != null) {
                 String toShow = "Notes: \n";
-                toShow += sourceNotes[0];
+                toShow += sourceNotes[2];
                 sourcenote3.setText(toShow);
             }
 
@@ -243,13 +243,41 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             siteNotes2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    String notes;
+                    //String oldnote = "EMPTY";
+
                     if(typeSpaceSite2.getVisibility() == View.VISIBLE){
                         siteNotes2.setText("+ Add Notes");
                         typeSpaceSite2.setVisibility(View.GONE);
+                        String type = typeSpaceSite2.getText().toString();
+                        if(!myDB.getNotes(siteID2).equals("")){
+                            myDB.updateNotes(siteID2, type);
+                        }
+                        else {
+                            boolean isInserted = myDB.addData(siteID2,
+                                    type);
+                            Log.i(" Status", ""+isInserted);
+                        }
+                        String text = myDB.getNotes(siteID2);
+                        if(!text.equals("")) {
+                            String toShow = "Notes: \n";
+                            toShow += text;
+                            sourcenote3.setText(toShow);
+                        }
                     }
+
                     else{
                         siteNotes2.setText("Done");
                         typeSpaceSite2.setVisibility(View.VISIBLE);
+                        notes= myDB.getNotes(siteID2);
+
+                        Log.i("INFO: ", siteID2 +" "+ sourceID);
+                        if(notes !=  null) {
+                            typeSpaceSite2.setText(notes);
+                        }
+                        else{
+                            typeSpaceSite2.setHint("Your Notes..");
+                        }
                     }
 
                 }

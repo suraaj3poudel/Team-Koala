@@ -56,9 +56,9 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         String[] colms = {"DIDE","NOTES"};
         String result="";
-        Cursor res = db.query("notes_data",colms,null,null,null,null,null);
+        Cursor res;
         try {
-            //res= db.rawQuery("SELECT NOTES FROM " + TABLE_NAME + " WHERE DIDE = " + "\'" + id + "\'",null);
+            res= db.rawQuery("SELECT NOTES FROM " + TABLE_NAME + " WHERE DIDE = " + "\'" + id + "\'",null);
             while(res.moveToNext()) {
                 //res.moveToFirst();
                 int index = res.getColumnIndexOrThrow("NOTES");
