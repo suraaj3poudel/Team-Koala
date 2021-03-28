@@ -146,6 +146,8 @@
         android:layout_marginTop="15dp"
         android:background="@android:color/white" />
 
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -306,6 +308,8 @@
         android:layout_marginTop="10dp"
         android:layout_height="70dp"
         android:id="@+id/typeSpaceSource"
+        android:hint="Your Notes Here .. "
+        android:padding="5dp"
         android:background="@android:color/white"/>
 
 
@@ -313,8 +317,10 @@
         android:id="@+id/sourcenotes1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="20dp" />
+        android:background="@android:color/background_light"
+        android:textColor="@android:color/black"
+        android:textSize="17dp"
+        android:padding="10dp"/>
 
 
     <View
@@ -487,6 +493,8 @@
         android:layout_marginTop="10dp"
         android:layout_height="70dp"
         android:id="@+id/typeSpaceSite1"
+        android:hint="Your Notes Here .. "
+        android:padding="5dp"
         android:background="@android:color/white"/>
 
 
@@ -494,8 +502,10 @@
         android:id="@+id/sourcenotes2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@android:color/white"
-        android:textSize="20dp" />
+        android:textColor="@android:color/black"
+        android:background="@android:color/background_light"
+        android:textSize="17dp"
+        android:padding="10dp"/>
 
     <View
         android:id="@+id/divider3"
@@ -551,6 +561,7 @@
             android:layout_marginTop="5dp"
             android:text="sc2"
             android:textColor="@android:color/white" />
+
 
     </LinearLayout>
 
@@ -634,6 +645,53 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="Product Code: "/>
+
+        <TextView
+            android:id="@+id/productCode1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="pc2"
+            android:textColor="@android:color/white" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="5dp"
+            android:textStyle="bold"
+            android:text="Product Desc: "/>
+
+        <TextView
+            android:id="@+id/productDesc1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="pd2"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -658,23 +716,28 @@
     android:layout_marginTop="10dp"
     android:id="@+id/typeSpaceSite2"
     android:layout_height="70dp"
+        android:hint="Your Notes Here .. "
+        android:padding="5dp"
     android:background="@android:color/white"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/sourcenotes3"
-        android:textColor="@android:color/white"
-        android:textSize="20dp" />
+        android:textColor="@android:color/black"
+        android:background="@android:color/background_light"
+        android:textSize="17dp"
+        android:padding="10dp"/>
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:id="@+id/sourcenotes4"
         android:textColor="@android:color/black"
-        android:textSize="20dp" />
+        android:textSize="50dp" />
 
 
 </LinearLayout>
+
 
 </ScrollView>

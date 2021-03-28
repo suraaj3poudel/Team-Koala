@@ -75,9 +75,11 @@ public class TripDetails extends AppCompatActivity {
 
                         driverNames.add(trip) ;
 
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                Toast.makeText(getApplicationContext(), "Successfully Fetched All Data" , Toast.LENGTH_SHORT);
                 //}
 
                 recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -86,7 +88,10 @@ public class TripDetails extends AppCompatActivity {
 
                 recyclerView.setAdapter(adapter);
 
-                pbar.setVisibility(View.VISIBLE);
+                pbar.setVisibility(View.GONE);
+
+
+
             }
         }, new Response.ErrorListener() {
             @Override

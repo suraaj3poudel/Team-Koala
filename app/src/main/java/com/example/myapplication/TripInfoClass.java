@@ -27,6 +27,55 @@ public class TripInfoClass {
     private String siteState;
     private String siteZIP;
 
+    private String site2;
+    private String site2Code;
+    private String site2Address;
+    private String site2City;
+    private String site2State;
+    private String site2Product;
+    private String site2ProductDesc;
+
+    public String getSite2Product() {
+        return site2Product;
+    }
+
+    public String getSite2ProductDesc() {
+        return site2ProductDesc;
+    }
+
+
+
+
+    public String getSite2() {
+        return site2;
+    }
+
+    public String getSite2Code() {
+        return site2Code;
+    }
+
+    public String getSite2Address() {
+        return site2Address;
+    }
+
+    public String getSite2City() {
+        return site2City;
+    }
+
+    public String getSite2State() {
+        return site2State;
+    }
+
+    public String getSite2ZIP() {
+        return site2ZIP;
+    }
+
+
+    private String site2ZIP;
+
+
+
+
     public String getTruckID() {
         return truckID;
     }
@@ -168,6 +217,34 @@ public class TripInfoClass {
 
         String sitezip = siteInfo.getString("PostalCode");
         siteZIP = sitezip;
+
+
+        JSONObject site2Info = driverDetails.getJSONObject(2);
+
+        String site2name = site2Info.getString("DestinationName");
+        site2 = site2name;
+
+        String site2containercode = site2Info.getString("SiteContainerCode");
+        site2Code = site2containercode;
+
+        String site2address = site2Info.getString("Address1");
+        site2Address = site2address;
+
+        String site2city = site2Info.getString("City");
+        site2City = site2city;
+
+        String site2state= site2Info.getString("StateAbbrev");
+        site2State= site2state;
+
+        String site2zip = site2Info.getString("PostalCode");
+        site2ZIP = site2zip;
+
+        String site2p= site2Info.getString("ProductCode");
+        site2Product= site2p;
+
+        String site2pd = site2Info.getString("ProductDesc");
+        site2ProductDesc = site2pd;
+
 
     }
 

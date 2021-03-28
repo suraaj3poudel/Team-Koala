@@ -1,10 +1,13 @@
 package com.example.myapplication;
 
+import android.app.Activity;
 import android.content.Context;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -63,6 +66,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.sistate.setText(mDriverNames.get(position).getSiteState());
         holder.sizip.setText(mDriverNames.get(position).getSiteZIP());
 
+        holder.site2name.setText(mDriverNames.get(position).getSite2());
+        holder.site2containercode.setText(mDriverNames.get(position).getSite2Code());
+        holder.site2address.setText(mDriverNames.get(position).getSite2Address());
+        holder.site2city.setText(mDriverNames.get(position).getSite2City());
+        holder.site2state.setText(mDriverNames.get(position).getSite2State());
+        holder.site2zip.setText(mDriverNames.get(position).getSite2ZIP());
+        holder.site2p.setText(mDriverNames.get(position).getSite2Product());
+        holder.site2pd.setText(mDriverNames.get(position).getSite2ProductDesc());
+
 
 
 
@@ -82,6 +94,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView driverName, driverCode, truckid, transport, tripid, tripname, sourcename, sourcecode;
         TextView address, scity, sstate, szipcode, site, sitecode, siaddress, sicity, sistate, sizip;
         TextView sourcenote1, sourcenote2, sourcenote3;
+        TextView site2name, site2containercode, site2address, site2city, site2state, site2zip,site2p, site2pd;
         ProgressBar progressBar;
         LinearLayout parentLayout;
         Button addsourceNotes, siteNotes1, siteNotes2;
@@ -114,6 +127,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             sistate = itemView.findViewById(R.id.siteState);
             sizip = itemView.findViewById(R.id.siteZipcode);
 
+            site2name = itemView.findViewById(R.id.site1);
+            site2containercode = itemView.findViewById(R.id.siteCode1);
+            site2address = itemView.findViewById(R.id.siteAddress1);
+            site2city = itemView.findViewById(R.id.siteCity1);
+            site2state = itemView.findViewById(R.id.siteState1);
+            site2zip = itemView.findViewById(R.id.siteZipcode1);
+            site2p = itemView.findViewById(R.id.productCode1);
+            site2pd = itemView.findViewById(R.id.productDesc1);
+
             parentLayout = itemView.findViewById(R.id.parent_layout);
 
             myDB = new DatabaseSQLite(itemView.getContext());
@@ -126,6 +148,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             siteNotes1 = itemView.findViewById(R.id.siteNotes1);
             siteNotes2 = itemView.findViewById(R.id.siteNotes2);
 
+            site2name = itemView.findViewById(R.id.site1);
+            site2containercode = itemView.findViewById(R.id.siteCode1);
+
+
             typeSpaceSource.setVisibility(View.GONE);
             typeSpaceSite1.setVisibility(View.GONE);
             typeSpaceSite2.setVisibility(View.GONE);
@@ -136,25 +162,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             final String sourceID = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
             final String siteID1 = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sitecode.getText().toString().trim();
-            final String siteID2 = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sitecode.getText().toString().trim();
+            final String siteID2 = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+site2containercode.getText().toString().trim();
             final String[] sourceNotes = {myDB.getNotes(sourceID),myDB.getNotes(siteID1),myDB.getNotes(siteID2)};
 
-            if(sourceNotes[0] != null) {
+            if(!sourceNotes[0].equals("")) {
                 String toShow = "Notes: \n";
                 toShow += sourceNotes[0];
-                sourcenote1.setText(toShow);
+                sourcenote1.setText(Html.fromHtml("<b>Notes: </b> <p> " +sourceNotes[0] + "</p>"));
+            }
+            else{
+                sourcenote1.setVisibility(View.GONE);
             }
 
-            if(sourceNotes[1] != null) {
+            if(!sourceNotes[1].equals("")) {
                 String toShow = "Notes: \n";
                 toShow += sourceNotes[1];
-                sourcenote2.setText(toShow);
+                sourcenote2.setText(Html.fromHtml("<b>Notes: </b> <p> " +sourceNotes[1] + "</p>"));
+            }
+            else{
+                sourcenote2.setVisibility(View.GONE);
             }
 
-            if(sourceNotes[2] != null) {
+            if(!sourceNotes[2].equals("")) {
                 String toShow = "Notes: \n";
                 toShow += sourceNotes[2];
-                sourcenote3.setText(toShow);
+                sourcenote3.setText(Html.fromHtml("<b>Notes: </b> <p> " +sourceNotes[2] + "</p>"));
+            }
+            else{
+                sourcenote3.setVisibility(View.GONE);
             }
 
 
@@ -166,8 +201,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     String notes;
                     //String oldnote = "EMPTY";
                     if(typeSpaceSource.getVisibility() == View.VISIBLE){
+
                         addsourceNotes.setText("+ Add Notes");
                         typeSpaceSource.setVisibility(View.GONE);
+                        sourcenote1.setVisibility(View.VISIBLE);
                         String type = typeSpaceSource.getText().toString();
                         if(!myDB.getNotes(sourceID).equals("")){
                             myDB.updateNotes(sourceID, type);
@@ -178,15 +215,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         }
                         String text = myDB.getNotes(sourceID);
                         if(!text.equals("")) {
-                            String toShow = "Notes: \n";
-                            toShow += text;
-                            sourcenote1.setText(toShow);
+                            String toShow = text;
+                            sourcenote1.setText(Html.fromHtml("<b>Notes: </b> <p> " + toShow + "</p>"));
                         }
                     }
 
                     else{
+
                         addsourceNotes.setText("Done");
                         typeSpaceSource.setVisibility(View.VISIBLE);
+                        sourcenote1.setVisibility(View.GONE);
                         notes= myDB.getNotes(sourceID);
                         if(notes !=  null) {
                             typeSpaceSource.setText(notes);
@@ -205,8 +243,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     //String oldnote = "EMPTY";
 
                     if(typeSpaceSite1.getVisibility() == View.VISIBLE){
+
                         siteNotes1.setText("+ Add Notes");
                         typeSpaceSite1.setVisibility(View.GONE);
+                        sourcenote2.setVisibility(View.VISIBLE);
                         String type = typeSpaceSite1.getText().toString();
                         if(!myDB.getNotes(siteID1).equals("")){
                             myDB.updateNotes(siteID1, type);
@@ -218,15 +258,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         }
                         String text = myDB.getNotes(siteID1);
                         if(!text.equals("")) {
-                            String toShow = "Notes: \n";
-                            toShow += text;
-                            sourcenote2.setText(toShow);
+                            String toShow = text;
+                            sourcenote2.setText(Html.fromHtml("<b>Notes: </b> <p> " + toShow + "</p>"));
                         }
                     }
 
                     else{
+
                         siteNotes1.setText("Done");
                         typeSpaceSite1.setVisibility(View.VISIBLE);
+                        sourcenote2.setVisibility(View.GONE);
                         notes= myDB.getNotes(siteID1);
 
                         Log.i("INFO: ", siteID1 +" "+ sourceID);
@@ -247,8 +288,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     //String oldnote = "EMPTY";
 
                     if(typeSpaceSite2.getVisibility() == View.VISIBLE){
+
                         siteNotes2.setText("+ Add Notes");
                         typeSpaceSite2.setVisibility(View.GONE);
+                        sourcenote3.setVisibility(View.VISIBLE);
                         String type = typeSpaceSite2.getText().toString();
                         if(!myDB.getNotes(siteID2).equals("")){
                             myDB.updateNotes(siteID2, type);
@@ -260,15 +303,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         }
                         String text = myDB.getNotes(siteID2);
                         if(!text.equals("")) {
-                            String toShow = "Notes: \n";
-                            toShow += text;
-                            sourcenote3.setText(toShow);
+                            //String toShow = "Notes: \n";
+                            String toShow = text;
+                            sourcenote3.setText(Html.fromHtml("<b>Notes: </b> <p> " + toShow + "</p>"));
                         }
                     }
 
                     else{
+
                         siteNotes2.setText("Done");
                         typeSpaceSite2.setVisibility(View.VISIBLE);
+                        sourcenote3.setVisibility(View.GONE);
                         notes= myDB.getNotes(siteID2);
 
                         Log.i("INFO: ", siteID2 +" "+ sourceID);
@@ -283,6 +328,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
             });
         }
+
+        public void hideKeyboard(Activity activity) {
+            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
+            //Find the currently focused view, so we can grab the correct window token from it.
+            View view = activity.getCurrentFocus();
+            //If no view currently has focus, create a new one, just so we can grab a window token from it
+            if (view == null) {
+                view = new View(activity);
+            }
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+
     }
 
     private class MyOnClickListener implements View.OnClickListener {
