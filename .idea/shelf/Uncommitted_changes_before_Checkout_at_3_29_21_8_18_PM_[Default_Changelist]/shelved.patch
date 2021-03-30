@@ -1,0 +1,952 @@
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_17_PM_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_17_PM_[Default_Changelist]/shelved.patch	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_17_PM_[Default_Changelist]/shelved.patch	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
+@@ -1,400 +0,0 @@
+-Index: app/src/main/res/layout/activity_main.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<LinearLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:backgroundTint=\"#50FFFFFF\"\n    android:backgroundTintMode=\"src_over\"\n    android:gravity=\"center_horizontal\"\n    android:orientation=\"vertical\"\n    android:padding=\"16dp\"\n    android:visibility=\"visible\"\n    tools:context=\".MainActivity\">\n\n    <ProgressBar\n        android:id=\"@+id/progressBar\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"34dp\" />\n\n\n    <Button\n        android:id=\"@+id/btlocation\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"25dp\"\n        android:backgroundTint=\"#00C55757\"\n        android:text=\"Get Location\" />\n\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"55dp\"\n        android:orientation=\"horizontal\">\n\n        <TextView\n            android:id=\"@+id/text_view1\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\" />\n\n        <TextView\n            android:id=\"@+id/text_view2\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\" />\n\n    </LinearLayout>\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"16dp\"\n        android:orientation=\"horizontal\">\n\n        <TextView\n            android:id=\"@+id/text_view3\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\" />\n\n        <TextView\n            android:id=\"@+id/text_view4\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_weight=\"1\" />\n\n    </LinearLayout>\n\n    <TextView\n        android:id=\"@+id/text_view5\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"16dp\" />\n\n    <EditText\n        android:id=\"@+id/input1\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"100dp\"\n        android:ems=\"10\"\n        android:hint=\"First Name\"\n        android:inputType=\"textPersonName\" />\n\n    <EditText\n        android:id=\"@+id/input2\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"3dp\"\n        android:ems=\"10\"\n        android:hint=\"Last Name\"\n        android:inputType=\"textPersonName\" />\n\n    <TextView\n        android:id=\"@+id/selectGender\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginTop=\"35dp\"\n        android:layout_marginBottom=\"15dp\"\n        android:text=\"Select Your Gender\"\n        android:textStyle=\"normal|bold\"\n        android:typeface=\"sans\"\n        tools:visibility=\"visible\" />\n\n    <GridLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"127dp\">\n\n        <RadioGroup android:id=\"@+id/radioGroup\">\n\n            <RadioButton\n                android:id=\"@+id/Male\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_row=\"0\"\n                android:layout_column=\"0\"\n                android:onClick=\"checkButton\"\n                android:text=\"Male\" />\n\n            <RadioButton\n                android:id=\"@+id/Female\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"wrap_content\"\n                android:layout_row=\"0\"\n                android:layout_column=\"1\"\n                android:onClick=\"checkButton\"\n                android:text=\"Female\" />\n\n        </RadioGroup>\n\n\n        <Button\n            android:id=\"@+id/add\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_row=\"2\"\n            android:layout_column=\"0\"\n            android:text=\"Add Data\" />\n\n        <Button\n            android:id=\"@+id/view\"\n            android:layout_width=\"wrap_content\"\n            android:layout_height=\"wrap_content\"\n            android:layout_row=\"2\"\n            android:layout_column=\"1\"\n            android:text=\"View My Data\" />\n\n\n    </GridLayout>\n\n\n</LinearLayout>\n\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/res/layout/activity_main.xml	(revision b5f5f032e5b0a9c56a8e38be17a3271d6be86ebb)
+-+++ app/src/main/res/layout/activity_main.xml	(date 1615173371000)
+-@@ -1,153 +1,178 @@
+- <?xml version="1.0" encoding="utf-8"?>
+--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-     xmlns:app="http://schemas.android.com/apk/res-auto"
+-     xmlns:tools="http://schemas.android.com/tools"
+-     android:layout_width="match_parent"
+-     android:layout_height="match_parent"
+--    android:backgroundTint="#50FFFFFF"
+--    android:backgroundTintMode="src_over"
+--    android:gravity="center_horizontal"
+--    android:orientation="vertical"
+--    android:padding="16dp"
+--    android:visibility="visible"
+-+    android:background="@color/peach"
+-     tools:context=".MainActivity">
+- 
+--    <ProgressBar
+--        android:id="@+id/progressBar"
+-+    <ImageView
+-+        android:id="@+id/imageView4"
+-+        android:layout_width="0dp"
+-+        android:layout_height="0dp"
+-+        android:scaleType="fitStart"
+-+        app:layout_constraintBottom_toBottomOf="parent"
+-+        app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toTopOf="parent"
+-+        app:srcCompat="@drawable/img" />
+-+
+-+    <androidx.constraintlayout.widget.Guideline
+-+        android:id="@+id/guideline1"
+-         android:layout_width="wrap_content"
+--        android:layout_height="34dp" />
+-+        android:layout_height="wrap_content"
+-+        android:orientation="vertical"
+-+        app:layout_constraintGuide_begin="20dp" />
+- 
+--
+--    <Button
+--        android:id="@+id/btlocation"
+-+    <androidx.constraintlayout.widget.Guideline
+-+        android:id="@+id/guideline2"
+-         android:layout_width="wrap_content"
+-         android:layout_height="wrap_content"
+--        android:layout_marginTop="25dp"
+--        android:backgroundTint="#00C55757"
+--        android:text="Get Location" />
+-+        android:orientation="vertical"
+-+        app:layout_constraintGuide_end="20dp" />
+- 
+--
+--    <LinearLayout
+--        android:layout_width="match_parent"
+-+    <androidx.constraintlayout.widget.Guideline
+-+        android:id="@+id/guideline3"
+-+        android:layout_width="wrap_content"
+-         android:layout_height="wrap_content"
+--        android:layout_marginTop="55dp"
+--        android:orientation="horizontal">
+-+        android:orientation="horizontal"
+-+        app:layout_constraintGuide_begin="20dp" />
+- 
+--        <TextView
+--            android:id="@+id/text_view1"
+--            android:layout_width="0dp"
+--            android:layout_height="wrap_content"
+--            android:layout_weight="1" />
+-+    <androidx.constraintlayout.widget.Guideline
+-+        android:id="@+id/guideline4"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:orientation="horizontal"
+-+        app:layout_constraintGuide_end="20dp" />
+-+
+-+    <androidx.constraintlayout.widget.ConstraintLayout
+-+        android:id="@+id/whiteBox"
+-+        android:layout_width="match_parent"
+-+        android:layout_height="match_parent"
+- 
+--        <TextView
+--            android:id="@+id/text_view2"
+-+        android:layout_marginStart="50dp"
+-+        android:layout_marginTop="150dp"
+-+        android:layout_marginEnd="50dp"
+-+        android:layout_marginBottom="75dp"
+-+        android:background="@drawable/white_background"
+-+        android:backgroundTint="@color/light"
+-+        android:orientation="horizontal"
+-+        app:layout_constraintBottom_toBottomOf="parent"
+-+        app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintHorizontal_bias="0.0"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toTopOf="parent"
+-+        app:layout_constraintVertical_bias="0.0">
+-+
+-+
+-+        <ImageView
+-+            android:id="@+id/aims"
+-             android:layout_width="0dp"
+-             android:layout_height="wrap_content"
+--            android:layout_weight="1" />
+--
+--    </LinearLayout>
+-+            android:layout_marginLeft="10dp"
+-+            android:layout_marginTop="6dp"
+-+            android:layout_marginRight="100dp"
+-+            android:scaleType="fitCenter"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintHorizontal_bias="0.141"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toTopOf="parent"
+-+            app:srcCompat="@drawable/aims" />
+- 
+--    <LinearLayout
+--        android:layout_width="match_parent"
+--        android:layout_height="wrap_content"
+--        android:layout_marginTop="16dp"
+--        android:orientation="horizontal">
+--
+--        <TextView
+--            android:id="@+id/text_view3"
+-+        <LinearLayout
+-+            android:id="@+id/layout"
+-             android:layout_width="0dp"
+--            android:layout_height="wrap_content"
+--            android:layout_weight="1" />
+--
+--        <TextView
+--            android:id="@+id/text_view4"
+--            android:layout_width="0dp"
+--            android:layout_height="wrap_content"
+--            android:layout_weight="1" />
+--
+--    </LinearLayout>
+--
+--    <TextView
+--        android:id="@+id/text_view5"
+--        android:layout_width="match_parent"
+--        android:layout_height="wrap_content"
+--        android:layout_marginTop="16dp" />
+-+            android:layout_height="0dp"
+-+            android:layout_marginLeft="30dp"
+-+            android:layout_marginTop="28dp"
+-+            android:layout_marginRight="30dp"
+-+            android:layout_marginBottom="60dp"
+-+            android:background="@drawable/driveridbox"
+-+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toBottomOf="@+id/aims">
+- 
+--    <EditText
+--        android:id="@+id/input1"
+--        android:layout_width="match_parent"
+--        android:layout_height="wrap_content"
+--        android:layout_marginTop="100dp"
+--        android:ems="10"
+--        android:hint="First Name"
+--        android:inputType="textPersonName" />
+-+            <EditText
+-+                android:id="@+id/email"
+-+                android:layout_width="match_parent"
+-+                android:layout_height="match_parent"
+-+                android:layout_weight="1"
+-+                android:ems="10"
+-+                android:hint="Driver Id"
+-+                android:inputType="textEmailAddress"
+-+                android:paddingHorizontal="30dp"
+-+                android:textColorHint="#F44336"
+-+                android:textSize="18sp" />
+-+        </LinearLayout>
+-+
+-+        <LinearLayout
+-+            android:id="@+id/linearLayout"
+-+            android:layout_width="0dp"
+-+            android:layout_height="0dp"
+-+            android:layout_marginLeft="30dp"
+-+            android:layout_marginRight="30dp"
+-+            android:layout_marginBottom="100dp"
+-+            android:background="@drawable/driveridbox"
+-+            app:layout_constraintBottom_toTopOf="@+id/layout3"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toBottomOf="@id/layout">
+- 
+--    <EditText
+--        android:id="@+id/input2"
+--        android:layout_width="match_parent"
+--        android:layout_height="wrap_content"
+--        android:layout_marginTop="3dp"
+--        android:ems="10"
+--        android:hint="Last Name"
+--        android:inputType="textPersonName" />
+--
+--    <TextView
+--        android:id="@+id/selectGender"
+--        android:layout_width="match_parent"
+--        android:layout_height="wrap_content"
+--        android:layout_marginTop="35dp"
+--        android:layout_marginBottom="15dp"
+--        android:text="Select Your Gender"
+--        android:textStyle="normal|bold"
+--        android:typeface="sans"
+--        tools:visibility="visible" />
+--
+--    <GridLayout
+--        android:layout_width="match_parent"
+--        android:layout_height="127dp">
+--
+--        <RadioGroup android:id="@+id/radioGroup">
+-+            <EditText
+-+                android:id="@+id/password"
+-+                android:layout_width="match_parent"
+-+                android:layout_height="match_parent"
+-+                android:layout_weight="1"
+-+                android:ems="10"
+-+                android:hint="Password"
+-+                android:inputType="textPassword"
+-+                android:paddingHorizontal="30dp"
+-+                android:textColorHint="#F44336"
+-+                android:textSize="18sp" />
+- 
+--            <RadioButton
+--                android:id="@+id/Male"
+--                android:layout_width="wrap_content"
+--                android:layout_height="wrap_content"
+--                android:layout_row="0"
+--                android:layout_column="0"
+--                android:onClick="checkButton"
+--                android:text="Male" />
+--
+--            <RadioButton
+--                android:id="@+id/Female"
+-+            <ImageView
+-+                android:id="@+id/imageView2"
+-                 android:layout_width="wrap_content"
+--                android:layout_height="wrap_content"
+--                android:layout_row="0"
+--                android:layout_column="1"
+--                android:onClick="checkButton"
+--                android:text="Female" />
+--
+--        </RadioGroup>
+--
+-+                android:layout_height="match_parent"
+-+
+-+                app:srcCompat="@android:drawable/ic_menu_view" />
+-+
+-+        </LinearLayout>
+-+
+-+        <androidx.appcompat.widget.LinearLayoutCompat
+-+            android:id="@+id/layout3"
+-+            android:layout_width="0dp"
+-+            android:layout_height="wrap_content"
+-+            android:background="@drawable/driveridbox"
+-+            android:layout_marginLeft="70dp"
+-+            android:layout_marginRight="50dp"
+-+            android:layout_marginBottom="70dp"
+-+            app:layout_constraintBottom_toBottomOf="parent"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+- 
+--        <Button
+--            android:id="@+id/add"
+--            android:layout_width="wrap_content"
+--            android:layout_height="wrap_content"
+--            android:layout_row="2"
+--            android:layout_column="0"
+--            android:text="Add Data" />
+-+            <Button
+-+                android:id="@+id/login"
+-+                android:layout_width="match_parent"
+-+                android:layout_height="match_parent"
+- 
+--        <Button
+--            android:id="@+id/view"
+--            android:layout_width="wrap_content"
+--            android:layout_height="wrap_content"
+--            android:layout_row="2"
+--            android:layout_column="1"
+--            android:text="View My Data" />
+-+                android:backgroundTint="#ED1616"
+-+                android:text="Log in"
+-+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+- 
+-+                android:textColor="#F4EEEE"
+-+                android:textColorLink="@color/white"
+-+                android:textSize="24sp"
+-+                app:layout_constraintBottom_toBottomOf="parent"
+-+                app:layout_constraintEnd_toEndOf="parent"
+-+                app:layout_constraintStart_toStartOf="parent" />
+-+        </androidx.appcompat.widget.LinearLayoutCompat>
+- 
+--    </GridLayout>
+- 
+-+    </androidx.constraintlayout.widget.ConstraintLayout>
+- 
+--</LinearLayout>
+- 
+-+</androidx.constraintlayout.widget.ConstraintLayout>
+-Index: app/src/main/res/layout/activity_main2.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/res/layout/activity_main2.xml	(date 1615173388000)
+-+++ app/src/main/res/layout/activity_main2.xml	(date 1615173388000)
+-@@ -0,0 +1,20 @@
+-+<?xml version="1.0" encoding="utf-8"?>
+-+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-+    xmlns:app="http://schemas.android.com/apk/res-auto"
+-+    xmlns:tools="http://schemas.android.com/tools"
+-+    android:layout_width="match_parent"
+-+    android:layout_height="match_parent"
+-+    android:background="@color/peach"
+-+    tools:context=".MainActivity2">
+-+    <ImageView
+-+        android:id="@+id/imageView4"
+-+        android:layout_width="0dp"
+-+        android:layout_height="0dp"
+-+        android:scaleType="fitStart"
+-+        app:layout_constraintBottom_toBottomOf="parent"
+-+        app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toTopOf="parent"
+-+        app:srcCompat="@drawable/img" />
+-+
+-+</androidx.constraintlayout.widget.ConstraintLayout>
+-\ No newline at end of file
+-Index: app/src/main/java/com/example/aimslogin/MainActivity2.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/java/com/example/aimslogin/MainActivity2.java	(date 1615173388000)
+-+++ app/src/main/java/com/example/aimslogin/MainActivity2.java	(date 1615173388000)
+-@@ -0,0 +1,15 @@
+-+package com.example.aimslogin;
+-+
+-+import androidx.appcompat.app.AppCompatActivity;
+-+
+-+import android.os.Bundle;
+-+
+-+public class MainActivity2 extends AppCompatActivity {
+-+
+-+    @Override
+-+    protected void onCreate(Bundle savedInstanceState) {
+-+        super.onCreate(savedInstanceState);
+-+        setContentView(R.layout.activity_main2);
+-+        getSupportActionBar().hide();
+-+    }
+-+}
+-\ No newline at end of file
+-Index: app/src/main/AndroidManifest.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.alphademo\">\n\n    <uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\" />\n    <uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\" />\n    <uses-permission android:name=\"android.permission.ACCESS_BACKGROUND_LOCATION\" />\n\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/AppTheme\">\n        <activity android:name=\".LoginActivity\"></activity>\n        <activity android:name=\".MainActivity\">\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\" />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/AndroidManifest.xml	(revision b5f5f032e5b0a9c56a8e38be17a3271d6be86ebb)
+-+++ app/src/main/AndroidManifest.xml	(date 1615173388000)
+-@@ -1,10 +1,6 @@
+- <?xml version="1.0" encoding="utf-8"?>
+- <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+--    package="com.example.alphademo">
+--
+--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+--    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+-+    package="com.example.aimslogin">
+- 
+-     <application
+-         android:allowBackup="true"
+-@@ -12,9 +8,11 @@
+-         android:label="@string/app_name"
+-         android:roundIcon="@mipmap/ic_launcher_round"
+-         android:supportsRtl="true"
+--        android:theme="@style/AppTheme">
+--        <activity android:name=".LoginActivity"></activity>
+--        <activity android:name=".MainActivity">
+-+        android:theme="@style/Theme.AimsLogIn">
+-+        <activity android:name=".MainActivity2"></activity>
+-+        <activity
+-+            android:name=".MainActivity"
+-+            android:screenOrientation="sensor">
+-             <intent-filter>
+-                 <action android:name="android.intent.action.MAIN" />
+- 
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_14_PM_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_14_PM_[Default_Changelist]/shelved.patch	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_14_PM_[Default_Changelist]/shelved.patch	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
+@@ -1,202 +0,0 @@
+-Index: app/src/main/res/layout/activity_main.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    android:background=\"@color/peach\"\n    tools:context=\".MainActivity\">\n\n    <ImageView\n        android:id=\"@+id/imageView4\"\n        android:layout_width=\"0dp\"\n        android:layout_height=\"0dp\"\n        android:scaleType=\"fitStart\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:srcCompat=\"@drawable/img\" />\n\n    <androidx.constraintlayout.widget.Guideline\n        android:id=\"@+id/guideline1\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\"\n        app:layout_constraintGuide_begin=\"20dp\" />\n\n    <androidx.constraintlayout.widget.Guideline\n        android:id=\"@+id/guideline2\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\"\n        app:layout_constraintGuide_end=\"20dp\" />\n\n    <androidx.constraintlayout.widget.Guideline\n        android:id=\"@+id/guideline3\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"horizontal\"\n        app:layout_constraintGuide_begin=\"20dp\" />\n\n    <androidx.constraintlayout.widget.Guideline\n        android:id=\"@+id/guideline4\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"horizontal\"\n        app:layout_constraintGuide_end=\"20dp\" />\n\n    <androidx.constraintlayout.widget.ConstraintLayout\n        android:id=\"@+id/whiteBox\"\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n\n        android:layout_marginStart=\"50dp\"\n        android:layout_marginTop=\"150dp\"\n        android:layout_marginEnd=\"50dp\"\n        android:layout_marginBottom=\"75dp\"\n        android:background=\"@drawable/white_background\"\n        android:backgroundTint=\"@color/light\"\n        android:orientation=\"horizontal\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.0\">\n\n\n        <ImageView\n            android:id=\"@+id/aims\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginLeft=\"10dp\"\n            android:layout_marginTop=\"6dp\"\n            android:layout_marginRight=\"100dp\"\n            android:scaleType=\"fitCenter\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintHorizontal_bias=\"0.141\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toTopOf=\"parent\"\n            app:srcCompat=\"@drawable/aims\" />\n\n        <LinearLayout\n            android:id=\"@+id/layout\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"0dp\"\n            android:layout_marginLeft=\"30dp\"\n            android:layout_marginRight=\"30dp\"\n            android:layout_marginTop=\"28dp\"\n            android:layout_marginBottom=\"60dp\"\n            android:background=\"@drawable/driveridbox\"\n            app:layout_constraintBottom_toTopOf=\"@+id/linearLayout\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@+id/aims\">\n\n            <EditText\n                android:id=\"@+id/email\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"match_parent\"\n                android:layout_weight=\"1\"\n                android:ems=\"10\"\n                android:hint=\"Driver Id\"\n                android:inputType=\"textEmailAddress\"\n                android:paddingHorizontal=\"30dp\"\n                android:textColorHint=\"#F44336\"\n                android:textSize=\"18sp\" />\n        </LinearLayout>\n\n        <LinearLayout\n            android:id=\"@+id/linearLayout\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"0dp\"\n            android:layout_marginLeft=\"30dp\"\n            android:layout_marginRight=\"30dp\"\n            android:layout_marginBottom=\"100dp\"\n            android:background=\"@drawable/driveridbox\"\n            app:layout_constraintBottom_toTopOf=\"@+id/login\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\"\n            app:layout_constraintTop_toBottomOf=\"@id/layout\" >\n\n            <EditText\n                android:id=\"@+id/password\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"match_parent\"\n                android:layout_weight=\"1\"\n                android:ems=\"10\"\n                android:hint=\"Password\"\n                android:inputType=\"textPassword\"\n                android:paddingHorizontal=\"30dp\"\n                android:textColorHint=\"#F44336\"\n                android:textSize=\"18sp\" />\n\n            <ImageView\n                android:id=\"@+id/imageView2\"\n                android:layout_width=\"wrap_content\"\n                android:layout_height=\"match_parent\"\n\n                app:srcCompat=\"@android:drawable/ic_menu_view\" />\n\n        </LinearLayout>\n\n        <Button\n            android:id=\"@+id/login\"\n            android:layout_width=\"0dp\"\n            android:layout_height=\"wrap_content\"\n            android:layout_marginLeft=\"50dp\"\n            android:layout_marginRight=\"50dp\"\n            android:layout_marginBottom=\"70dp\"\n            android:background=\"#972d12\"\n            android:backgroundTint=\"#FFFFFF\"\n            android:text=\"Log in\"\n\n            android:textColor=\"#F44336\"\n            app:layout_constraintBottom_toBottomOf=\"parent\"\n            app:layout_constraintEnd_toEndOf=\"parent\"\n            app:layout_constraintStart_toStartOf=\"parent\" />\n\n\n    </androidx.constraintlayout.widget.ConstraintLayout>\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>\n
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/res/layout/activity_main.xml	(revision 949d731e2fa125bf4237218e94c143cad308acef)
+-+++ app/src/main/res/layout/activity_main.xml	(date 1615163704000)
+-@@ -85,8 +85,8 @@
+-             android:layout_width="0dp"
+-             android:layout_height="0dp"
+-             android:layout_marginLeft="30dp"
+--            android:layout_marginRight="30dp"
+-             android:layout_marginTop="28dp"
+-+            android:layout_marginRight="30dp"
+-             android:layout_marginBottom="60dp"
+-             android:background="@drawable/driveridbox"
+-             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+-@@ -115,10 +115,10 @@
+-             android:layout_marginRight="30dp"
+-             android:layout_marginBottom="100dp"
+-             android:background="@drawable/driveridbox"
+--            app:layout_constraintBottom_toTopOf="@+id/login"
+-+            app:layout_constraintBottom_toTopOf="@+id/layout3"
+-             app:layout_constraintEnd_toEndOf="parent"
+-             app:layout_constraintStart_toStartOf="parent"
+--            app:layout_constraintTop_toBottomOf="@id/layout" >
+-+            app:layout_constraintTop_toBottomOf="@id/layout">
+- 
+-             <EditText
+-                 android:id="@+id/password"
+-@@ -141,21 +141,35 @@
+- 
+-         </LinearLayout>
+- 
+--        <Button
+--            android:id="@+id/login"
+-+        <androidx.appcompat.widget.LinearLayoutCompat
+-+            android:id="@+id/layout3"
+-             android:layout_width="0dp"
+-             android:layout_height="wrap_content"
+--            android:layout_marginLeft="50dp"
+-+            android:background="@drawable/driveridbox"
+-+            android:layout_marginLeft="70dp"
+-             android:layout_marginRight="50dp"
+-             android:layout_marginBottom="70dp"
+--            android:background="#972d12"
+--            android:backgroundTint="#FFFFFF"
+--            android:text="Log in"
+-+            app:layout_constraintBottom_toBottomOf="parent"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+-+
+-+            <Button
+-+                android:id="@+id/login"
+-+                android:layout_width="match_parent"
+-+                android:layout_height="match_parent"
+-+
+-+                android:backgroundTint="#ED1616"
+-+                android:text="Log in"
+-+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+- 
+--            android:textColor="#F44336"
+--            app:layout_constraintBottom_toBottomOf="parent"
+--            app:layout_constraintEnd_toEndOf="parent"
+--            app:layout_constraintStart_toStartOf="parent" />
+-+                android:textColor="#F4EEEE"
+-+                android:textColorLink="@color/white"
+-+                android:textSize="24sp"
+-+                app:layout_constraintBottom_toBottomOf="parent"
+-+                app:layout_constraintEnd_toEndOf="parent"
+-+                app:layout_constraintStart_toStartOf="parent" />
+-+        </androidx.appcompat.widget.LinearLayoutCompat>
+- 
+- 
+-     </androidx.constraintlayout.widget.ConstraintLayout>
+-Index: app/src/main/java/com/example/aimslogin/MainActivity.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+>package com.example.aimslogin;\n\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport android.os.Bundle;\n\npublic class MainActivity extends AppCompatActivity {\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n        getSupportActionBar().hide();\n    }\n}
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/java/com/example/aimslogin/MainActivity.java	(revision 949d731e2fa125bf4237218e94c143cad308acef)
+-+++ app/src/main/java/com/example/aimslogin/MainActivity.java	(date 1615164227000)
+-@@ -2,14 +2,32 @@
+- 
+- import androidx.appcompat.app.AppCompatActivity;
+- 
+-+import android.content.Intent;
+- import android.os.Bundle;
+-+import android.view.View;
+-+import android.widget.Button;
+- 
+- public class MainActivity extends AppCompatActivity {
+-+    private Button button;
+- 
+-     @Override
+-     protected void onCreate(Bundle savedInstanceState) {
+-         super.onCreate(savedInstanceState);
+-         setContentView(R.layout.activity_main);
+-         getSupportActionBar().hide();
+-+
+-+        button = (Button) findViewById(R.id.login);
+-+        button.setOnClickListener(new View.OnClickListener() {
+-+            @Override
+-+            public void onClick(View v) {
+-+                openMainActivity2();
+-+            }
+-+        });
+-+    }
+-+
+-+
+-+    public void openMainActivity2(){
+-+        Intent intent =new Intent(this, MainActivity2.class);
+-+        startActivity(intent);
+-     }
+- }
+-\ No newline at end of file
+-Index: app/src/main/AndroidManifest.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<manifest xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    package=\"com.example.aimslogin\">\n\n    <application\n        android:allowBackup=\"true\"\n        android:icon=\"@mipmap/ic_launcher\"\n        android:label=\"@string/app_name\"\n        android:roundIcon=\"@mipmap/ic_launcher_round\"\n        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.AimsLogIn\"\n        >\n        <activity android:name=\".MainActivity\" android:screenOrientation=\"sensor\">\n\n            <intent-filter>\n                <action android:name=\"android.intent.action.MAIN\"  />\n\n                <category android:name=\"android.intent.category.LAUNCHER\" />\n            </intent-filter>\n        </activity>\n    </application>\n\n</manifest>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/AndroidManifest.xml	(revision 949d731e2fa125bf4237218e94c143cad308acef)
+-+++ app/src/main/AndroidManifest.xml	(date 1615163793000)
+-@@ -8,12 +8,13 @@
+-         android:label="@string/app_name"
+-         android:roundIcon="@mipmap/ic_launcher_round"
+-         android:supportsRtl="true"
+--        android:theme="@style/Theme.AimsLogIn"
+--        >
+--        <activity android:name=".MainActivity" android:screenOrientation="sensor">
+--
+-+        android:theme="@style/Theme.AimsLogIn">
+-+        <activity android:name=".MainActivity2"></activity>
+-+        <activity
+-+            android:name=".MainActivity"
+-+            android:screenOrientation="sensor">
+-             <intent-filter>
+--                <action android:name="android.intent.action.MAIN"  />
+-+                <action android:name="android.intent.action.MAIN" />
+- 
+-                 <category android:name="android.intent.category.LAUNCHER" />
+-             </intent-filter>
+-Index: app/src/main/res/layout/activity_main2.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/res/layout/activity_main2.xml	(date 1615164374000)
+-+++ app/src/main/res/layout/activity_main2.xml	(date 1615164374000)
+-@@ -0,0 +1,20 @@
+-+<?xml version="1.0" encoding="utf-8"?>
+-+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-+    xmlns:app="http://schemas.android.com/apk/res-auto"
+-+    xmlns:tools="http://schemas.android.com/tools"
+-+    android:layout_width="match_parent"
+-+    android:layout_height="match_parent"
+-+    android:background="@color/peach"
+-+    tools:context=".MainActivity2">
+-+    <ImageView
+-+        android:id="@+id/imageView4"
+-+        android:layout_width="0dp"
+-+        android:layout_height="0dp"
+-+        android:scaleType="fitStart"
+-+        app:layout_constraintBottom_toBottomOf="parent"
+-+        app:layout_constraintEnd_toEndOf="parent"
+-+        app:layout_constraintStart_toStartOf="parent"
+-+        app:layout_constraintTop_toTopOf="parent"
+-+        app:srcCompat="@drawable/img" />
+-+
+-+</androidx.constraintlayout.widget.ConstraintLayout>
+-\ No newline at end of file
+-Index: app/src/main/java/com/example/aimslogin/MainActivity2.java
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/java/com/example/aimslogin/MainActivity2.java	(date 1615164289000)
+-+++ app/src/main/java/com/example/aimslogin/MainActivity2.java	(date 1615164289000)
+-@@ -0,0 +1,15 @@
+-+package com.example.aimslogin;
+-+
+-+import androidx.appcompat.app.AppCompatActivity;
+-+
+-+import android.os.Bundle;
+-+
+-+public class MainActivity2 extends AppCompatActivity {
+-+
+-+    @Override
+-+    protected void onCreate(Bundle savedInstanceState) {
+-+        super.onCreate(savedInstanceState);
+-+        setContentView(R.layout.activity_main2);
+-+        getSupportActionBar().hide();
+-+    }
+-+}
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_14_PM__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_14_PM__Default_Changelist_.xml	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_14_PM__Default_Changelist_.xml	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_3_7_21_9_14_PM_[Default_Changelist]" date="1615173390567" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_14_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 3/7/21 9:14 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_17_PM__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_17_PM__Default_Changelist_.xml	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_17_PM__Default_Changelist_.xml	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_3_7_21_9_17_PM_[Default_Changelist]" date="1615173429074" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_9_17_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 3/7/21 9:17 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_9_21_9_15_PM__Default_Changelist_.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Checkout_at_3_9_21_9_15_PM__Default_Changelist_.xml	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ .idea/shelf/Uncommitted_changes_before_Checkout_at_3_9_21_9_15_PM__Default_Changelist_.xml	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_3_9_21_9_15_PM_[Default_Changelist]" date="1615346122392" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_9_21_9_15_PM_[Default_Changelist]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 3/9/21 9:15 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_6_20_PM_[Default_Changelist]1/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_6_20_PM_[Default_Changelist]1/shelved.patch	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_6_20_PM_[Default_Changelist]1/shelved.patch	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
+@@ -1,28 +0,0 @@
+-Index: .idea/gradle.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"GradleMigrationSettings\" migrationVersion=\"1\" />\n  <component name=\"GradleSettings\">\n    <option name=\"linkedExternalProjectsSettings\">\n      <GradleProjectSettings>\n        <option name=\"testRunner\" value=\"PLATFORM\" />\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"modules\">\n          <set>\n            <option value=\"$PROJECT_DIR$\" />\n            <option value=\"$PROJECT_DIR$/app\" />\n          </set>\n        </option>\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\n        <option name=\"useQualifiedModuleNames\" value=\"true\" />\n      </GradleProjectSettings>\n    </option>\n  </component>\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- .idea/gradle.xml	(revision 949d731e2fa125bf4237218e94c143cad308acef)
+-+++ .idea/gradle.xml	(date 1615145473000)
+-@@ -4,15 +4,12 @@
+-   <component name="GradleSettings">
+-     <option name="linkedExternalProjectsSettings">
+-       <GradleProjectSettings>
+-+        <compositeConfiguration>
+-+          <compositeBuild compositeDefinitionSource="SCRIPT" />
+-+        </compositeConfiguration>
+-         <option name="testRunner" value="PLATFORM" />
+-         <option name="distributionType" value="DEFAULT_WRAPPED" />
+-         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+--        <option name="modules">
+--          <set>
+--            <option value="$PROJECT_DIR$" />
+--            <option value="$PROJECT_DIR$/app" />
+--          </set>
+--        </option>
+-         <option name="resolveModulePerSourceSet" value="false" />
+-         <option name="useQualifiedModuleNames" value="true" />
+-       </GradleProjectSettings>
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_6_20_PM__Default_Changelist_1.xml
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_6_20_PM__Default_Changelist_1.xml	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ .idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_6_20_PM__Default_Changelist_1.xml	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Checkout_at_3_7_21_6_20_PM_[Default_Changelist]1" date="1615162810374" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_3_7_21_6_20_PM_[Default_Changelist]1/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Checkout at 3/7/21 6:20 PM [Default Changelist]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Checkout_at_3_9_21_9_15_PM_[Default_Changelist]/shelved.patch
+===================================================================
+--- .idea/shelf/Uncommitted_changes_before_Checkout_at_3_9_21_9_15_PM_[Default_Changelist]/shelved.patch	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ .idea/shelf/Uncommitted_changes_before_Checkout_at_3_9_21_9_15_PM_[Default_Changelist]/shelved.patch	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
+@@ -1,226 +0,0 @@
+-Index: app/src/main/res/layout/activity_main.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\"\n    tools:context=\".MainActivity\">\n\n    <EditText\n        android:id=\"@+id/id\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:ems=\"10\"\n        android:hint=\"Driver ID\"\n        android:inputType=\"textPersonName\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.565\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.323\" />\n\n    <EditText\n        android:id=\"@+id/password\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginStart=\"76dp\"\n        android:ems=\"10\"\n        android:inputType=\"textPassword\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"0.295\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.444\" />\n\n    <Button\n        android:id=\"@+id/login\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:text=\"Log In\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toStartOf=\"@+id/register\"\n        app:layout_constraintHorizontal_bias=\"0.741\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toBottomOf=\"@+id/password\"\n        app:layout_constraintVertical_bias=\"0.252\" />\n\n    <Button\n        android:id=\"@+id/register\"\n        android:layout_width=\"wrap_content\"\n        android:layout_height=\"wrap_content\"\n        android:layout_marginEnd=\"84dp\"\n        android:text=\"Register\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintHorizontal_bias=\"1.0\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        app:layout_constraintVertical_bias=\"0.635\" />\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+---- app/src/main/res/layout/activity_main.xml	(revision 3e3c562a0835e7ff74a58c35e58f12b906f94ce4)
+-+++ app/src/main/res/layout/activity_main.xml	(date 1615346116000)
+-@@ -4,59 +4,175 @@
+-     xmlns:tools="http://schemas.android.com/tools"
+-     android:layout_width="match_parent"
+-     android:layout_height="match_parent"
+-+    android:background="@color/peach"
+-     tools:context=".MainActivity">
+- 
+--    <EditText
+--        android:id="@+id/id"
+--        android:layout_width="wrap_content"
+--        android:layout_height="wrap_content"
+--        android:ems="10"
+--        android:hint="Driver ID"
+--        android:inputType="textPersonName"
+-+    <ImageView
+-+        android:id="@+id/imageView4"
+-+        android:layout_width="0dp"
+-+        android:layout_height="0dp"
+-+        android:scaleType="fitStart"
+-         app:layout_constraintBottom_toBottomOf="parent"
+-         app:layout_constraintEnd_toEndOf="parent"
+--        app:layout_constraintHorizontal_bias="0.565"
+-         app:layout_constraintStart_toStartOf="parent"
+-         app:layout_constraintTop_toTopOf="parent"
+--        app:layout_constraintVertical_bias="0.323" />
+-+        app:srcCompat="@drawable/img" />
+- 
+--    <EditText
+--        android:id="@+id/password"
+-+    <androidx.constraintlayout.widget.Guideline
+-+        android:id="@+id/guideline1"
+-         android:layout_width="wrap_content"
+-         android:layout_height="wrap_content"
+--        android:layout_marginStart="76dp"
+--        android:ems="10"
+--        android:inputType="textPassword"
+-+        android:orientation="vertical"
+-+        app:layout_constraintGuide_begin="20dp" />
+-+
+-+    <androidx.constraintlayout.widget.Guideline
+-+        android:id="@+id/guideline2"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:orientation="vertical"
+-+        app:layout_constraintGuide_end="20dp" />
+-+
+-+    <androidx.constraintlayout.widget.Guideline
+-+        android:id="@+id/guideline3"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:orientation="horizontal"
+-+        app:layout_constraintGuide_begin="20dp" />
+-+
+-+    <androidx.constraintlayout.widget.Guideline
+-+        android:id="@+id/guideline4"
+-+        android:layout_width="wrap_content"
+-+        android:layout_height="wrap_content"
+-+        android:orientation="horizontal"
+-+        app:layout_constraintGuide_end="20dp" />
+-+
+-+    <androidx.constraintlayout.widget.ConstraintLayout
+-+        android:id="@+id/whiteBox"
+-+        android:layout_width="match_parent"
+-+        android:layout_height="match_parent"
+-+
+-+        android:layout_marginStart="50dp"
+-+        android:layout_marginTop="150dp"
+-+        android:layout_marginEnd="50dp"
+-+        android:layout_marginBottom="75dp"
+-+        android:background="@drawable/white_background"
+-+        android:backgroundTint="@color/light"
+-+        android:orientation="horizontal"
+-         app:layout_constraintBottom_toBottomOf="parent"
+-         app:layout_constraintEnd_toEndOf="parent"
+--        app:layout_constraintHorizontal_bias="0.295"
+-+        app:layout_constraintHorizontal_bias="0.0"
+-         app:layout_constraintStart_toStartOf="parent"
+-         app:layout_constraintTop_toTopOf="parent"
+--        app:layout_constraintVertical_bias="0.444" />
+-+        app:layout_constraintVertical_bias="0.0">
+- 
+--    <Button
+--        android:id="@+id/login"
+--        android:layout_width="wrap_content"
+--        android:layout_height="wrap_content"
+--        android:text="Log In"
+--        app:layout_constraintBottom_toBottomOf="parent"
+--        app:layout_constraintEnd_toStartOf="@+id/register"
+--        app:layout_constraintHorizontal_bias="0.741"
+--        app:layout_constraintStart_toStartOf="parent"
+--        app:layout_constraintTop_toBottomOf="@+id/password"
+--        app:layout_constraintVertical_bias="0.252" />
+-+
+-+        <ImageView
+-+            android:id="@+id/aims"
+-+            android:layout_width="0dp"
+-+            android:layout_height="wrap_content"
+-+            android:layout_marginLeft="10dp"
+-+            android:layout_marginTop="6dp"
+-+            android:layout_marginRight="100dp"
+-+            android:scaleType="fitCenter"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintHorizontal_bias="0.141"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toTopOf="parent"
+-+            app:srcCompat="@drawable/aims" />
+-+
+-+        <LinearLayout
+-+            android:id="@+id/layout"
+-+            android:layout_width="0dp"
+-+            android:layout_height="0dp"
+-+            android:layout_marginLeft="30dp"
+-+            android:layout_marginTop="28dp"
+-+            android:layout_marginRight="30dp"
+-+            android:layout_marginBottom="60dp"
+-+            android:background="@drawable/driveridbox"
+-+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toBottomOf="@+id/aims">
+-+
+-+            <EditText
+-+                android:id="@+id/email"
+-+                android:layout_width="match_parent"
+-+                android:layout_height="match_parent"
+-+                android:layout_weight="1"
+-+                android:ems="10"
+-+                android:hint="Driver Id"
+-+                android:inputType="textEmailAddress"
+-+                android:paddingHorizontal="30dp"
+-+                android:textColorHint="#F44336"
+-+                android:textSize="18sp" />
+-+        </LinearLayout>
+-+
+-+        <LinearLayout
+-+            android:id="@+id/linearLayout"
+-+            android:layout_width="0dp"
+-+            android:layout_height="0dp"
+-+            android:layout_marginLeft="30dp"
+-+            android:layout_marginRight="30dp"
+-+            android:layout_marginBottom="100dp"
+-+            android:background="@drawable/driveridbox"
+-+            app:layout_constraintBottom_toTopOf="@+id/layout3"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toBottomOf="@id/layout">
+- 
+--    <Button
+--        android:id="@+id/register"
+--        android:layout_width="wrap_content"
+--        android:layout_height="wrap_content"
+--        android:layout_marginEnd="84dp"
+--        android:text="Register"
+--        app:layout_constraintBottom_toBottomOf="parent"
+--        app:layout_constraintEnd_toEndOf="parent"
+--        app:layout_constraintHorizontal_bias="1.0"
+--        app:layout_constraintStart_toStartOf="parent"
+--        app:layout_constraintTop_toTopOf="parent"
+--        app:layout_constraintVertical_bias="0.635" />
+-+            <EditText
+-+                android:id="@+id/password"
+-+                android:layout_width="match_parent"
+-+                android:layout_height="match_parent"
+-+                android:layout_weight="1"
+-+                android:ems="10"
+-+                android:hint="Password"
+-+                android:inputType="textPassword"
+-+                android:paddingHorizontal="30dp"
+-+                android:textColorHint="#F44336"
+-+                android:textSize="18sp" />
+-+
+-+            <ImageView
+-+                android:id="@+id/imageView2"
+-+                android:layout_width="wrap_content"
+-+                android:layout_height="match_parent"
+-+
+-+                app:srcCompat="@android:drawable/ic_menu_view" />
+-+
+-+        </LinearLayout>
+-+
+-+        <androidx.appcompat.widget.LinearLayoutCompat
+-+            android:id="@+id/layout3"
+-+            android:layout_width="0dp"
+-+            android:layout_height="wrap_content"
+-+            android:background="@drawable/driveridbox"
+-+            android:layout_marginLeft="70dp"
+-+            android:layout_marginRight="50dp"
+-+            android:layout_marginBottom="70dp"
+-+            app:layout_constraintBottom_toBottomOf="parent"
+-+            app:layout_constraintEnd_toEndOf="parent"
+-+            app:layout_constraintStart_toStartOf="parent"
+-+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+-+
+-+            <Button
+-+                android:id="@+id/login"
+-+                android:layout_width="match_parent"
+-+                android:layout_height="match_parent"
+-+
+-+                android:backgroundTint="#ED1616"
+-+                android:text="Log in"
+-+                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+-+
+-+                android:textColor="#F4EEEE"
+-+                android:textColorLink="@color/white"
+-+                android:textSize="24sp"
+-+                app:layout_constraintBottom_toBottomOf="parent"
+-+                app:layout_constraintEnd_toEndOf="parent"
+-+                app:layout_constraintStart_toStartOf="parent" />
+-+        </androidx.appcompat.widget.LinearLayoutCompat>
+-+
+- 
+--</androidx.constraintlayout.widget.ConstraintLayout>
+-\ No newline at end of file
+-+    </androidx.constraintlayout.widget.ConstraintLayout>
+-+
+-+
+-+</androidx.constraintlayout.widget.ConstraintLayout>
+Index: gradle/wrapper/gradle-wrapper.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>#Mon Feb 15 19:14:52 CST 2021\ndistributionBase=GRADLE_USER_HOME\ndistributionPath=wrapper/dists\nzipStoreBase=GRADLE_USER_HOME\nzipStorePath=wrapper/dists\ndistributionUrl=https\\://services.gradle.org/distributions/gradle-5.4.1-all.zip\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- gradle/wrapper/gradle-wrapper.properties	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ gradle/wrapper/gradle-wrapper.properties	(date 1617065957000)
+@@ -1,6 +1,6 @@
+-#Mon Feb 15 19:14:52 CST 2021
++#Mon Mar 29 19:59:17 CDT 2021
+ distributionBase=GRADLE_USER_HOME
+ distributionPath=wrapper/dists
+ zipStoreBase=GRADLE_USER_HOME
+ zipStorePath=wrapper/dists
+-distributionUrl=https\://services.gradle.org/distributions/gradle-5.4.1-all.zip
++distributionUrl=https\://services.gradle.org/distributions/gradle-6.5-bin.zip
+Index: build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Top-level build file where you can add configuration options common to all sub-projects/modules.\n\nbuildscript {\n    repositories {\n        google()\n        jcenter()\n        \n    }\n    dependencies {\n        classpath 'com.android.tools.build:gradle:3.5.3'\n        // NOTE: Do not place your application dependencies here; they belong\n        // in the individual module build.gradle files\n    }\n}\n\nallprojects {\n    repositories {\n        google()\n        jcenter()\n        \n    }\n}\n\ntask clean(type: Delete) {\n    delete rootProject.buildDir\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- build.gradle	(revision 3b28b1357bdad22ebbe7df801f38353e760b61ba)
++++ build.gradle	(date 1617065957000)
+@@ -7,7 +7,7 @@
+         
+     }
+     dependencies {
+-        classpath 'com.android.tools.build:gradle:3.5.3'
++        classpath 'com.android.tools.build:gradle:4.1.3'
+         // NOTE: Do not place your application dependencies here; they belong
+         // in the individual module build.gradle files
+     }
