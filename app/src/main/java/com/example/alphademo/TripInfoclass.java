@@ -1,6 +1,4 @@
 package com.example.alphademo;
-
-public class TripInfoclass {
     public class TripInfoClass {
 
         private String driverName;

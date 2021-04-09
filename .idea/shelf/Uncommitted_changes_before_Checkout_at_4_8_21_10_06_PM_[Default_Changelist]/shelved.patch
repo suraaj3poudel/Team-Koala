@@ -1,0 +1,49 @@
+Index: app/src/main/res/layout/fragment_trip.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\">\n\n\n    <androidx.recyclerview.widget.RecyclerView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:layout_margin=\"10dp\"\n        android:layout_marginTop=\"4dp\"\n        android:padding=\"18dp\"\n        android:id=\"@+id/driverList\"\n        app:layout_constraintTop_toTopOf=\"parent\"\n        tools:layout_editor_absoluteX=\"9dp\" />\n\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_trip.xml	(revision 049bdcbe45de539da6f2d4cb3afae4b8a56b848b)
++++ app/src/main/res/layout/fragment_trip.xml	(date 1617937605000)
+@@ -1,9 +1,9 @@
+ <?xml version="1.0" encoding="utf-8"?>
+-<androidx.constraintlayout.widget.ConstraintLayout
+-    xmlns:android="http://schemas.android.com/apk/res/android"
++<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_width="match_parent"
+-    android:layout_height="match_parent">
++    android:layout_height="match_parent"
++    xmlns:tools="http://schemas.android.com/tools">
+ 
+ 
+     <androidx.recyclerview.widget.RecyclerView
+Index: app/src/main/res/layout/layout_drivers.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/layout_drivers.xml	(date 1617937493000)
++++ app/src/main/res/layout/layout_drivers.xml	(date 1617937493000)
+@@ -0,0 +1,18 @@
++<?xml version="1.0" encoding="utf-8"?>
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
++    android:orientation="vertical" android:layout_width="match_parent"
++    android:layout_height="match_parent"
++    android:id="@+id/parent_layout">
++
++    <TextView
++        android:layout_width="match_parent"
++        android:layout_height="wrap_content"
++        android:text="Test Driver"
++        android:textSize="35dp"
++        android:layout_margin="10dp"
++        android:padding="10dp"
++        android:background="@android:color/black"
++        android:textColor="@android:color/white"
++        android:id="@+id/driver"/>
++
++</LinearLayout>
+\ No newline at end of file
