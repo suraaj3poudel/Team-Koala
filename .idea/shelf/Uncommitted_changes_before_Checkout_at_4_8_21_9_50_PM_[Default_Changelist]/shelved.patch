@@ -1,0 +1,35 @@
+Index: app/src/main/res/layout/fragment_trip.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<androidx.constraintlayout.widget.ConstraintLayout\n    xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    android:layout_width=\"match_parent\"\n    android:layout_height=\"match_parent\">\n\n\n    <ImageView\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"match_parent\"\n\n        android:background=\"@drawable/back\"\n        app:layout_constraintBottom_toBottomOf=\"parent\"\n        app:layout_constraintEnd_toEndOf=\"parent\"\n        app:layout_constraintStart_toStartOf=\"parent\"\n        android:layout_marginTop=\"200dp\">\n        \"\n    </ImageView>\n\n\n\n</androidx.constraintlayout.widget.ConstraintLayout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_trip.xml	(revision ec316bd5c099a215de08623a5737fb3bcce260e8)
++++ app/src/main/res/layout/fragment_trip.xml	(date 1617936649000)
+@@ -6,17 +6,16 @@
+     android:layout_height="match_parent">
+ 
+ 
+-    <ImageView
++    <androidx.recyclerview.widget.RecyclerView
+         android:layout_width="match_parent"
+-        android:layout_height="match_parent"
++        android:layout_height="wrap_content"
++        android:layout_margin="10dp"
++        android:layout_marginTop="4dp"
++        android:padding="18dp"
++        android:id="@+id/driverList"
++        app:layout_constraintTop_toTopOf="parent"
++        tools:layout_editor_absoluteX="9dp" />
+ 
+-        android:background="@drawable/back"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        android:layout_marginTop="200dp">
+-        "
+-    </ImageView>
+ 
+ 
+ 

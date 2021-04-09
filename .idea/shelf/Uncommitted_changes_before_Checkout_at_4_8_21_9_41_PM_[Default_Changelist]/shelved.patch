@@ -1,0 +1,53 @@
+Index: app/src/main/java/com/example/myapplication/MainActivity.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.myapplication;\n\nimport androidx.appcompat.app.AlertDialog;\nimport androidx.appcompat.app.AppCompatActivity;\n\nimport android.content.Intent;\nimport android.os.Bundle;\nimport android.view.View;\nimport android.widget.Button;\nimport android.widget.EditText;\n\n\npublic class MainActivity extends AppCompatActivity {\n\n    Button login;\n    EditText username, password;\n\n\n    @Override\n    protected void onCreate(Bundle savedInstanceState) {\n        super.onCreate(savedInstanceState);\n        setContentView(R.layout.activity_main);\n\n        login = findViewById(R.id.login);\n        username = findViewById(R.id.id);\n        password = findViewById(R.id.password);\n\n        onClickLogin();\n\n    }\n\n\n    private void onClickLogin(){\n        login.setOnClickListener(new View.OnClickListener() {\n            @Override\n            public void onClick(View v) {\n                if(username.getText().toString().equals(\"admin\") && password.getText().toString().equals(\"admin\")){\n\n                    openTripDetails();\n                }\n                else{\n                    showMessage(\"Message\", \"Error Logging In!\");\n                }\n            }\n        });\n    }\n\n    private void openTripDetails() {\n        Intent intent = new Intent(this, TripDetails.class);\n        startActivity(intent);\n    }\n\n    private void showMessage(String title, String message) {\n        AlertDialog.Builder builder = new AlertDialog.Builder(this);\n        builder.setCancelable(true);\n        builder.setTitle(title);\n        builder.setMessage(message);\n\n        builder.setPositiveButton(\"OK\", null);\n        AlertDialog dialog = builder.create();\n        dialog.show();\n\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/myapplication/MainActivity.java	(revision 5002ca1e24c542871b818c715fb7f8b399291a85)
++++ app/src/main/java/com/example/myapplication/MainActivity.java	(date 1617935774000)
+@@ -9,6 +9,9 @@
+ import android.widget.Button;
+ import android.widget.EditText;
+ 
++import com.example.myapplication.R;
++import com.example.myapplication.TripDetails;
++
+ 
+ public class MainActivity extends AppCompatActivity {
+ 
+Index: .idea/gradle.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"GradleSettings\">\n    <option name=\"linkedExternalProjectsSettings\">\n      <GradleProjectSettings>\n        <compositeConfiguration>\n          <compositeBuild compositeDefinitionSource=\"SCRIPT\" />\n        </compositeConfiguration>\n        <option name=\"distributionType\" value=\"DEFAULT_WRAPPED\" />\n        <option name=\"externalProjectPath\" value=\"$PROJECT_DIR$\" />\n        <option name=\"resolveModulePerSourceSet\" value=\"false\" />\n        <option name=\"testRunner\" value=\"PLATFORM\" />\n      </GradleProjectSettings>\n    </option>\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- .idea/gradle.xml	(revision 5002ca1e24c542871b818c715fb7f8b399291a85)
++++ .idea/gradle.xml	(date 1617935295000)
+@@ -1,15 +1,23 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
++  <component name="GradleMigrationSettings" migrationVersion="1" />
+   <component name="GradleSettings">
+     <option name="linkedExternalProjectsSettings">
+       <GradleProjectSettings>
+         <compositeConfiguration>
+           <compositeBuild compositeDefinitionSource="SCRIPT" />
+         </compositeConfiguration>
++        <option name="testRunner" value="PLATFORM" />
+         <option name="distributionType" value="DEFAULT_WRAPPED" />
+         <option name="externalProjectPath" value="$PROJECT_DIR$" />
++        <option name="modules">
++          <set>
++            <option value="$PROJECT_DIR$" />
++            <option value="$PROJECT_DIR$/app" />
++          </set>
++        </option>
+         <option name="resolveModulePerSourceSet" value="false" />
+-        <option name="testRunner" value="PLATFORM" />
++        <option name="useQualifiedModuleNames" value="true" />
+       </GradleProjectSettings>
+     </option>
+   </component>

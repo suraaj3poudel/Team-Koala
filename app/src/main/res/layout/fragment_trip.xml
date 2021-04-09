@@ -6,17 +6,15 @@
     android:layout_height="match_parent">
 
 
-    <ImageView
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-
-        android:background="@drawable/back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="200dp">
-        "
-    </ImageView>
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:layout_marginTop="4dp"
+        android:padding="18dp"
+        android:id="@+id/driverList"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="9dp" />
 
 
 

@@ -1,0 +1,92 @@
+Index: app/src/main/java/com/example/alphademo/TripFragment.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.alphademo;\n\nimport android.os.Bundle;\nimport android.view.LayoutInflater;\nimport android.view.View;\nimport android.view.ViewGroup;\n\nimport androidx.annotation.NonNull;\nimport androidx.annotation.Nullable;\nimport androidx.fragment.app.Fragment;\n\npublic class TripFragment extends Fragment {\n\n\n    @Nullable\n    @Override\n    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {\n        return inflater.inflate(R.layout.fragment_trip,container,false);\n    }\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/example/alphademo/TripFragment.java	(revision ec316bd5c099a215de08623a5737fb3bcce260e8)
++++ app/src/main/java/com/example/alphademo/TripFragment.java	(date 1617936497000)
+@@ -1,16 +1,82 @@
+ package com.example.alphademo;
+ 
+ import android.os.Bundle;
++import android.util.Log;
+ import android.view.LayoutInflater;
+ import android.view.View;
+ import android.view.ViewGroup;
++import android.widget.Toast;
+ 
+ import androidx.annotation.NonNull;
+ import androidx.annotation.Nullable;
+ import androidx.fragment.app.Fragment;
++import androidx.recyclerview.widget.LinearLayoutManager;
++import androidx.recyclerview.widget.RecyclerView;
++
++import com.google.android.gms.common.api.Response;
++
++import org.json.JSONArray;
++import org.json.JSONException;
++import org.json.JSONObject;
+ 
+ public class TripFragment extends Fragment {
+ 
++    RecyclerView recyclerView;
++    ArrayList<TripInfoClass> driverNames;
++    private static String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef&Code=%7BCode%7D&Active=true";
++    RecyclerViewAdapter adapter;
++
++
++
++    @Override
++    protected void onCreate(Bundle savedInstanceState) {
++        super.onCreate(savedInstanceState);
++        setContentView(R.layout.activity_trip_details);
++
++        recyclerView = findViewById(R.id.driverList);
++        driverNames = new ArrayList<TripInfoClass>();
++        extractDriverNames();
++
++
++
++    }
++
++    private void extractDriverNames() {
++        RequestQueue  queue = Volley.newRequestQueue(this);
++        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONArray>() {
++            @Override
++            public void onResponse(JSONArray response) {
++                for (int i = 0; i < response.length(); i++) {
++                    try {
++                        JSONObject driverObject = response.getJSONObject(i);
++                        Toast.makeText(getApplicationContext(),"fetching",Toast.LENGTH_SHORT).show();
++                        TripInfoClass trip = new TripInfoClass();
++
++                        trip.setDriverName(driverObject.getString("data".toString()));
++
++                        driverNames.add(trip);
++                    } catch (JSONException e) {
++                        e.printStackTrace();
++                    }
++                }
++
++                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
++
++                adapter = new RecyclerViewAdapter(getApplicationContext(), driverNames);
++
++                recyclerView.setAdapter(adapter);
++            }
++        }, new Response.ErrorListener() {
++            @Override
++            public void onErrorResponse(VolleyError error) {
++                Log.d("TAG", "onErrorResponse: ");
++            }
++        });
++
++        queue.add(jsonArrayRequest);
++    }
++}
++
+ 
+     @Nullable
+     @Override
