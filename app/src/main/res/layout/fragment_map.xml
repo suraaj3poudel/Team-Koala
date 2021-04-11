@@ -10,6 +10,7 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
 
         android:background="@drawable/white_background"
         app:layout_constraintBottom_toBottomOf="parent"
