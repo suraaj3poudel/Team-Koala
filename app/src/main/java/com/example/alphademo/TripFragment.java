@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.common.api.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,11 +38,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 
-import java.io.IOException
+import java.io.IOException;
 
 public class TripFragment extends Fragment {
-
-    public class TripDetails extends AppCompatActivity {
 
         RecyclerView recyclerView;
         ArrayList<TripInfoClass> driverNames;
@@ -53,7 +50,7 @@ public class TripFragment extends Fragment {
 
 
         @Override
-        protected void onCreate(Bundle savedInstanceState) {
+        public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.fragment_trip);
 
@@ -99,7 +96,7 @@ public class TripFragment extends Fragment {
 
             queue.add(jsonArrayRequest);
         }
-    }
+
 
 
 

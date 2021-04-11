@@ -7,14 +7,16 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/driverList"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:layout_marginTop="4dp"
         android:padding="18dp"
-        android:id="@+id/driverList"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="9dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 

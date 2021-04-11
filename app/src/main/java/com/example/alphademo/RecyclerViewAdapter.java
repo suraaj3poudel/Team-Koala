@@ -12,10 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-
-public class RecyclerViewAdapter {
-
-
     public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder>{
         private static final String TAG = "RecyclerViewAdapter";
 
@@ -63,4 +59,4 @@ public class RecyclerViewAdapter {
         }
     }
 
-}
+
