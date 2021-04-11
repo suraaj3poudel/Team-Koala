@@ -2,14 +2,14 @@
     <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
         <item
-            android:id="@+id/trip"
-            android:title="Trips"
+            android:id="@+id/trip_list"
+            android:title="Trip List"
             android:icon="@drawable/ic_baseline_location_on_24"
             />
         <item
-            android:id="@+id/profile"
-            android:title="Profile"
-            android:icon ="@drawable/ic_baseline_person_24"/>
+            android:id="@+id/map"
+            android:title="Direction"
+            android:icon ="@drawable/ic_baseline_directions_24"/>
         <item
             android:id="@+id/setting"
             android:title="Settings"
