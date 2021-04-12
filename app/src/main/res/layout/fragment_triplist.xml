@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_width="match_parent">
 
-    />
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
@@ -49,12 +48,12 @@
                 android:text="Driver Code: "/>
 
             <TextView
+                android:id="@+id/driverCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@android:color/white"
-                android:id="@+id/driverCode"
                 android:layout_marginTop="5dp"
-                android:text="Driver Code"/>
+                android:text="dc"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
@@ -147,6 +146,8 @@
             android:layout_marginTop="15dp"
             android:background="@android:color/white" />
 
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -193,12 +194,12 @@
                 android:text="Source Code: "/>
 
             <TextView
+                android:id="@+id/sourceCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/sourceCode"
-                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
-                android:text="Source Code"/>
+                android:text="sc"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
@@ -300,6 +301,18 @@
                 android:layout_marginRight="55dp"
                 android:text="+ Add Notes"
                 android:textAlignment="center" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/sourceForm"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="246dp"
+                android:layout_marginRight="55dp"
+                android:text="Pick Up"
+                android:textAlignment="center" />
         </RelativeLayout>
 
         <EditText
@@ -307,9 +320,19 @@
             android:layout_marginTop="10dp"
             android:layout_height="70dp"
             android:id="@+id/typeSpaceSource"
+            android:hint="Your Notes Here .. "
+            android:padding="5dp"
             android:background="@android:color/white"/>
 
 
+        <TextView
+            android:id="@+id/sourcenotes1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/background_light"
+            android:textColor="@android:color/black"
+            android:textSize="17dp"
+            android:padding="10dp"/>
 
 
         <View
@@ -370,12 +393,12 @@
                 android:text="Site Code: "/>
 
             <TextView
+                android:id="@+id/siteCode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/siteCode"
-                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
-                android:text="Site Code"/>
+                android:text="sc1"
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
@@ -482,9 +505,19 @@
             android:layout_marginTop="10dp"
             android:layout_height="70dp"
             android:id="@+id/typeSpaceSite1"
+            android:hint="Your Notes Here .. "
+            android:padding="5dp"
             android:background="@android:color/white"/>
 
 
+        <TextView
+            android:id="@+id/sourcenotes2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/black"
+            android:background="@android:color/background_light"
+            android:textSize="17dp"
+            android:padding="10dp"/>
 
         <View
             android:id="@+id/divider3"
@@ -534,12 +567,13 @@
                 android:text="Site Code: "/>
 
             <TextView
+                android:id="@+id/siteCode1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/siteCode1"
-                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
-                android:text="Site Code"/>
+                android:text="sc2"
+                android:textColor="@android:color/white" />
+
 
         </LinearLayout>
 
@@ -623,6 +657,53 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="Product Code: "/>
+
+            <TextView
+                android:id="@+id/productCode1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="pc2"
+                android:textColor="@android:color/white" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:text="Product Desc: "/>
+
+            <TextView
+                android:id="@+id/productDesc1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="pd2"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -647,10 +728,28 @@
             android:layout_marginTop="10dp"
             android:id="@+id/typeSpaceSite2"
             android:layout_height="70dp"
+            android:hint="Your Notes Here .. "
+            android:padding="5dp"
             android:background="@android:color/white"/>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/sourcenotes3"
+            android:textColor="@android:color/black"
+            android:background="@android:color/background_light"
+            android:textSize="17dp"
+            android:padding="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:id="@+id/sourcenotes4"
+            android:textColor="@android:color/black"
+            android:textSize="50dp" />
 
 
     </LinearLayout>
+
 
 </ScrollView>

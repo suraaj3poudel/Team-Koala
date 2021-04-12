@@ -9,10 +9,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseSQLite extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "userlist.db";
-    public static final String TABLE_NAME = "user_list";
-    public static final String COL2 = "IDS";
-    public static final String COL3 = "PASSWORD";
+    public static final String DATABASE_NAME = "drivernotes.db";
+    public static final String TABLE_NAME = "notes_data";
+    public static final String COL1 = "DIDE";
+    public static final String COL2 = "NOTES";
 
 
 
@@ -25,7 +25,7 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (IDS TEXT PRIMARY KEY, PASSWORD TEXT)";
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (DIDE TEXT PRIMARY KEY, NOTES TEXT)";
         db.execSQL(createTable);
     }
 
@@ -35,11 +35,11 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean addData(String id,String password) {
+    public boolean addData(String id,String notes) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, id);
-        contentValues.put(COL3, password);
+        contentValues.put(COL2, notes);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
 
@@ -51,15 +51,34 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
         }
     }
 
-    public Cursor checkUser(String userName, String password){
+    public String getNotes(String id){
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor users = db.rawQuery("SELECT * FROM " + TABLE_NAME ,null);
-
-        return users;
+        String[] colms = {"DIDE","NOTES"};
+        String result="";
+        Cursor res;
+        try {
+            res= db.rawQuery("SELECT NOTES FROM " + TABLE_NAME + " WHERE DIDE = " + "\'" + id + "\'",null);
+            while(res.moveToNext()) {
+                //res.moveToFirst();
+                int index = res.getColumnIndexOrThrow("NOTES");
+                result= res.getString(index);
+                //db.execSQL("UPDATE " + TABLE_NAME + " SET NOTES = " + notes + " WHERE DIDE = " + "\'" + id + "\'");
+            }
+        }
+        catch (Exception e){
+            result = null;
+        }
+        return result;
     }
+
+    public void updateNotes(String id, String notes){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("UPDATE " + TABLE_NAME + " SET NOTES = " +"\'" + notes +"\'" + " WHERE DIDE = " + "\'" + id + "\'");
+    }
+}
 //    public Cursor showData(){
 //        SQLiteDatabase db = this.getWritableDatabase();
 //        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 //        return res;
 //    }
-}
+

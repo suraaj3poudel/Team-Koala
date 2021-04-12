@@ -38,23 +38,23 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openActivity2();
-                Cursor result = myDB.checkUser(username.getText().toString(), password.getText().toString());
 
-                StringBuffer buffer = new StringBuffer();
-                while (result.moveToNext()) {
+                if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
 
-                    buffer.append("UserName: " + result.getString(1) + "\n");
-                    buffer.append("    Password: " + result.getString(2) + "\n");
-
+                    openActivity2();
+                }
+                else{
+                    showMessage("Message", "Error Logging In!");
                 }
 
-                showMessage("Entries", buffer.toString());
+
             }
         });
     }
         public void openActivity2(){
-            Intent intent= new Intent(this, MainActivity2.class);
+
+
+        Intent intent= new Intent(this, MainActivity2.class);
             startActivity(intent);
         }
 
