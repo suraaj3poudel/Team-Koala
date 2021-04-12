@@ -60,7 +60,7 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -103,8 +103,7 @@
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="30dp"
                 android:textColorHint="#F44336"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -145,10 +144,10 @@
             android:id="@+id/layout3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/driveridbox"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="50dp"
             android:layout_marginBottom="20dp"
+            android:background="@drawable/driveridbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -170,6 +169,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Just hit login"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

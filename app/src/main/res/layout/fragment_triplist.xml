@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
-    android:layout_width="match_parent"
-    android:background="@color/peach"
-    >
+    android:layout_width="match_parent">
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
+        android:background="@android:color/black"
         android:id="@+id/parent_layout">
 
 
@@ -21,14 +19,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
                 android:textStyle="bold"
                 android:text="DriverName: "/>
 
             <TextView
                 android:layout_width="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
                 android:id="@+id/driver"
                 android:layout_marginTop="5dp"
@@ -44,8 +42,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
                 android:textStyle="bold"
                 android:text="Driver Code: "/>
 
@@ -54,9 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
                 android:text="dc"
-                 />
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
@@ -69,7 +66,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:text="Truck ID: "/>
@@ -77,7 +74,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:id="@+id/truckID"
                 android:layout_marginTop="5dp"
                 android:text="IDTruck"/>
@@ -86,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:layout_marginLeft="20dp"
                 android:text="Transport: "/>
@@ -94,8 +91,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
                 android:id="@+id/truckDes"
-                android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:text="ABC Transport"/>
 
@@ -110,7 +107,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:text="Trip ID: "/>
@@ -118,7 +115,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:id="@+id/tripID"
                 android:layout_marginTop="5dp"
                 android:text="123"/>
@@ -126,17 +123,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
+                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
-                android:textSize="20sp"
                 android:textStyle="bold"
                 android:text="Trip Name: "/>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:id="@+id/tripName"
                 android:layout_marginTop="5dp"
                 android:text="A-123"/>
@@ -146,23 +142,20 @@
         <View
             android:id="@+id/divider1"
             android:layout_width="match_parent"
-            android:layout_height="5dp"
+            android:layout_height="3dp"
             android:layout_marginTop="15dp"
-            android:background="@color/red" />
+            android:background="@android:color/white" />
 
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:layout_marginTop="20dp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="10dp"
             android:textStyle="bold"
-            android:textSize="25sp"
-            
-            android:background="@drawable/driveridbox"
-
-            android:text="Source "/>
+            android:textSize="20dp"
+            android:text="Source Info"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -172,7 +165,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:text="Name: "/>
@@ -180,7 +173,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:id="@+id/source"
                 android:layout_marginTop="5dp"
                 android:text="Source Name"/>
@@ -195,7 +188,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:text="Source Code: "/>
@@ -206,7 +199,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:text="sc"
-                android:textSize="20sp" />
+                android:textColor="@android:color/white" />
 
         </LinearLayout>
 
@@ -218,7 +211,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:layout_marginTop="5dp"
                 android:textStyle="bold"
                 android:text="Address: "/>
@@ -226,7 +219,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:id="@+id/address"
                 android:layout_marginTop="5dp"
                 android:text="Street Address"/>
@@ -236,7 +229,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="20dp"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:text="City: "/>
 
@@ -244,9 +237,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/city"
-                android:textSize="20sp"
                 android:layout_marginTop="5dp"
-
+                android:textColor="@android:color/white"
                 android:text="City Name"/>
 
         </LinearLayout>
@@ -260,7 +252,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
+                android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:text="State: "/>
 
@@ -268,16 +260,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/state"
-                android:textSize="20sp"
                 android:layout_marginTop="5dp"
+                android:textColor="@android:color/white"
                 android:text="StateLA"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="20sp"
-
+                android:textColor="@android:color/white"
                 android:layout_marginLeft="20dp"
                 android:textStyle="bold"
                 android:text="Zip Code: "/>
@@ -285,9 +276,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:textColor="@android:color/white"
                 android:id="@+id/zipcode"
-                android:textSize="20sp"
                 android:layout_marginTop="5dp"
                 android:text="12345"/>
 
@@ -303,7 +293,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sourceNotes"
-                android:background="@color/orange"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
@@ -316,7 +305,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/sourceForm"
-                android:background="@color/orange"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentRight="true"
@@ -790,12 +778,6 @@
             android:id="@+id/sourcenotes4"
             android:textColor="@android:color/black"
             android:textSize="50dp" />
-
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_baseline_departure_board_24" />
 
 
     </LinearLayout>
