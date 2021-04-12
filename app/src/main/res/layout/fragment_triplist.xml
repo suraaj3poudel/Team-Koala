@@ -333,8 +333,10 @@
             android:layout_height="70dp"
             android:id="@+id/typeSpaceSource"
             android:hint="Your Notes Here .. "
+            android:textColorHint="@android:color/black"
             android:padding="5dp"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"/>
 
 
         <TextView
@@ -345,6 +347,7 @@
             android:textColor="@android:color/black"
             android:textSize="17dp"
             android:padding="10dp"/>
+
 
 
         <View
@@ -530,8 +533,10 @@
             android:layout_height="70dp"
             android:id="@+id/typeSpaceSite1"
             android:hint="Your Notes Here .. "
+            android:textColorHint="@android:color/black"
             android:padding="5dp"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"/>
 
 
         <TextView
@@ -765,8 +770,10 @@
             android:id="@+id/typeSpaceSite2"
             android:layout_height="70dp"
             android:hint="Your Notes Here .. "
+            android:textColorHint="@android:color/black"
             android:padding="5dp"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:layout_width="match_parent"

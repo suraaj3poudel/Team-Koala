@@ -237,6 +237,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View v) {
                     String notes;
+                    //sourceID = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
+
                     //String oldnote = "EMPTY";
                     if(typeSpaceSource.getVisibility() == View.VISIBLE){
 
@@ -245,9 +247,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         sourcenote1.setVisibility(View.VISIBLE);
                         String type = typeSpaceSource.getText().toString();
                         if(!myDB.getNotes(sourceID).equals("")){
+                            Log.i("Updating: ",sourceID +" "+type, null);
                             myDB.updateNotes(sourceID, type);
                         }
                         else {
+                            Log.i("Adding: ",sourceID +" "+type, null);
                             boolean isInserted = myDB.addData(sourceID,
                                     type);
                         }

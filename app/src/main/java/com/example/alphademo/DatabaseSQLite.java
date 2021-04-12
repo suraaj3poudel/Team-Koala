@@ -38,7 +38,7 @@ public class DatabaseSQLite extends SQLiteOpenHelper {
     public boolean addData(String id,String notes) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL2, id);
+        contentValues.put(COL1, id);
         contentValues.put(COL2, notes);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
