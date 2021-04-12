@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alphademo.dummy.MainActivity3;
+import com.example.alphademo.dummy.MainActivity4;
 
 import java.util.ArrayList;
 
@@ -59,6 +60,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             view.getContext().startActivity(intent);
         }
     });
+        holder.deliverForm1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity4.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+        holder.deliverForm2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), MainActivity4.class);
+                view.getContext().startActivity(intent);
+            }
+        });
 
         holder.driverName.setText(mDriverNames.get(position).getDriverName());
         holder.driverCode.setText(mDriverNames.get(position).getDriverCode());
@@ -115,7 +130,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView site2name, site2containercode, site2address, site2city, site2state, site2zip,site2p, site2pd;
         ProgressBar progressBar;
         LinearLayout parentLayout;
-        Button addsourceNotes, siteNotes1, siteNotes2, sourceForm;
+        Button addsourceNotes, siteNotes1, siteNotes2, sourceForm, deliverForm1, deliverForm2;
         EditText typeSpaceSource, typeSpaceSite1, typeSpaceSite2;
         DatabaseSQLite myDB;
 
@@ -138,6 +153,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             sstate = itemView.findViewById(R.id.state);
             szipcode = itemView.findViewById(R.id.zipcode);
 
+
+            deliverForm1 = itemView.findViewById(R.id.deliverForm1);
+            deliverForm2 = itemView.findViewById(R.id.deliverForm2);
             sourceForm = itemView.findViewById(R.id.sourceForm);
             site = itemView.findViewById(R.id.site);
             sitecode = itemView.findViewById(R.id.siteCode);
