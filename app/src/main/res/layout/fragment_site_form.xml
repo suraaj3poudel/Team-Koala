@@ -59,7 +59,7 @@
                 android:importantForAutofill="no"
                 android:autofillHints="@string/date"
                 android:inputType="date"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText"/>
         </LinearLayout>
 
         <LinearLayout
