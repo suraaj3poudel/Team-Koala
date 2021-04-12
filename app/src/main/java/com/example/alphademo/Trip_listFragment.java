@@ -84,6 +84,7 @@ public class Trip_listFragment extends Fragment {
 
                     adapter = new RecyclerViewAdapter(getContext(), driverNames);
 
+
                     recyclerView.setAdapter(adapter);
 
                     //pbar.setVisibility(View.VISIBLE);

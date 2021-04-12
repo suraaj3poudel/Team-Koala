@@ -1,6 +1,7 @@
 package com.example.alphademo;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Html;
@@ -35,6 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private ArrayList<TripInfoClass> mDriverNames = new ArrayList<>();
     //private final View.OnClickListener mOnClickListener = new MyOnClickListener();
     //private Context mContext;
+    String message ="";
 
     public RecyclerViewAdapter( Context context, ArrayList<TripInfoClass> driverNames){
         mDriverNames = driverNames;
@@ -50,7 +52,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
 
 
     holder.sourceForm.setOnClickListener(new View.OnClickListener() {
@@ -106,13 +108,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.site2pd.setText(mDriverNames.get(position).getSite2ProductDesc());
 
 
+        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(holder.parentLayout.getContext());
+                builder.setCancelable(true);
 
+                builder.setTitle("Transmitted Data");
+                builder.setMessage(message);
 
-
-
-
-
-
+                builder.setPositiveButton("OK", null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        });
 
     }
 
@@ -139,10 +148,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
-            progressBar =itemView.findViewById(R.id.progressBar2);
+            progressBar = itemView.findViewById(R.id.progressBar2);
             driverName = itemView.findViewById(R.id.driver);
             driverCode = itemView.findViewById(R.id.driverCode);
-            truckid =  itemView.findViewById(R.id.truckID);
+            truckid = itemView.findViewById(R.id.truckID);
             transport = itemView.findViewById(R.id.truckDes);
             tripid = itemView.findViewById(R.id.tripID);
             tripname = itemView.findViewById(R.id.tripName);
@@ -197,40 +206,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             sourcenote2 = itemView.findViewById(R.id.sourcenotes2);
             sourcenote3 = itemView.findViewById(R.id.sourcenotes3);
 
-            final String sourceID = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
-            final String siteID1 = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sitecode.getText().toString().trim();
-            final String siteID2 = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+site2containercode.getText().toString().trim();
-            final String[] sourceNotes = {myDB.getNotes(sourceID),myDB.getNotes(siteID1),myDB.getNotes(siteID2)};
+            final String sourceID = driverCode.getText().toString().trim() + tripid.getText().toString().trim() + sourcecode.getText().toString().trim();
+            final String siteID1 = driverCode.getText().toString().trim() + tripid.getText().toString().trim() + sitecode.getText().toString().trim();
+            final String siteID2 = driverCode.getText().toString().trim() + tripid.getText().toString().trim() + site2containercode.getText().toString().trim();
+            final String[] sourceNotes = {myDB.getNotes(sourceID), myDB.getNotes(siteID1), myDB.getNotes(siteID2)};
 
-            if(!sourceNotes[0].equals("")) {
+            if (!sourceNotes[0].equals("")) {
                 String toShow = "Notes: \n";
                 toShow += sourceNotes[0];
-                sourcenote1.setText(Html.fromHtml("<b>Notes: </b> <p> " +sourceNotes[0] + "</p>"));
-            }
-            else{
+                sourcenote1.setText(Html.fromHtml("<b>Notes: </b> <p> " + sourceNotes[0] + "</p>"));
+            } else {
                 sourcenote1.setVisibility(View.GONE);
             }
 
-            if(!sourceNotes[1].equals("")) {
+            if (!sourceNotes[1].equals("")) {
                 String toShow = "Notes: \n";
                 toShow += sourceNotes[1];
-                sourcenote2.setText(Html.fromHtml("<b>Notes: </b> <p> " +sourceNotes[1] + "</p>"));
-            }
-            else{
+                sourcenote2.setText(Html.fromHtml("<b>Notes: </b> <p> " + sourceNotes[1] + "</p>"));
+            } else {
                 sourcenote2.setVisibility(View.GONE);
             }
 
-            if(!sourceNotes[2].equals("")) {
+            if (!sourceNotes[2].equals("")) {
                 String toShow = "Notes: \n";
                 toShow += sourceNotes[2];
-                sourcenote3.setText(Html.fromHtml("<b>Notes: </b> <p> " +sourceNotes[2] + "</p>"));
-            }
-            else{
+                sourcenote3.setText(Html.fromHtml("<b>Notes: </b> <p> " + sourceNotes[2] + "</p>"));
+            } else {
                 sourcenote3.setVisibility(View.GONE);
             }
-
-
-
 
 
             addsourceNotes.setOnClickListener(new View.OnClickListener() {
@@ -240,38 +243,34 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     //sourceID = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
 
                     //String oldnote = "EMPTY";
-                    if(typeSpaceSource.getVisibility() == View.VISIBLE){
+                    if (typeSpaceSource.getVisibility() == View.VISIBLE) {
 
                         addsourceNotes.setText("+ Add Notes");
                         typeSpaceSource.setVisibility(View.GONE);
                         sourcenote1.setVisibility(View.VISIBLE);
                         String type = typeSpaceSource.getText().toString();
-                        if(!myDB.getNotes(sourceID).equals("")){
-                            Log.i("Updating: ",sourceID +" "+type, null);
+                        if (!myDB.getNotes(sourceID).equals("")) {
+                            Log.i("Updating: ", sourceID + " " + type, null);
                             myDB.updateNotes(sourceID, type);
-                        }
-                        else {
-                            Log.i("Adding: ",sourceID +" "+type, null);
+                        } else {
+                            Log.i("Adding: ", sourceID + " " + type, null);
                             boolean isInserted = myDB.addData(sourceID,
                                     type);
                         }
                         String text = myDB.getNotes(sourceID);
-                        if(!text.equals("")) {
+                        if (!text.equals("")) {
                             String toShow = text;
                             sourcenote1.setText(Html.fromHtml("<b>Notes: </b> <p> " + toShow + "</p>"));
                         }
-                    }
-
-                    else{
+                    } else {
 
                         addsourceNotes.setText("Done");
                         typeSpaceSource.setVisibility(View.VISIBLE);
                         sourcenote1.setVisibility(View.GONE);
-                        notes= myDB.getNotes(sourceID);
-                        if(notes !=  null) {
+                        notes = myDB.getNotes(sourceID);
+                        if (notes != null) {
                             typeSpaceSource.setText(notes);
-                        }
-                        else{
+                        } else {
                             typeSpaceSource.setHint("Your Notes..");
                         }
                     }
@@ -284,39 +283,35 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     String notes;
                     //String oldnote = "EMPTY";
 
-                    if(typeSpaceSite1.getVisibility() == View.VISIBLE){
+                    if (typeSpaceSite1.getVisibility() == View.VISIBLE) {
 
                         siteNotes1.setText("+ Add Notes");
                         typeSpaceSite1.setVisibility(View.GONE);
                         sourcenote2.setVisibility(View.VISIBLE);
                         String type = typeSpaceSite1.getText().toString();
-                        if(!myDB.getNotes(siteID1).equals("")){
+                        if (!myDB.getNotes(siteID1).equals("")) {
                             myDB.updateNotes(siteID1, type);
-                        }
-                        else {
+                        } else {
                             boolean isInserted = myDB.addData(siteID1,
                                     type);
-                            Log.i(" Status", ""+isInserted);
+                            Log.i(" Status", "" + isInserted);
                         }
                         String text = myDB.getNotes(siteID1);
-                        if(!text.equals("")) {
+                        if (!text.equals("")) {
                             String toShow = text;
                             sourcenote2.setText(Html.fromHtml("<b>Notes: </b> <p> " + toShow + "</p>"));
                         }
-                    }
-
-                    else{
+                    } else {
 
                         siteNotes1.setText("Done");
                         typeSpaceSite1.setVisibility(View.VISIBLE);
                         sourcenote2.setVisibility(View.GONE);
-                        notes= myDB.getNotes(siteID1);
+                        notes = myDB.getNotes(siteID1);
 
-                        Log.i("INFO: ", siteID1 +" "+ sourceID);
-                        if(notes !=  null) {
+                        Log.i("INFO: ", siteID1 + " " + sourceID);
+                        if (notes != null) {
                             typeSpaceSite1.setText(notes);
-                        }
-                        else{
+                        } else {
                             typeSpaceSite1.setHint("Your Notes..");
                         }
                     }
@@ -329,47 +324,50 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     String notes;
                     //String oldnote = "EMPTY";
 
-                    if(typeSpaceSite2.getVisibility() == View.VISIBLE){
+                    if (typeSpaceSite2.getVisibility() == View.VISIBLE) {
 
                         siteNotes2.setText("+ Add Notes");
                         typeSpaceSite2.setVisibility(View.GONE);
                         sourcenote3.setVisibility(View.VISIBLE);
                         String type = typeSpaceSite2.getText().toString();
-                        if(!myDB.getNotes(siteID2).equals("")){
+                        if (!myDB.getNotes(siteID2).equals("")) {
                             myDB.updateNotes(siteID2, type);
-                        }
-                        else {
+                        } else {
                             boolean isInserted = myDB.addData(siteID2,
                                     type);
-                            Log.i(" Status", ""+isInserted);
+                            Log.i(" Status", "" + isInserted);
                         }
                         String text = myDB.getNotes(siteID2);
-                        if(!text.equals("")) {
+                        if (!text.equals("")) {
                             //String toShow = "Notes: \n";
                             String toShow = text;
                             sourcenote3.setText(Html.fromHtml("<b>Notes: </b> <p> " + toShow + "</p>"));
                         }
-                    }
-
-                    else{
+                    } else {
 
                         siteNotes2.setText("Done");
                         typeSpaceSite2.setVisibility(View.VISIBLE);
                         sourcenote3.setVisibility(View.GONE);
-                        notes= myDB.getNotes(siteID2);
+                        notes = myDB.getNotes(siteID2);
 
-                        Log.i("INFO: ", siteID2 +" "+ sourceID);
-                        if(notes !=  null) {
+                        Log.i("INFO: ", siteID2 + " " + sourceID);
+                        if (notes != null) {
                             typeSpaceSite2.setText(notes);
-                        }
-                        else{
+                        } else {
                             typeSpaceSite2.setHint("Your Notes..");
                         }
                     }
 
                 }
             });
+
+            message += "Status: Success\n\n" +mDriverNames.get(0).getDriverName()+"\n"+mDriverNames.get(0).getDriverCode()+"\n\nSourceData\n"+mDriverNames.get(0).getSource()+"\n"+mDriverNames.get(0).getSourceAddress()
+            +"\n"+mDriverNames.get(0).getSourceCity()+"\n\nSite1Data\n"+mDriverNames.get(0).getSite()+"\n"+mDriverNames.get(0).getSiteAddress()+"\n"+
+                    mDriverNames.get(0).getSiteCity()+"\n\nSite2Data\n"+mDriverNames.get(0).getSite2()+"\n"+mDriverNames.get(0).getSite2Address()+"\n"+mDriverNames.get(0).getSite2City();
         }
+
+
+
 
         public void hideKeyboard(Activity activity) {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
@@ -382,12 +380,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
 
-    }
+        private void showMessage(String title, String message) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
+            builder.setCancelable(true);
+            builder.setTitle(title);
+            builder.setMessage(message);
 
-    private class MyOnClickListener implements View.OnClickListener {
-        @Override
-        public void onClick(View v) {
+            builder.setPositiveButton("OK", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
 
         }
+
     }
+
 }
