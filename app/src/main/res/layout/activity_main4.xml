@@ -58,6 +58,7 @@
                 android:textSize="30sp"
                 android:importantForAutofill="no"
                 android:autofillHints="@string/date"
+                android:textColor="@color/black"
                 android:inputType="date"
                 tools:ignore="HardcodedText"/>
         </LinearLayout>
@@ -83,6 +84,7 @@
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
+                android:textColor="@color/black"
                 android:hint="Quantity"
                 android:inputType="number"
                 android:textSize="30sp"
@@ -113,6 +115,7 @@
                 android:paddingStart="5dp"
                 android:hint="Quantity"
                 android:inputType="number"
+                android:textColor="@color/black"
                 android:textSize="30sp"
                 android:layout_weight="1"/>
 
@@ -141,6 +144,7 @@
                 android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
+                android:textColor="@color/black"
                 android:hint="Start Time"
                 android:inputType="number"
                 android:textSize="30sp" />
@@ -166,14 +170,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:autofillHints=""
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="5dp"
-                android:paddingStart="5dp"
                 android:hint="End Time"
                 android:inputType="textPostalAddress"
-                android:textSize="30sp"
-                android:autofillHints="" />
+                android:paddingStart="5dp"
+                android:textSize="30sp" />
 
         </LinearLayout>
 
@@ -198,6 +202,7 @@
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_baseline_local_gas_station_24"
                 android:drawablePadding="5dp"
+                android:textColor="@color/black"
                 android:paddingStart="5dp"
                 android:hint="Fuel Type"
                 android:textSize="30sp" />
@@ -227,6 +232,7 @@
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
+                android:textColor="@color/black"
                 android:paddingStart="5dp"
                 android:hint="Quantity"
                 android:inputType="number"
@@ -256,6 +262,7 @@
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
                 android:hint="Quantity"
+                android:textColor="@color/black"
                 android:inputType="number"
                 android:textSize="30sp"
                 android:layout_weight="1"/>
@@ -285,6 +292,7 @@
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
                 android:hint="Quantity"
+                android:textColor="@color/black"
                 android:inputType="number"
                 android:textSize="30sp" />
 
@@ -313,6 +321,7 @@
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
                 android:hint="Quantity"
+                android:textColor="@color/black"
                 android:inputType="number"
                 android:textSize="30sp" />
 
@@ -338,6 +347,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/custom_input"
                 android:hint="Quantity"
+                android:textColor="@color/black"
                 android:inputType="number"
                 android:textSize="30sp" />
 
