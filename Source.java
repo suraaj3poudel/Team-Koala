@@ -3,22 +3,31 @@ package com.example.localdatabase;
 public class Source {
 
     // Attributes
-    String source = "";
-    String sourceCode = "";
-    String sourceAddress = "";
-    String sourceCity = "";
-    String sourceState = "";
-    String sourceZIP = "";
+
+    String sourceCode;
+    String sourceName;
+    String sourceAddress;
+    String sourceCity;
+    String sourceState;
+    String sourceZIP;
 
     // Constructor Empty
     public Source() {
 
     }
 
-    // Constructors
-    public Source(String source, String sourceCode, String sourceAddress, String sourceCity, String sourceState,
+    /**
+     *
+     * @param sourceName    Name of the source
+     * @param sourceCode    Code of the source
+     * @param sourceAddress Address of the source
+     * @param sourceCity    City of the source
+     * @param sourceState   State of the source
+     * @param sourceZIP     ZIP of the source
+     */
+    public Source(String sourceName, String sourceCode, String sourceAddress, String sourceCity, String sourceState,
                   String sourceZIP) {
-        this.source = source;
+        this.sourceName = sourceName;
         this.sourceCode = sourceCode;
         this.sourceAddress = sourceAddress;
         this.sourceCity = sourceCity;
@@ -27,20 +36,20 @@ public class Source {
     }
 
     // Getters and Setters
-    public String getSource() {
-        return source;
-    }
-
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     public String getSourceCode() {
         return sourceCode;
     }
 
     public void setSourceCode(String sourceCode) {
         this.sourceCode = sourceCode;
+    }
+
+    public String getSourceName() {
+        return sourceName;
+    }
+
+    public void setSourceName(String sourceName) {
+        this.sourceName = sourceName;
     }
 
     public String getSourceAddress() {
