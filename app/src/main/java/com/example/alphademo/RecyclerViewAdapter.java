@@ -104,16 +104,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.site2zip.setText(mDriverNames.get(position).getSite2ZIP());
         holder.site2p.setText(mDriverNames.get(position).getSite2Product());
         holder.site2pd.setText(mDriverNames.get(position).getSite2ProductDesc());
-
-
-
-
-
-
-
-
-
-
     }
 
     @Override
