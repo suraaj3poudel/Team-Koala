@@ -3,18 +3,25 @@ package com.example.localdatabase;
 public class Truck {
 
     // Attributes
-    String truckID = "";
-    String transport = "";
+    String truckID;
+    String truckCode;
+    String truckDesc;
 
     // Constructor Empty
     public Truck() {
 
     }
 
-    // Constructors
-    public Truck(String truckID, String transport) {
+    /**
+     *
+     * @param truckID   ID of the truck
+     * @param truckCode Code of the truck
+     * @param truckDesc Description of the truck
+     */
+    public Truck(String truckID, String truckCode, String truckDesc) {
         this.truckID = truckID;
-        this.transport = transport;
+        this.truckCode = truckCode;
+        this.truckDesc = truckDesc;
     }
 
     // Getters and Setters
@@ -26,11 +33,19 @@ public class Truck {
         this.truckID = truckID;
     }
 
-    public String getTransport() {
-        return transport;
+    public String getTruckCode() {
+        return truckCode;
     }
 
-    public void setTransport(String transport) {
-        this.transport = transport;
+    public void setTruckCode(String truckCode) {
+        this.truckCode = truckCode;
+    }
+
+    public String getTruckDesc() {
+        return truckDesc;
+    }
+
+    public void setTruckDesc(String truckDesc) {
+        this.truckDesc = truckDesc;
     }
 }
