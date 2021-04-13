@@ -3,15 +3,19 @@ package com.example.localdatabase;
 public class Driver {
 
     // Attributes
-    String driverName = "";
-    String driverCode = "";
+    String driverName;
+    String driverCode;
 
-    // Constructor Empty
+    // Empty Constructor
     public Driver() {
 
     }
 
-    // Constructors
+    /**
+     *
+     * @param driverName Name of the driver
+     * @param driverCode Code of the driver
+     */
     public Driver(String driverName, String driverCode) {
         this.driverName = driverName;
         this.driverCode = driverCode;
