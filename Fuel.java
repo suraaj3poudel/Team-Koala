@@ -3,27 +3,31 @@ package com.example.localdatabase;
 public class Fuel {
 
     // Attributes
-    String fuelName = "";
-    double fuelAmount = 0.0;
+    String fuelType;
+    double fuelAmount;
 
     // Constructor Empty
     public Fuel() {
 
     }
 
-    // Constructors
-    public Fuel(String fuelName, double fuelAmount) {
-        this.fuelName = fuelName;
+    /**
+     *
+     * @param fuelType   Type of the fuel
+     * @param fuelAmount Amount of fuel needed
+     */
+    public Fuel(String fuelType, double fuelAmount) {
+        this.fuelType = fuelType;
         this.fuelAmount = fuelAmount;
     }
 
     // Getters and Setters
-    public String getFuelName() {
-        return fuelName;
+    public String getFuelType() {
+        return fuelType;
     }
 
-    public void setFuelName(String fuelName) {
-        this.fuelName = fuelName;
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
     }
 
     public double getFuelAmount() {
@@ -34,3 +38,4 @@ public class Fuel {
         this.fuelAmount = fuelAmount;
     }
 }
+
