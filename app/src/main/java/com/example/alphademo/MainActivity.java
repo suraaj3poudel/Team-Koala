@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class MainActivity extends AppCompatActivity {
 
+    public FirebaseAuth mAuth;
     Button login;
     EditText username, password;
     com.example.alphademo.DatabaseSQLite myDB = new com.example.alphademo.DatabaseSQLite(this);
