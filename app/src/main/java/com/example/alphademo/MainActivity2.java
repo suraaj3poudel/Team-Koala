@@ -7,17 +7,23 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity2 extends AppCompatActivity  {
 
-    private DrawerLayout  drawer;
+
+    ImageView notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        notification = findViewById(R.id.bell);
+        onclicknotify();
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
@@ -46,6 +52,12 @@ public class MainActivity2 extends AppCompatActivity  {
         }
     };
 
-
-
+    public void onclicknotify(){
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new NotificationFragment()).commit();
+            }
+        });
+    }
 }

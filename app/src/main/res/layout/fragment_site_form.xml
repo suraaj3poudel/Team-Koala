@@ -26,7 +26,7 @@
                 android:text="Site Record Form"
                 android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -43,7 +43,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:text="@string/date"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/date2"
@@ -55,9 +55,10 @@
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
                 android:hint="@string/mm_dd_yy"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:importantForAutofill="no"
                 android:autofillHints="@string/date"
+                android:textColor="@color/black"
                 android:inputType="date"
                 tools:ignore="HardcodedText"/>
         </LinearLayout>
@@ -74,7 +75,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="Fuel Stick Reading Before"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -83,9 +84,10 @@
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
+                android:textColor="@color/black"
                 android:hint="Quantity"
                 android:inputType="number"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -102,7 +104,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="Meter Reading Before"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -113,7 +115,8 @@
                 android:paddingStart="5dp"
                 android:hint="Quantity"
                 android:inputType="number"
-                android:textSize="30sp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -131,7 +134,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:text="Start Time"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:layout_width="match_parent"
@@ -141,9 +144,10 @@
                 android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
+                android:textColor="@color/black"
                 android:hint="Start Time"
                 android:inputType="number"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -159,21 +163,21 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="End Time"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/editTextTextPostalAddress3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:autofillHints=""
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="5dp"
-                android:paddingStart="5dp"
                 android:hint="End Time"
                 android:inputType="textPostalAddress"
-                android:textSize="30sp"
-                android:autofillHints="" />
+                android:paddingStart="5dp"
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -189,7 +193,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="Fuel Type"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -198,9 +202,10 @@
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_baseline_local_gas_station_24"
                 android:drawablePadding="5dp"
+                android:textColor="@color/black"
                 android:paddingStart="5dp"
                 android:hint="Fuel Type"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
 
         </LinearLayout>
@@ -217,7 +222,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
                 android:text="Gross Gallon Dropped"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/editTextNumber2"
@@ -227,10 +232,11 @@
                 android:background="@drawable/custom_input"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
+                android:textColor="@color/black"
                 android:paddingStart="5dp"
                 android:hint="Quantity"
                 android:inputType="number"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -246,7 +252,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:text="Net Gallon Dropped"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -256,8 +262,9 @@
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
                 android:hint="Quantity"
+                android:textColor="@color/black"
                 android:inputType="number"
-                android:textSize="30sp"
+                android:textSize="20sp"
                 android:layout_weight="1"/>
 
         </LinearLayout>
@@ -274,7 +281,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:text="Fuel Stick Reading After"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -285,8 +292,9 @@
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
                 android:hint="Quantity"
+                android:textColor="@color/black"
                 android:inputType="number"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -302,7 +310,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:text="Meter Reading After"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -313,8 +321,9 @@
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
                 android:hint="Quantity"
+                android:textColor="@color/black"
                 android:inputType="number"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -330,7 +339,7 @@
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
                 android:text="Bill of Landing Number"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
             <EditText
                 android:layout_width="0dp"
@@ -338,8 +347,9 @@
                 android:layout_weight="1"
                 android:background="@drawable/custom_input"
                 android:hint="Quantity"
+                android:textColor="@color/black"
                 android:inputType="number"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
 
         </LinearLayout>
 
@@ -354,7 +364,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Capture your Barcode"
-                android:textSize="30sp"/>
+                android:textSize="20sp"/>
 
             <ImageView
                 android:id="@+id/imageView6"

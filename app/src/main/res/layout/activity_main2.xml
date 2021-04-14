@@ -18,6 +18,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/pic" />
 
+
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,9 +41,35 @@
         app:layout_constraintStart_toStartOf="parent"
         >
 
+
     </FrameLayout>
 
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C14242"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/bell"
+        android:layout_width="45dp"
+        android:layout_height="67dp"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_notifications_active_24" />
+
+    <ImageView
+        android:id="@+id/aimslogo"
+        android:layout_width="139dp"
+        android:layout_height="45dp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/aims" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

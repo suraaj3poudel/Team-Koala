@@ -184,7 +184,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             navi = itemView.findViewById(R.id.navSite);
             navicon = itemView.findViewById(R.id.navicon);
             deliverForm1 = itemView.findViewById(R.id.deliverForm1);
-            deliverForm2 = itemView.findViewById(R.id.deliverForm2);
+            //deliverForm2 = itemView.findViewById(R.id.deliverForm2);
             site = itemView.findViewById(R.id.site);
             sitecode = itemView.findViewById(R.id.siteCode);
             siaddress = itemView.findViewById(R.id.siteAddress);
