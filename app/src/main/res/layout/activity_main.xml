@@ -100,6 +100,7 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Driver Id"
+                android:background="@drawable/rectangled"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="30dp"
                 android:textColorHint="#F44336"
@@ -126,17 +127,12 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Password"
+                android:background="@drawable/rectangled"
+                android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
                 android:inputType="textPassword"
                 android:paddingHorizontal="30dp"
                 android:textColorHint="#F44336"
                 android:textSize="18sp" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                app:srcCompat="@android:drawable/ic_menu_view" />
 
         </LinearLayout>
 
@@ -157,6 +153,7 @@
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/rectanglef"
 
                 android:backgroundTint="#ED1616"
                 android:text="Log in"
