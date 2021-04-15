@@ -141,7 +141,7 @@
                 android:paddingStart="5dp"
                 android:textColor="@color/black"
                 android:hint="Start Time"
-                android:inputType="time"
+                android:inputType="number"
                 android:textSize="20sp" />
 
         </LinearLayout>

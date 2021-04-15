@@ -22,7 +22,7 @@ public class MainActivity4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
-        // initiate the date picker and a button
+        // initiate the date picker
         date = (EditText) findViewById(R.id.date1);
         // perform click event on edit text
         date.setOnClickListener(new View.OnClickListener() {
@@ -41,10 +41,13 @@ public class MainActivity4 extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                date.setText(new StringBuilder().append(dayOfMonth).append("/").append(monthOfYear + 1).append("/").append(year).toString());
+                                date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                             }
                         }, mYear, mMonth, mDay);
+                //disable future date
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
                 datePickerDialog.show();
             }
         });
