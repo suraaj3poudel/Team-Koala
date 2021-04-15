@@ -27,7 +27,7 @@ class SiteForm extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        mDisplayDate = (TextView) getView().findViewById(R.id.date2);
+        mDisplayDate = (TextView) getView().findViewById(R.id.date1);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

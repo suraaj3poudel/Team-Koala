@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -23,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Site Record Form"
+                android:text="@string/site_record_form"
                 android:textStyle="bold"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
@@ -46,20 +45,21 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/date2"
+                android:id="@+id/date1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_date"
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
-                android:hint="@string/mm_dd_yy"
+                android:paddingEnd="5dp"
+                android:hint="dd/mm/yy"
                 android:textSize="20sp"
                 android:importantForAutofill="no"
                 android:autofillHints="@string/date"
                 android:textColor="@color/black"
                 android:inputType="date"
-                tools:ignore="HardcodedText"/>
+                android:focusable="false"/>
         </LinearLayout>
 
         <LinearLayout
@@ -73,7 +73,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="Fuel Stick Reading Before"
+                android:text="@string/fuel_stick_reading_before"
                 android:textSize="20sp" />
 
             <EditText
@@ -86,7 +86,7 @@
                 android:hint="Quantity"
                 android:inputType="number"
                 android:textSize="20sp"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
         </LinearLayout>
 

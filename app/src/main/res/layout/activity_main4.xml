@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SiteForm">
+    tools:context=".dummy.MainActivity4">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/date2"
+                android:id="@+id/date1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -53,13 +53,13 @@
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:hint="@string/mm_dd_yy"
+                android:hint="dd/mm/yy"
                 android:textSize="20sp"
                 android:importantForAutofill="no"
                 android:autofillHints="@string/date"
                 android:textColor="@color/black"
                 android:inputType="date"
-                tools:ignore="HardcodedText"/>
+                android:focusable="false"/>
         </LinearLayout>
 
         <LinearLayout
@@ -133,6 +133,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/startToEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_time"
@@ -140,7 +141,7 @@
                 android:paddingStart="5dp"
                 android:textColor="@color/black"
                 android:hint="Start Time"
-                android:inputType="number"
+                android:inputType="time"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -160,7 +161,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextTextPostalAddress3"
+                android:id="@+id/endToStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
