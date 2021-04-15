@@ -11,4 +11,6 @@
     <string name="todo">TODO</string>
     <string name="site_record_information">Site Record Information</string>
     <string name="mm_dd_yy">mm/dd/yy</string>
+    <string name="site_record_form">Site Record Form</string>
+    <string name="fuel_stick_reading_before">Fuel Stick Reading Before</string>
 </resources>
