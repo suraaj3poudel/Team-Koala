@@ -11,8 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginBottom="15dp"
         app:cardCornerRadius="10dp"
         >
@@ -20,7 +21,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#CF5300"
+            android:background="@color/white"
             android:orientation="vertical"
             android:padding="10dp"
             android:id="@+id/sourceCard_layout">
@@ -33,7 +34,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:text="Name: "/>
@@ -41,7 +43,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:id="@+id/source"
                     android:layout_marginTop="5dp"
                     android:text="Source Name"/>
@@ -56,7 +59,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:text="Source Code: "/>
@@ -65,9 +69,11 @@
                     android:id="@+id/sourceCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:layout_marginTop="5dp"
                     android:text="sc"
-                    android:textColor="@android:color/white" />
+                    />
 
             </LinearLayout>
 
@@ -79,7 +85,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:layout_marginTop="5dp"
                     android:textStyle="bold"
                     android:text="Address: "/>
@@ -87,17 +94,24 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:id="@+id/address"
                     android:layout_marginTop="5dp"
                     android:text="Street Address"/>
+            </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:layout_marginLeft="20dp"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="City: "/>
 
@@ -106,7 +120,8 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/city"
                     android:layout_marginTop="5dp"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:text="City Name"/>
 
             </LinearLayout>
@@ -120,7 +135,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold"
                     android:text="State: "/>
 
@@ -129,14 +145,16 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/state"
                     android:layout_marginTop="5dp"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:text="StateLA"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:layout_marginLeft="20dp"
                     android:textStyle="bold"
                     android:text="Zip Code: "/>
@@ -144,7 +162,8 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:id="@+id/zipcode"
                     android:layout_marginTop="5dp"
                     android:text="12345"/>
@@ -155,7 +174,8 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:layout_width="wrap_content"
@@ -167,6 +187,7 @@
                     android:layout_marginStart="246dp"
                     android:layout_marginLeft="246dp"
                     android:layout_marginRight="55dp"
+                    android:background="@drawable/driveridbox"
                     android:text="+ Add Notes"
                     android:textAlignment="center" />
                 <Button
@@ -176,6 +197,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
+                    android:background="@drawable/driveridbox"
                     android:layout_marginStart="2dp"
                     android:layout_marginLeft="246dp"
                     android:layout_marginRight="55dp"
@@ -191,7 +213,7 @@
                 android:hint="Your Notes Here .. "
                 android:textColorHint="@android:color/black"
                 android:padding="5dp"
-                android:background="@android:color/white"
+                android:background="@drawable/driveridbox"
                 android:textColor="@android:color/black"/>
 
 
@@ -209,18 +231,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="15dp"
-                android:background="@android:color/holo_green_dark"
                 >
 
                 <Button
                     android:id="@+id/navSource"
                     android:layout_width="271dp"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/holo_green_dark"
+                    android:background="#330000"
                     android:padding="15dp"
-                    android:text="Navigate"
+                    android:text="Start Trip"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="20dp" />
 
                 <Button

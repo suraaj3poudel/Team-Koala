@@ -11,8 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
         android:layout_marginBottom="15dp"
         app:cardCornerRadius="10dp">
 
@@ -20,7 +21,7 @@
             android:id="@+id/siteCard_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#CF5300"
+            android:background="@drawable/white_background"
             android:orientation="vertical"
             android:padding="10dp">
 
@@ -34,16 +35,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Name: "
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/site"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Site Name"
-                    android:textColor="@android:color/white" />
+                    />
 
 
             </LinearLayout>
@@ -58,7 +62,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Site Code: "
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -67,7 +72,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="sc1"
-                    android:textColor="@android:color/white" />
+                    android:textColor="#330000"
+                    android:textSize="20sp"
+                   />
 
             </LinearLayout>
 
@@ -81,7 +88,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Address: "
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -90,15 +98,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Street Address"
-                    android:textColor="@android:color/white" />
+                    android:textColor="#330000"
+                    android:textSize="20sp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
                     android:text="City: "
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -106,8 +120,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:text="City Name"
-                    android:textColor="@android:color/white" />
+                    />
 
             </LinearLayout>
 
@@ -121,8 +137,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:text="State: "
-                    android:textColor="@android:color/white"
                     android:textStyle="bold" />
 
                 <TextView
@@ -131,7 +148,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="StateLA"
-                    android:textColor="@android:color/white" />
+                    android:textColor="#330000"
+                    android:textSize="20sp"
+                     />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -139,7 +158,8 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
                     android:text="Zip Code: "
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -148,7 +168,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="12345"
-                    android:textColor="@android:color/white" />
+                    android:textColor="#330000"
+                    android:textSize="20sp"
+                     />
             </LinearLayout>
 
             <LinearLayout
@@ -161,7 +183,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Product Code: "
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -170,7 +193,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="pc2"
-                    android:textColor="@android:color/white" />
+                    android:textColor="#330000"
+                    android:textSize="20sp"
+                     />
 
 
             </LinearLayout>
@@ -185,7 +210,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="Product Desc: "
-                    android:textColor="@android:color/white"
+                    android:textColor="#330000"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -194,13 +220,16 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
                     android:text="pd2"
-                    android:textColor="@android:color/white" />
+                    android:textColor="#330000"
+                    android:textSize="20sp"
+                    />
 
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:id="@+id/siteNotes1"
@@ -212,6 +241,7 @@
                     android:layout_marginStart="246dp"
                     android:layout_marginLeft="246dp"
                     android:layout_marginRight="55dp"
+                    android:background="@drawable/driveridbox"
                     android:text="+ Add Notes"
                     android:textAlignment="center" />
 
@@ -225,6 +255,7 @@
                     android:layout_marginStart="2dp"
                     android:layout_marginLeft="246dp"
                     android:layout_marginRight="55dp"
+                   android:background="@drawable/driveridbox"
                     android:text="Deliver"
                     android:textAlignment="center" />
             </RelativeLayout>
@@ -234,7 +265,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
                 android:layout_marginTop="10dp"
-                android:background="@android:color/white"
+                android:background="@drawable/driveridbox"
                 android:hint="Your Notes Here .. "
                 android:padding="5dp"
                 android:textColor="@android:color/black"
@@ -255,18 +286,17 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="15dp"
-                android:background="@android:color/holo_green_dark"
                 >
 
                 <Button
                     android:id="@+id/navSite"
                     android:layout_width="271dp"
                     android:layout_height="wrap_content"
-                    android:background="@android:color/holo_green_dark"
+                    android:background="#330000"
                     android:padding="15dp"
-                    android:text="Navigate"
+                    android:text="Start Trip"
                     android:textAlignment="center"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/white"
                     android:textSize="20dp" />
 
                 <Button

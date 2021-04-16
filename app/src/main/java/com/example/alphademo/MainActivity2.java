@@ -2,7 +2,6 @@ package com.example.alphademo;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
@@ -10,6 +9,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.alphademo.views.map.MapFragment;
+import com.example.alphademo.views.setting.SettingFragment;
+import com.example.alphademo.views.triplist.Trip_listFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity2 extends AppCompatActivity  {

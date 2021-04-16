@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/backgroundPic"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitStart"
@@ -50,7 +50,6 @@
         android:id="@+id/whiteBox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_marginStart="30dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="30dp"
@@ -81,20 +80,20 @@
             app:srcCompat="@drawable/aims" />
 
         <LinearLayout
-            android:id="@+id/layout"
+            android:id="@+id/layoutDriverId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="2dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/driveridbox"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/layoutPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/aims">
 
             <EditText
-                android:id="@+id/id"
+                android:id="@+id/Driverid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -108,7 +107,7 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/layoutPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
@@ -118,7 +117,7 @@
             app:layout_constraintBottom_toTopOf="@+id/layout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout">
+            app:layout_constraintTop_toBottomOf="@id/layoutDriverId">
 
             <EditText
                 android:id="@+id/password"
@@ -147,18 +146,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/layoutPassword">
 
             <Button
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/rectanglef"
-
                 android:backgroundTint="#ED1616"
                 android:text="Log in"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-
                 android:textColor="#F4EEEE"
                 android:textColorLink="@color/white"
                 android:textSize="24sp"

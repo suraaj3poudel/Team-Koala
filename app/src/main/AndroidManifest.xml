@@ -20,11 +20,9 @@
         <activity android:name=".dummy.MainActivity3" />
         <activity android:name=".MainActivity2" />
         <activity
-            android:name=".MainActivity"
-            android:screenOrientation="sensor">
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
