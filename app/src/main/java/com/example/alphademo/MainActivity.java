@@ -38,10 +38,15 @@ public class MainActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+<<<<<<< HEAD:app/src/main/java/com/example/alphademo/MainActivity.java
 
                 if(username.getText().toString().equals("") && password.getText().toString().equals("")){
 
                     openActivity2();
+=======
+                if(username.getText().toString().equals("admin") && password.getText().toString().equals("admin")){
+                   showMessage("Message", "Successfully logged in!");
+>>>>>>> 5742b86 (Rewritten login Page):app/src/main/java/com/example/myapplication/MainActivity.java
                 }
                 else{
                     showMessage("Message", "Error Logging In!");
