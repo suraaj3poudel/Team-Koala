@@ -1,21 +1,25 @@
 package com.example.alphademo.dummy;
 
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.TimePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.alphademo.R;
-
+import java.text.DateFormat;
 import java.util.Calendar;
 
 public class MainActivity4 extends AppCompatActivity {
 
     EditText date;
     DatePickerDialog datePickerDialog;
+    TextView time1,time2;
+    int t1hour,t2hour,t1min,t2min;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +56,42 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
+        time1 = findViewById(R.id.startToEnd);
+        time2 = findViewById(R.id.endToStart);
+
+        time1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar mcurrentTime = Calendar.getInstance();
+                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mcurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog mTimePicker;
+                mTimePicker = new TimePickerDialog(MainActivity4.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        time1.setText(selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                mTimePicker.show();
+            }
+        });
+
+        time2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar ncurrentTime = Calendar.getInstance();
+                int hour = ncurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = ncurrentTime.get(Calendar.MINUTE);
+                TimePickerDialog nTimePicker;
+                nTimePicker = new TimePickerDialog(MainActivity4.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        time2.setText(selectedHour + ":" + selectedMinute);
+                    }
+                }, hour, minute, true);//Yes 24 hour time
+                nTimePicker.show();
+            }
+        });
 
 
     }

@@ -106,6 +106,7 @@
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/startToEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -115,7 +116,8 @@
                 android:paddingStart="5dp"
                 android:hint="Start Time"
                 android:inputType="number"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:focusable="false"/>
 
         </LinearLayout>
 
@@ -134,7 +136,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextTextPostalAddress3"
+                android:id="@+id/endToStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -145,7 +147,7 @@
                 android:inputType="textPostalAddress"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:autofillHints="" />
+                android:focusable="false"/>
 
         </LinearLayout>
 

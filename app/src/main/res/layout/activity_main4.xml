@@ -139,10 +139,10 @@
                 android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="5dp"
                 android:paddingStart="5dp"
-                android:textColor="@color/black"
                 android:hint="Start Time"
                 android:inputType="number"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:focusable="false"/>
 
         </LinearLayout>
 
@@ -170,7 +170,8 @@
                 android:hint="End Time"
                 android:inputType="textPostalAddress"
                 android:paddingStart="5dp"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:focusable="false"/>
 
         </LinearLayout>
 
