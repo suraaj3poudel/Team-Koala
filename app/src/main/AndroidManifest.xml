@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <uses-feature android:name="android.hardware.camera" />
 
@@ -26,6 +30,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.here.android.maps.appid"
+            android:value="cWO7aMlVGQbTjFXjHsEv" />
+        <meta-data
+            android:name="com.here.android.maps.apptoken"
+            android:value="9f7deTK15e0f-bjhZ0Uvrw" />
+        <meta-data
+            android:name="com.here.android.maps.license.key"
+            android:value="FKrkGE/7OgrorEC4D3DDksI0Jys486/DYc+AEcSGtb9H7Yf5dJCwaQeWF51wFYXmPiDcAQptbpZYQfbGJNoT7woiwZOvQI3IqAj0igCz2p2h7Rndg94ES1olSvkNDx23lNicY9Nte82wsOjzN8bnaPtoxC9XzDY8Giv7E1hz7WCV/NUS5iQHvnGxPM2VUxiHyHkqO07Dni0iW6cNcg3yQZrOoqTyU8dpCPyzzD9NSIUK0VGtFsNRDJ5nxEq6FPytt/BXmP6BDvPhbrFP0zzD6qkh2SNPTtqb6uuFJZv73efck8/5pvw9dWyXPXCDt2gNnqIAhdRFUY3Z4xeB1W8pg+M+73YNB/z/VJRi5reeGtphxRwCsBLH0EBmVXoUvSf4PwZueZMqUAlidUaWDWm6489Kr5K/Cr7JtXmUslW6G9Ymw6O2kWhBefjzd1sPz1ix1dUQglYHpjwf1CdukrSH51h3EOr0nfxPZQhO7T5Cj1QEtSSBOO5p5TyXScTDwwx+IVHLRgihsSAbwtX6mWeR+XEqD54DBY7gWDid/9hphEnkRMvLMXn8Id4WwlPReV7aCK3GTnsTD6ikrVPB1XPxOuCZccsOouAks37XSBcjPNt1N/Y4NfIyHrujD9tTt04PtgjpgKahn1cK0SPROPN3lp0L1212S1CjZ1eb+bWL9aU=" />
+
     </application>
 
 </manifest>
