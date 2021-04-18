@@ -1,5 +1,6 @@
 package com.example.alphademo.views.triplist;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -66,6 +67,9 @@ public class Trip_listFragment extends Fragment {
 
         tabLayout.addTab(tabLayout.newTab().setText("Source List"));
         tabLayout.addTab(tabLayout.newTab().setText("Site List"));
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
+        tabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
+        //tabLayout.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#ffffff"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         extractDriverNames();
 
