@@ -1,9 +1,11 @@
 package com.example.alphademo.dummy;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -23,21 +25,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.alphademo.R;
-import java.text.DateFormat;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 import java.util.Calendar;
 
 public class MainActivity4 extends AppCompatActivity {
 
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
+
+    //Initialize variable
     EditText date;
     DatePickerDialog datePickerDialog;
     TextView time1,time2;
-    int t1hour,t2hour,t1min,t2min;
 
     Button mCaptureBtn;
     ImageView mImageView;
     Uri image_uri;
+
+    Button btScan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +81,16 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
+        //initiate time picker
         time1 = findViewById(R.id.startToEnd);
         time2 = findViewById(R.id.endToStart);
 
         time1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar mcurrentTime = Calendar.getInstance();
-                int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-                int minute = mcurrentTime.get(Calendar.MINUTE);
+                Calendar mCurrentTime = Calendar.getInstance();
+                int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = mCurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
                 mTimePicker = new TimePickerDialog(MainActivity4.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
@@ -111,6 +119,7 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
+        //initiate camera
         mImageView = findViewById(R.id.image_view);
         mCaptureBtn = findViewById(R.id.button5);
 
@@ -143,7 +152,18 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
-
+        btScan = findViewById(R.id.buttonScan);
+        btScan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity4.this);
+                intentIntegrator.setPrompt("For flash use volume up key");
+                intentIntegrator.setBeepEnabled(true);
+                intentIntegrator.setOrientationLocked(true);
+                intentIntegrator.setCaptureActivity(Capture.class);
+                intentIntegrator.initiateScan();
+            }
+        });
     }
 
     private void openCamera() {
@@ -179,7 +199,6 @@ public class MainActivity4 extends AppCompatActivity {
                 }
             }
         }
-
     }
 
     @Override
@@ -191,5 +210,30 @@ public class MainActivity4 extends AppCompatActivity {
 
             mImageView.setImageURI(image_uri);
         }
+
+
+        // Initialize intent result
+        IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
+        if (intentResult.getContents() != null){
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity4.this);
+            //set Title
+            builder.setTitle("Result");
+            //set Message
+            builder.setMessage(intentResult.getContents());
+
+            builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+                builder.show();
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Could not Scan anything... ",Toast.LENGTH_SHORT).show();
+        }
+
+
     }
+
 }
