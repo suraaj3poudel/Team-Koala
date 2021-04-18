@@ -1,66 +1,65 @@
 package com.example.alphademo;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
 
-import com.google.android.material.navigation.NavigationView;
+import com.example.alphademo.views.map.MapFragment;
+import com.example.alphademo.views.setting.SettingFragment;
+import com.example.alphademo.views.triplist.Trip_listFragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity2 extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity2 extends AppCompatActivity  {
 
-    private DrawerLayout  drawer;
+
+    ImageView notification;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        Toolbar toolbar= findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        notification = findViewById(R.id.bell);
+        onclicknotify();
 
 
-
-        drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView =findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawer,toolbar,R.string.open_drawer,R.string.close_drawer);
-
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Trip_listFragment()).commit();
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+    private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (menuItem.getItemId()){
-            case R.id.profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
-                break;
-            case R.id.trips:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ViewTrips()).commit();
-                break;
-
+            Fragment select = null;
+            switch (item.getItemId())
+            {
+                case R.id.trip_list:
+                    select = new Trip_listFragment();
+                    break;
+                case R.id.map:
+                    select = new MapFragment();
+                    break;
+                case R.id.setting:
+                    select = new SettingFragment();
+                    break;
+            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,  select).commit();
+            return true;
         }
+    };
 
-        drawer.closeDrawer((GravityCompat.START));
-        return true;
+    public void onclicknotify(){
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new NotificationFragment()).commit();
+            }
+        });
     }
-
-    public void onBackPressed(){
-        if (drawer.isDrawerOpen(GravityCompat.START))
-        {
-            drawer.closeDrawer(GravityCompat.START);
-        }
-        else {
-            super.onBackPressed();
-        }
-    }
-
-
 }

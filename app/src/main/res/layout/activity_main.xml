@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/backgroundPic"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:scaleType="fitStart"
@@ -50,17 +50,16 @@
         android:id="@+id/whiteBox"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_marginStart="30dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="30dp"
-        android:layout_marginBottom="75dp"
+        android:layout_marginBottom="150dp"
         android:background="@drawable/white_background"
         android:backgroundTint="@color/light"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
@@ -81,64 +80,58 @@
             app:srcCompat="@drawable/aims" />
 
         <LinearLayout
-            android:id="@+id/layout"
+            android:id="@+id/layoutDriverId"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="2dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="60dp"
             android:background="@drawable/driveridbox"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintBottom_toTopOf="@+id/layoutPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/aims">
 
             <EditText
-                android:id="@+id/id"
+                android:id="@+id/Driverid"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Driver Id"
+                android:background="@drawable/rectangled"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="30dp"
                 android:textColorHint="#F44336"
-                android:textSize="20sp"
-                />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/layoutPassword"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginBottom="100dp"
+            android:layout_marginBottom="3dp"
             android:background="@drawable/driveridbox"
             app:layout_constraintBottom_toTopOf="@+id/layout3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layout">
+            app:layout_constraintTop_toBottomOf="@id/layoutDriverId">
 
             <EditText
                 android:id="@+id/password"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Password"
+                android:background="@drawable/rectangled"
+                android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
                 android:inputType="textPassword"
                 android:paddingHorizontal="30dp"
                 android:textColorHint="#F44336"
                 android:textSize="18sp" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-
-                app:srcCompat="@android:drawable/ic_menu_view" />
 
         </LinearLayout>
 
@@ -146,24 +139,23 @@
             android:id="@+id/layout3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/driveridbox"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="70dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/driveridbox"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+            app:layout_constraintTop_toBottomOf="@+id/layoutPassword">
 
             <Button
                 android:id="@+id/login"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
+                android:background="@drawable/rectanglef"
                 android:backgroundTint="#ED1616"
                 android:text="Log in"
                 android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-
                 android:textColor="#F4EEEE"
                 android:textColorLink="@color/white"
                 android:textSize="24sp"
@@ -171,6 +163,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Just hit login"
+            android:textColor="@android:color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout3" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
