@@ -13,4 +13,7 @@
     <string name="mm_dd_yy">mm/dd/yy</string>
     <string name="site_record_form">Site Record Form</string>
     <string name="fuel_stick_reading_before">Fuel Stick Reading Before</string>
+    <string name="start_navi">Start Navigation</string>
+    <string name="stop_navi">Stop Navigation</string>
+    <string name="engine_init_error">Map engine initialization</string>
 </resources>

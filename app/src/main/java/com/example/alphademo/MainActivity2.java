@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.alphademo.views.map.MapFragment;
 import com.example.alphademo.views.setting.SettingFragment;
 import com.example.alphademo.views.triplist.Trip_listFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -43,7 +42,7 @@ public class MainActivity2 extends AppCompatActivity  {
                     select = new Trip_listFragment();
                     break;
                 case R.id.map:
-                    select = new MapFragment();
+                    select = new MapFragmentTemp();
                     break;
                 case R.id.setting:
                     select = new SettingFragment();
