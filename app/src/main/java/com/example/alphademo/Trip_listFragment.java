@@ -21,6 +21,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+//import com.google.android.gms.common.api.Response;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,6 +39,8 @@ public class Trip_listFragment extends Fragment {
     String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/D1?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
+    DatabaseJson obj;
+
 
     @Nullable
     @Override
@@ -67,6 +70,7 @@ public class Trip_listFragment extends Fragment {
 
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
+
         Log.i("Message: ", "I am fetching data from JSON",null);
         //pbar.setVisibility(View.VISIBLE);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
@@ -80,6 +84,16 @@ public class Trip_listFragment extends Fragment {
 
                     JSONObject driverObject = response.getJSONObject("data".toString());
                     JSONArray tripinfo = driverObject.getJSONArray("resultSet1".toString());
+
+
+                    JSONObject jsonObjects = new JSONObject();
+                    obj = new DatabaseJson(getContext());
+                    obj.addData(1, driverObject.toString());
+                    jsonObjects = obj.getObject(1);
+                    Toast.makeText(getContext(),  jsonObjects.toString(), Toast.LENGTH_SHORT).show();
+
+
+
 
                     for(int i = 0; i < tripinfo.length(); i++) {
                         JSONObject object = (JSONObject) tripinfo.get(i);
@@ -102,20 +116,64 @@ public class Trip_listFragment extends Fragment {
 
                     recyclerView1.setAdapter(sourceAdapter);
                     recyclerView2.setAdapter(siteAdapter);
+                    Toast.makeText(getContext(),"Loaded from Internet", Toast.LENGTH_LONG).show();
 
                     //pbar.setVisibility(View.VISIBLE);
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
+
                 }
+
                 //}
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+
+               try{
+                obj = new DatabaseJson(getContext());
+                JSONObject jsonObjects = obj.getObject(1);
+                JSONArray tripInformation = jsonObjects.getJSONArray("resultSet1".toString());
+
+
+
+                for(int i = 0; i < tripInformation.length(); i++) {
+                    JSONObject object = (JSONObject) tripInformation.get(i);
+                    if(object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
+                        SourceObject source = new SourceObject(object);
+                        sourceList.add(source);
+                    }
+
+                    else{
+                        SiteObject site = new SiteObject(object);
+                        siteList.add(site);
+                    }
+                }
+                recyclerView1.setLayoutManager(new LinearLayoutManager(getContext()));
+                recyclerView2.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                sourceAdapter = new RecyclerViewSource(getContext(), sourceList);
+                siteAdapter = new RecyclerViewSite(getContext(), siteList);
+
+
+                recyclerView1.setAdapter(sourceAdapter);
+                recyclerView2.setAdapter(siteAdapter);
+                }
+
+
+                catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+               Toast.makeText(getContext(),"no Internet", Toast.LENGTH_LONG).show();
                 Log.d("TAG", "onErrorResponse: ");
+
+                //pbar.setVisibility(View.VISIBLE);
+
             }
         });
 
