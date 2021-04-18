@@ -327,7 +327,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:text="Bill of Landing Number"
+                android:text="Signature"
                 android:textSize="20sp" />
 
             <EditText
@@ -351,14 +351,21 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:text="Capture your Barcode"
+                android:text="Bill of Landing Number"
                 android:textSize="20sp"/>
 
+
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/image_view"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:src="@android:drawable/ic_menu_camera" />
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Capture" />
 
 
         </LinearLayout>
