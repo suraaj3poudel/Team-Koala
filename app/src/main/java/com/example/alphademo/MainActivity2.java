@@ -28,7 +28,7 @@ public class MainActivity2 extends AppCompatActivity  {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Trip_listFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TripsFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
