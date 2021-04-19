@@ -37,8 +37,8 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
     LayoutInflater inflator;
     private ArrayList<SiteObject> mSiteInfo = new ArrayList<>();
-    int pos;
     View mapFrag;
+    String message;
 
     public RecyclerViewSite( Context context, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
@@ -53,19 +53,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         return new ViewHolder(view);
     }
 
-    public void onClickAction(){
-        AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
-        Fragment fragment = new MapFragmentTemp();
-        FragmentManager manager = activity.getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_container,fragment);
-        Bundle args = new Bundle();
-        args.putDouble("d1", mSiteInfo.get(pos).getLatitude());
-        args.putDouble("d2", mSiteInfo.get(pos).getLongitude());
-        Log.i("Long Sent", mSiteInfo.get(pos).getLatitude()+"");
-        fragment.setArguments(args);
-        transaction.commit();
-    }
+
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
@@ -78,7 +66,6 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             }
         });
 
-        pos=position;
         holder.site.setText(mSiteInfo.get(position).getSite());
         holder.sitecode.setText(mSiteInfo.get(position).getSiteCode());
         holder.siaddress.setText(mSiteInfo.get(position).getSiteAddress());
@@ -88,7 +75,10 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         holder.site2p.setText(mSiteInfo.get(position).getSiteProduct());
         holder.site2pd.setText(mSiteInfo.get(position).getSiteProductDesc());
 
-        final String siteID1 = holder.sitecode.getText().toString().trim();
+        //message = "SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()
+                //+"\n"+mSiteInfo.get(position).getSiteCity()+"\n"+mSiteInfo.get(position).getLatitude()+"\n"+mSiteInfo.get(position).getLongitude();
+
+        final String siteID1 = holder.sitecode.getText().toString().trim()+position;
 
         String siteNotes = holder.myDB.getNotes(siteID1);
 
@@ -139,39 +129,54 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
                         holder.typeSpaceSite1.setHint("Your Notes..");
                     }
                 }
-                onBindViewHolder(holder,pos);
+                //onBindViewHolder(holder,position);
             }
         });
+
 
 
 
         holder.siteLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(holder.siteLayout.getContext());
-                builder.setCancelable(true);
 
-                builder.setTitle("Transmitted Data");
-                builder.setMessage("SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()+"\n"+
-                        mSiteInfo.get(position).getSiteCity());
-
-                builder.setPositiveButton("OK", null);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                holder.showMessage("Transmitted Data","SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()+"\n"+
+                        mSiteInfo.get(position).getSiteCity()+mSiteInfo.get(position).getLatitude()+"\n"+ mSiteInfo.get(position).getLongitude());
             }
         });
 
         holder.navicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickAction();
+                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+                Fragment fragment = new MapFragmentTemp();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                Bundle args = new Bundle();
+                args.putDouble("d1", mSiteInfo.get(position).getLatitude());
+                args.putDouble("d2", mSiteInfo.get(position).getLongitude());
+                args.putString("Message",mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()+"\n"+mSiteInfo.get(position).getSiteCity());
+                Log.i("Long Sent", mSiteInfo.get(position).getLatitude()+"");
+                fragment.setArguments(args);
+                transaction.commit();
             }
         });
 
         holder.navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onClickAction();
+                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+                Fragment fragment = new MapFragmentTemp();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                Bundle args = new Bundle();
+                args.putDouble("d1", mSiteInfo.get(position).getLatitude());
+                args.putDouble("d2", mSiteInfo.get(position).getLongitude());
+                Log.i("Long Sent", mSiteInfo.get(position).getLatitude()+"");
+                fragment.setArguments(args);
+                transaction.commit();
             }
         });
 

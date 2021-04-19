@@ -45,6 +45,8 @@ import com.here.android.mpa.routing.RoutingError;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import static java.sql.Types.NULL;
+
 
 public class MapFragmentTemp extends Fragment {
 
@@ -66,8 +68,10 @@ public class MapFragmentTemp extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_map, container,         false);
-        d1 = getArguments().getDouble("d1");
-        d2=  getArguments().getDouble("d2");
+        if(getArguments() != null) {
+            d1 = getArguments().getDouble("d1");
+            d2 = getArguments().getDouble("d2");
+        }
         Log.i("Latitude", d1+"");
         Log.i("Longitude", d2+"");
 
@@ -83,9 +87,25 @@ public class MapFragmentTemp extends Fragment {
 
 
         initMapFragment();
-        initNaviControlButton();
+        if(d1 !=0 & d2 !=0) {
+            initNaviControlButton();
+        }
+        else{
+            m_naviControlButton.setVisibility(View.INVISIBLE);
+            showMessage("Start Trip", "Select a trip from trip Menu to start Navigation!");
+        }
 
+    }
 
+    private void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(rootView.getContext());
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+
+        builder.setPositiveButton("OK", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
 
@@ -171,6 +191,8 @@ public class MapFragmentTemp extends Fragment {
     }
 
     private void createRoute(double d1, double d2) {
+
+        Toast.makeText(getContext(), "Working on it.", Toast.LENGTH_SHORT).show();
         /* Initialize a CoreRouter */
         CoreRouter coreRouter = new CoreRouter();
 
@@ -365,9 +387,6 @@ public class MapFragmentTemp extends Fragment {
          * Register a NavigationManagerEventListener to monitor the status change on
          * NavigationManager
          */
-        m_navigationManager.addNavigationManagerEventListener(
-                new WeakReference<NavigationManager.NavigationManagerEventListener>(
-                        m_navigationManagerEventListener));
 
         /* Register a PositionListener to monitor the position updates */
         m_navigationManager.addPositionListener(
@@ -379,41 +398,6 @@ public class MapFragmentTemp extends Fragment {
         public void onPositionUpdated(GeoPosition geoPosition) {
             /* Current position information can be retrieved in this callback */
             getLocation();
-        }
-    };
-
-    private NavigationManager.NavigationManagerEventListener m_navigationManagerEventListener = new NavigationManager.NavigationManagerEventListener() {
-        @Override
-        public void onRunningStateChanged() {
-            Toast.makeText(getContext(), "Running state changed", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onNavigationModeChanged() {
-            Toast.makeText(getContext(), "Navigation mode changed", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onEnded(NavigationManager.NavigationMode navigationMode) {
-            Toast.makeText(getContext(), navigationMode + " was ended", Toast.LENGTH_SHORT).show();
-            stopForegroundService();
-        }
-
-        @Override
-        public void onMapUpdateModeChanged(NavigationManager.MapUpdateMode mapUpdateMode) {
-            Toast.makeText(getContext(), "Map update mode is changed to " + mapUpdateMode,
-                    Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onRouteUpdated(Route route) {
-            Toast.makeText(getContext(), "Route updated", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onCountryInfo(String s, String s1) {
-            Toast.makeText(getContext(), "Country info updated from " + s + " to " + s1,
-                    Toast.LENGTH_SHORT).show();
         }
     };
 

@@ -55,22 +55,12 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     }
 
     public void onClickAction(){
-        AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
-        Fragment fragment = new MapFragmentTemp();
-        FragmentManager manager = activity.getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.fragment_container,fragment);
-        Bundle args = new Bundle();
-        args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
-        args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
-        Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
-        fragment.setArguments(args);
-        transaction.commit();
+
     }
 
 
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.sourceForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +78,10 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.sstate.setText(mSourceInfo.get(position).getSourceState());
         holder.szipcode.setText(mSourceInfo.get(position).getSourceZIP());
 
-        final String sourceID = holder.sourcecode.getText().toString().trim();
+        message = "SourceData\n\n"+mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()
+                +"\n"+mSourceInfo.get(position).getSourceCity()+"\n"+mSourceInfo.get(position).getLatitude()+"\n"+mSourceInfo.get(position).getLongitude();
+
+        final String sourceID = holder.sourcecode.getText().toString().trim()+position;
 
         final String sourceNotes =holder.myDB.getNotes(sourceID);
 
@@ -138,13 +131,11 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                         holder.typeSpaceSource.setHint("Your Notes..");
                     }
                 }
-                onBindViewHolder(holder,pos);
             }
         });
 
 
-        message += "SourceData\n\n"+mSourceInfo.get(pos).getSource()+"\n"+mSourceInfo.get(pos).getSourceAddress()
-                +"\n"+mSourceInfo.get(pos).getSourceCity();
+
 
 
         holder.sourceLayout.setOnClickListener(new View.OnClickListener() {
@@ -158,7 +149,18 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             @Override
             public void onClick(View view) {
                 //holder.showMessage("Important!","Coming Soon");
-                onClickAction();
+                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+                Fragment fragment = new MapFragmentTemp();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                Bundle args = new Bundle();
+                args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
+                args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
+                args.putString("Message",mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()+"\n"+mSourceInfo.get(position).getSourceCity());
+                Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
+                fragment.setArguments(args);
+                transaction.commit();
             }
         });
 
@@ -166,7 +168,18 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             @Override
             public void onClick(View view) {
                 //holder.showMessage("Important!","Coming Soon");
-                onClickAction();
+                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+                Fragment fragment = new MapFragmentTemp();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                Bundle args = new Bundle();
+                args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
+                args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
+                args.putString("Message",mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()+"\n"+mSourceInfo.get(position).getSourceCity());
+                Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
+                fragment.setArguments(args);
+                transaction.commit();
             }
         });
     }
