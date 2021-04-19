@@ -45,6 +45,10 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         return new ViewHolder(view);
     }
 
+    public void onClickAction(){
+
+    }
+
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.sourceForm.setOnClickListener(new View.OnClickListener() {
@@ -125,15 +129,8 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.sourceLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(holder.sourceLayout.getContext());
-                builder.setCancelable(true);
 
-                builder.setTitle("Transmitted Data");
-                builder.setMessage(message);
-
-                builder.setPositiveButton("OK", null);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                holder.showMessage("Transmitted Data",message);
             }
         });
 
