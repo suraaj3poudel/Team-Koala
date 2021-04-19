@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,15 +56,21 @@ public class MapFragmentTemp extends Fragment {
     private GeoBoundingBox m_geoBoundingBox;
     private Route m_route;
     private boolean m_foregroundServiceStarted;
-    double d1,d2;
+    double d1;
+    double d2;
     LocationManager locationManager;
     double latitude, longitude;
     View rootView ;
 
-    @Nullable
+    @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_map, container,         false);
+        d1 = getArguments().getDouble("d1");
+        d2=  getArguments().getDouble("d2");
+        Log.i("Latitude", d1+"");
+        Log.i("Longitude", d2+"");
+
 
         m_naviControlButton = (Button) rootView.findViewById(R.id.naviCtrlButton);
         return rootView;
@@ -74,8 +81,7 @@ public class MapFragmentTemp extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        d1 = 32.5252;
-        d2= -93.7502;
+
         initMapFragment();
         initNaviControlButton();
 

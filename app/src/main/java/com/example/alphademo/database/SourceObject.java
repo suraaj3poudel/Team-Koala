@@ -1,6 +1,5 @@
 package com.example.alphademo.database;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -13,6 +12,17 @@ public class SourceObject {
     private String sourceState;
     private String sourceZIP;
     private JSONObject sourceDetails;
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    private double latitude;
+    private double longitude;
 
     public SourceObject(JSONObject sourceInfo) throws JSONException {
         sourceDetails = sourceInfo;
@@ -38,55 +48,38 @@ public class SourceObject {
 
         String sourcezip = sourceDetails.getString("PostalCode");
         sourceZIP = sourcezip;
+
+        double sourcelat = sourceDetails.getDouble("Latitude");
+        latitude = sourcelat;
+
+        double sourcelong = sourceDetails.getDouble("Longitude");
+        longitude = sourcelong;
     }
 
     public String getSource() {
         return source;
     }
 
-    public void setSource(String source) {
-        this.source = source;
-    }
-
     public String getSourceCode() {
         return sourceCode;
-    }
-
-    public void setSourceCode(String sourceCode) {
-        this.sourceCode = sourceCode;
     }
 
     public String getSourceAddress() {
         return sourceAddress;
     }
 
-    public void setSourceAddress(String sourceAddress) {
-        this.sourceAddress = sourceAddress;
-    }
-
     public String getSourceCity() {
         return sourceCity;
-    }
-
-    public void setSourceCity(String sourceCity) {
-        this.sourceCity = sourceCity;
     }
 
     public String getSourceState() {
         return sourceState;
     }
 
-    public void setSourceState(String sourceState) {
-        this.sourceState = sourceState;
-    }
-
     public String getSourceZIP() {
         return sourceZIP;
     }
 
-    public void setSourceZIP(String sourceZIP) {
-        this.sourceZIP = sourceZIP;
-    }
 
 
 }

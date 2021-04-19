@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,10 +18,16 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alphademo.database.DatabaseSQLite;
+import com.example.alphademo.MapFragmentTemp;
+import com.example.alphademo.NotificationFragment;
 import com.example.alphademo.R;
+import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.dummy.MainActivity3;
 
@@ -32,6 +39,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     private ArrayList<SourceObject> mSourceInfo = new ArrayList<>();
     String message ="";
     int pos;
+    View mapFrag;
 
     public RecyclerViewSource( Context context, ArrayList<SourceObject> sourceInfo){
         mSourceInfo = sourceInfo;
@@ -42,12 +50,24 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_sourceinfo,parent,false);
+        mapFrag = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main2,parent,false);
         return new ViewHolder(view);
     }
 
     public void onClickAction(){
-
+        AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+        Fragment fragment = new MapFragmentTemp();
+        FragmentManager manager = activity.getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.fragment_container,fragment);
+        Bundle args = new Bundle();
+        args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
+        args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
+        Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
+        fragment.setArguments(args);
+        transaction.commit();
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
@@ -118,6 +138,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                         holder.typeSpaceSource.setHint("Your Notes..");
                     }
                 }
+                onBindViewHolder(holder,pos);
             }
         });
 
@@ -129,7 +150,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.sourceLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 holder.showMessage("Transmitted Data",message);
             }
         });
@@ -137,14 +157,16 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.navicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showMessage("Important!","Coming Soon");
+                //holder.showMessage("Important!","Coming Soon");
+                onClickAction();
             }
         });
 
         holder.navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showMessage("Important!","Coming Soon");
+                //holder.showMessage("Important!","Coming Soon");
+                onClickAction();
             }
         });
     }
