@@ -7,7 +7,6 @@
         <item name="colorPrimary">@color/peach</item>
         <item name="colorPrimaryDark">@color/peach</item>
         <item name="colorAccent">@color/peach</item>
-        <item name="android:fontFamily">@font/lato</item>
     </style>
         <style name="MenuItems" parent="AppTheme">
             <item name="android:textSize">24dp</item>
