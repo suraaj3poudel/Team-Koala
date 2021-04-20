@@ -10,7 +10,7 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_viewSite"
+        android:id="@+id/card_viewSource"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -21,7 +21,6 @@
         app:background="@drawable/card_item_background"
         app:cardCornerRadius="10dp"
         app:cardElevation="20dp">
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -114,7 +113,7 @@
                 android:background="@drawable/card_item_background"
                 android:orientation="vertical"
                 android:id="@+id/hidden_layout"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"

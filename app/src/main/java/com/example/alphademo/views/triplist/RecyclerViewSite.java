@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,7 +39,6 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     LayoutInflater inflator;
     private ArrayList<SiteObject> mSiteInfo = new ArrayList<>();
     View mapFrag;
-    String message;
 
     public RecyclerViewSite( Context context, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
@@ -67,10 +67,10 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         });
 
         holder.site.setText(mSiteInfo.get(position).getSite());
+        holder.sitet.setText(mSiteInfo.get(position).getSite());
         holder.sitecode.setText(mSiteInfo.get(position).getSiteCode());
-        holder.siaddress.setText(mSiteInfo.get(position).getSiteAddress());
-        holder.sicity.setText(mSiteInfo.get(position).getSiteCity());
-        holder.sistate.setText(mSiteInfo.get(position).getSiteState());
+        holder.siaddress.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity()+", "+mSiteInfo.get(position).getSiteState());
+        holder.siteaddresst.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity()+", "+mSiteInfo.get(position).getSiteState());
         holder.sizip.setText(mSiteInfo.get(position).getSiteZIP());
         holder.site2p.setText(mSiteInfo.get(position).getSiteProduct());
         holder.site2pd.setText(mSiteInfo.get(position).getSiteProductDesc());
@@ -136,14 +136,25 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
 
 
-        holder.siteLayout.setOnClickListener(new View.OnClickListener() {
+        holder.arrowdown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                holder.showMessage("Transmitted Data","SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()+"\n"+
-                        mSiteInfo.get(position).getSiteCity()+mSiteInfo.get(position).getLatitude()+"\n"+ mSiteInfo.get(position).getLongitude());
+                holder.show_layout.setVisibility(View.GONE);
+                holder.hide_layout.setVisibility(View.VISIBLE);
             }
         });
+
+        holder.arrowup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                holder.show_layout.setVisibility(View.VISIBLE);
+                holder.hide_layout.setVisibility(View.GONE);
+            }
+        });
+
+
 
         holder.navicon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,13 +202,15 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        TextView site, sitecode, siaddress, sicity, sistate, sizip;
-        TextView sourcenote2,site2p,site2pd;
-        LinearLayout siteLayout;
-        Button siteNotes1, deliverForm1, deliverForm2;
+        TextView site, sitecode, siaddress, sizip;
+        TextView sourcenote2,site2p,site2pd,sitet,siteaddresst;
+        LinearLayout siteLayout,show_layout,hide_layout;
+        ImageView arrowup,arrowdown;
+        Button siteNotes1, deliverForm1;
         EditText typeSpaceSite1;
         DatabaseSQLite myDB;
-        Button navi,navicon;
+        Button navi;
+        ImageView navicon;
 
 
 
@@ -208,13 +221,17 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
             navi = itemView.findViewById(R.id.navSite);
             navicon = itemView.findViewById(R.id.navicon);
+            show_layout =itemView.findViewById(R.id.show_layout_site);
+            hide_layout = itemView.findViewById(R.id.hidden_layout_site);
+            arrowdown = itemView.findViewById(R.id.arrowdownSite);
+            arrowup = itemView.findViewById(R.id.arrowupSite);
             deliverForm1 = itemView.findViewById(R.id.deliverForm1);
             //deliverForm2 = itemView.findViewById(R.id.deliverForm2);
             site = itemView.findViewById(R.id.site);
+            sitet = itemView.findViewById(R.id.siteT);
             sitecode = itemView.findViewById(R.id.siteCode);
             siaddress = itemView.findViewById(R.id.siteAddress);
-            sicity = itemView.findViewById(R.id.siteCity);
-            sistate = itemView.findViewById(R.id.siteState);
+            siteaddresst = itemView.findViewById(R.id.siteAddressT);
             sizip = itemView.findViewById(R.id.siteZipcode);
             site2p = itemView.findViewById(R.id.productCode1);
             site2pd = itemView.findViewById(R.id.productDesc1);
