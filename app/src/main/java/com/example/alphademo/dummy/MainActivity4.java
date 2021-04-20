@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -24,6 +25,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.alphademo.MainActivity5;
 import com.example.alphademo.R;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -51,17 +54,18 @@ public class MainActivity4 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main4);
 
-        // initiate the date picker
+        // initiate variable for date picker
         date = (EditText) findViewById(R.id.date1);
+
         // perform click event on edit text
         date.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // calender class's instance and get current date , month and year from calender
-                final Calendar c = Calendar.getInstance();
-                int mYear = c.get(Calendar.YEAR); // current year
-                int mMonth = c.get(Calendar.MONTH); // current month
-                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                final Calendar cal = Calendar.getInstance();
+                int mYear = cal.get(Calendar.YEAR); // current year
+                int mMonth = cal.get(Calendar.MONTH); // current month
+                int mDay = cal.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
                 datePickerDialog = new DatePickerDialog(MainActivity4.this,
                         new DatePickerDialog.OnDateSetListener() {
@@ -81,7 +85,7 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
-        //initiate time picker
+        //initiate variable for time picker
         time1 = findViewById(R.id.startToEnd);
         time2 = findViewById(R.id.endToStart);
 
@@ -119,7 +123,7 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
-        //initiate camera
+        //initiate variable for camera
         mImageView = findViewById(R.id.image_view);
         mCaptureBtn = findViewById(R.id.button5);
 
@@ -152,20 +156,35 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
+        // Initialize variable for barcode scan
         btScan = findViewById(R.id.buttonScan);
         btScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity4.this);
-                intentIntegrator.setPrompt("For flash use volume up key");
                 intentIntegrator.setBeepEnabled(true);
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
                 intentIntegrator.initiateScan();
             }
         });
+
+        Button continueBtn = findViewById(R.id.continueBtn);
+        continueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMainActivity5();
+            }
+        });
     }
 
+    // Open new activity for signature
+    private void openMainActivity5() {
+        Intent intent = new Intent(this, MainActivity5.class);
+        startActivity(intent);
+    }
+
+    // openCamera method
     private void openCamera() {
 
         ContentValues values = new ContentValues();
@@ -201,6 +220,7 @@ public class MainActivity4 extends AppCompatActivity {
         }
     }
 
+    // set the result
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -220,6 +240,9 @@ public class MainActivity4 extends AppCompatActivity {
             builder.setTitle("Result");
             //set Message
             builder.setMessage(intentResult.getContents());
+
+            TextView scanText = findViewById(R.id.scanText);
+            scanText.setText(intentResult.getContents());
 
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override

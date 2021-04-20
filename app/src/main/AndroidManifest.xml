@@ -6,7 +6,10 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <application
@@ -16,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".dummy.MainActivity4"></activity>
+        <activity android:name=".MainActivity5"></activity>
+        <activity android:name=".dummy.MainActivity4" />
         <activity android:name=".dummy.MainActivity3" />
         <activity android:name=".MainActivity2" />
         <activity
@@ -28,10 +32,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".dummy.Capture"
+        <activity
+            android:name=".dummy.Capture"
             android:screenOrientation="portrait"
-            android:stateNotNeeded="true"/>
-        
+            android:stateNotNeeded="true" />
     </application>
 
 </manifest>
