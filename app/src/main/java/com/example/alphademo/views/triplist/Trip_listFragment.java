@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alphademo.R;
+import com.example.alphademo.database.DatabaseJson;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.database.TripInfo;
@@ -50,6 +52,7 @@ public class Trip_listFragment extends Fragment {
     String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/D1?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
+    DatabaseJson obj;
 
     @Nullable
     @Override
@@ -146,7 +149,16 @@ public class Trip_listFragment extends Fragment {
                     JSONObject driverObject = response.getJSONObject("data".toString());
                     JSONArray tripinfo = driverObject.getJSONArray("resultSet1".toString());
 
+<<<<<<< HEAD
                     for (int i = 0; i < tripinfo.length(); i++) {
+=======
+                    JSONObject jsonObjects = new JSONObject();
+                    obj = new DatabaseJson(getContext());
+                    obj.addData(1, driverObject.toString());
+                    jsonObjects = obj.getObject(1);
+
+                    for(int i = 0; i < tripinfo.length(); i++) {
+>>>>>>> df461a497728821bbc89ec0f35e14de4a905df3d
                         JSONObject object = (JSONObject) tripinfo.get(i);
                         if (object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
                             SourceObject source = new SourceObject(object);
@@ -196,6 +208,48 @@ public class Trip_listFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                try{
+                    obj = new DatabaseJson(getContext());
+                    JSONObject jsonObjects = obj.getObject(1);
+                    JSONArray tripInformation = jsonObjects.getJSONArray("resultSet1".toString());
+
+
+
+                    for(int i = 0; i < tripInformation.length(); i++) {
+                        JSONObject object = (JSONObject) tripInformation.get(i);
+                        if(object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
+                            SourceObject source = new SourceObject(object);
+                            sourceList.add(source);
+                        }
+
+                        else{
+                            SiteObject site = new SiteObject(object);
+                            siteList.add(site);
+                        }
+                    }
+                    sourceAdapter = new RecyclerViewSource(getContext(), sourceList);
+                    siteAdapter = new RecyclerViewSite(getContext(), siteList);
+
+                    final MyAdapter adapter = new MyAdapter(requireContext(),getChildFragmentManager(),
+                            tabLayout.getTabCount(), sourceAdapter, siteAdapter);
+                    viewPager.setAdapter(adapter);
+                    viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+                    if (R.layout.fragment_source_list != 0) {
+                        pbar1.setVisibility(View.INVISIBLE);
+                    }
+
+                    if (R.layout.fragment_site_list != 0) {
+                        pbar2.setVisibility(View.INVISIBLE);
+                    }
+                }
+
+
+                catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+                Toast.makeText(getContext(),"no Internet", Toast.LENGTH_LONG).show();
                 Log.d("TAG", "onErrorResponse: ");
             }
         });
