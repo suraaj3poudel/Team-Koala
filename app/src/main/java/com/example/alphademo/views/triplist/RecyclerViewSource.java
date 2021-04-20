@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,15 +13,22 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alphademo.database.DatabaseSQLite;
+import com.example.alphademo.MapFragmentTemp;
 import com.example.alphademo.R;
+import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.dummy.MainActivity3;
 
@@ -32,6 +40,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     private ArrayList<SourceObject> mSourceInfo = new ArrayList<>();
     String message ="";
     int pos;
+    View mapFrag;
 
     public RecyclerViewSource( Context context, ArrayList<SourceObject> sourceInfo){
         mSourceInfo = sourceInfo;
@@ -42,11 +51,17 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_sourceinfo,parent,false);
+        mapFrag = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main2,parent,false);
         return new ViewHolder(view);
     }
 
+    public void onClickAction(){
+
+    }
+
+
     @Override
-    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         holder.sourceForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,13 +73,17 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
         pos = position;
         holder.sourcename.setText(mSourceInfo.get(position).getSource());
+        holder.sourceT.setText(mSourceInfo.get(position).getSource());
+
         holder.sourcecode.setText(mSourceInfo.get(position).getSourceCode());
-        holder.address.setText(mSourceInfo.get(position).getSourceAddress());
-        holder.scity.setText(mSourceInfo.get(position).getSourceCity());
-        holder.sstate.setText(mSourceInfo.get(position).getSourceState());
+        holder.address.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity()+", "+mSourceInfo.get(position).getSourceState());
+        holder.addressT.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity()+", "+mSourceInfo.get(position).getSourceState());
         holder.szipcode.setText(mSourceInfo.get(position).getSourceZIP());
 
-        final String sourceID = holder.sourcecode.getText().toString().trim();
+        message = "SourceData\n\n"+mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()
+                +"\n"+mSourceInfo.get(position).getSourceCity()+"\n"+mSourceInfo.get(position).getLatitude()+"\n"+mSourceInfo.get(position).getLongitude();
+
+        final String sourceID = holder.sourcecode.getText().toString().trim()+position;
 
         final String sourceNotes =holder.myDB.getNotes(sourceID);
 
@@ -118,36 +137,60 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         });
 
 
-        message += "SourceData\n\n"+mSourceInfo.get(pos).getSource()+"\n"+mSourceInfo.get(pos).getSourceAddress()
-                +"\n"+mSourceInfo.get(pos).getSourceCity();
 
 
-        holder.sourceLayout.setOnClickListener(new View.OnClickListener() {
+
+        holder.arrowdown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(holder.sourceLayout.getContext());
-                builder.setCancelable(true);
+               holder.hidden_layout.setVisibility(View.VISIBLE);
+               holder.show_layout.setVisibility(View.GONE);
+            }
+        });
 
-                builder.setTitle("Transmitted Data");
-                builder.setMessage(message);
-
-                builder.setPositiveButton("OK", null);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+        holder.arrowup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.hidden_layout.setVisibility(View.GONE);
+                holder.show_layout.setVisibility(View.VISIBLE);
             }
         });
 
         holder.navicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showMessage("Important!","Coming Soon");
+                //holder.showMessage("Important!","Coming Soon");
+                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+                Fragment fragment = new MapFragmentTemp();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                Bundle args = new Bundle();
+                args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
+                args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
+                args.putString("Message",mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()+"\n"+mSourceInfo.get(position).getSourceCity());
+                Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
+                fragment.setArguments(args);
+                transaction.commit();
             }
         });
 
         holder.navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showMessage("Important!","Coming Soon");
+                //holder.showMessage("Important!","Coming Soon");
+                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+                Fragment fragment = new MapFragmentTemp();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                Bundle args = new Bundle();
+                args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
+                args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
+                args.putString("Message",mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()+"\n"+mSourceInfo.get(position).getSourceCity());
+                Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
+                fragment.setArguments(args);
+                transaction.commit();
             }
         });
     }
@@ -160,14 +203,16 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView sourcename, sourcecode;
-        TextView address, scity, sstate, szipcode;
-        TextView sourcenote1;
+        TextView address,szipcode;
+        TextView sourcenote1,sourceT,addressT;
         ProgressBar progressBar;
-        LinearLayout sourceLayout;
+        LinearLayout hidden_layout,show_layout;
+        ImageView arrowdown,arrowup;
         Button addsourceNotes, sourceForm;
         EditText typeSpaceSource;
         DatabaseSQLite myDB;
-        Button navi, navicon;
+        Button navi;
+        ImageView navicon;
 
 
 
@@ -180,14 +225,19 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             sourcename = itemView.findViewById(R.id.source);
             sourcecode = itemView.findViewById(R.id.sourceCode);
             address = itemView.findViewById(R.id.address);
-            scity = itemView.findViewById(R.id.city);
-            sstate = itemView.findViewById(R.id.state);
             szipcode = itemView.findViewById(R.id.zipcode);
+            arrowdown = itemView.findViewById(R.id.arrowdown);
+            show_layout=itemView.findViewById(R.id.show_layout);
+            arrowup = itemView.findViewById(R.id.arrowup);
+
+            sourceT = itemView.findViewById(R.id.sourceT);
+
+            addressT = itemView.findViewById(R.id.addressT);
 
             sourceForm = itemView.findViewById(R.id.sourceForm);
 
-
-            sourceLayout = itemView.findViewById(R.id.sourceCard_layout);
+            hidden_layout = itemView.findViewById(R.id.hidden_layout);
+            show_layout = itemView.findViewById(R.id.show_layout);
 
             myDB = new DatabaseSQLite(itemView.getContext());
 

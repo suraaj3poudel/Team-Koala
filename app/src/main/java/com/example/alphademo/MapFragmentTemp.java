@@ -11,6 +11,7 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,7 @@ import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
+import com.example.alphademo.R;
 import com.example.alphademo.views.map.ForegroundService;
 import com.here.android.mpa.common.GeoBoundingBox;
 import com.here.android.mpa.common.GeoCoordinate;
@@ -43,6 +45,8 @@ import com.here.android.mpa.routing.RoutingError;
 import java.lang.ref.WeakReference;
 import java.util.List;
 
+import static java.sql.Types.NULL;
+
 
 public class MapFragmentTemp extends Fragment {
 
@@ -54,15 +58,23 @@ public class MapFragmentTemp extends Fragment {
     private GeoBoundingBox m_geoBoundingBox;
     private Route m_route;
     private boolean m_foregroundServiceStarted;
-    double d1,d2;
+    double d1;
+    double d2;
     LocationManager locationManager;
     double latitude, longitude;
     View rootView ;
 
-    @Nullable
+    @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_map, container,         false);
+        if(getArguments() != null) {
+            d1 = getArguments().getDouble("d1");
+            d2 = getArguments().getDouble("d2");
+        }
+        Log.i("Latitude", d1+"");
+        Log.i("Longitude", d2+"");
+
 
         m_naviControlButton = (Button) rootView.findViewById(R.id.naviCtrlButton);
         return rootView;
@@ -73,12 +85,27 @@ public class MapFragmentTemp extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
 
-        d1 = 32.5252;
-        d2= -93.7502;
+
         initMapFragment();
-        initNaviControlButton();
+        if(d1 !=0 & d2 !=0) {
+            initNaviControlButton();
+        }
+        else{
+            m_naviControlButton.setVisibility(View.INVISIBLE);
+            showMessage("Start Trip", "Select a trip from trip Menu to start Navigation!");
+        }
 
+    }
 
+    private void showMessage(String title, String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(rootView.getContext());
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+
+        builder.setPositiveButton("OK", null);
+        AlertDialog dialog = builder.create();
+        dialog.show();
 
     }
 
@@ -149,7 +176,7 @@ public class MapFragmentTemp extends Fragment {
         if (ActivityCompat.checkSelfPermission(
                 getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
                 getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MapFragmentTemp.REQUEST_LOCATION);
+            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, com.example.alphademo.MapFragmentTemp.REQUEST_LOCATION);
         } else {
             Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (locationGPS != null) {
@@ -164,6 +191,8 @@ public class MapFragmentTemp extends Fragment {
     }
 
     private void createRoute(double d1, double d2) {
+
+        Toast.makeText(getContext(), "Working on it.", Toast.LENGTH_SHORT).show();
         /* Initialize a CoreRouter */
         CoreRouter coreRouter = new CoreRouter();
 
@@ -304,8 +333,9 @@ public class MapFragmentTemp extends Fragment {
         // show position indicator
         // note, it is also possible to change icon for the position indicator
         m_mapFragment.getPositionIndicator().setVisible(true);
+
         m_navigationManager.startNavigation(m_route);
-        m_map.setTilt(70);
+        m_map.setTilt(60);
         startForegroundService();
 
         /*
@@ -357,9 +387,6 @@ public class MapFragmentTemp extends Fragment {
          * Register a NavigationManagerEventListener to monitor the status change on
          * NavigationManager
          */
-        m_navigationManager.addNavigationManagerEventListener(
-                new WeakReference<NavigationManager.NavigationManagerEventListener>(
-                        m_navigationManagerEventListener));
 
         /* Register a PositionListener to monitor the position updates */
         m_navigationManager.addPositionListener(
@@ -371,42 +398,6 @@ public class MapFragmentTemp extends Fragment {
         public void onPositionUpdated(GeoPosition geoPosition) {
             /* Current position information can be retrieved in this callback */
             getLocation();
-            //createRoute(d1,d2);
-        }
-    };
-
-    private NavigationManager.NavigationManagerEventListener m_navigationManagerEventListener = new NavigationManager.NavigationManagerEventListener() {
-        @Override
-        public void onRunningStateChanged() {
-            Toast.makeText(getContext(), "Running state changed", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onNavigationModeChanged() {
-            Toast.makeText(getContext(), "Navigation mode changed", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onEnded(NavigationManager.NavigationMode navigationMode) {
-            Toast.makeText(getContext(), navigationMode + " was ended", Toast.LENGTH_SHORT).show();
-            stopForegroundService();
-        }
-
-        @Override
-        public void onMapUpdateModeChanged(NavigationManager.MapUpdateMode mapUpdateMode) {
-            Toast.makeText(getContext(), "Map update mode is changed to " + mapUpdateMode,
-                    Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onRouteUpdated(Route route) {
-            Toast.makeText(getContext(), "Route updated", Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void onCountryInfo(String s, String s1) {
-            Toast.makeText(getContext(), "Country info updated from " + s + " to " + s1,
-                    Toast.LENGTH_SHORT).show();
         }
     };
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#ffcc99</color>
+    <color name="primary">@color/orange</color>
     <color name="red">#cc3300</color>
     <color name="peach">#e08e8e</color>
     <color name="teal_200">#cc3300</color>
@@ -11,6 +11,36 @@
     <color name="orange"> #e28743</color>
     <color name="light">  #f1f1e9</color>
     <color name="offwhite">#f2d9c5</color>
+
+    <color name="card1Start"> #ffa500 </color>
+    <color name="card1End">   #ff8c00 </color>
+
+    <color name="card2Start"> #ff9900 </color>
+    <color name="card2End"> #ff4500</color>
+
+    <color name="colorEndBackground"> #ffcc17 </color>
+    <color name="colorLightText"> #ececec </color>
+    <color name="colorWhite"> #FFFFFF </color>
+
+
+    <color name="colorPrimary">#49BEFF</color>
+    <color name="colorPrimaryDark">#65DCE5</color>
+    <color name="colorAccent">#0D5D98</color>
+
+    <color name="address">#2F7092</color>
+    <color name="followers">#0D5D98</color>
+    <color name="headings">#cc5f44</color>
+    <color name="solidCircle">#AAFFFFFF</color>
+    <color name="circleBorder">#50FFFFFF</color>
+    <color name="gradEnd">#f3a269</color>
+    <color name="gradStart">#cc5f44</color>
+    <color name="followersBg">#cc5f44</color>
+    <color name="followingBg">#49BEFF</color>
+    <color name="grey">#E5E5E5</color>
+
+
+
+
 
 
 </resources>

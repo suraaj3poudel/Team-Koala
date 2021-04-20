@@ -1,258 +1,346 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
-    android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="5dp"
+    android:fadeScrollbars="true"
+    android:foregroundTint="@color/primary">
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_viewSite"
+        android:id="@+id/card_viewSource"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
         android:layout_marginBottom="15dp"
+        app:background="@drawable/card_item_background"
         app:cardCornerRadius="10dp"
-        >
+        app:cardElevation="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:orientation="vertical"
-            android:padding="10dp"
-            android:id="@+id/sourceCard_layout">
+            android:layout_height="wrap_content"
+            android:background="@drawable/card_item_background"
+            android:orientation="horizontal"
+            android:id="@+id/show_layout"
+            android:visibility="visible">
 
-            <LinearLayout
+        <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:id="@+id/fuelImg"
+                android:layout_weight="0"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:layout_marginTop="5dp"
-                    android:textStyle="bold"
-                    android:text="Name: "/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:id="@+id/source"
-                    android:layout_marginTop="5dp"
-                    android:text="Source Name"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_baseline_local_gas_station_24" />
 
             </LinearLayout>
 
-            <LinearLayout
+        <LinearLayout
+                android:id="@+id/sourceCard_layout"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@drawable/card_item_background"
+                android:orientation="vertical"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:layout_marginTop="5dp"
-                    android:textStyle="bold"
-                    android:text="Source Code: "/>
 
-                <TextView
-                    android:id="@+id/sourceCode"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:layout_marginTop="5dp"
-                    android:text="sc"
-                    />
+                    android:orientation="horizontal">
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/source"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Source Name"
+                        android:textColor="#330000"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:layout_marginTop="5dp"
-                    android:textStyle="bold"
-                    android:text="Address: "/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:id="@+id/address"
-                    android:layout_marginTop="5dp"
-                    android:text="Street Address"/>
-            </LinearLayout>
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:text="City: "/>
+                    <TextView
+                        android:id="@+id/address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="Street Address"
+                        android:textColor="#330000"
+                        android:textSize="15sp" />
+                </LinearLayout>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/city"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:text="City Name"/>
-
-            </LinearLayout>
-
-            <LinearLayout
+        </LinearLayout>
+        <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:text="State: "/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/state"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:text="StateLA"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:layout_marginLeft="20dp"
-                    android:textStyle="bold"
-                    android:text="Zip Code: "/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="#330000"
-                    android:textSize="20sp"
-                    android:id="@+id/zipcode"
-                    android:layout_marginTop="5dp"
-                    android:text="12345"/>
-
-
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:orientation="vertical">
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/arrowdown"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_baseline_expand_more_24" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/card_item_background"
+                android:orientation="vertical"
+                android:id="@+id/hidden_layout"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textAlignment="center"
+                        android:background="@color/teal_200"
+                        android:id="@+id/sourceT"
+                        android:textSize="25dp"
+                        android:padding="10dp"
+                        android:textStyle="bold"
+                        android:text="Source Name"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="17sp"
+                        android:text="Source Code: "/>
+
+                    <TextView
+                        android:id="@+id/sourceCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:text="sc"
+                        android:textColor="@android:color/black" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:textSize="17sp"
+                        android:text="Address: "/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/addressT"
+                        android:textSize="17sp"
+                        android:text="Street Address"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="17sp"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"
+                        android:text="Zip Code: "/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/black"
+                        android:id="@+id/zipcode"
+                        android:textSize="20dp"
+                        android:text="12345"/>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp">
+
+                    <Button
+                        android:id="@+id/sourceForm"
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginLeft="246dp"
+                        android:layout_marginRight="55dp"
+                        android:backgroundTint="@color/teal_200"
+                        android:text="Pick up"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/sourceNotes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="60dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginLeft="246dp"
+                        android:layout_marginRight="100dp"
+                        android:backgroundTint="@color/teal_200"
+                        android:text="+ Add Notes"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp">
+                android:padding="10dp">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:layout_height="70dp"
+                    android:id="@+id/typeSpaceSource"
+                    android:hint="Your Notes Here .. "
+                    android:textColorHint="@android:color/black"
+                    android:padding="10dp"
+                    android:background="@android:color/white"
+                    android:textColor="@android:color/black"/>
 
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sourceNotes"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginStart="246dp"
-                    android:layout_marginLeft="246dp"
-                    android:layout_marginRight="55dp"
-                    android:background="@drawable/driveridbox"
-                    android:text="+ Add Notes"
-                    android:textAlignment="center" />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/sourceForm"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:background="@drawable/driveridbox"
-                    android:layout_marginStart="2dp"
-                    android:layout_marginLeft="246dp"
-                    android:layout_marginRight="55dp"
-                    android:text="Pick Up"
-                    android:textAlignment="center" />
             </RelativeLayout>
 
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="70dp"
-                android:id="@+id/typeSpaceSource"
-                android:hint="Your Notes Here .. "
-                android:textColorHint="@android:color/black"
-                android:padding="5dp"
-                android:background="@drawable/driveridbox"
-                android:textColor="@android:color/black"/>
-
-
-            <TextView
-                android:id="@+id/sourcenotes1"
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:color/background_light"
-                android:textColor="@android:color/black"
-                android:textSize="17dp"
-                android:padding="10dp"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="15dp"
-                >
-
-                <Button
-                    android:id="@+id/navSource"
-                    android:layout_width="271dp"
+                android:padding="10dp">
+                <TextView
+                    android:id="@+id/sourcenotes1"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#330000"
-                    android:padding="15dp"
-                    android:text="Start Trip"
-                    android:textAlignment="center"
-                    android:textColor="@color/white"
-                    android:textSize="20dp" />
+                    android:background="#ffefcb"
+                    android:textColor="@android:color/black"
+                    android:textSize="17dp"
+                    android:padding="10dp"
+                    />
 
-                <Button
-                    android:id="@+id/navicon"
-                    android:layout_width="60dp"
-                    android:layout_height="57dp"
-                    android:background="@drawable/navicon"
-                    android:textAlignment="center" />
-            </LinearLayout>
+            </RelativeLayout>
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <Button
+                        android:id="@+id/navSource"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@android:color/holo_green_dark"
+                        android:text="Start Navigation"
+                        android:textAlignment="center"
+                        android:layout_marginLeft="20dp"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/navicon"
+                        android:layout_width="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_height="71dp"
+                        android:layout_toEndOf="@+id/navSource"
+                        android:background="@android:color/holo_green_dark"
+                        android:src="@drawable/navicon"
+                        android:textAlignment="center" />
+
+                </LinearLayout>
+
+            <ImageView
+                android:id="@+id/arrowup"
+                android:layout_width="182dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_baseline_expand_less_24">
+
+            </ImageView>
+
+
 
         </LinearLayout>
 
+
+
     </androidx.cardview.widget.CardView>
+
+
 </ScrollView>

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,17 +13,24 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alphademo.MapFragmentTemp;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.R;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.dummy.MainActivity4;
 
+import java.security.AccessController;
 import java.util.ArrayList;
 
 public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.ViewHolder>{
@@ -30,7 +38,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
     LayoutInflater inflator;
     private ArrayList<SiteObject> mSiteInfo = new ArrayList<>();
-    int pos;
+    View mapFrag;
 
     public RecyclerViewSite( Context context, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
@@ -41,8 +49,11 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     @Override
     public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_siteinfo,parent,false);
+        mapFrag = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main2,parent,false);
         return new ViewHolder(view);
     }
+
+
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
@@ -55,17 +66,19 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             }
         });
 
-        pos=position;
         holder.site.setText(mSiteInfo.get(position).getSite());
+        holder.sitet.setText(mSiteInfo.get(position).getSite());
         holder.sitecode.setText(mSiteInfo.get(position).getSiteCode());
-        holder.siaddress.setText(mSiteInfo.get(position).getSiteAddress());
-        holder.sicity.setText(mSiteInfo.get(position).getSiteCity());
-        holder.sistate.setText(mSiteInfo.get(position).getSiteState());
+        holder.siaddress.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity()+", "+mSiteInfo.get(position).getSiteState());
+        holder.siteaddresst.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity()+", "+mSiteInfo.get(position).getSiteState());
         holder.sizip.setText(mSiteInfo.get(position).getSiteZIP());
         holder.site2p.setText(mSiteInfo.get(position).getSiteProduct());
         holder.site2pd.setText(mSiteInfo.get(position).getSiteProductDesc());
 
-        final String siteID1 = holder.sitecode.getText().toString().trim();
+        //message = "SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()
+                //+"\n"+mSiteInfo.get(position).getSiteCity()+"\n"+mSiteInfo.get(position).getLatitude()+"\n"+mSiteInfo.get(position).getLongitude();
+
+        final String siteID1 = holder.sitecode.getText().toString().trim()+position;
 
         String siteNotes = holder.myDB.getNotes(siteID1);
 
@@ -116,38 +129,65 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
                         holder.typeSpaceSite1.setHint("Your Notes..");
                     }
                 }
+                //onBindViewHolder(holder,position);
             }
         });
 
 
 
-        holder.siteLayout.setOnClickListener(new View.OnClickListener() {
+
+        holder.arrowdown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(holder.siteLayout.getContext());
-                builder.setCancelable(true);
 
-                builder.setTitle("Transmitted Data");
-                builder.setMessage("SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()+"\n"+
-                        mSiteInfo.get(position).getSiteCity());
-
-                builder.setPositiveButton("OK", null);
-                AlertDialog dialog = builder.create();
-                dialog.show();
+                holder.show_layout.setVisibility(View.GONE);
+                holder.hide_layout.setVisibility(View.VISIBLE);
             }
         });
+
+        holder.arrowup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                holder.show_layout.setVisibility(View.VISIBLE);
+                holder.hide_layout.setVisibility(View.GONE);
+            }
+        });
+
+
 
         holder.navicon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showMessage("Important!","Coming Soon");
+                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+                Fragment fragment = new MapFragmentTemp();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                Bundle args = new Bundle();
+                args.putDouble("d1", mSiteInfo.get(position).getLatitude());
+                args.putDouble("d2", mSiteInfo.get(position).getLongitude());
+                args.putString("Message",mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()+"\n"+mSiteInfo.get(position).getSiteCity());
+                Log.i("Long Sent", mSiteInfo.get(position).getLatitude()+"");
+                fragment.setArguments(args);
+                transaction.commit();
             }
         });
 
         holder.navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showMessage("Important!","Coming Soon");
+                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
+                Fragment fragment = new MapFragmentTemp();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                Bundle args = new Bundle();
+                args.putDouble("d1", mSiteInfo.get(position).getLatitude());
+                args.putDouble("d2", mSiteInfo.get(position).getLongitude());
+                Log.i("Long Sent", mSiteInfo.get(position).getLatitude()+"");
+                fragment.setArguments(args);
+                transaction.commit();
             }
         });
 
@@ -162,13 +202,15 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     public class ViewHolder extends RecyclerView.ViewHolder{
 
 
-        TextView site, sitecode, siaddress, sicity, sistate, sizip;
-        TextView sourcenote2,site2p,site2pd;
-        LinearLayout siteLayout;
-        Button siteNotes1, deliverForm1, deliverForm2;
+        TextView site, sitecode, siaddress, sizip;
+        TextView sourcenote2,site2p,site2pd,sitet,siteaddresst;
+        LinearLayout siteLayout,show_layout,hide_layout;
+        ImageView arrowup,arrowdown;
+        Button siteNotes1, deliverForm1;
         EditText typeSpaceSite1;
         DatabaseSQLite myDB;
-        Button navi,navicon;
+        Button navi;
+        ImageView navicon;
 
 
 
@@ -179,13 +221,17 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
             navi = itemView.findViewById(R.id.navSite);
             navicon = itemView.findViewById(R.id.navicon);
+            show_layout =itemView.findViewById(R.id.show_layout_site);
+            hide_layout = itemView.findViewById(R.id.hidden_layout_site);
+            arrowdown = itemView.findViewById(R.id.arrowdownSite);
+            arrowup = itemView.findViewById(R.id.arrowupSite);
             deliverForm1 = itemView.findViewById(R.id.deliverForm1);
             //deliverForm2 = itemView.findViewById(R.id.deliverForm2);
             site = itemView.findViewById(R.id.site);
+            sitet = itemView.findViewById(R.id.siteT);
             sitecode = itemView.findViewById(R.id.siteCode);
             siaddress = itemView.findViewById(R.id.siteAddress);
-            sicity = itemView.findViewById(R.id.siteCity);
-            sistate = itemView.findViewById(R.id.siteState);
+            siteaddresst = itemView.findViewById(R.id.siteAddressT);
             sizip = itemView.findViewById(R.id.siteZipcode);
             site2p = itemView.findViewById(R.id.productCode1);
             site2pd = itemView.findViewById(R.id.productDesc1);

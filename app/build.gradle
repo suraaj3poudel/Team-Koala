@@ -24,11 +24,13 @@ android {
         flatDir {
             dirs 'libs'
         }
+        google()
+        jcenter()
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.aar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation(name:'HERE-sdk', ext:'aar')
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -37,6 +39,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui:2.3.5'
     implementation 'com.google.android.material:material:1.4.0-alpha02'
     implementation 'com.google.firebase:firebase-auth:20.0.4'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -46,7 +49,10 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview:1.2.0"
     implementation 'com.android.volley:volley:1.2.0'
     implementation "androidx.cardview:cardview:1.0.0"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    compile 'com.alespero:expandable-cardview:0.6'
+    implementation 'com.google.android.material:material:1.2.0-alpha02'
 
 
 

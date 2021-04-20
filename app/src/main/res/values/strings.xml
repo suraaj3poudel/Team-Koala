@@ -16,4 +16,5 @@
     <string name="start_navi">Start Navigation</string>
     <string name="stop_navi">Stop Navigation</string>
     <string name="engine_init_error">Map engine initialization</string>
+
 </resources>

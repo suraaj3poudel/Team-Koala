@@ -15,6 +15,17 @@ public class SiteObject {
     private String siteProduct;
     private String siteProductDesc;
     private JSONObject siteDetails;
+    private double latitude;
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    private double longitude;
 
     public SiteObject(JSONObject siteInfo) throws JSONException {
         siteDetails = siteInfo;
@@ -47,6 +58,12 @@ public class SiteObject {
 
         String site2pd = siteDetails.getString("ProductDesc");
         siteProductDesc = site2pd;
+
+        double sourcelat = siteDetails.getDouble("Latitude");
+        latitude = sourcelat;
+
+        double sourcelong = siteDetails.getDouble("Longitude");
+        longitude = sourcelong;
 
     }
     public String getSite() {
