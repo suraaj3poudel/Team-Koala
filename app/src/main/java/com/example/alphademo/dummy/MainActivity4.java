@@ -173,7 +173,7 @@ public class MainActivity4 extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openMainActivity5();
+                startActivity(new Intent(MainActivity4.this, SignaturePop.class));
             }
         });
     }
