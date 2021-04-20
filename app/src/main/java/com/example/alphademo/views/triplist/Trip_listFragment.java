@@ -16,7 +16,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
@@ -29,7 +28,6 @@ import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseJson;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
-import com.example.alphademo.database.TripInfo;
 import com.example.alphademo.databinding.FragmentTripListBinding;
 import com.google.android.material.tabs.TabLayout;
 
@@ -56,16 +54,16 @@ public class Trip_listFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_trip_list, container, false);
 
-         ViewGroup root1 = (ViewGroup) inflater.inflate(R.layout.fragment_source_list,null);
-         ViewGroup root2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
+        ViewGroup root1 = (ViewGroup) inflater.inflate(R.layout.fragment_source_list,null);
+        ViewGroup root2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
 //        recyclerView1 = view.findViewById(R.id.sourceList);
 //        recyclerView2 = view.findViewById(R.id.siteList);
-          pbar1 = root1.findViewById(R.id.progressBar2);
-          pbar2 = root2.findViewById(R.id.progressBar2);
+        pbar1 = root1.findViewById(R.id.progressBar2);
+        pbar2 = root2.findViewById(R.id.progressBar2);
 
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
@@ -73,35 +71,10 @@ public class Trip_listFragment extends Fragment {
         tabLayout.addTab(tabLayout.newTab().setText("Source List"));
         tabLayout.addTab(tabLayout.newTab().setText("Site List"));
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
-        //tabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
+        tabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
         //tabLayout.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#ffffff"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         extractDriverNames();
-
-        final SwipeRefreshLayout pullToRefresh1 = root1.findViewById(R.id.pullToRefresh1);
-        pullToRefresh1.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Log.i("NOTEn ", "Refreshing SItes");
-                sourceList = new ArrayList<SourceObject>();
-                siteList = new ArrayList<SiteObject>();
-                extractDriverNames();// your code
-                pullToRefresh1.setRefreshing(false);
-            }
-        });
-
-        final SwipeRefreshLayout pullToRefresh2 = root2.findViewById(R.id.pullToRefresh2);
-        pullToRefresh2.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Log.i("NOTEn ", "Refreshing SItes");
-
-                sourceList = new ArrayList<SourceObject>();
-                siteList = new ArrayList<SiteObject>();
-                extractDriverNames();// your code
-                pullToRefresh2.setRefreshing(false);
-            }
-        });
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -149,29 +122,25 @@ public class Trip_listFragment extends Fragment {
                     JSONObject driverObject = response.getJSONObject("data".toString());
                     JSONArray tripinfo = driverObject.getJSONArray("resultSet1".toString());
 
-<<<<<<< HEAD
-                    for (int i = 0; i < tripinfo.length(); i++) {
-=======
                     JSONObject jsonObjects = new JSONObject();
                     obj = new DatabaseJson(getContext());
                     obj.addData(1, driverObject.toString());
                     jsonObjects = obj.getObject(1);
 
                     for(int i = 0; i < tripinfo.length(); i++) {
->>>>>>> df461a497728821bbc89ec0f35e14de4a905df3d
                         JSONObject object = (JSONObject) tripinfo.get(i);
-                        if (object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
+                        if(object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
                             SourceObject source = new SourceObject(object);
                             sourceList.add(source);
-                        } else {
+                        }
+
+                        else{
                             SiteObject site = new SiteObject(object);
                             siteList.add(site);
                         }
                     }
 
-                    //TripInfo trips = new TripInfo("R-123", sourceList.size(), siteList.size());
 
-                //}
 
                     sourceAdapter = new RecyclerViewSource(getContext(), sourceList);
                     siteAdapter = new RecyclerViewSite(getContext(), siteList);

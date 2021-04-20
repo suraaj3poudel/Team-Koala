@@ -23,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alphademo.R;
+import com.example.alphademo.database.DatabaseJson;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.database.TripInfo;
@@ -46,6 +47,7 @@ public class ViewAllTripsFragment extends Fragment {
     RecyclerViewTrip tripAdapter;
     String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/D1?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
 
+    DatabaseJson obj;
 
     @Nullable
     @Override
@@ -135,12 +137,56 @@ public class ViewAllTripsFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                try {
+
+                    obj = new DatabaseJson(getContext());
+                    JSONObject jsonObjects = obj.getObject(1);
+                    JSONArray tripinform = jsonObjects.getJSONArray("resultSet1".toString());
+
+
+
+
+                    for(int i = 0; i < tripinform.length(); i++) {
+                        JSONObject object = (JSONObject) tripinform.get(i);
+                        if(object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
+                            SourceObject source = new SourceObject(object);
+                            sourceList.add(source);
+                        }
+
+                        else{
+                            SiteObject site = new SiteObject(object);
+                            siteList.add(site);
+                        }
+                    }
+
+                    TripInfo tripFound = new TripInfo("R-123", sourceList.size(),siteList.size());
+                    trips.add(tripFound);
+                    recyclerViewTrip.setLayoutManager(new LinearLayoutManager(getContext()));
+
+                    tripAdapter = new RecyclerViewTrip(getContext(),trips);
+
+                    recyclerViewTrip.setAdapter(tripAdapter);
+
+                    //pbar.setVisibility(View.VISIBLE);
+
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+
+                }
+                Toast.makeText(getContext(),"no Internet", Toast.LENGTH_LONG).show();
                 Log.d("TAG", "onErrorResponse: ");
             }
+
+
         });
 
         //pbar.setVisibility(View.VISIBLE);
         queue.add(jsonObjectRequest);
+    }
+
+    public void connect(){
+
     }
 
 }
