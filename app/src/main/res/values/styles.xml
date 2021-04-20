@@ -2,10 +2,10 @@
 
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/peach</item>
-        <item name="colorPrimaryDark">@color/peach</item>
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryDark">@color/orange</item>
         <item name="colorAccent">@color/peach</item>
     </style>
         <style name="MenuItems" parent="AppTheme">

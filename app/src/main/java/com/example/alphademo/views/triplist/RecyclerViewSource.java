@@ -13,19 +13,20 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alphademo.MapFragmentTemp;
-import com.example.alphademo.NotificationFragment;
 import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
@@ -72,10 +73,11 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
         pos = position;
         holder.sourcename.setText(mSourceInfo.get(position).getSource());
+        holder.sourceT.setText(mSourceInfo.get(position).getSource());
+
         holder.sourcecode.setText(mSourceInfo.get(position).getSourceCode());
-        holder.address.setText(mSourceInfo.get(position).getSourceAddress());
-        holder.scity.setText(mSourceInfo.get(position).getSourceCity());
-        holder.sstate.setText(mSourceInfo.get(position).getSourceState());
+        holder.address.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity()+", "+mSourceInfo.get(position).getSourceState());
+        holder.addressT.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity()+", "+mSourceInfo.get(position).getSourceState());
         holder.szipcode.setText(mSourceInfo.get(position).getSourceZIP());
 
         message = "SourceData\n\n"+mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()
@@ -138,10 +140,19 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
 
 
-        holder.sourceLayout.setOnClickListener(new View.OnClickListener() {
+        holder.arrowdown.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.showMessage("Transmitted Data",message);
+               holder.hidden_layout.setVisibility(View.VISIBLE);
+               holder.show_layout.setVisibility(View.GONE);
+            }
+        });
+
+        holder.arrowup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                holder.hidden_layout.setVisibility(View.GONE);
+                holder.show_layout.setVisibility(View.VISIBLE);
             }
         });
 
@@ -192,14 +203,16 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView sourcename, sourcecode;
-        TextView address, scity, sstate, szipcode;
-        TextView sourcenote1;
+        TextView address,szipcode;
+        TextView sourcenote1,sourceT,addressT;
         ProgressBar progressBar;
-        LinearLayout sourceLayout;
+        LinearLayout hidden_layout,show_layout;
+        ImageView arrowdown,arrowup;
         Button addsourceNotes, sourceForm;
         EditText typeSpaceSource;
         DatabaseSQLite myDB;
-        Button navi, navicon;
+        Button navi;
+        ImageView navicon;
 
 
 
@@ -212,14 +225,19 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             sourcename = itemView.findViewById(R.id.source);
             sourcecode = itemView.findViewById(R.id.sourceCode);
             address = itemView.findViewById(R.id.address);
-            scity = itemView.findViewById(R.id.city);
-            sstate = itemView.findViewById(R.id.state);
             szipcode = itemView.findViewById(R.id.zipcode);
+            arrowdown = itemView.findViewById(R.id.arrowdown);
+            show_layout=itemView.findViewById(R.id.show_layout);
+            arrowup = itemView.findViewById(R.id.arrowup);
+
+            sourceT = itemView.findViewById(R.id.sourceT);
+
+            addressT = itemView.findViewById(R.id.addressT);
 
             sourceForm = itemView.findViewById(R.id.sourceForm);
 
-
-            sourceLayout = itemView.findViewById(R.id.sourceCard_layout);
+            hidden_layout = itemView.findViewById(R.id.hidden_layout);
+            show_layout = itemView.findViewById(R.id.show_layout);
 
             myDB = new DatabaseSQLite(itemView.getContext());
 
