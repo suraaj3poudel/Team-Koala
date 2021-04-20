@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.example.alphademo.views.setting.SettingFragment;
 import com.example.alphademo.views.triplist.Trip_listFragment;
+import com.example.alphademo.views.triplist.ViewAllTripsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity2 extends AppCompatActivity  {
@@ -28,7 +29,7 @@ public class MainActivity2 extends AppCompatActivity  {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new TripsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ViewAllTripsFragment()).commit();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -39,7 +40,7 @@ public class MainActivity2 extends AppCompatActivity  {
             switch (item.getItemId())
             {
                 case R.id.trip_list:
-                    select = new Trip_listFragment();
+                    select = new ViewAllTripsFragment() ;
                     break;
                 case R.id.map:
                     select = new MapFragmentTemp();

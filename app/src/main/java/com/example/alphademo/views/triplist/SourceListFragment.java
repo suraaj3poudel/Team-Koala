@@ -19,7 +19,7 @@ import com.example.alphademo.databinding.FragmentSourceListBinding;
 public class SourceListFragment extends Fragment {
     FragmentSourceListBinding binding;
     RecyclerViewSource adapter;
-   ImageButton img;
+    ImageButton img;
 
 
     public SourceListFragment(RecyclerViewSource sourceAdapter) {
