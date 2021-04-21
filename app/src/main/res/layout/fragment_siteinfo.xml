@@ -18,14 +18,14 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="5dp"
         android:layout_marginBottom="15dp"
-        app:background="@drawable/card_item_background"
+        app:background="@drawable/card_item_background2"
         app:cardCornerRadius="10dp"
         app:cardElevation="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card_item_background"
+            android:background="@drawable/card_item_background2"
             android:orientation="horizontal"
             android:id="@+id/show_layout_site"
             android:visibility="visible">
@@ -110,7 +110,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/card_item_background"
+            android:background="@drawable/card_item_background2"
             android:orientation="vertical"
             android:id="@+id/hidden_layout_site"
             android:visibility="gone">
@@ -124,9 +124,9 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/black"
                     android:textAlignment="center"
-                    android:background="@color/teal_200"
+                    android:background="@color/white"
                     android:id="@+id/siteT"
                     android:textSize="25dp"
                     android:padding="10dp"
@@ -354,13 +354,14 @@
                 android:layout_height="100dp"
                 android:layout_marginTop="15dp"
                 android:orientation="horizontal"
+                android:background="@color/teal_200"
                 android:padding="10dp">
 
                 <Button
                     android:id="@+id/navSite"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@android:color/holo_green_dark"
+
                     android:text="Start Navigation"
                     android:textAlignment="center"
                     android:layout_marginLeft="20dp"
@@ -375,7 +376,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_height="71dp"
                     android:layout_toEndOf="@+id/navSource"
-                    android:background="@android:color/holo_green_dark"
+
                     android:src="@drawable/navicon"
                     android:textAlignment="center" />
 

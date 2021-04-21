@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             xmlns:android="http://schemas.android.com/apk/res/android"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="25dp"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/title"
