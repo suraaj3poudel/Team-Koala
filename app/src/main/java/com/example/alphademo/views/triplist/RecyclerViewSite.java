@@ -2,10 +2,12 @@ package com.example.alphademo.views.triplist;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,10 +41,12 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     LayoutInflater inflator;
     private ArrayList<SiteObject> mSiteInfo = new ArrayList<>();
     View mapFrag;
+    Context context;
 
     public RecyclerViewSite( Context context, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
         inflator= LayoutInflater.from(context);
+        this.context = context;
     }
 
     @NonNull
@@ -57,12 +61,23 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        final Dialog myDialogue = new Dialog(context);
+        myDialogue.setContentView(R.layout.delivery_form);
+        DisplayMetrics dm = new DisplayMetrics();
+        dm = context.getResources().getDisplayMetrics();
+
+        int height = dm.heightPixels;
+        int width = dm.widthPixels;
+
+        myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));
 
         holder.deliverForm1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MainActivity4.class);
-                view.getContext().startActivity(intent);
+                myDialogue.show();
+//                startActivity(new Intent(view.getContext(), DeliveryForm.class));
+//                Intent intent = new Intent(view.getContext(), MainActivity4.class);
+//                view.getContext().startActivity(intent);
             }
         });
 
