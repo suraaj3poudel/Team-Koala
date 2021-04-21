@@ -113,7 +113,7 @@
                 android:background="@drawable/card_item_background"
                 android:orientation="vertical"
                 android:id="@+id/hidden_layout"
-                android:visibility="gone">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
