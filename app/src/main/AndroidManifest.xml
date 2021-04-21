@@ -23,6 +23,9 @@
         <activity android:name=".dummy.MainActivity4"></activity>
         <activity android:name=".dummy.MainActivity3" />
         <activity android:name=".MainActivity2" />
+        <activity android:name=".dummy.Capture"/>
+        <activity android:name=".dummy.SignaturePop"/>
+        <activity android:name=".dummy.DeliveryForm"/>
         <activity
             android:name=".MainActivity">
             <intent-filter>
