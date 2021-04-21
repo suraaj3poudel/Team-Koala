@@ -49,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="@drawable/card_item_background"
+                android:background="@drawable/card_item_background2"
                 android:orientation="vertical"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="15dp">

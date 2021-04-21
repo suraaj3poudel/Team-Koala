@@ -24,8 +24,6 @@
             android:elevation="30dp"
             android:gravity="left"
             android:text="ALL TRIPS"
-            android:background="@color/orange"
-            android:paddingLeft="100dp"
             android:textColor="@android:color/black"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
