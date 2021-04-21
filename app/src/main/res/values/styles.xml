@@ -4,7 +4,8 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimary">@color/teal_200</item>
+
         <item name="colorPrimaryDark">@color/orange</item>
         <item name="colorAccent">@color/peach</item>
     </style>

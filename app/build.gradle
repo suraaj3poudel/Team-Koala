@@ -54,6 +54,7 @@ dependencies {
     compile 'com.alespero:expandable-cardview:0.6'
     implementation 'com.google.android.material:material:1.2.0-alpha02'
 
-
-
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'com.journeyapps:zxing-android-embedded:3.4.0'
+    implementation 'com.github.gcacace:signature-pad:1.2.1'
 }
