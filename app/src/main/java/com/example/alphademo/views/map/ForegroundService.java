@@ -55,7 +55,7 @@ public class ForegroundService extends Service {
             notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
             PendingIntent pendingIntent =
-                    PendingIntent.getActivity(this, 0, notificationIntent, 0);
+                    PendingIntent.getActivity(this, 0, notificationIntent,0);
 
             Notification notification =
                 new NotificationCompat.Builder(this.getApplicationContext(), CHANNEL)
