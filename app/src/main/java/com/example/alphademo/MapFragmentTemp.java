@@ -77,7 +77,7 @@ public class MapFragmentTemp extends Fragment {
     FloatingActionButton center;
     VoiceCatalog voiceCatalog;
     VoiceGuidanceOptions voiceGuidanceOptions;
-    boolean start =false;
+    //boolean start =false;
 
 
     @NonNull
@@ -186,7 +186,7 @@ public class MapFragmentTemp extends Fragment {
         /* Locate the mapFragment UI element */
 
         m_mapFragment = getMapFragment();
-        //m_navigationManager = NavigationManager.getInstance();
+        m_navigationManager = NavigationManager.getInstance();
 
 
         if (m_mapFragment != null) {
@@ -356,12 +356,7 @@ public class MapFragmentTemp extends Fragment {
                                 //m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE,
                                         //Map.MOVE_PRESERVE_TILT);
 
-                                try {
-                                    if(start)
-                                        startNavigation();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+
                             } else {
                                 Toast.makeText(getContext(),
                                         "Error:route results not valid",
@@ -396,36 +391,26 @@ public class MapFragmentTemp extends Fragment {
             @Override
 
             public void onClick(View v) {
-                start =true;
-                //m_route=null;
-                /*
-                 * To start a turn-by-turn navigation, a concrete route object is required.We use
-                 * the same steps from Routing sample app to create a route from 4350 Still Creek Dr
-                 * to Langley BC without going on HWY.
-                 * toLangley BC without going on HWY.
-                 *
-                 * The route calculation requires local map data.Unless there is pre-downloaded map
-                 * data on device by utilizing MapLoader APIs,it's not recommended to trigger the
-                 * route calculation immediately after the MapEngine is initialized.The
-                 * INSUFFICIENT_MAP_DATA error code may be returned by CoreRouter in this case.
-                 *
-                 */
-                if (start) {
-                    createRoute(d1,d2);
+                if (m_naviControlButton.getText().equals("Start Navigation")) {
+                    //createRoute(d1,d2);
+
                     m_navigationManager = NavigationManager.getInstance();
+                    try {
+                        startNavigation();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
                 } else {
                     //start=false;
 
                     m_navigationManager.stop();
-                    //Toast.makeText(getContext(),"Oops",Toast.LENGTH_SHORT);
-                    /*
-                     * Restore the map orientation to show entire route on screen
-                     */
-                    //m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE, 0f);
+
+                    m_map.setZoomLevel(13);
+
                     m_naviControlButton.setText(R.string.start_navi);
                     m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.peach));
-                    m_route = null;
+
                 }
             }
         });
@@ -477,12 +462,17 @@ public class MapFragmentTemp extends Fragment {
         // show position indicator
         // note, it is also possible to change icon for the position indicator
         //setMarker(latitude,longitude,R.drawable.label);
-        m_mapFragment.getPositionIndicator().setVisible(false);
-        if(start){
-            m_navigationManager = NavigationManager.getInstance();
+        //m_mapFragment.getPositionIndicator().setVisible(false);
+            //m_navigationManager = NavigationManager.getInstance();
+
+
+           //createRoute(d1,d2);
+
+
             m_navigationManager.startNavigation(m_route);
+
             m_map.setTilt(60);
-            startForegroundService();}
+            startForegroundService();
 
 
         /*
