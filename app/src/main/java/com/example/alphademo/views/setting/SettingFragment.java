@@ -2,13 +2,18 @@ package com.example.alphademo.views.setting;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +22,8 @@ import androidx.fragment.app.Fragment;
 
 import com.example.alphademo.MainActivity;
 import com.example.alphademo.R;
+import com.example.alphademo.database.DatabaseJson;
+import com.example.alphademo.database.DatabaseProfile;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.lang.reflect.Field;
@@ -27,6 +34,15 @@ public class SettingFragment extends Fragment
     private Button button;
     private Button logoutBtn;
     private ImageView setting;
+    DatabaseProfile db;
+    EditText editemail, editPhone, editAddress;
+    RadioGroup radioGender;
+    RadioButton radiobtn;
+    TextView textEmail, textPhone, textAddress, textGender;
+    String name, email, address, gender, phone;
+    String updateName, updateEmail, updatePhone, updateAddress, updateGender;
+    Button save;
+
 
     FirebaseAuth mAuth;
     FirebaseAuth.AuthStateListener mAuthListener;
@@ -61,7 +77,53 @@ public class SettingFragment extends Fragment
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d("TAG", "onErrorResponse1: ");
         setting = (ImageView)getView().findViewById(R.id.settingIcon);
+        editemail = (EditText) getView().findViewById(R.id.edittextemail);
+        editPhone = (EditText) getView().findViewById(R.id.editPhone);
+        editAddress= (EditText) getView().findViewById(R.id.editAddress);
+
+        radioGender = (RadioGroup) getView().findViewById(R.id.radioGrp);
+
+        textEmail = (TextView) getView().findViewById(R.id.textviewemail);
+        textPhone = (TextView) getView().findViewById(R.id.textPhone);
+        textAddress = (TextView) getView().findViewById(R.id.textAddress);
+        textGender = (TextView) getView().findViewById(R.id.textGender);
+        phone = textPhone.getText().toString();
+
+        save = (Button) getView().findViewById((R.id.saveButton));
+
+
+
+
+
+         db =  new DatabaseProfile(getContext());;
+        name = "ABCDEFGH";
+
+
+      /*  address = textAddress.getText().toString();
+        gender = textGender.getText().toString();
+        email  = textEmail.getText().toString();
+        gender = textGender.getText().toString();
+
+
+        db.addData(1, name, address, email, phone, gender);*/
+
+        textEmail.setText(db.getData(1, "EMAIL"));
+        textAddress.setText(db.getData(1, "ADDRESS"));
+        textPhone.setText(db.getData(1, "PHONE"));
+        textGender.setText(db.getData(1, "GENDER"));
+
+
+
+
+        Toast.makeText(getContext(),db.getData(1, "EMAIL").toString(), Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +131,7 @@ public class SettingFragment extends Fragment
 
             }
         });
+
 
     }
 
@@ -88,7 +151,27 @@ public class SettingFragment extends Fragment
                     Toast.makeText(getContext(), "Pressed Log Out Button", Toast.LENGTH_SHORT).show();
                 }
                 if(item.getItemId() == R.id.editProfile){
+                    editemail.setVisibility(View.VISIBLE);
+                    editPhone.setVisibility(View.VISIBLE);
+                    editAddress.setVisibility(View.VISIBLE);
+                    radioGender.setVisibility(View.VISIBLE);
+                    save.setVisibility(View.VISIBLE);
+
+
+                    textEmail.setVisibility(View.GONE);
+                    textPhone.setVisibility(View.GONE);
+                    textAddress.setVisibility(View.GONE);
+                    textGender.setVisibility(View.GONE);
+
+
                     Toast.makeText(getContext(), "Pressed Edit Profile Button", Toast.LENGTH_SHORT).show();
+
+                    save.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            saveFunction(updateAddress);
+                        }
+                    });
                 }
                 return false;
             }
@@ -121,5 +204,37 @@ public class SettingFragment extends Fragment
     public void openDialog(){
         DialogFragment dialog =new DialogFragment();
         dialog.show(getChildFragmentManager(),"example ");
+    }
+    public void saveFunction(String updateAddress1){
+        updateAddress = editAddress.getText().toString();
+        updateName = "fvdndf";
+        updateEmail = editemail.getText().toString();
+        updatePhone = editPhone.getText().toString();
+        int selectedId = radioGender.getCheckedRadioButtonId();
+        radiobtn = (RadioButton) getView().findViewById(selectedId);
+        updateGender = radiobtn.getText().toString();
+        db.addData(1, updateName, updateAddress,  updateEmail, updatePhone, updateGender);
+        db.updateName(1, updateName, updateAddress,  updateEmail, updatePhone, updateGender);
+
+        textPhone.setText(updatePhone);
+        textEmail.setText(updateEmail);
+        textAddress.setText(updateAddress);
+        textGender.setText(updateGender);
+
+        editemail.setVisibility(View.GONE);
+        editPhone.setVisibility(View.GONE);
+        editAddress.setVisibility(View.GONE);
+        radioGender.setVisibility(View.GONE);
+        save.setVisibility(View.GONE);
+
+        textEmail.setVisibility(View.VISIBLE);
+        textPhone.setVisibility(View.VISIBLE);
+        textAddress.setVisibility(View.VISIBLE);
+        textGender.setVisibility(View.VISIBLE);
+
+
+
+
+
     }
 }

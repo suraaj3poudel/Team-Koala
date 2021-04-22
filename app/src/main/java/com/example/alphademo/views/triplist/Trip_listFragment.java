@@ -125,6 +125,9 @@ public class Trip_listFragment extends Fragment {
                     JSONObject jsonObjects = new JSONObject();
                     obj = new DatabaseJson(getContext());
                     obj.addData(1, driverObject.toString());
+
+
+
                     jsonObjects = obj.getObject(1);
 
                     for(int i = 0; i < tripinfo.length(); i++) {
