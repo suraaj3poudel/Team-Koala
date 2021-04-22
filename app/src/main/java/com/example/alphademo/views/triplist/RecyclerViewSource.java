@@ -31,6 +31,7 @@ import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.dummy.MainActivity3;
+import com.example.alphademo.dummy.MainActivity4;
 
 import java.util.ArrayList;
 
@@ -65,7 +66,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.sourceForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MainActivity3.class);
+                Intent intent = new Intent(view.getContext(), MainActivity4.class);
                 view.getContext().startActivity(intent);
             }
         });

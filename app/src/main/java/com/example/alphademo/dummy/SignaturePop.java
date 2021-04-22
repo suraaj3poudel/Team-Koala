@@ -1,5 +1,6 @@
 package com.example.alphademo.dummy;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -64,7 +65,8 @@ public class SignaturePop extends MainActivity4 {
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                signature_pad.getSignatureBitmap();
+                //signature_pad.getSignatureBitmap();
+                Bitmap bitmap = signature_pad.getDrawingCache();
                 Toast.makeText(SignaturePop.this, "Signature Saved", Toast.LENGTH_SHORT).show();
             }
         });
