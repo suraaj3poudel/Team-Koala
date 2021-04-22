@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.DisplayMetrics;
@@ -21,18 +20,18 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alphademo.MapFragmentTemp;
+import com.example.alphademo.MapTemp;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.R;
 import com.example.alphademo.database.SiteObject;
-import com.example.alphademo.dummy.MainActivity4;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import java.security.AccessController;
 import java.util.ArrayList;
 
 public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.ViewHolder>{
@@ -151,7 +150,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
 
 
-        holder.arrowdown.setOnClickListener(new View.OnClickListener() {
+        holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -171,29 +170,12 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
 
 
-        holder.navicon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
-                Fragment fragment = new MapFragmentTemp();
-                FragmentManager manager = activity.getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fragment_container,fragment);
-                Bundle args = new Bundle();
-                args.putDouble("d1", mSiteInfo.get(position).getLatitude());
-                args.putDouble("d2", mSiteInfo.get(position).getLongitude());
-                args.putString("Message",mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()+"\n"+mSiteInfo.get(position).getSiteCity());
-                Log.i("Long Sent", mSiteInfo.get(position).getLatitude()+"");
-                fragment.setArguments(args);
-                transaction.commit();
-            }
-        });
 
         holder.navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
-                Fragment fragment = new MapFragmentTemp();
+                Fragment fragment = new MapTemp();
                 FragmentManager manager = activity.getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.fragment_container,fragment);
@@ -224,8 +206,9 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         Button siteNotes1, deliverForm1;
         EditText typeSpaceSite1;
         DatabaseSQLite myDB;
-        Button navi;
+        ExtendedFloatingActionButton navi;
         ImageView navicon;
+        CardView card;
 
 
 
@@ -233,9 +216,8 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
-
+            card = itemView.findViewById(R.id.card_viewSite);
             navi = itemView.findViewById(R.id.navSite);
-            navicon = itemView.findViewById(R.id.navicon);
             show_layout =itemView.findViewById(R.id.show_layout_site);
             hide_layout = itemView.findViewById(R.id.hidden_layout_site);
             arrowdown = itemView.findViewById(R.id.arrowdownSite);
