@@ -57,7 +57,7 @@ public class ViewAllTripsFragment extends Fragment {
 
         //ViewGroup root = (ViewGroup) inflater.inflate(R.layout.activity_trip_details,null);
         recyclerViewTrip = view.findViewById(R.id.trips);
-        pbar = view.findViewById(R.id.progressBar2);
+        //pbar = view.findViewById(R.id.progressBar2);
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
         trips = new ArrayList<TripInfo>();

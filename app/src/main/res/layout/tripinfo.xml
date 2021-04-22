@@ -6,19 +6,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="5dp"
+    android:layout_marginBottom="3.5dp"
     android:fadeScrollbars="true"
     android:foregroundTint="@color/primary">
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_viewSource"
+        android:id="@+id/card_viewTrips"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="7dp"
         app:background="@drawable/card_item_background2"
         app:cardCornerRadius="10dp"
         app:cardElevation="20dp">
@@ -49,7 +50,6 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="@drawable/card_item_background2"
                 android:orientation="vertical"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="15dp">

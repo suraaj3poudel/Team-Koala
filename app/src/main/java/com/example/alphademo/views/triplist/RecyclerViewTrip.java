@@ -1,37 +1,24 @@
 package com.example.alphademo.views.triplist;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
-import android.icu.text.StringPrepParseException;
-import android.os.Bundle;
-import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alphademo.MapFragmentTemp;
 import com.example.alphademo.R;
-import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.TripInfo;
-import com.example.alphademo.dummy.MainActivity3;
 
 import java.util.ArrayList;
 
@@ -68,7 +55,7 @@ public class RecyclerViewTrip extends RecyclerView.Adapter<RecyclerViewTrip.View
         holder.num2.setText(mTrips.get(0).getNumberSites()+"");
         holder.num1.setText(mTrips.get(0).getNumberSources()+"");
 
-        holder.tripcard.setOnClickListener(new View.OnClickListener() {
+        holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AppCompatActivity activity = (AppCompatActivity) view2.getContext();
@@ -109,7 +96,7 @@ public class RecyclerViewTrip extends RecyclerView.Adapter<RecyclerViewTrip.View
 
         TextView num1,num2,header;
         LinearLayout tripcard;
-
+        CardView card;
 
 
         public ViewHolder(@NonNull final View itemView) {
@@ -118,8 +105,8 @@ public class RecyclerViewTrip extends RecyclerView.Adapter<RecyclerViewTrip.View
             header = itemView.findViewById(R.id.tripNum);
             num1 = itemView.findViewById(R.id.numSources);
             num2 = itemView.findViewById(R.id.numSites);
-            tripcard = itemView.findViewById(R.id.tripCard);
-
+            //tripcard = itemView.findViewById(R.id.tripCard);
+            card = itemView.findViewById(R.id.card_viewTrips);
         }
 
 
