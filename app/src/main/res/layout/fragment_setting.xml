@@ -38,7 +38,7 @@
         </RelativeLayout>
 
         <TextView
-            android:id="@+id/tv_name"
+            android:id="@+id/textName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
@@ -48,13 +48,25 @@
             android:text="Franklin Smith"
             android:textColor="@color/white"
             android:textSize="32sp" />
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imgUser"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15sp"
+            android:fontFamily="sans-serif-light"
+            android:hint="Your Name"
+            android:textColor="@color/white"
+            android:textSize="32sp"
+            android:visibility="gone"/>
 
 
         <TextView
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
+            android:layout_below="@+id/textName"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
             android:text="new york, usa"

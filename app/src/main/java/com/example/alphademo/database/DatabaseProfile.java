@@ -59,6 +59,20 @@ public class DatabaseProfile extends SQLiteOpenHelper {
             return true;
         }
     }
+    public boolean addName(Integer id,String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL1, id);
+        contentValues.put(COL2, name);
+        long result = db.insert(TABLE_NAME, null, contentValues);
+
+        //if date as inserted incorrectly it will return -1
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     public String getData(Integer id, String field){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -79,7 +93,7 @@ public class DatabaseProfile extends SQLiteOpenHelper {
         return result;
     }
 
-    public void updateName(Integer id, String name, String address, String email, String phone, String gender){
+    public void updateInfo(Integer id, String name, String address, String email, String phone, String gender){
         SQLiteDatabase db = this.getWritableDatabase();
         db.execSQL("UPDATE " + TABLE_NAME + " SET NAME = " +"\'" + name +"\'" +", " + "ADDRESS = " + "\'" + address + "\'"+", " + "EMAIL = " + "\'" + email + "\'"+", " + "PHONE = " + "\'" + phone + "\'"+", " + "GENDER = " + "\'" + gender + "\'" + " WHERE ID = " + "\'" + id + "\'");
     }
@@ -89,4 +103,6 @@ public class DatabaseProfile extends SQLiteOpenHelper {
 //        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 //        return res;
 //    }
+
+
 
