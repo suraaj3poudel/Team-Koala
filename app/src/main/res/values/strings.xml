@@ -10,7 +10,6 @@
     <string name="app_name">Login</string>
     <string name="open_drawer">Open Drawer</string>
     <string name="close_drawer">Close Drawer</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="date">Date</string>
     <string name="fuel_type">Fuel Type</string>
@@ -34,6 +33,8 @@
     <string name="fuel_stick_reading_after">Fuel Stick Reading After</string>
     <string name="meter_reading_after">Meter Reading After</string>
     <string name="dd_mm_yy">dd/mm/yy</string>
+    <string name="end_date">End date</string>
+
 
 
 </resources>

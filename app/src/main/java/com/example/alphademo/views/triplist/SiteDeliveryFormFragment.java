@@ -45,7 +45,7 @@ public class SiteDeliveryFormFragment extends Fragment {
     private static final int IMAGE_CAPTURE_CODE = 1001;
 
     //Initialize variable
-    EditText date;
+    EditText date1, date2;
     DatePickerDialog datePickerDialog;
     TextView time1,time2;
 
@@ -64,10 +64,11 @@ public class SiteDeliveryFormFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_site_delivery_form, container, false);
 
         // initiate variable for date picker
-        date = (EditText) view.findViewById(R.id.date1);
+        date1 = (EditText) view.findViewById(R.id.date1);
+        date2 = (EditText) view.findViewById(R.id.date2);
 
         // perform click event on edit text
-        date.setOnClickListener(new View.OnClickListener() {
+        date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // calender class's instance and get current date , month and year from calender
@@ -83,7 +84,35 @@ public class SiteDeliveryFormFragment extends Fragment {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                date1.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                //disable future date
+                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
+
+                datePickerDialog.show();
+            }
+        });
+
+        // perform click event on edit text
+        date2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calender class's instance and get current date , month and year from calender
+                final Calendar cal = Calendar.getInstance();
+                int mYear = cal.get(Calendar.YEAR); // current year
+                int mMonth = cal.get(Calendar.MONTH); // current month
+                int mDay = cal.get(Calendar.DAY_OF_MONTH); // current day
+                // date picker dialog
+                datePickerDialog = new DatePickerDialog(getActivity(),
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                                  int monthOfYear, int dayOfMonth) {
+                                // set day of month , month and year value in the edit text
+                                date2.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
 
                             }
                         }, mYear, mMonth, mDay);
@@ -189,8 +218,8 @@ public class SiteDeliveryFormFragment extends Fragment {
                 fbDialogue.setCancelable(true);
                 fbDialogue.show();
 //                startActivity(new Intent(getActivity(), SignaturePop.class));
-            }
 
+            }
         });
 
         return view;
