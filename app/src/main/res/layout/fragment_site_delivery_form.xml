@@ -240,7 +240,13 @@
                 android:text="@string/fuel_type"
                 android:textSize="20sp" />
 
-            <EditText
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+
+           <!-- <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_baseline_local_gas_station_24"
@@ -250,7 +256,7 @@
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
                 android:textSize="20sp"
-                android:inputType="text" />
+                android:inputType="text" /> -->
 
 
         </LinearLayout>

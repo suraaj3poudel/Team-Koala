@@ -18,10 +18,12 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -54,6 +56,8 @@ public class SiteDeliveryFormFragment extends Fragment {
     Uri image_uri;
 
     Button btScan;
+
+    private final String[] test = {"1","2","3","4","5"};
 
     @Nullable
     @Override
@@ -116,9 +120,9 @@ public class SiteDeliveryFormFragment extends Fragment {
 
                             }
                         }, mYear, mMonth, mDay);
-                //disable future date
-                datePickerDialog.getDatePicker().setMaxDate(System.currentTimeMillis());
 
+                //disable past date
+                datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
                 datePickerDialog.show();
             }
         });
@@ -222,6 +226,13 @@ public class SiteDeliveryFormFragment extends Fragment {
             }
         });
 
+        // Dropdown for fuel type
+        //Array for fuel type
+        Spinner spinner = (Spinner) view.findViewById(R.id.spinner);
+        ArrayAdapter<CharSequence> mSortAdapter = new ArrayAdapter<CharSequence>(getActivity(), android.R.layout.simple_spinner_item, test);
+        mSortAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(mSortAdapter);
+
         return view;
     }
 
@@ -245,18 +256,15 @@ public class SiteDeliveryFormFragment extends Fragment {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //method is called when user chooses allow or deny from permission request popup
-        switch (requestCode){
-            case PERMISSION_CODE:{
-                //permission granted
-                if (grantResults.length > 0 && grantResults[0] ==
-                        PackageManager.PERMISSION_GRANTED){
+        if (requestCode == PERMISSION_CODE) {//permission granted
+            if (grantResults.length > 0 && grantResults[0] ==
+                    PackageManager.PERMISSION_GRANTED) {
 
-                    openCamera();
-                }
-                //permission denied
-                else {
-                    Toast.makeText(getActivity(), "Permission Denied...",Toast.LENGTH_SHORT).show();
-                }
+                openCamera();
+            }
+            //permission denied
+            else {
+                Toast.makeText(getActivity(), "Permission Denied...", Toast.LENGTH_SHORT).show();
             }
         }
     }
