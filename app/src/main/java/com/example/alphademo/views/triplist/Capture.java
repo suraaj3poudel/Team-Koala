@@ -1,4 +1,4 @@
-package com.example.alphademo.dummy;
+package com.example.alphademo.views.triplist;
 
 import com.journeyapps.barcodescanner.CaptureActivity;
 

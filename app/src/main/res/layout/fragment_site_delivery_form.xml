@@ -2,12 +2,11 @@
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".SiteForm">
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -15,17 +14,19 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/site_record_form"
-                android:textStyle="bold"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:background="@color/peach"
+                android:layout_marginTop="5dp"
+                android:textAlignment="center"/>
 
         </LinearLayout>
 
@@ -39,10 +40,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="5dp"
+                android:layout_weight="1"
                 android:text="@string/date"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
 
             <EditText
                 android:id="@+id/date1"
@@ -51,22 +53,21 @@
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_date"
                 android:drawablePadding="5dp"
+                android:focusable="false"
+                android:hint="@string/dd_mm_yy"
+                android:importantForAutofill="no"
+                android:inputType="date"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:hint="dd/mm/yy"
-                android:textSize="20sp"
-                android:importantForAutofill="no"
-                android:autofillHints="@string/date"
                 android:textColor="@color/black"
-                android:inputType="date"
-                android:focusable="false"/>
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
@@ -79,68 +80,73 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
-                android:paddingStart="5dp"
-                android:textColor="@color/black"
                 android:hint="Quantity"
                 android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"
                 android:textSize="20sp"
-                android:layout_weight="1" />
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="Meter Reading Before"
+                android:text="@string/meter_reading_before"
                 android:textSize="20sp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
-                android:paddingStart="5dp"
-                android:hint="Quantity"
+                android:hint="@string/quantity"
                 android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:textColor="@color/black"
-                android:textSize="20sp"
-                android:layout_weight="1"/>
+                android:textSize="20sp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:text="Start Time"
+                android:text="@string/start_time"
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/startToEnd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="5dp"
-                android:paddingStart="5dp"
-                android:textColor="@color/black"
-                android:hint="Start Time"
+                android:focusable="false"
+                android:hint="@string/start_time"
                 android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -148,27 +154,29 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="End Time"
+                android:text="@string/end_time"
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/editTextTextPostalAddress3"
+                android:id="@+id/endToStart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_time"
                 android:drawablePadding="5dp"
-                android:hint="End Time"
+                android:focusable="false"
+                android:hint="@string/end_time"
                 android:inputType="textPostalAddress"
                 android:paddingStart="5dp"
+                android:paddingEnd="5dp"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -176,15 +184,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="Fuel Type"
+                android:text="@string/fuel_type"
                 android:textSize="20sp" />
 
             <EditText
@@ -193,10 +201,12 @@
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_baseline_local_gas_station_24"
                 android:drawablePadding="5dp"
-                android:textColor="@color/black"
+                android:hint="@string/fuel_type"
                 android:paddingStart="5dp"
-                android:hint="Fuel Type"
-                android:textSize="20sp" />
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:inputType="text" />
 
 
         </LinearLayout>
@@ -204,15 +214,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="Gross Gallon Dropped"
+                android:text="@string/gross_gallon_dropped"
                 android:textSize="20sp" />
 
             <EditText
@@ -222,10 +232,11 @@
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
-                android:textColor="@color/black"
-                android:paddingStart="5dp"
-                android:hint="Quantity"
+                android:hint="@string/quantity"
                 android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -233,43 +244,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:text="Net Gallon Dropped"
-                android:textSize="20sp" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_baseline_pending_24"
-                android:drawablePadding="5dp"
-                android:paddingStart="5dp"
-                android:hint="Quantity"
-                android:textColor="@color/black"
-                android:inputType="number"
-                android:textSize="20sp"
-                android:layout_weight="1"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:layout_marginStart="5dp"
-                android:text="Fuel Stick Reading After"
+                android:text="@string/net_gallon_dropped"
                 android:textSize="20sp" />
 
             <EditText
@@ -278,10 +261,11 @@
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
-                android:paddingStart="5dp"
                 android:hint="Quantity"
-                android:textColor="@color/black"
                 android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -289,15 +273,15 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:text="Meter Reading After"
+                android:layout_weight="1"
+                android:text="@string/fuel_stick_reading_after"
                 android:textSize="20sp" />
 
             <EditText
@@ -306,10 +290,11 @@
                 android:layout_weight="1"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
-                android:paddingStart="5dp"
                 android:hint="Quantity"
-                android:textColor="@color/black"
                 android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -317,50 +302,116 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_marginStart="5dp"
-                android:text="Bill of Landing Number"
+                android:layout_weight="1"
+                android:text="@string/meter_reading_after"
                 android:textSize="20sp" />
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:hint="Quantity"
-                android:textColor="@color/black"
+                android:drawableStart="@drawable/ic_baseline_pending_24"
+                android:drawablePadding="5dp"
+                android:hint="@string/quantity"
                 android:inputType="number"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
 
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="20dp">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/bill_of_landing_number"
                 android:textAlignment="center"
-                android:text="Capture your Barcode"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
+
 
             <ImageView
-                android:id="@+id/imageView6"
+                android:id="@+id/image_view"
                 android:layout_width="match_parent"
-                android:layout_height="240dp"
+                android:layout_height="100dp"
+                android:layout_weight="1"
                 android:src="@android:drawable/ic_menu_camera" />
 
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary"
+                android:text="@string/capture"
+                android:textSize="20sp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/barcode_scanner"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/scanText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/barcode"
+                android:paddingStart="5dp"
+                android:paddingEnd="5dp"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonScan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/primary"
+                android:text="@string/scan_now"
+                android:textSize="20sp"
+                android:layout_gravity="center" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="100dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/continueBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:backgroundTint="@color/teal_700"
+                android:text="Continue"
+                android:textSize="20sp" />
+
+        </LinearLayout>
+
     </LinearLayout>
-
-
 </androidx.core.widget.NestedScrollView>

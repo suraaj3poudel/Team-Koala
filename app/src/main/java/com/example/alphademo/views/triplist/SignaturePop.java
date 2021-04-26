@@ -1,43 +1,51 @@
-package com.example.alphademo.dummy;
+package com.example.alphademo.views.triplist;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.example.alphademo.R;
+import com.example.alphademo.views.triplist.SiteDeliveryFormFragment;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
-public class SignaturePop extends MainActivity4 {
+public class SignaturePop extends Fragment {
 
     private SignaturePad signature_pad;
     private Button clear;
     private Button save;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        //super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.popsignaturepad);
+        View view = inflater.inflate(R.layout.popsignaturepad, container, false);
+
         DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getRealMetrics(dm);
+        getActivity().getWindowManager().getDefaultDisplay().getRealMetrics(dm);
 
         int height = dm.heightPixels;
         int width = dm.widthPixels;
 
-        getWindow().setLayout((int)(width*.8),(int)(height*.6));
+        getActivity().getWindow().setLayout((int)(width*.8),(int)(height*.6));
 
         // initiate variable for signature pad
-        signature_pad = (SignaturePad) findViewById(R.id.signature_pad);
-        clear = (Button) findViewById(R.id.clearSign);
-        save = (Button) findViewById(R.id.saveSign);
+        signature_pad = (SignaturePad) view.findViewById(R.id.signature_pad);
+        clear = (Button) view.findViewById(R.id.clearSign);
+        save = (Button) view.findViewById(R.id.saveSign);
 
         signature_pad.setOnSignedListener(new SignaturePad.OnSignedListener() {
             @Override
             public void onStartSigning() {
-                Toast.makeText(SignaturePop.this, "Start Signing", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Start Signing", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -67,9 +75,10 @@ public class SignaturePop extends MainActivity4 {
             public void onClick(View view) {
                 //signature_pad.getSignatureBitmap();
                 Bitmap bitmap = signature_pad.getDrawingCache();
-                Toast.makeText(SignaturePop.this, "Signature Saved", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Signature Saved", Toast.LENGTH_SHORT).show();
             }
         });
+        return view;
     }
 
 }

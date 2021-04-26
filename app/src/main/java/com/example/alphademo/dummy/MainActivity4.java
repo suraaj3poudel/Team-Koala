@@ -12,8 +12,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -24,15 +25,20 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
 import com.example.alphademo.R;
+import com.example.alphademo.views.triplist.Capture;
+import com.example.alphademo.views.triplist.SignaturePop;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Calendar;
 
-public class MainActivity4 extends AppCompatActivity {
+import static android.app.Activity.RESULT_OK;
+
+public class MainActivity4 extends Fragment {
 
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
@@ -49,12 +55,11 @@ public class MainActivity4 extends AppCompatActivity {
     Button btScan;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main4);
 
         // initiate variable for date picker
-        date = (EditText) findViewById(R.id.date1);
+        date = (EditText) getView().findViewById(R.id.date1);
 
         // perform click event on edit text
         date.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +71,7 @@ public class MainActivity4 extends AppCompatActivity {
                 int mMonth = cal.get(Calendar.MONTH); // current month
                 int mDay = cal.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
-                datePickerDialog = new DatePickerDialog(MainActivity4.this,
+                datePickerDialog = new DatePickerDialog(getActivity(),
                         new DatePickerDialog.OnDateSetListener() {
 
                             @Override
@@ -85,8 +90,8 @@ public class MainActivity4 extends AppCompatActivity {
         });
 
         //initiate variable for time picker
-        time1 = findViewById(R.id.startToEnd);
-        time2 = findViewById(R.id.endToStart);
+        time1 = getView().findViewById(R.id.startToEnd);
+        time2 = getView().findViewById(R.id.endToStart);
 
         time1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,7 +100,7 @@ public class MainActivity4 extends AppCompatActivity {
                 int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mCurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(MainActivity4.this, new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         time1.setText(selectedHour + ":" + selectedMinute);
@@ -112,7 +117,7 @@ public class MainActivity4 extends AppCompatActivity {
                 int hour = nCurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = nCurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog nTimePicker;
-                nTimePicker = new TimePickerDialog(MainActivity4.this, new TimePickerDialog.OnTimeSetListener() {
+                nTimePicker = new TimePickerDialog(getActivity(), new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         time2.setText(selectedHour + ":" + selectedMinute);
@@ -123,17 +128,17 @@ public class MainActivity4 extends AppCompatActivity {
         });
 
         //initiate variable for camera
-        mImageView = findViewById(R.id.image_view);
-        mCaptureBtn = findViewById(R.id.button5);
+        mImageView = getView().findViewById(R.id.image_view);
+        mCaptureBtn = getView().findViewById(R.id.button5);
 
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // if system os is >= marshmallow, request for run time permission
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
-                    if (checkSelfPermission(Manifest.permission.CAMERA) ==
+                    if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.CAMERA) ==
                             PackageManager.PERMISSION_DENIED ||
-                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
+                            ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
                                     PackageManager.PERMISSION_DENIED){
                         //if permission not enabled, request for the permission
                         String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
@@ -156,11 +161,11 @@ public class MainActivity4 extends AppCompatActivity {
         });
 
         // Initialize variable for barcode scan
-        btScan = findViewById(R.id.buttonScan);
+        btScan = getView().findViewById(R.id.buttonScan);
         btScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentIntegrator intentIntegrator = new IntentIntegrator(MainActivity4.this);
+                IntentIntegrator intentIntegrator = new IntentIntegrator(getActivity());
                 intentIntegrator.setBeepEnabled(true);
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
@@ -168,13 +173,15 @@ public class MainActivity4 extends AppCompatActivity {
             }
         });
 
-        Button continueBtn = findViewById(R.id.continueBtn);
+        Button continueBtn = getView().findViewById(R.id.continueBtn);
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity4.this, SignaturePop.class));
+                startActivity(new Intent(getActivity(), SignaturePop.class));
             }
         });
+
+        return inflater.inflate(R.layout.activity_main4, container, false);
     }
 
     // openCamera method
@@ -183,7 +190,7 @@ public class MainActivity4 extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.TITLE, "New Picture");
         values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
-        image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
+        image_uri = getActivity().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
 
         //Camera intent
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -207,7 +214,7 @@ public class MainActivity4 extends AppCompatActivity {
                 }
                 //permission denied
                 else {
-                    Toast.makeText(this, "Permission Denied...",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), "Permission Denied...",Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -215,7 +222,7 @@ public class MainActivity4 extends AppCompatActivity {
 
     // set the result
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
         //called when image captured from camera
@@ -228,13 +235,13 @@ public class MainActivity4 extends AppCompatActivity {
         // Initialize intent result
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if (intentResult.getContents() != null){
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity4.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
             //set Title
             builder.setTitle("Result");
             //set Message
             builder.setMessage(intentResult.getContents());
 
-            TextView scanText = findViewById(R.id.scanText);
+            TextView scanText = getView().findViewById(R.id.scanText);
             scanText.setText(intentResult.getContents());
 
             builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -246,7 +253,7 @@ public class MainActivity4 extends AppCompatActivity {
             builder.show();
         }
         else{
-            Toast.makeText(getApplicationContext(), "Could not Scan anything... ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Could not Scan anything... ",Toast.LENGTH_SHORT).show();
         }
 
 

@@ -61,23 +61,26 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final Dialog myDialogue = new Dialog(context);
+        //Dialog popup
+        /*final Dialog myDialogue = new Dialog(context);
         myDialogue.setContentView(R.layout.delivery_form);
         DisplayMetrics dm = new DisplayMetrics();
         dm = context.getResources().getDisplayMetrics();
-
         int height = dm.heightPixels;
         int width = dm.widthPixels;
-
-        myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));
+        myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));*/
 
         holder.deliverForm1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myDialogue.show();
-//                startActivity(new Intent(view.getContext(), DeliveryForm.class));
-//                Intent intent = new Intent(view.getContext(), MainActivity4.class);
-//                view.getContext().startActivity(intent);
+                // myDialogue.show();
+
+                AppCompatActivity activity = (AppCompatActivity) view.getContext();
+                Fragment fragment = new SiteDeliveryFormFragment();
+                FragmentManager manager = activity.getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.fragment_container,fragment);
+                transaction.commit();
             }
         });
 
