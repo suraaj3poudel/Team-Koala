@@ -1,11 +1,14 @@
 package com.example.alphademo.views.triplist;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.Toast;
@@ -51,6 +54,8 @@ public class Trip_listFragment extends Fragment {
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
     DatabaseJson obj;
+    Animation anim;
+    Context CON;
 
     @Nullable
     @Override
@@ -73,6 +78,7 @@ public class Trip_listFragment extends Fragment {
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
         tabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
         //tabLayout.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#ffffff"));
+
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         extractDriverNames();
 
@@ -80,6 +86,7 @@ public class Trip_listFragment extends Fragment {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
