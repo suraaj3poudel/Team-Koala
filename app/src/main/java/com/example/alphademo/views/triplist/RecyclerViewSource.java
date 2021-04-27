@@ -194,6 +194,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
                 Fragment fragment = new MapTemp();
                 FragmentManager manager = activity.getSupportFragmentManager();
+
                 final FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.fragment_container,fragment);
                 Bundle args = new Bundle();
