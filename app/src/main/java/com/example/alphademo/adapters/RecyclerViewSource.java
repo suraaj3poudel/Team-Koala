@@ -1,4 +1,4 @@
-package com.example.alphademo.views.triplist;
+package com.example.alphademo.adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -31,8 +31,6 @@ import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.dummy.SourceForm;
-import com.example.alphademo.dummy.MainActivity3;
-import com.example.alphademo.views.setting.SettingFragment;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;

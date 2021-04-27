@@ -28,7 +28,7 @@ import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
 
-import com.example.alphademo.MainActivity;
+import com.example.alphademo.activities.MainActivity;
 import com.example.alphademo.R;
 
 

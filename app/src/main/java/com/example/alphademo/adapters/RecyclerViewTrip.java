@@ -1,4 +1,4 @@
-package com.example.alphademo.views.triplist;
+package com.example.alphademo.adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.alphademo.R;
 import com.example.alphademo.database.TripInfo;
+import com.example.alphademo.views.triplist.Trip_listFragment;
 
 import java.util.ArrayList;
 

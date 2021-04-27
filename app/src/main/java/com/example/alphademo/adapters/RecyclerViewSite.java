@@ -1,13 +1,11 @@
-package com.example.alphademo.views.triplist;
+package com.example.alphademo.adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +25,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alphademo.MainActivity2;
 import com.example.alphademo.MapTemp;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.R;

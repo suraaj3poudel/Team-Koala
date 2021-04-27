@@ -1,4 +1,4 @@
-package com.example.alphademo;
+package com.example.alphademo.activities;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.google.firebase.auth.FirebaseAuth;
 

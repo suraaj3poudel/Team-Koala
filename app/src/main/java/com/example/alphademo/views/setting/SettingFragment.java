@@ -23,9 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.alphademo.MainActivity;
+import com.example.alphademo.activities.MainActivity;
 import com.example.alphademo.R;
-import com.example.alphademo.database.DatabaseJson;
 import com.example.alphademo.database.DatabaseProfile;
 import com.google.firebase.auth.FirebaseAuth;
 

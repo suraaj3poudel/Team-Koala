@@ -1,16 +1,12 @@
-package com.example.alphademo;
+package com.example.alphademo.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.app.Dialog;
 import android.app.FragmentManager;
-import android.app.admin.SystemUpdatePolicy;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -18,11 +14,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.alphademo.MapTemp;
+import com.example.alphademo.R;
 import com.example.alphademo.views.setting.SettingFragment;
-import com.example.alphademo.views.triplist.RecyclerViewTrip;
-import com.example.alphademo.views.triplist.Trip_listFragment;
 import com.example.alphademo.views.triplist.ViewAllTripsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 

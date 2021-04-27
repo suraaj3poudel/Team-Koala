@@ -1,13 +1,14 @@
-package com.example.alphademo.views.triplist;
+package com.example.alphademo.adapters;
 
 import android.content.Context;
-import android.util.DisplayMetrics;
-import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import com.example.alphademo.views.triplist.SiteListFragment;
+import com.example.alphademo.views.triplist.SourceListFragment;
 
 public class MyAdapter extends FragmentPagerAdapter {
     Context context;

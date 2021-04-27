@@ -6,25 +6,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.example.alphademo.R;
-import com.example.alphademo.database.DatabaseJson;
-import com.example.alphademo.database.SiteObject;
-import com.example.alphademo.database.SourceObject;
-import com.example.alphademo.views.triplist.MyAdapter;
-import com.example.alphademo.views.triplist.RecyclerViewSite;
-import com.example.alphademo.views.triplist.RecyclerViewSource;
 import com.github.gcacace.signaturepad.views.SignaturePad;
-import com.google.android.material.tabs.TabLayout;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class SignaturePop extends MainActivity4 {
 
