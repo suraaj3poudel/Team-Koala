@@ -7,7 +7,10 @@
     >
 
 
-
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/topSection" >
     <RelativeLayout
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
@@ -37,19 +40,25 @@
 
         </RelativeLayout>
 
+
         <TextView
-            android:id="@+id/textName"
+            android:id="@+id/displayName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
-            android:text="Franklin Smith"
+            android:hint="Your Name"
+            android:textAlignment="center"
+            android:textColorHint="@color/white"
             android:textColor="@color/white"
-            android:textSize="32sp" />
+            android:textSize="32sp"
+            android:gravity="center_horizontal" />
+
+
         <EditText
-            android:id="@+id/editName"
+            android:id="@+id/editName1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
@@ -58,21 +67,31 @@
             android:fontFamily="sans-serif-light"
             android:hint="Your Name"
             android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:inputType="text"
             android:textSize="32sp"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
 
 
         <TextView
             android:id="@+id/tv_address"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textName"
+            android:layout_below="@+id/displayName"
             android:layout_centerHorizontal="true"
             android:fontFamily="sans-serif"
-            android:text="new york, usa"
+            android:hint="Your Address"
             android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            android:textColorHint="@color/white"
+            android:textAlignment="center"
+            android:gravity="center_horizontal"/>
+
+
+
 
         <ImageView
             android:layout_width="40dp"
@@ -172,13 +191,14 @@
 
 
     </LinearLayout>
+</RelativeLayout>
 
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linlay1">
+        android:layout_below="@+id/topSection">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -190,42 +210,91 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="15dp"
                 android:orientation="vertical">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Email"
-                        android:textColor="@color/headings"
-                        android:textSize="13sp" />
+
+
+
+
+
 
                     <TextView
-                        android:id="@+id/textviewemail"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:textColor="#000000"
-                        android:hint="Your Email Here"
+                        android:text="Name"
+                        android:textColor="@color/headings"
                         android:textSize="18sp"
-                        android:visibility="visible" />
+
+                        />
+
+
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/vly0"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="20px"
+                        android:weightSum="3">
+                        <TextView
+                            android:id="@+id/textName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:hint="Your Email Here"
+                            android:textSize="18sp"
+                            android:visibility="visible"
+                            android:background="@drawable/rectangled"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="15dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_marginTop="5dp"
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/imageName"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_baseline_create_24"
+                            android:visibility="gone" />
+                    </LinearLayout>
 
                     <EditText
-                        android:id="@+id/edittextemail"
+                        android:id="@+id/editName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:text="franklin1234@gmail.com"
+                        android:hint="Your Email"
+                        android:inputType="textEmailAddress"
+                        android:background="@drawable/rectangled"
+                        android:padding="10dp"
                         android:textColor="#000000"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        android:paddingTop="15dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="5dp"
+                        />
+
 
 
                     <View
@@ -234,7 +303,103 @@
                         android:layout_marginTop="15dp"
                         android:background="@color/grey" />
 
+
                 </LinearLayout>
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+
+
+
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Email"
+                        android:textColor="@color/headings"
+                        android:textSize="18sp"
+
+                        />
+
+
+
+
+
+
+                    <LinearLayout
+                        android:id="@+id/vly"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="20px"
+                        android:weightSum="3">
+                        <TextView
+                            android:id="@+id/textviewemail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#000000"
+                            android:hint="Your Email Here"
+                            android:textSize="18sp"
+                            android:visibility="visible"
+                            android:background="@drawable/rectangled"
+                            android:paddingLeft="10dp"
+                            android:paddingTop="15dp"
+                            android:paddingRight="10dp"
+                            android:paddingBottom="10dp"
+                            android:layout_marginTop="5dp"
+                            />
+
+                        <ImageView
+                            android:id="@+id/imageEmail"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_baseline_create_24"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+
+                    <EditText
+                        android:id="@+id/edittextemail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:hint="Your Email"
+                        android:inputType="textEmailAddress"
+                        android:background="@drawable/rectangled"
+                        android:padding="10dp"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:visibility="gone"
+                        android:paddingTop="15dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="5dp"
+                        />
+
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -247,7 +412,15 @@
                         android:layout_height="wrap_content"
                         android:text="Phone"
                         android:textColor="@color/headings"
-                        android:textSize="13sp" />
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/vly1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="20px"
+                        android:weightSum="3">
 
                     <TextView
                         android:id="@+id/textPhone"
@@ -256,8 +429,26 @@
                         android:fontFamily="sans-serif-light"
                         android:inputType="number"
                         android:hint="Your Phone number"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="15dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:background="@drawable/rectangled"
+                        android:layout_marginTop="5dp"
+                        />
+                         <ImageView
+                        android:id="@+id/imagePhone"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_baseline_create_24"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
 
                     <EditText
                         android:id="@+id/editPhone"
@@ -267,8 +458,15 @@
                         android:inputType="number"
                         android:text="123456789"
                         android:textColor="#000000"
+                        android:hint="Your Phone number"
+                        android:paddingTop="15dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:background="@drawable/rectangled"
+                        android:padding="10dp"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        android:layout_marginTop="5dp"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -289,26 +487,56 @@
                         android:layout_height="wrap_content"
                         android:text="Address"
                         android:textColor="@color/headings"
-                        android:textSize="13sp" />
+                        android:textSize="18sp" />
 
+                    <LinearLayout
+                        android:id="@+id/vly2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="20px"
+                        android:weightSum="3">
                     <TextView
                         android:id="@+id/textAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
                         android:hint="Your Address"
+                        android:paddingLeft="10dp"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:background="@drawable/rectangled"
+                        android:paddingTop="15dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="5dp"
+                        />
+                         <ImageView
+                        android:id="@+id/imageAddress"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_baseline_create_24"
+                        android:visibility="gone"/>
+                </LinearLayout>
 
                     <EditText
                         android:id="@+id/editAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                       android:hint="Edit Address"
+                       android:hint="Your Address"
                         android:textColor="#000000"
+                        android:background="@drawable/rectangled"
+                        android:padding="10dp"
                         android:textSize="18sp"
-                        android:visibility="gone" />
+                        android:visibility="gone"
+                        android:paddingTop="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="5dp"/>
 
                     <View
                         android:layout_width="match_parent"
@@ -329,7 +557,14 @@
                         android:layout_height="wrap_content"
                         android:text="Gender"
                         android:textColor="@color/headings"
-                        android:textSize="13sp" />
+                        android:textSize="18sp" />
+                    <LinearLayout
+                        android:id="@+id/vly3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="20px"
+                        android:weightSum="3">
 
                     <TextView
                         android:id="@+id/textGender"
@@ -338,7 +573,24 @@
                         android:fontFamily="sans-serif-light"
                         android:hint="Select Gender"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="18sp"
+                        android:background="@drawable/rectangled"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:paddingTop="15dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginTop="5dp"
+                        />
+                        <ImageView
+                        android:id="@+id/imageGender"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_baseline_create_24"
+                        android:visibility="gone"/>
+                </LinearLayout>
 
                     <RadioGroup
                         android:id="@+id/radioGrp"
@@ -355,7 +607,6 @@
                             android:layout_height="match_parent"
                             android:layout_gravity="left"
                             android:layout_weight="1"
-                            android:checked="true"
                             android:text="Male"
                             android:textSize="18sp" />
 
@@ -365,7 +616,6 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="right"
                             android:layout_weight="1"
-                            android:checked="false"
                             android:text="Female"
                             android:textSize="18sp" />
                     </RadioGroup>
@@ -393,6 +643,7 @@
 
 
     </RelativeLayout>
+
 
 
 
