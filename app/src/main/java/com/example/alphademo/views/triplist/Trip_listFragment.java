@@ -48,7 +48,6 @@ public class Trip_listFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager viewPager;
 
-    SpinKitView pbar1, pbar2;
     String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/D1?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
@@ -64,15 +63,9 @@ public class Trip_listFragment extends Fragment {
         ViewGroup root2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
 //        recyclerView1 = view.findViewById(R.id.sourceList);
 //        recyclerView2 = view.findViewById(R.id.siteList);
-        pbar1 = root1.findViewById(R.id.spin_kit1);
-        pbar2 = root2.findViewById(R.id.spin_kit2);
-
-        pbar1.setVisibility(View.VISIBLE);
-        pbar2.setVisibility(View.VISIBLE);
 
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
-
 
         tabLayout.addTab(tabLayout.newTab().setText("SOURCE").setIcon(R.drawable.ic_baseline_local_gas_station_24));
         tabLayout.addTab(tabLayout.newTab().setText("SITE").setIcon(R.drawable.site));
@@ -111,7 +104,6 @@ public class Trip_listFragment extends Fragment {
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
-        pbar2.setVisibility(View.VISIBLE);
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
         Log.i("Message: ", "I am fetching data from JSON",null);
@@ -158,13 +150,6 @@ public class Trip_listFragment extends Fragment {
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-                    if (R.layout.fragment_source_list != 0) {
-
-                    }
-
-                    if (R.layout.fragment_site_list != 0) {
-                        pbar2.setVisibility(View.INVISIBLE);
-                    }
 
 
 
@@ -211,13 +196,6 @@ public class Trip_listFragment extends Fragment {
                     viewPager.setAdapter(adapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-                    if (R.layout.fragment_source_list != 0) {
-                        pbar1.setVisibility(View.INVISIBLE);
-                    }
-
-                    if (R.layout.fragment_site_list != 0) {
-                        pbar2.setVisibility(View.INVISIBLE);
-                    }
                 }
 
 

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.DisplayMetrics;
@@ -26,10 +27,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alphademo.MainActivity2;
 import com.example.alphademo.MapTemp;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.R;
 import com.example.alphademo.database.SiteObject;
+import com.example.alphademo.dummy.DeliveryForm;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
@@ -60,20 +63,24 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final Dialog myDialogue = new Dialog(context);
-        myDialogue.setContentView(R.layout.delivery_form);
-        DisplayMetrics dm = new DisplayMetrics();
-        dm = context.getResources().getDisplayMetrics();
+        //final Dialog myDialogue = new Dialog(context);
+        final Intent intent= new Intent(context, DeliveryForm.class);
+        intent.putExtra("fuelType",mSiteInfo.get(position).getSiteProductDesc());
 
-        int height = dm.heightPixels;
-        int width = dm.widthPixels;
+        //myDialogue.setContentView(R.layout.delivery_form);
+        //DisplayMetrics dm = new DisplayMetrics();
+        //dm = context.getResources().getDisplayMetrics();
 
-        myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));
+        //int height = dm.heightPixels;
+        //int width = dm.widthPixels;
+
+       // myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));
 
         holder.deliverForm1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myDialogue.show();
+                context.startActivity(intent);
+                //myDialogue.show();
 //                startActivity(new Intent(view.getContext(), DeliveryForm.class));
 //                Intent intent = new Intent(view.getContext(), MainActivity4.class);
 //                view.getContext().startActivity(intent);

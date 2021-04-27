@@ -3,6 +3,6 @@
     <style name = "AppTheme.NoActionBar">
         <item name ="windowActionBar">true</item>
         <item name ="windowNoTitle">true</item>
-
     </style>
+
 </resources>

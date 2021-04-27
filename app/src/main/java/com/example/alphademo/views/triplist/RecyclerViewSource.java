@@ -29,6 +29,7 @@ import com.example.alphademo.MapTemp;
 import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
+import com.example.alphademo.dummy.SourceForm;
 import com.example.alphademo.dummy.MainActivity3;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
@@ -42,10 +43,12 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     String message ="";
     int pos;
     View mapFrag;
+    Context context;
 
     public RecyclerViewSource( Context context, ArrayList<SourceObject> sourceInfo){
         mSourceInfo = sourceInfo;
         inflator= LayoutInflater.from(context);
+        this.context=context;
     }
 
     @NonNull
@@ -65,11 +68,21 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        final Intent intent= new Intent(context, SourceForm.class);
+        intent.putExtra("fuelType",mSourceInfo.get(position).getFuelType());
+        //myDialogue.setContentView(R.layout.delivery_form);
+        //DisplayMetrics dm = new DisplayMetrics();
+        //dm = context.getResources().getDisplayMetrics();
+
+        //int height = dm.heightPixels;
+        //int width = dm.widthPixels;
+
+        // myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));
+
         holder.sourceForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MainActivity3.class);
-                view.getContext().startActivity(intent);
+                context.startActivity(intent);
             }
         });
 

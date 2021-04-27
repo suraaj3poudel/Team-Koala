@@ -30,7 +30,6 @@
             app:layout_constraintTop_toTopOf="parent" />
 
 
-
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/pullToRefresh"
             android:layout_width="match_parent"

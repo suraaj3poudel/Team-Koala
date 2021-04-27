@@ -23,6 +23,7 @@
     <string name="todo">TODO</string>
     <string name="site_record_information">Site Record Information</string>
     <string name="site_record_form">Site Record Form</string>
+    <string name="source_record_form">Source Record Form</string>
     <string name="fuel_stick_reading_before">Fuel Stick Reading Before</string>
     <string name="quantity">Quantity</string>
     <string name="meter_reading_before">Meter Reading Before</string>
