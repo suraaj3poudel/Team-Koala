@@ -28,15 +28,15 @@
         android:theme="@style/AppTheme">
         <activity android:name=".views.map.VoicePackagesActivity"></activity>
         <activity android:name=".views.map.VoiceSkinsActivity"></activity>
-        <activity android:name=".dummy.MainActivity4"></activity>
-        <activity android:name=".dummy.MainActivity3" />
+        <activity android:name=".forms.MainActivity4"></activity>
+        <activity android:name=".forms.MainActivity3" />
         <activity android:name=".activities.MainActivity2" />
-        <activity android:name=".dummy.DeliveryForm"
+        <activity android:name=".forms.DeliveryForm"
                   android:theme="@style/Theme.AppCompat.Dialog.Alert"></activity>
-        <activity android:name=".dummy.SourceForm"
+        <activity android:name=".forms.SourceForm"
             android:theme="@style/Theme.AppCompat.Dialog.Alert"></activity>
-        <activity android:name=".dummy.Capture"></activity>
-        <activity android:name=".dummy.SignaturePop"></activity>
+        <activity android:name=".forms.Capture"></activity>
+        <activity android:name=".forms.SignaturePop"></activity>
         <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

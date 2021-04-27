@@ -30,7 +30,7 @@ import com.example.alphademo.MapTemp;
 import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
-import com.example.alphademo.dummy.SourceForm;
+import com.example.alphademo.forms.SourceForm;
 import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;

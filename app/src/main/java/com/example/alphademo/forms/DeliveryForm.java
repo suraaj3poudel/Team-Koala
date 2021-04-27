@@ -1,4 +1,4 @@
-package com.example.alphademo.dummy;
+package com.example.alphademo.forms;
 
 import android.Manifest;
 import android.app.AlertDialog;
@@ -13,9 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -33,9 +31,8 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Calendar;
-import java.util.zip.Inflater;
 
-public class SourceForm extends AppCompatActivity {
+public class DeliveryForm extends AppCompatActivity {
 
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
@@ -43,7 +40,7 @@ public class SourceForm extends AppCompatActivity {
     //Initialize variable
     EditText date;
     DatePickerDialog datePickerDialog;
-    TextView time1,time2,fuelType;
+    TextView time1,time2,fueltp;
 
     Button mCaptureBtn;
     ImageView mImageView;
@@ -53,23 +50,20 @@ public class SourceForm extends AppCompatActivity {
     View formfrag;
     boolean photo = false;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.delivery_form);
         String fuel = getIntent().getStringExtra("fuelType");
-        setContentView(R.layout.fragment_source_form);
+        Log.i("FuelTP", getIntent().getStringExtra("fuelType")+"nice");
 
-
-
-        fuelType = findViewById(R.id.fuelType);
-        fuelType.setText(fuel);
-
+        fueltp = findViewById(R.id.fuelType);
+        fueltp.setText(fuel);
         // initiate variable for date picker
         date = findViewById(R.id.date1);
 
         // perform click event on edit text
-        onClickDate();
+       onClickDate();
 
         //initiate variable for time picker
         time1 = findViewById(R.id.startToEnd);
@@ -82,7 +76,7 @@ public class SourceForm extends AppCompatActivity {
                 int hour = mCurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = mCurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog mTimePicker;
-                mTimePicker = new TimePickerDialog(SourceForm.this, new TimePickerDialog.OnTimeSetListener() {
+                mTimePicker = new TimePickerDialog(DeliveryForm.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         time1.setText(selectedHour + ":" + selectedMinute);
@@ -99,7 +93,7 @@ public class SourceForm extends AppCompatActivity {
                 int hour = nCurrentTime.get(Calendar.HOUR_OF_DAY);
                 int minute = nCurrentTime.get(Calendar.MINUTE);
                 TimePickerDialog nTimePicker;
-                nTimePicker = new TimePickerDialog(SourceForm.this, new TimePickerDialog.OnTimeSetListener() {
+                nTimePicker = new TimePickerDialog(DeliveryForm.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
                         time2.setText(selectedHour + ":" + selectedMinute);
@@ -148,7 +142,7 @@ public class SourceForm extends AppCompatActivity {
         btScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                IntentIntegrator intentIntegrator = new IntentIntegrator(SourceForm.this);
+                IntentIntegrator intentIntegrator = new IntentIntegrator(DeliveryForm.this);
                 intentIntegrator.setBeepEnabled(true);
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
@@ -161,7 +155,7 @@ public class SourceForm extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SourceForm.this, SignaturePop.class));
+                startActivity(new Intent(DeliveryForm.this, SignaturePop.class));
             }
         });
     }
@@ -178,7 +172,7 @@ public class SourceForm extends AppCompatActivity {
                 int mMonth = cal.get(Calendar.MONTH); // current month
                 int mDay = cal.get(Calendar.DAY_OF_MONTH); // current day
                 // date picker dialog
-                datePickerDialog = new DatePickerDialog(SourceForm.this,
+                datePickerDialog = new DatePickerDialog(DeliveryForm.this,
                         new DatePickerDialog.OnDateSetListener() {
 
                             @Override
@@ -258,7 +252,7 @@ public class SourceForm extends AppCompatActivity {
 
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (intentResult.getContents() != null) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(SourceForm.this);
+            AlertDialog.Builder builder = new AlertDialog.Builder(DeliveryForm.this);
             //set Title
             builder.setTitle("Result");
             //set Message
@@ -279,6 +273,6 @@ public class SourceForm extends AppCompatActivity {
         }
 
 
-    }
+        }
 
 }
