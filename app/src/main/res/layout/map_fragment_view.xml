@@ -14,7 +14,6 @@
         android:elevation="4dp"
         android:gravity="center"
         android:translationZ="5dp"
-        android:layout_marginBottom="80dp"
         android:backgroundTint="@android:color/holo_green_dark"
         android:text="Start Navigation"
         />
@@ -59,8 +58,7 @@
             class="com.here.android.mpa.mapping.AndroidXMapFragment"
             android:id="@+id/mapfragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="60dp">
+            android:layout_height="match_parent">
 
 
         </fragment>

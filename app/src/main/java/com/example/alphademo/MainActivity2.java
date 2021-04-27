@@ -66,6 +66,7 @@ public class MainActivity2 extends AppCompatActivity  {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
         bottomNavigationView.setActivated(true);
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ViewAllTripsFragment()).commit();
     }
 
@@ -125,8 +126,23 @@ public class MainActivity2 extends AppCompatActivity  {
                     select = new SettingFragment();
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,  select).commit();
+            if(select!=null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
+            }
+            else{
+                getSupportFragmentManager().beginTransaction().show(select).commit();
+            }
             return true;
+        }
+
+
+    };
+
+    private View.OnLayoutChangeListener layoutChangeListener = new View.OnLayoutChangeListener(){
+
+        @Override
+        public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+
         }
     };
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -31,7 +32,9 @@ import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.dummy.SourceForm;
 import com.example.alphademo.dummy.MainActivity3;
+import com.example.alphademo.views.setting.SettingFragment;
 import com.github.ybq.android.spinkit.SpinKitView;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
@@ -174,16 +177,24 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 holder.show_layout.setVisibility(View.VISIBLE);
             }
         });
+        final BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
+                return true;
+            }
+
+        };
 
         holder.navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //holder.showMessage("Important!","Coming Soon");
+                BottomNavigationView bottomNavigationView = mapFrag.findViewById(R.id.bottomNavigationView);
+                bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
                 AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
                 Fragment fragment = new MapTemp();
                 FragmentManager manager = activity.getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
+                final FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.fragment_container,fragment);
                 Bundle args = new Bundle();
                 args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
@@ -192,6 +203,10 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
                 fragment.setArguments(args);
                 transaction.commit();
+
+
+                //holder.showMessage("Important!","Coming Soon");
+
             }
         });
     }
