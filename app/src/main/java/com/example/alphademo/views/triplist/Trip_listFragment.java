@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TableLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseJson;
+import com.example.alphademo.database.DatabaseProfile;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.databinding.FragmentTripListBinding;
@@ -52,6 +54,8 @@ public class Trip_listFragment extends Fragment {
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
     DatabaseJson obj;
+    DatabaseProfile extractedName;
+    TextView profileName;
 
     @Nullable
     @Override
@@ -59,10 +63,15 @@ public class Trip_listFragment extends Fragment {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_trip_list, container, false);
 
+
+
         ViewGroup root1 = (ViewGroup) inflater.inflate(R.layout.fragment_source_list,null);
         ViewGroup root2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
 //        recyclerView1 = view.findViewById(R.id.sourceList);
 //        recyclerView2 = view.findViewById(R.id.siteList);
+
+
+       //Toast.makeText(getContext(), profileName.getText(), Toast.LENGTH_SHORT).show();
 
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
@@ -95,6 +104,7 @@ public class Trip_listFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        //Toast.makeText(getContext(), profileName.getText().toString(), Toast.LENGTH_SHORT).show();
         //Log.i("Running ", "Trip_listFragment "+sourceList.size());
         //extractDriverNames();
 
@@ -104,9 +114,17 @@ public class Trip_listFragment extends Fragment {
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
+        pbar1.setVisibility(View.VISIBLE);
+        pbar2.setVisibility(View.VISIBLE);
+        final String[] abc = {""};
+
+
+
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
         Log.i("Message: ", "I am fetching data from JSON",null);
+
+
         //pbar.setVisibility(View.VISIBLE);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
 
@@ -115,14 +133,26 @@ public class Trip_listFragment extends Fragment {
             public void onResponse(JSONObject response) {
                 //Toast.makeText(getApplicationContext(),"fetching all data",Toast.LENGTH_SHORT).show();
                 //for (int i = 0; i < response.length(); i++) {
+                String abc= "";
                 try {
 
                     JSONObject driverObject = response.getJSONObject("data".toString());
-                    JSONArray tripinfo = driverObject.getJSONArray("resultSet1".toString());
+                    JSONArray tripinfo = driverObject.getJSONArray("resultSet1");
+
+                    JSONObject jsonObject = tripinfo.getJSONObject(0);
+                    abc = jsonObject.getString("DriverName");
+
+                    extractedName = new DatabaseProfile(getContext());
+                    extractedName.addData(1, abc, "", "", "","");
+                    Toast.makeText(getContext(),abc, Toast.LENGTH_LONG).show();
+
 
                     JSONObject jsonObjects = new JSONObject();
                     obj = new DatabaseJson(getContext());
                     obj.addData(1, driverObject.toString());
+
+
+
                     jsonObjects = obj.getObject(1);
 
                     for(int i = 0; i < tripinfo.length(); i++) {
