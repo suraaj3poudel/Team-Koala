@@ -21,10 +21,6 @@ public class DatabaseProfile extends SQLiteOpenHelper {
     public static final String COL6 = "GENDER";
 
 
-
-
-
-
     public DatabaseProfile(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }

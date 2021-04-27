@@ -71,7 +71,7 @@ public class ViewAllTripsFragment extends Fragment {
                 siteList = new ArrayList<SiteObject>();
                 trips = new ArrayList<TripInfo>();
                 extractDriverNames();// your code
-                pullToRefresh.setRefreshing(false);
+                pullToRefresh.setRefreshing(true);
             }
         });
 
@@ -87,6 +87,7 @@ public class ViewAllTripsFragment extends Fragment {
         extractDriverNames();
 
     }
+
 
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -185,8 +186,6 @@ public class ViewAllTripsFragment extends Fragment {
         queue.add(jsonObjectRequest);
     }
 
-    public void connect(){
 
-    }
 
 }

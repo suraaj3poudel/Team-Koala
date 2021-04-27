@@ -3,7 +3,9 @@ package com.example.alphademo;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,7 +20,11 @@ public class MainActivity extends AppCompatActivity {
     Button login;
     EditText username, password;
     DatabaseSQLite myDB = new DatabaseSQLite(this);
-
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCES = "MyPrefs" ;
+    public static final String Username = "username";
+    public static final String Password = "password";
+    public static final boolean LoggedIn = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +35,20 @@ public class MainActivity extends AppCompatActivity {
 
         username = findViewById(R.id.Driverid);
         password = findViewById(R.id.password);
+        sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
+        if(sharedpreferences.getBoolean("loggedIn", true))
+            openActivity2();
 
         onClickLogin();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
     }
 
     private void onClickLogin() {
@@ -40,8 +56,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if(username.getText().toString().equals("") && password.getText().toString().equals("")){
+                String m_username  = username.getText().toString();
+                String m_password  = password.getText().toString();
+                SharedPreferences.Editor editor = sharedpreferences.edit();
 
+                if(m_username.equals("") && m_password.equals("")){
+                    editor.putString(Username, m_username).apply();
+                    editor.putString(Password, m_password).apply();
+                    editor.putBoolean("loggedIn", true).apply();
+                    editor.commit();
                     openActivity2();
                 }
                 else{

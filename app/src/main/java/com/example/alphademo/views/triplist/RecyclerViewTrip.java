@@ -62,7 +62,8 @@ public class RecyclerViewTrip extends RecyclerView.Adapter<RecyclerViewTrip.View
                 Fragment fragment = new Trip_listFragment();
                 FragmentManager manager = activity.getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fragment_container,fragment);
+                transaction.replace(R.id.fragment_container,fragment,"TripList");
+                transaction.addToBackStack("TripList");
                 transaction.commit();
             }
         });
