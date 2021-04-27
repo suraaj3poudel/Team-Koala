@@ -31,7 +31,6 @@ import com.example.alphademo.database.DatabaseProfile;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.databinding.FragmentTripListBinding;
-import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
@@ -114,8 +113,7 @@ public class Trip_listFragment extends Fragment {
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
 
-        pbar1.setVisibility(View.VISIBLE);
-        pbar2.setVisibility(View.VISIBLE);
+
         final String[] abc = {""};
 
 
