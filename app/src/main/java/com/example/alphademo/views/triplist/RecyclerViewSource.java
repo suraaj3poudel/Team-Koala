@@ -15,22 +15,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.alphademo.MapFragmentTemp;
+import com.example.alphademo.MapTemp;
 import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
+import com.example.alphademo.dummy.SourceForm;
 import com.example.alphademo.dummy.MainActivity3;
+import com.github.ybq.android.spinkit.SpinKitView;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -41,10 +43,12 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     String message ="";
     int pos;
     View mapFrag;
+    Context context;
 
     public RecyclerViewSource( Context context, ArrayList<SourceObject> sourceInfo){
         mSourceInfo = sourceInfo;
         inflator= LayoutInflater.from(context);
+        this.context=context;
     }
 
     @NonNull
@@ -52,6 +56,8 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_sourceinfo,parent,false);
         mapFrag = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main2,parent,false);
+
+
         return new ViewHolder(view);
     }
 
@@ -62,16 +68,28 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
+        final Intent intent= new Intent(context, SourceForm.class);
+        intent.putExtra("fuelType",mSourceInfo.get(position).getFuelType());
+        //myDialogue.setContentView(R.layout.delivery_form);
+        //DisplayMetrics dm = new DisplayMetrics();
+        //dm = context.getResources().getDisplayMetrics();
+
+        //int height = dm.heightPixels;
+        //int width = dm.widthPixels;
+
+        // myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));
+
         holder.sourceForm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), MainActivity3.class);
-                view.getContext().startActivity(intent);
+                context.startActivity(intent);
             }
         });
 
+        //holder.pbar1.setVisibility(View.INVISIBLE);
 
         pos = position;
+
         holder.sourcename.setText(mSourceInfo.get(position).getSource());
         holder.sourceT.setText(mSourceInfo.get(position).getSource());
 
@@ -79,6 +97,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.address.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity()+", "+mSourceInfo.get(position).getSourceState());
         holder.addressT.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity()+", "+mSourceInfo.get(position).getSourceState());
         holder.szipcode.setText(mSourceInfo.get(position).getSourceZIP());
+        //holder.progressBar.setVisibility(View.INVISIBLE);
 
         message = "SourceData\n\n"+mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()
                 +"\n"+mSourceInfo.get(position).getSourceCity()+"\n"+mSourceInfo.get(position).getLatitude()+"\n"+mSourceInfo.get(position).getLongitude();
@@ -140,7 +159,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
 
 
-        holder.arrowdown.setOnClickListener(new View.OnClickListener() {
+        holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                holder.hidden_layout.setVisibility(View.VISIBLE);
@@ -156,31 +175,13 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             }
         });
 
-        holder.navicon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //holder.showMessage("Important!","Coming Soon");
-                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
-                Fragment fragment = new MapFragmentTemp();
-                FragmentManager manager = activity.getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fragment_container,fragment);
-                Bundle args = new Bundle();
-                args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
-                args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
-                args.putString("Message",mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()+"\n"+mSourceInfo.get(position).getSourceCity());
-                Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
-                fragment.setArguments(args);
-                transaction.commit();
-            }
-        });
 
         holder.navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //holder.showMessage("Important!","Coming Soon");
                 AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
-                Fragment fragment = new MapFragmentTemp();
+                Fragment fragment = new MapTemp();
                 FragmentManager manager = activity.getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();
                 transaction.replace(R.id.fragment_container,fragment);
@@ -202,26 +203,28 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
+        SpinKitView pbar1,pbar2;
         TextView sourcename, sourcecode;
         TextView address,szipcode;
         TextView sourcenote1,sourceT,addressT;
-        ProgressBar progressBar;
+        //SpinKitView progressBar;
         LinearLayout hidden_layout,show_layout;
         ImageView arrowdown,arrowup;
         Button addsourceNotes, sourceForm;
         EditText typeSpaceSource;
         DatabaseSQLite myDB;
-        Button navi;
-        ImageView navicon;
+        ExtendedFloatingActionButton navi;
+        CardView card;
 
 
 
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
+
             navi = itemView.findViewById(R.id.navSource);
-            navicon = itemView.findViewById(R.id.navicon);
-            progressBar = itemView.findViewById(R.id.progressBar2);
+            card= itemView.findViewById(R.id.card_viewSource);
+//            progressBar = itemView.findViewById(R.id.spin_kit1);
             sourcename = itemView.findViewById(R.id.source);
             sourcecode = itemView.findViewById(R.id.sourceCode);
             address = itemView.findViewById(R.id.address);

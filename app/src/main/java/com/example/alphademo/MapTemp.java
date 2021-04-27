@@ -27,12 +27,15 @@ import androidx.fragment.app.Fragment;
 
 import com.example.alphademo.R;
 import com.example.alphademo.views.map.ForegroundService;
+import com.example.alphademo.views.map.VoiceSkinsActivity;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.here.android.mpa.common.GeoBoundingBox;
 import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.GeoPosition;
 import com.here.android.mpa.common.Image;
 import com.here.android.mpa.common.OnEngineInitListener;
+import com.here.android.mpa.guidance.AudioPlayerDelegate;
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.guidance.VoiceCatalog;
 import com.here.android.mpa.guidance.VoiceGuidanceOptions;
@@ -52,20 +55,26 @@ import com.here.android.mpa.routing.Router;
 import com.here.android.mpa.routing.RoutingError;
 import com.here.services.location.internal.PositionListener;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.net.URI;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import static java.sql.Types.NULL;
 
 
-public class MapFragmentTemp extends Fragment {
+public class MapTemp extends Fragment {
 
     private static final int REQUEST_LOCATION = 1;
     private AndroidXMapFragment m_mapFragment;
     private Button m_naviControlButton;
     private Map m_map;
-    private NavigationManager m_navigationManager= NavigationManager.getInstance();;
+    private NavigationManager m_navigationManager;
     private GeoBoundingBox m_geoBoundingBox;
     private Route m_route;
     private boolean m_foregroundServiceStarted;
@@ -75,24 +84,17 @@ public class MapFragmentTemp extends Fragment {
     double latitude, longitude;
     View rootView ;
     FloatingActionButton center;
-    VoiceCatalog voiceCatalog;
-    VoiceGuidanceOptions voiceGuidanceOptions;
-    boolean start =false;
-
 
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_map, container,         false);
+        rootView = inflater.inflate(R.layout.map_fragment_view, container,false);
         if(getArguments() != null) {
             d1 = getArguments().getDouble("d1");
             d2 = getArguments().getDouble("d2");
-            initMapFragment();
-            //getLocation();
-
         }
 
-        m_naviControlButton = (Button) rootView.findViewById(R.id.naviCtrlButton);
+        m_naviControlButton = (Button)rootView.findViewById(R.id.naviCtrlButton);
         center = rootView.findViewById(R.id.recenter);
         return rootView;
     }
@@ -111,11 +113,18 @@ public class MapFragmentTemp extends Fragment {
         }
     };
 
+    private void recenter() {
+        m_map.setCenter(new GeoCoordinate(latitude,longitude,0.0), Map.Animation.BOW);
+        Log.i("NewCenter",latitude+" "+longitude);
+        m_map.setZoomLevel(15);
+    }
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        initMapFragment();
         center.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -123,53 +132,18 @@ public class MapFragmentTemp extends Fragment {
             }
         });
 
-        initMapFragment();
-        checkVoicePackage();
+
+        initNaviControlButton();
+        initVoicePackagesButton();
 
 
         if(d1 !=0 & d2 !=0) {
             initNaviControlButton();
-            //createRoute(d1,d2);
         }
         else{
             m_naviControlButton.setVisibility(View.INVISIBLE);
             showMessage("Start Trip", "Select a trip from trip Menu to start Navigation!");
         }
-
-
-
-    }
-
-    private void placeTrack(){
-
-    }
-
-    private void checkVoicePackage() {
-        voiceCatalog = VoiceCatalog.getInstance();
-
-        //Log.i("LocalVoice", localInstalledSkins.toString());
-        voiceCatalog.downloadCatalog(new VoiceCatalog.OnDownloadDoneListener(){
-
-            @Override
-            public void onDownloadDone(VoiceCatalog.Error error) {
-                List packages = voiceCatalog.getCatalogList();
-            }
-        });
-
-        voiceCatalog.downloadCatalog(new VoiceCatalog.OnDownloadDoneListener(){
-        //Log.i("Downloaded", "English");
-            @Override
-            public void onDownloadDone(VoiceCatalog.Error error) {
-
-                return;
-            }
-        });
-
-    }
-
-    private void recenter() {
-        m_map.setCenter(new GeoCoordinate(latitude,longitude,0.0), Map.Animation.BOW);
-        m_map.setZoomLevel(15);
     }
 
     private void showMessage(String title, String message) {
@@ -182,19 +156,29 @@ public class MapFragmentTemp extends Fragment {
         dialog.show();
     }
 
+    private AndroidXMapFragment getMapFragment() {
+        return (AndroidXMapFragment) getChildFragmentManager()
+                .findFragmentById(R.id.mapfragment);
+    }
+
     private void initMapFragment() {
         /* Locate the mapFragment UI element */
-
         m_mapFragment = getMapFragment();
         //m_navigationManager = NavigationManager.getInstance();
-
-
+        // This will use external storage to save map cache data, it is also possible to set
+        // private app's path
+        //String path = new File(getActivity().getExternalFilesDir(null), ".here-map-data")
+                //.getAbsolutePath();
+        // This method will throw IllegalArgumentException if provided path is not writable
+        //com.here.android.mpa.common.MapSettings.setDiskCacheRootPath(path);
         if (m_mapFragment != null) {
             /* Initialize the AndroidXMapFragment, results will be given via the called back. */
             m_mapFragment.init(new OnEngineInitListener() {
                 @Override
-                public void onEngineInitializationCompleted(Error error) {
+                public void onEngineInitializationCompleted(OnEngineInitListener.Error error) {
+
                     if (error == Error.NONE) {
+
                         locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
                         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                             OnGPS();
@@ -202,20 +186,21 @@ public class MapFragmentTemp extends Fragment {
                             getLocation();
                         }
                         m_map = m_mapFragment.getMap();
-                        //m_mapFragment.getPositionIndicator().setVisible(false);
                         setMarker(latitude,longitude,R.drawable.label);
                         setMarker(d1,d2,R.drawable.map_label);
-                        //m_mapFragment.getPositionIndicator().setVisible(false);
-                        //setMarker(d1,d2,j);
-                        m_map.setCenter(new GeoCoordinate(latitude,longitude,0.0), Map.Animation.NONE);
+                        m_map.setCenter(new GeoCoordinate(latitude, longitude),
+                                Map.Animation.NONE);
+                        //Put this call in Map.onTransformListener if the animation(Linear/Bow)
+                        //is used in setCenter()
                         m_map.setZoomLevel(15);
-                        if (m_route == null) {
-                            createRoute(d1,d2);
-                        }
+                        m_navigationManager = NavigationManager.getInstance();
 
-                    }
+                        /*
+                         * Get the NavigationManager instance.It is responsible for providing voice
+                         * and visual instructions while driving and walking
+                         */
 
-                    else {
+                    } else {
                         new AlertDialog.Builder(getActivity()).setMessage(
                                 "Error : " + error.name() + "\n\n" + error.getDetails())
                                 .setTitle(R.string.engine_init_error)
@@ -229,18 +214,21 @@ public class MapFragmentTemp extends Fragment {
                                             }
                                         }).create().show();
                     }
-
                 }
             });
-
         }
-
-
-
     }
 
-    private AndroidXMapFragment getMapFragment() {
-        return (AndroidXMapFragment) getChildFragmentManager().findFragmentById(R.id.mapfragment);
+    private void setMarker(double d1, double d2,int i){
+
+        try {
+            Image image = new Image();
+            image.setImageResource(i);
+            MapMarker customMarker = new MapMarker(new GeoCoordinate(d1,d2, 0.0), image);
+            m_map.addMapObject(customMarker);
+        } catch (Exception e) {
+            Log.e("HERE", e.getMessage());
+        }
     }
 
     private void OnGPS() {
@@ -261,32 +249,11 @@ public class MapFragmentTemp extends Fragment {
         alertDialog.show();
     }
 
-    private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, com.example.alphademo.MapFragmentTemp.REQUEST_LOCATION);
-        } else {
-            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (locationGPS != null) {
-                double lat = locationGPS.getLatitude();
-                double longi = locationGPS.getLongitude();
-                latitude = Double.parseDouble(String.valueOf(lat));
-                longitude = Double.parseDouble(String.valueOf(longi));
-            } else {
-                Toast.makeText(getContext(), "Unable to find location.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 
-    ;
-
-
-    private void createRoute(double d1, double d2) {
-
-        Toast.makeText(getContext(), "Working on it.", Toast.LENGTH_SHORT).show();
+    private void createRoute(double d1,double d2) {
         /* Initialize a CoreRouter */
-        CoreRouter coreRouter= new CoreRouter();
+        Toast.makeText(getContext(), "Working on it.", Toast.LENGTH_SHORT).show();
+        CoreRouter coreRouter = new CoreRouter();
 
         /* Initialize a RoutePlan */
         RoutePlan routePlan = new RoutePlan();
@@ -319,57 +286,51 @@ public class MapFragmentTemp extends Fragment {
         routePlan.addWaypoint(destination);
 
         /* Trigger the route calculation,results will be called back via the listener */
-
-        coreRouter.calculateRoute(routePlan,
-                new Router.Listener<List<RouteResult>, RoutingError>() {
-
+        coreRouter
+                .calculateRoute(routePlan, new Router.Listener<List<RouteResult>, RoutingError>() {
                     @Override
                     public void onProgress(int i) {
-
                         /* The calculation progress can be retrieved in this callback. */
                     }
 
                     @Override
-                    public void onCalculateRouteFinished(List<RouteResult> routeResults,
-                                                         RoutingError routingError) {
-                        //Toast.makeText(getContext(),"Updating Route",Toast.LENGTH_SHORT);
+                    public void onCalculateRouteFinished(
+                            List<RouteResult> routeResults,
+                            RoutingError routingError) {
                         /* Calculation is done.Let's handle the result */
                         if (routingError == RoutingError.NONE) {
                             if (routeResults.get(0).getRoute() != null) {
 
-                                m_route = routeResults.get(0).getRoute();                                /* Create a MapRoute so that it can be placed on the map */
-                                MapRoute mapRoute = new MapRoute(routeResults.get(0).getRoute());
+                                m_route = routeResults.get(0).getRoute();
+                                /* Create a MapRoute so that it can be placed on the map */
+                                MapRoute mapRoute = new MapRoute(
+                                        routeResults.get(0).getRoute());
 
                                 /* Show the maneuver number on top of the route */
-                                //mapRoute.setManeuverNumberVisible(true);
+                                mapRoute.setManeuverNumberVisible(true);
 
                                 /* Add the MapRoute to the map */
-
                                 m_map.addMapObject(mapRoute);
 
                                 /*
                                  * We may also want to make sure the map view is orientated properly
                                  * so the entire route can be easily seen.
                                  */
+                                m_geoBoundingBox = routeResults.get(0).getRoute()
+                                        .getBoundingBox();
+                                m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE,
+                                        Map.MOVE_PRESERVE_ORIENTATION);
 
-                                //m_geoBoundingBox = routeResults.get(0).getRoute().getBoundingBox();
-                                //m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE,
-                                        //Map.MOVE_PRESERVE_TILT);
-
-                                try {
-                                    if(start)
-                                        startNavigation();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
+                                startNavigation();
                             } else {
-                                Toast.makeText(getContext(),
-                                        "Error:route results not valid",
+                                Toast.makeText(getActivity(),
+                                        "Error:route results returned is not valid",
                                         Toast.LENGTH_LONG).show();
                             }
                         } else {
-                            Toast.makeText(getContext(),
-                                    "Error:route calculation returned error code: " + routingError,
+                            Toast.makeText(getActivity(),
+                                    "Error:route calculation returned error code: "
+                                            + routingError,
                                     Toast.LENGTH_LONG).show();
 
                         }
@@ -378,31 +339,16 @@ public class MapFragmentTemp extends Fragment {
     }
 
     private void initNaviControlButton() {
-
-        if (!voiceCatalog.isLocalVoiceSkin(1101))
-        {
-            voiceCatalog.downloadVoice(1101, new VoiceCatalog.OnDownloadDoneListener() {
-                @Override
-                public void onDownloadDone(VoiceCatalog.Error error) {
-
-                }
-
-            });
-        }
+        //m_naviControlButton = rootView.findViewById(R.id.naviCtrlButton);
         m_naviControlButton.setText(R.string.start_navi);
-        m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.peach));
-
+        m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.green));
         m_naviControlButton.setOnClickListener(new View.OnClickListener() {
             @Override
-
             public void onClick(View v) {
-                start =true;
-                //m_route=null;
                 /*
                  * To start a turn-by-turn navigation, a concrete route object is required.We use
                  * the same steps from Routing sample app to create a route from 4350 Still Creek Dr
                  * to Langley BC without going on HWY.
-                 * toLangley BC without going on HWY.
                  *
                  * The route calculation requires local map data.Unless there is pre-downloaded map
                  * data on device by utilizing MapLoader APIs,it's not recommended to trigger the
@@ -410,27 +356,44 @@ public class MapFragmentTemp extends Fragment {
                  * INSUFFICIENT_MAP_DATA error code may be returned by CoreRouter in this case.
                  *
                  */
-                if (start) {
+                Toast.makeText(getContext(),"Working on it", Toast.LENGTH_SHORT);
+                if (m_route == null) {
+                    //m_navigationManager = NavigationManager.getInstance();
                     createRoute(d1,d2);
-                    m_navigationManager = NavigationManager.getInstance();
-
+                    //startNavigation();
                 } else {
-                    //start=false;
-
                     m_navigationManager.stop();
-                    //Toast.makeText(getContext(),"Oops",Toast.LENGTH_SHORT);
                     /*
                      * Restore the map orientation to show entire route on screen
                      */
-                    //m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE, 0f);
+                    m_map.setZoomLevel(13);
+                    m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE, 0f);
                     m_naviControlButton.setText(R.string.start_navi);
-                    m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.peach));
+                    m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.green));
                     m_route = null;
                 }
             }
         });
     }
+    FloatingActionButton m_voicePackagesButton;
+    private void initVoicePackagesButton() {
+        m_voicePackagesButton = rootView.findViewById(R.id.voiceCtrlButton);
+        m_voicePackagesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), VoiceSkinsActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
 
+    /*
+     * Android 8.0 (API level 26) limits how frequently background apps can retrieve the user's
+     * current location. Apps can receive location updates only a few times each hour.
+     * See href="https://developer.android.com/about/versions/oreo/background-location-limits.html
+     * In order to retrieve location updates more frequently start a foreground service.
+     * See https://developer.android.com/guide/components/services.html#Foreground
+     */
     private void startForegroundService() {
         if (!m_foregroundServiceStarted) {
             m_foregroundServiceStarted = true;
@@ -449,42 +412,13 @@ public class MapFragmentTemp extends Fragment {
         }
     }
 
-    private void setMarker(double d1, double d2,int i){
-
-        try {
-            Image image = new Image();
-            image.setImageResource(i);
-            MapMarker customMarker = new MapMarker(new GeoCoordinate(d1,d2, 0.0), image);
-            m_map.addMapObject(customMarker);
-        } catch (Exception e) {
-            Log.e("HERE", e.getMessage());
-        }
-    }
-
-    private void startNavigation() throws IOException {
-        Toast.makeText(getContext(),"Updating Route",Toast.LENGTH_SHORT);
+    private void startNavigation() {
         m_naviControlButton.setText(R.string.stop_navi);
         m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.teal_200));
         /* Configure Navigation manager to launch navigation on current map */
         m_navigationManager.setMap(m_map);
 
-
-// set the voice skin for use by navigation manager
-        List localInstalledSkins = voiceCatalog.getLocalVoiceSkins();
-        VoiceSkin vs = (VoiceSkin) localInstalledSkins.get(2);
-        voiceGuidanceOptions = m_navigationManager.getVoiceGuidanceOptions();
-        voiceGuidanceOptions.setVoiceSkin(vs);
-        // show position indicator
-        // note, it is also possible to change icon for the position indicator
-        //setMarker(latitude,longitude,R.drawable.label);
-        m_mapFragment.getPositionIndicator().setVisible(false);
-        if(start){
-            m_navigationManager = NavigationManager.getInstance();
-            m_navigationManager.startNavigation(m_route);
-            m_map.setTilt(60);
-            startForegroundService();}
-
-
+        m_mapFragment.getPositionIndicator().setVisible(true);
         /*
          * Start the turn-by-turn navigation.Please note if the transport mode of the passed-in
          * route is pedestrian, the NavigationManager automatically triggers the guidance which is
@@ -492,35 +426,44 @@ public class MapFragmentTemp extends Fragment {
          * by calling either simulate() or startTracking()
          */
 
-//        /* Choose navigation modes between real time navigation and simulation */
-//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        m_navigationManager.startNavigation(m_route);
+        m_map.setTilt(60);
+        startForegroundService();
+
+        /* Choose navigation modes between real time navigation and simulation */
+//        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
 //        alertDialogBuilder.setTitle("Navigation");
 //        alertDialogBuilder.setMessage("Choose Mode");
-//        alertDialogBuilder.setNegativeButton("Navigation",new DialogInterface.OnClickListener() {
+//        alertDialogBuilder.setNegativeButton("Navigation", new DialogInterface.OnClickListener() {
 //            public void onClick(DialogInterface dialoginterface, int i) {
 //                m_navigationManager.startNavigation(m_route);
 //                m_map.setTilt(60);
 //                startForegroundService();
-//            };
+//            }
 //        });
-//        alertDialogBuilder.setPositiveButton("Simulation",new DialogInterface.OnClickListener() {
+//        alertDialogBuilder.setPositiveButton("Simulation", new DialogInterface.OnClickListener() {
 //            public void onClick(DialogInterface dialoginterface, int i) {
-//                m_navigationManager.simulate(m_route,60);//Simualtion speed is set to 60 m/s
+//                m_navigationManager.simulate(m_route, 60);//Simualtion speed is set to 60 m/s
 //                m_map.setTilt(60);
 //                startForegroundService();
-//            };
+//            }
 //        });
 //        AlertDialog alertDialog = alertDialogBuilder.create();
 //        alertDialog.show();
-//        /*
-//         * Set the map update mode to ROADVIEW.This will enable the automatic map movement based on
-//         * the current location.If user gestures are expected during the navigation, it's
-//         * recommended to set the map update mode to NONE first. Other supported update mode can be
-//         * found in HERE Mobile SDK for Android (Premium) API doc
-//         */
+        /*
+         * Set the map update mode to ROADVIEW.This will enable the automatic map movement based on
+         * the current location.If user gestures are expected during the navigation, it's
+         * recommended to set the map update mode to NONE first. Other supported update mode can be
+         * found in HERE Mobile SDK for Android (Premium) API doc
+         */
         m_navigationManager.setMapUpdateMode(NavigationManager.MapUpdateMode.ROADVIEW);
 
-
+        /*
+         * Sets the measuring unit system that is used by voice guidance.
+         * Check VoicePackage.getCustomAttributes() to see whether selected package has needed
+         * unit system.
+         */
+        m_navigationManager.setDistanceUnit(NavigationManager.UnitSystem.IMPERIAL);
 
         /*
          * NavigationManager contains a number of listeners which we can use to monitor the
@@ -536,15 +479,17 @@ public class MapFragmentTemp extends Fragment {
          * Register a NavigationManagerEventListener to monitor the status change on
          * NavigationManager
          */
+        m_navigationManager.addNavigationManagerEventListener(
+                new WeakReference<>(m_navigationManagerEventListener));
 
         /* Register a PositionListener to monitor the position updates */
+        m_navigationManager.addPositionListener(new WeakReference<>(m_positionListener));
+
+        /* Register a AudioPlayerDelegate to monitor TTS text */
+        m_navigationManager.getAudioPlayer().setDelegate(m_audioPlayerDelegate);
 
         m_navigationManager.addRerouteListener(new WeakReference<NavigationManager.RerouteListener >(newRoute){
-            });
-
-        m_navigationManager.addPositionListener(
-                new WeakReference<NavigationManager.PositionListener>(m_positionListener));
-
+        });
     }
 
     private NavigationManager.RerouteListener newRoute = new NavigationManager.RerouteListener() {
@@ -565,17 +510,44 @@ public class MapFragmentTemp extends Fragment {
         }
     };
 
-    private NavigationManager.PositionListener m_positionListener = new NavigationManager.PositionListener() {
-        @Override
-        public void onPositionUpdated(GeoPosition geoPosition) {
-            /* Current position information can be retrieved in this callback */
-            getLocation();
-            m_navigationManager.getTta(Route.TrafficPenaltyMode.DISABLED, true);
-            m_navigationManager.getDestinationDistance();
+    private NavigationManager.PositionListener m_positionListener =
+            new NavigationManager.PositionListener() {
+                @Override
+                public void onPositionUpdated(GeoPosition geoPosition) {
+                    getLocation();
+                    /* Current position information can be retrieved in this callback */
+                }
+            };
 
+    private NavigationManager.NavigationManagerEventListener m_navigationManagerEventListener =
+            new NavigationManager.NavigationManagerEventListener() {
+
+                @Override
+                public void onRouteUpdated(Route route) {
+                    Toast.makeText(getContext(), "Route updated", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onCountryInfo(String s, String s1) {
+                    Toast.makeText(getContext(), "Country info updated from " + s + " to " + s1,
+                            Toast.LENGTH_SHORT).show();
+                }
+            };
+
+    private AudioPlayerDelegate m_audioPlayerDelegate = new AudioPlayerDelegate() {
+        @Override public boolean playText(final String s) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override public void run() {
+                    //Toast.makeText(getContext(), "TTS output: " + s, Toast.LENGTH_SHORT).show();
+                }
+            });
+            return false;
+        }
+
+        @Override public boolean playFiles(String[] strings) {
+            return false;
         }
     };
-
 
     public void onDestroy() {
         /* Stop the navigation when app is destroyed */
@@ -583,6 +555,24 @@ public class MapFragmentTemp extends Fragment {
         if (m_navigationManager != null) {
             stopForegroundService();
             m_navigationManager.stop();
+        }
+    }
+
+    private void getLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        } else {
+            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (locationGPS != null) {
+                double lat = locationGPS.getLatitude();
+                double longi = locationGPS.getLongitude();
+                latitude = Double.parseDouble(String.valueOf(lat));
+                longitude = Double.parseDouble(String.valueOf(longi));
+            } else {
+                Toast.makeText(getContext(), "Unable to find location.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

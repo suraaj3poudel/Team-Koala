@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="5dp"
     android:fadeScrollbars="true"
     android:foregroundTint="@color/primary">
 
@@ -12,19 +11,20 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_viewSource"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="3.5dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="3.5dp"
+        android:outlineAmbientShadowColor="@color/black"
         app:background="@drawable/card_item_background2"
-        app:cardCornerRadius="10dp"
+        app:cardCornerRadius="15dp"
         app:cardElevation="20dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@drawable/card_item_background2"
             android:orientation="horizontal"
             android:id="@+id/show_layout"
@@ -49,7 +49,6 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
-                android:background="@drawable/card_item_background2"
                 android:orientation="vertical"
                 android:layout_marginLeft="5dp"
                 android:layout_marginTop="5dp">
@@ -67,6 +66,7 @@
                         android:layout_height="wrap_content"
                         android:text="Source Name"
                         android:textColor="#330000"
+                        android:layout_marginTop="10dp"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -292,37 +292,17 @@
 
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
-                    android:padding="10dp">
-
-                    <Button
-                        android:id="@+id/navSource"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:backgroundTint="@android:color/holo_green_dark"
-                        android:text="Start Navigation"
-                        android:textAlignment="center"
-                        android:layout_marginLeft="20dp"
-                        android:textStyle="bold"
-                        android:textColor="@android:color/white"
-                        android:textSize="18sp" />
-
-                    <ImageView
-                        android:id="@+id/navicon"
-                        android:layout_width="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginRight="20dp"
-                        android:layout_height="71dp"
-                        android:layout_toEndOf="@+id/navSource"
-                        android:background="@android:color/holo_green_dark"
-                        android:src="@drawable/navicon"
-                        android:textAlignment="center" />
-
-                </LinearLayout>
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/navSource"
+                android:layout_width="250dp"
+                android:layout_height="72dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="15dp"
+                android:backgroundTint="@android:color/holo_green_dark"
+                android:orientation="horizontal"
+                android:text="Start Navigation"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"/>
 
             <ImageView
                 android:id="@+id/arrowup"

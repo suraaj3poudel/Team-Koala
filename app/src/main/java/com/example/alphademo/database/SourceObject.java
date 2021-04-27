@@ -11,6 +11,7 @@ public class SourceObject {
     private String sourceCity;
     private String sourceState;
     private String sourceZIP;
+    private  String fuelType;
     private JSONObject sourceDetails;
 
     public double getLatitude() {
@@ -54,6 +55,9 @@ public class SourceObject {
 
         double sourcelong = sourceDetails.getDouble("Longitude");
         longitude = sourcelong;
+
+        String fueltype = sourceDetails.getString("ProductDesc");
+        fuelType = fueltype;
     }
 
     public String getSource() {
@@ -81,5 +85,8 @@ public class SourceObject {
     }
 
 
+    public String getFuelType() {
 
+        return fuelType;
+    }
 }

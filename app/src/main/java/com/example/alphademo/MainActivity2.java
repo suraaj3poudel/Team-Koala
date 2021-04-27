@@ -60,6 +60,7 @@ public class MainActivity2 extends AppCompatActivity  {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
+        bottomNavigationView.setActivated(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ViewAllTripsFragment()).commit();
     }
 
@@ -75,7 +76,7 @@ public class MainActivity2 extends AppCompatActivity  {
                     select = new ViewAllTripsFragment() ;
                     break;
                 case R.id.map:
-                    select = new MapFragmentTemp();
+                    select = new MapTemp();
                     break;
                 case R.id.setting:
                     select = new SettingFragment();

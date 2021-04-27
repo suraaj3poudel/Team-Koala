@@ -34,8 +34,15 @@ public class SourceListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_source_list,container,false);
+        binding.spinKit1.setVisibility(View.VISIBLE);
         binding.sourceList.setAdapter(adapter);
-
         return binding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        binding.spinKit1.setVisibility(View.INVISIBLE);
+        //binding.spinKit1.setVisibility(View.INVISIBLE);
     }
 }

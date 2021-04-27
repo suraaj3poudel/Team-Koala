@@ -31,6 +31,7 @@ import com.example.alphademo.database.DatabaseProfile;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.databinding.FragmentTripListBinding;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.tabs.TabLayout;
 
 import org.json.JSONArray;
@@ -48,7 +49,7 @@ public class Trip_listFragment extends Fragment {
     ArrayList<SiteObject> siteList;
     TabLayout tabLayout;
     ViewPager viewPager;
-    ProgressBar pbar1, pbar2;
+
     String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/D1?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
@@ -68,8 +69,6 @@ public class Trip_listFragment extends Fragment {
         ViewGroup root2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
 //        recyclerView1 = view.findViewById(R.id.sourceList);
 //        recyclerView2 = view.findViewById(R.id.siteList);
-        pbar1 = root1.findViewById(R.id.progressBar2);
-        pbar2 = root2.findViewById(R.id.progressBar2);
 
 
        //Toast.makeText(getContext(), profileName.getText(), Toast.LENGTH_SHORT).show();
@@ -77,12 +76,12 @@ public class Trip_listFragment extends Fragment {
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
 
-        tabLayout.addTab(tabLayout.newTab().setText("Source List"));
-        tabLayout.addTab(tabLayout.newTab().setText("Site List"));
-        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#FF0000"));
-        tabLayout.setSelectedTabIndicatorHeight((int) (5 * getResources().getDisplayMetrics().density));
-        //tabLayout.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#ffffff"));
+        tabLayout.addTab(tabLayout.newTab().setText("SOURCE").setIcon(R.drawable.ic_baseline_local_gas_station_24));
+        tabLayout.addTab(tabLayout.newTab().setText("SITE").setIcon(R.drawable.site));
+        tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#b53a09"));
+        tabLayout.setTabTextColors(Color.parseColor("#727272"), Color.parseColor("#b53a09"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
         extractDriverNames();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -114,9 +113,13 @@ public class Trip_listFragment extends Fragment {
 
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
+
         pbar1.setVisibility(View.VISIBLE);
         pbar2.setVisibility(View.VISIBLE);
         final String[] abc = {""};
+
+
+
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
         Log.i("Message: ", "I am fetching data from JSON",null);
@@ -176,13 +179,7 @@ public class Trip_listFragment extends Fragment {
                     viewPager.setAdapter(adapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-                    if (R.layout.fragment_source_list != 0) {
-                        pbar1.setVisibility(View.INVISIBLE);
-                    }
 
-                    if (R.layout.fragment_site_list != 0) {
-                        pbar2.setVisibility(View.INVISIBLE);
-                    }
 
 
 
@@ -229,13 +226,6 @@ public class Trip_listFragment extends Fragment {
                     viewPager.setAdapter(adapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-                    if (R.layout.fragment_source_list != 0) {
-                        pbar1.setVisibility(View.INVISIBLE);
-                    }
-
-                    if (R.layout.fragment_site_list != 0) {
-                        pbar2.setVisibility(View.INVISIBLE);
-                    }
                 }
 
 

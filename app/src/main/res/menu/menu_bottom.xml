@@ -5,7 +5,7 @@
             android:id="@+id/trip_list"
             android:title="Trip List"
             android:iconTint="@color/black"
-            android:icon="@drawable/ic_baseline_location_on_24"
+            android:icon="@drawable/ic_baseline_local_gas_station_24"
             />
         <item
             android:id="@+id/map"
