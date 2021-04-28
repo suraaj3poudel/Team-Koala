@@ -11,7 +11,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.example.alphademo.R;
-import com.example.alphademo.adapters.RecyclerViewSite;
 import com.example.alphademo.databinding.FragmentSiteListBinding;
 
 public class SiteListFragment extends Fragment {

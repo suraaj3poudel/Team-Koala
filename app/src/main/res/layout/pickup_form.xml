@@ -480,7 +480,7 @@
                 android:layout_gravity="center"
                 android:backgroundTint="@color/green"
                 android:text="Done"
-                android:textSize="25sp" />
+                android:textSize="30sp" />
 
         </LinearLayout>
 

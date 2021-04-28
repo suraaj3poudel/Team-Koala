@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".activities.MainActivity">
-
-    <FrameLayout
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/bottomNavigationView"
-        android:layout_below="@+id/toolbar"
-        ></FrameLayout>
+    tools:context=".MainActivity">
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:background="@color/orange"
         app:itemIconTint="@drawable/bottom_nav_foreground"
         app:itemTextColor="@drawable/bottom_nav_foreground"
-       android:layout_alignParentBottom="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/menu_bottom">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
-
+    <FrameLayout
+        android:layout_marginTop="55dp"
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"></FrameLayout>
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -42,11 +44,9 @@
 
     <ImageView
         android:id="@+id/bell"
-        android:layout_width="33dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="15dp"
-        android:layout_alignEnd="@+id/aimslogo"
-        android:layout_marginEnd="-235dp"
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_container"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintHorizontal_bias="1.0"
@@ -60,7 +60,6 @@
         android:layout_width="139dp"
         android:layout_height="40dp"
         android:layout_marginTop="12dp"
-        android:layout_marginLeft="5dp"
         app:layout_constraintBottom_toTopOf="@+id/fragment_container"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
         app:layout_constraintHorizontal_bias="0.058"
@@ -70,4 +69,4 @@
         app:srcCompat="@drawable/aims" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

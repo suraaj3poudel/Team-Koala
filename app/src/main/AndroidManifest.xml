@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+
     <uses-feature android:name="android.hardware.camera" />
 
     <queries>
@@ -26,20 +27,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".views.map.VoicePackagesActivity"></activity>
-        <activity android:name=".views.map.VoiceSkinsActivity"></activity>
-        <activity android:name=".forms.MainActivity4"></activity>
-        <activity android:name=".forms.MainActivity3" />
-        <activity android:name=".activities.MainActivity2" />
-        <activity android:name=".forms.DeliveryForm"
-                  android:theme="@style/Theme.AppCompat.Dialog.Alert"></activity>
-        <activity android:name=".forms.SourceForm"
-            android:theme="@style/Theme.AppCompat.Dialog.Alert"></activity>
-        <activity android:name=".forms.Capture"></activity>
-        <activity android:name=".forms.SignaturePop"></activity>
-        <activity android:name=".activities.MainActivity">
+        <activity android:name=".views.map.VoicePackagesActivity" />
+        <activity android:name=".views.map.VoiceSkinsActivity" />
+        <activity android:name=".MainActivity2" />
+        <activity
+            android:name=".dummy.DeliveryForm"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
+        <activity
+            android:name=".dummy.SourceForm"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
+        <activity android:name=".dummy.Capture" />
+        <activity android:name=".dummy.SignaturePop" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -53,7 +55,6 @@
         <meta-data
             android:name="com.here.android.maps.license.key"
             android:value="FKrkGE/7OgrorEC4D3DDksI0Jys486/DYc+AEcSGtb9H7Yf5dJCwaQeWF51wFYXmPiDcAQptbpZYQfbGJNoT7woiwZOvQI3IqAj0igCz2p2h7Rndg94ES1olSvkNDx23lNicY9Nte82wsOjzN8bnaPtoxC9XzDY8Giv7E1hz7WCV/NUS5iQHvnGxPM2VUxiHyHkqO07Dni0iW6cNcg3yQZrOoqTyU8dpCPyzzD9NSIUK0VGtFsNRDJ5nxEq6FPytt/BXmP6BDvPhbrFP0zzD6qkh2SNPTtqb6uuFJZv73efck8/5pvw9dWyXPXCDt2gNnqIAhdRFUY3Z4xeB1W8pg+M+73YNB/z/VJRi5reeGtphxRwCsBLH0EBmVXoUvSf4PwZueZMqUAlidUaWDWm6489Kr5K/Cr7JtXmUslW6G9Ymw6O2kWhBefjzd1sPz1ix1dUQglYHpjwf1CdukrSH51h3EOr0nfxPZQhO7T5Cj1QEtSSBOO5p5TyXScTDwwx+IVHLRgihsSAbwtX6mWeR+XEqD54DBY7gWDid/9hphEnkRMvLMXn8Id4WwlPReV7aCK3GTnsTD6ikrVPB1XPxOuCZccsOouAks37XSBcjPNt1N/Y4NfIyHrujD9tTt04PtgjpgKahn1cK0SPROPN3lp0L1212S1CjZ1eb+bWL9aU=" />
-
     </application>
 
 </manifest>

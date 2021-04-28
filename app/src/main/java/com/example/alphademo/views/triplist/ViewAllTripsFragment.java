@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,13 +27,14 @@ import com.example.alphademo.database.DatabaseJson;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.database.TripInfo;
-import com.example.alphademo.adapters.RecyclerViewTrip;
+import com.example.alphademo.views.triplist.RecyclerViewTrip;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.zip.Inflater;
 
 public class ViewAllTripsFragment extends Fragment {
 
@@ -69,7 +71,7 @@ public class ViewAllTripsFragment extends Fragment {
                 siteList = new ArrayList<SiteObject>();
                 trips = new ArrayList<TripInfo>();
                 extractDriverNames();// your code
-                pullToRefresh.setRefreshing(true);
+                pullToRefresh.setRefreshing(false);
             }
         });
 
@@ -85,7 +87,6 @@ public class ViewAllTripsFragment extends Fragment {
         extractDriverNames();
 
     }
-
 
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
@@ -184,6 +185,8 @@ public class ViewAllTripsFragment extends Fragment {
         queue.add(jsonObjectRequest);
     }
 
+    public void connect(){
 
+    }
 
 }
