@@ -527,8 +527,7 @@ public class MapTemp extends Fragment {
 
     public void getManuevers(){
 
-        dis = m_route.getLength()/1609;
-        eta.setText(dis+"");
+
 
 
         //maneuver = m_route.getManeuvers();
@@ -628,6 +627,9 @@ public class MapTemp extends Fragment {
 
                         arrivalTime.setText(h+":"+m);
                         //eta.setText(m_navigationManager.getRemainingDistance(1));
+
+                        dis = m_navigationManager.getDestinationDistance()/1609;
+                        eta.setText(dis+"");
 
                     }
                 }
