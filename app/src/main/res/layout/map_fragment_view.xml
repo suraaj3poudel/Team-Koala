@@ -11,6 +11,7 @@
         android:layout_gravity="bottom|center"
         android:layout_width="200dp"
         android:layout_height="62dp"
+        android:layout_marginBottom="120dp"
         android:elevation="4dp"
         android:gravity="center"
         android:translationZ="5dp"
@@ -18,10 +19,13 @@
         android:text="Start Navigation"
         />
 
+
+
     <FrameLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        android:layout_height="match_parent">
+
+
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/recenter"
             android:textColor="@color/white"
@@ -37,6 +41,67 @@
             app:maxImageSize="35dp"
 
             />
+
+        <FrameLayout
+            android:id="@+id/topMap"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center_horizontal"
+            android:elevation="5dp"
+            android:visibility="gone"
+            android:background="@color/grey">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:padding="5dp">
+
+                <ImageView
+                    android:id="@+id/direction_img"
+                    android:layout_width="94dp"
+                    android:layout_height="94dp"
+                    android:layout_gravity="center"
+                    android:elevation="2dp"
+                    android:maxWidth="50dp"
+                    android:layout_marginLeft="15dp"
+
+                    android:maxHeight="50dp"
+                    android:adjustViewBounds="true"
+                    android:textColor="@color/black"
+                    android:translationZ="@dimen/cardview_default_elevation" />
+
+                <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                    android:layout_marginLeft="30dp">
+                <TextView
+                    android:id="@+id/direction"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:elevation="2dp"
+                    android:text="Turn Right"
+                    android:textSize="25dp"
+
+                    android:layout_marginTop="5dp"
+                    android:padding="5dp"
+                    android:textColor="@color/black"
+                    android:translationZ="@dimen/cardview_default_elevation" />
+                <TextView
+                    android:id="@+id/street"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:elevation="2dp"
+                    android:padding="5dp"
+                    android:text="Concordia Street"
+                    android:textColor="@color/black"
+                    android:translationZ="@dimen/cardview_default_elevation" />
+            </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/voiceCtrlButton"
@@ -54,9 +119,110 @@
 
             />
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:foregroundGravity="center_horizontal"
+            android:elevation="5dp"
+            android:visibility="gone"
+            android:layout_gravity="bottom"
+            android:background="@color/grey"
+            android:id="@+id/bottomMap">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="94dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:elevation="2dp"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:text="Speed"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:translationZ="@dimen/cardview_default_elevation" />
+
+                    <TextView
+                        android:id="@+id/speed"
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:text="60"
+                        android:textSize="35dp"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="94dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:elevation="2dp"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:text="Arrival"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:translationZ="@dimen/cardview_default_elevation" />
+
+                    <TextView
+                        android:id="@+id/arrival_time"
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:text="9:07"
+                        android:textSize="35dp"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+
+                        android:layout_width="94dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:elevation="2dp"
+                        android:src="@drawable/ic_baseline_expand_more_24"
+                        android:text="Distance"
+                        android:textAlignment="center"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:translationZ="@dimen/cardview_default_elevation" />
+
+                    <TextView
+                        android:id="@+id/ETA"
+                        android:layout_width="match_parent"
+                        android:layout_height="51dp"
+                        android:text="3.0"
+                        android:textSize="35dp"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </FrameLayout>
+
         <fragment
-            class="com.here.android.mpa.mapping.AndroidXMapFragment"
             android:id="@+id/mapfragment"
+            class="com.here.android.mpa.mapping.AndroidXMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

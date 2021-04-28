@@ -120,7 +120,6 @@ public class Trip_listFragment extends Fragment {
 
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
-        Log.i("Message: ", "I am fetching data from JSON",null);
 
 
         //pbar.setVisibility(View.VISIBLE);
@@ -142,7 +141,6 @@ public class Trip_listFragment extends Fragment {
 
                     extractedName = new DatabaseProfile(getContext());
                     extractedName.addData(1, abc, "", "", "","");
-                    Toast.makeText(getContext(),abc, Toast.LENGTH_LONG).show();
 
 
                     JSONObject jsonObjects = new JSONObject();

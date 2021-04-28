@@ -7,8 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Icon;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -18,17 +16,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigator;
 
-import com.example.alphademo.R;
 import com.example.alphademo.views.map.ForegroundService;
 import com.example.alphademo.views.map.VoiceSkinsActivity;
-import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.here.android.mpa.common.GeoBoundingBox;
 import com.here.android.mpa.common.GeoCoordinate;
@@ -37,35 +37,30 @@ import com.here.android.mpa.common.Image;
 import com.here.android.mpa.common.OnEngineInitListener;
 import com.here.android.mpa.guidance.AudioPlayerDelegate;
 import com.here.android.mpa.guidance.NavigationManager;
-import com.here.android.mpa.guidance.VoiceCatalog;
-import com.here.android.mpa.guidance.VoiceGuidanceOptions;
-import com.here.android.mpa.guidance.VoicePackage;
-import com.here.android.mpa.guidance.VoiceSkin;
 import com.here.android.mpa.mapping.AndroidXMapFragment;
 import com.here.android.mpa.mapping.Map;
 import com.here.android.mpa.mapping.MapMarker;
 import com.here.android.mpa.mapping.MapRoute;
 import com.here.android.mpa.routing.CoreRouter;
+import com.here.android.mpa.routing.Maneuver;
 import com.here.android.mpa.routing.Route;
 import com.here.android.mpa.routing.RouteOptions;
 import com.here.android.mpa.routing.RoutePlan;
 import com.here.android.mpa.routing.RouteResult;
+import com.here.android.mpa.routing.RouteTta;
 import com.here.android.mpa.routing.RouteWaypoint;
+
 import com.here.android.mpa.routing.Router;
 import com.here.android.mpa.routing.RoutingError;
-import com.here.services.location.internal.PositionListener;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.lang.ref.WeakReference;
-import java.net.URI;
-import java.util.Collection;
-import java.util.Iterator;
+import java.sql.Time;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import java.util.ListIterator;
-
-import static java.sql.Types.NULL;
 
 
 public class MapTemp extends Fragment {
@@ -84,6 +79,11 @@ public class MapTemp extends Fragment {
     double latitude, longitude;
     View rootView ;
     FloatingActionButton center;
+    TextView eta,arrivalTime,speed,street,direction;
+    ImageView img;
+    private java.util.EnumSet<NavigationManager.NaturalGuidanceMode> enumSet;
+    Maneuver maneuver;
+    FrameLayout tpMap, btMap;
 
     @NonNull
     @Override
@@ -96,6 +96,8 @@ public class MapTemp extends Fragment {
 
         m_naviControlButton = (Button)rootView.findViewById(R.id.naviCtrlButton);
         center = rootView.findViewById(R.id.recenter);
+        eta = rootView.findViewById(R.id.ETA);
+
         return rootView;
     }
 
@@ -125,6 +127,14 @@ public class MapTemp extends Fragment {
         super.onActivityCreated(savedInstanceState);
 
         initMapFragment();
+        arrivalTime = rootView.findViewById(R.id.arrival_time);
+        speed = rootView.findViewById(R.id.speed);
+        direction = rootView.findViewById(R.id.direction);
+        street = rootView.findViewById(R.id.street);
+        img = rootView.findViewById(R.id.direction_img);
+        btMap = rootView.findViewById(R.id.bottomMap);
+        tpMap = rootView.findViewById(R.id.topMap);
+
         center.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -311,6 +321,7 @@ public class MapTemp extends Fragment {
 
                                 /* Add the MapRoute to the map */
                                 m_map.addMapObject(mapRoute);
+                                m_map.setTrafficInfoVisible(true);
 
                                 /*
                                  * We may also want to make sure the map view is orientated properly
@@ -320,7 +331,7 @@ public class MapTemp extends Fragment {
                                         .getBoundingBox();
                                 m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE,
                                         Map.MOVE_PRESERVE_ORIENTATION);
-
+                                //arrivalTime.setText((CharSequence) m_navigationManager.getEta(true,null));
                                 startNavigation();
                             } else {
                                 Toast.makeText(getActivity(),
@@ -342,9 +353,12 @@ public class MapTemp extends Fragment {
         //m_naviControlButton = rootView.findViewById(R.id.naviCtrlButton);
         m_naviControlButton.setText(R.string.start_navi);
         m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.green));
+
         m_naviControlButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tpMap.setVisibility(View.GONE);
+                btMap.setVisibility(View.GONE);
                 /*
                  * To start a turn-by-turn navigation, a concrete route object is required.We use
                  * the same steps from Routing sample app to create a route from 4350 Still Creek Dr
@@ -363,6 +377,7 @@ public class MapTemp extends Fragment {
                     //startNavigation();
                 } else {
                     m_navigationManager.stop();
+
                     /*
                      * Restore the map orientation to show entire route on screen
                      */
@@ -412,12 +427,16 @@ public class MapTemp extends Fragment {
         }
     }
 
+    double dis=0;
+
+
     private void startNavigation() {
         m_naviControlButton.setText(R.string.stop_navi);
         m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.teal_200));
         /* Configure Navigation manager to launch navigation on current map */
         m_navigationManager.setMap(m_map);
-
+        tpMap.setVisibility(View.VISIBLE);
+        btMap.setVisibility(View.VISIBLE);
         m_mapFragment.getPositionIndicator().setVisible(true);
         /*
          * Start the turn-by-turn navigation.Please note if the transport mode of the passed-in
@@ -425,8 +444,19 @@ public class MapTemp extends Fragment {
          * suitable for walking. Simulation and tracking modes can also be launched at this moment
          * by calling either simulate() or startTracking()
          */
-
+        m_navigationManager.setRealisticViewMode(NavigationManager.RealisticViewMode.NIGHT);
         m_navigationManager.startNavigation(m_route);
+        m_navigationManager.getTta(Route.TrafficPenaltyMode.OPTIMAL, true);
+
+        //m_navigationManager.setNaturalGuidanceMode(enumSet);
+        getManuevers();
+
+
+        //String name = m_navigationManager.getNextManeuver().getRoadNames().get(0);
+        //street.setText(name);
+
+        //img.setImageURI(ma.get(0).getNextRoadImage());
+
         m_map.setTilt(60);
         startForegroundService();
 
@@ -490,7 +520,32 @@ public class MapTemp extends Fragment {
 
         m_navigationManager.addRerouteListener(new WeakReference<NavigationManager.RerouteListener >(newRoute){
         });
+
+        m_navigationManager.addNewInstructionEventListener(new WeakReference<NavigationManager.NewInstructionEventListener>(m_newInstructionEventListener));
+
     }
+
+    public void getManuevers(){
+
+        dis = m_route.getLength()/1609;
+        eta.setText(dis+"");
+
+
+        //maneuver = m_route.getManeuvers();
+        //Log.i("ManeM:", maneuver.get(0).get);
+
+        //String s = maneuver.get(1).getNextRoadName();
+        //street.setText(s);
+
+    }
+
+    private NavigationManager.ManeuverEventListener maneuverEventListener = new NavigationManager.ManeuverEventListener() {
+        @Override
+        public void onManeuverEvent() {
+
+        }
+    };
+
 
     private NavigationManager.RerouteListener newRoute = new NavigationManager.RerouteListener() {
         @Override
@@ -502,6 +557,7 @@ public class MapTemp extends Fragment {
             //routePlan = new RoutePlan();
             m_map.removeAllMapObjects();
             createRoute(d1,d2);
+            getManuevers();
         }
 
         @Override
@@ -509,6 +565,8 @@ public class MapTemp extends Fragment {
             super.onRerouteEnd(routeResult, routingError);
         }
     };
+
+
 
     private NavigationManager.PositionListener m_positionListener =
             new NavigationManager.PositionListener() {
@@ -519,12 +577,72 @@ public class MapTemp extends Fragment {
                 }
             };
 
+    Date currentTime = Calendar.getInstance().getTime();
+    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
+    private NavigationManager.NewInstructionEventListener m_newInstructionEventListener =
+            new NavigationManager.NewInstructionEventListener() {
+                @Override
+                public void onNewInstructionEvent() {
+                    maneuver = m_navigationManager.getNextManeuver();
+                    if(maneuver !=null){
+
+                        if(maneuver.getTurn().name().equals("QUITE_RIGHT") || maneuver.getTurn().name().equals("HEAVY_RIGHT") ){
+                            img.setBackgroundResource(R.drawable.rightturn);
+                            direction.setText("Turn Right");
+                        }
+                        else if(maneuver.getTurn().name().equals("QUITE_LEFT") || maneuver.getTurn().name().equals("HEAVY_LEFT") ){
+                            img.setBackgroundResource(R.drawable.leftturn);
+                            direction.setText("Turn Left");
+                        }
+
+                        else if(maneuver.getTurn().name().equals("KEEP_MIDDLE") || maneuver.getTurn().name().equals("NO_TURN")){
+                            img.setBackgroundResource(R.drawable.straight);
+                            direction.setText("Keep Straight");
+                        }
+
+                        else if(maneuver.getTurn().name().equals("LIGHT_LEFT")){
+                            img.setBackgroundResource(R.drawable.lightleft);
+                            direction.setText("Slight Left");
+                        }
+
+                        else if(maneuver.getTurn().name().equals("LIGHT_RIGHT")){
+                            img.setBackgroundResource(R.drawable.lightright);
+                            direction.setText("Slight Left");
+                        }
+                        street.setText(maneuver.getNextRoadName());
+                        int hour = 0;
+                        int seconds = m_route.getTtaIncludingTraffic(0).getDuration();
+                        //int hour = currentTime.getHours()+m_navigationManager.getEta(false, Route.TrafficPenaltyMode.AVOID_LONG_TERM_CLOSURES).getHours();
+                        //int minutes = currentTime.getMinutes()+m_navigationManager.getEta(false, Route.TrafficPenaltyMode.AVOID_LONG_TERM_CLOSURES).getMinutes();
+                        int p1 = seconds % 60;
+                        int p2 = seconds / 60;
+                        int p3 = p2 % 60;
+                        p2 = p2 / 60;
+                        Log.i("TIME",p2+":"+p3+"");
+                        int h = currentTime.getHours()+p2;
+                        int m = currentTime.getMinutes()+p3;
+                        //arrivalTime.setText(m_navigationManager.getEta(true, Route.TrafficPenaltyMode.OPTIMAL).getTime()/60+"");
+
+                        //arrivalTime.setText(hour+":"+minute);
+
+                        arrivalTime.setText(h+":"+m);
+                        //eta.setText(m_navigationManager.getRemainingDistance(1));
+
+                    }
+                }
+            };
+
     private NavigationManager.NavigationManagerEventListener m_navigationManagerEventListener =
             new NavigationManager.NavigationManagerEventListener() {
 
                 @Override
                 public void onRouteUpdated(Route route) {
                     Toast.makeText(getContext(), "Route updated", Toast.LENGTH_SHORT).show();
+                    dis = m_route.getLength();
+                    eta.setText(dis+"");
+
+                    //arrivalTime.setText((CharSequence) m_navigationManager.getEta(true,null));
                 }
 
                 @Override
@@ -532,6 +650,7 @@ public class MapTemp extends Fragment {
                     Toast.makeText(getContext(), "Country info updated from " + s + " to " + s1,
                             Toast.LENGTH_SHORT).show();
                 }
+
             };
 
     private AudioPlayerDelegate m_audioPlayerDelegate = new AudioPlayerDelegate() {
@@ -558,6 +677,7 @@ public class MapTemp extends Fragment {
         }
     }
 
+
     private void getLocation() {
         if (ActivityCompat.checkSelfPermission(
                 getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
@@ -568,6 +688,8 @@ public class MapTemp extends Fragment {
             if (locationGPS != null) {
                 double lat = locationGPS.getLatitude();
                 double longi = locationGPS.getLongitude();
+                int speeds = (int) Math.floor(locationGPS.getSpeed());
+                speed.setText(speeds+"");
                 latitude = Double.parseDouble(String.valueOf(lat));
                 longitude = Double.parseDouble(String.valueOf(longi));
             } else {
