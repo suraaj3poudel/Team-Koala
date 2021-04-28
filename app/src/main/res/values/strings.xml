@@ -39,5 +39,12 @@
     <string name="fuel_stick_reading_after">Fuel Stick Reading After</string>
     <string name="meter_reading_after">Meter Reading After</string>
     <string name="dd_mm_yy">dd/mm/yy</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="done">Done</string>
+    <string name="clear">Clear</string>
+    <string name="save">Save</string>
+    <string name="signature">Signature</string>
+
 
 </resources>

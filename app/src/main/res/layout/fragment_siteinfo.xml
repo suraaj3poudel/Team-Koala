@@ -112,7 +112,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/card_item_background2"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -342,14 +342,16 @@
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/navSite"
-                android:layout_width="250dp"
-                android:layout_height="72dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="15dp"
                 android:backgroundTint="@android:color/holo_green_dark"
                 android:orientation="horizontal"
                 android:text="Start Navigation"
                 android:textAlignment="center"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
                 android:textColor="@android:color/white">
 
                 <!--                <Button-->
