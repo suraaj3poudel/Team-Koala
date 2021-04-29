@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -54,9 +56,14 @@ public class MainActivity extends AppCompatActivity {
     }
         public void openActivity2(){
 
-
-        Intent intent= new Intent(this, MainActivity2.class);
+            Intent intent= new Intent(this, MainActivity2.class);
             startActivity(intent);
+            final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+
+            Bounce interpolator = new Bounce(0.2, 30);
+            myAnim.setInterpolator(interpolator);
+
+            login.startAnimation(myAnim);
         }
 
 

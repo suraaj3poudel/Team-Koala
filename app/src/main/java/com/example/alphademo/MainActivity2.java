@@ -61,8 +61,9 @@ public class MainActivity2 extends AppCompatActivity  {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
         bottomNavigationView.setActivated(true);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ViewAllTripsFragment()).commit();
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enterlefttoright,R.anim.exitlefttoright).replace(R.id.fragment_container, new ViewAllTripsFragment()).commit();
     }
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -82,17 +83,16 @@ public class MainActivity2 extends AppCompatActivity  {
                     select = new SettingFragment();
                     break;
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,  select).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enterrighttoleft, R.anim.exitrighttoleft).replace(R.id.fragment_container,  select).commit();
             return true;
         }
     };
 
 
+}
 
 
 
 
-
-        }
 
 
