@@ -24,7 +24,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/site_record_form"
+                android:text="Source Record Form"
                 android:textColor="@color/black"
                 android:textSize="25sp"
                 android:textStyle="bold"
