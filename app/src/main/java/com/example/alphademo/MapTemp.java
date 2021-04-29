@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.PointF;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -29,16 +32,20 @@ import androidx.navigation.Navigator;
 
 import com.example.alphademo.views.map.ForegroundService;
 import com.example.alphademo.views.map.VoiceSkinsActivity;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.here.android.mpa.common.GeoBoundingBox;
 import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.GeoPosition;
 import com.here.android.mpa.common.Image;
 import com.here.android.mpa.common.OnEngineInitListener;
+import com.here.android.mpa.common.ViewObject;
 import com.here.android.mpa.guidance.AudioPlayerDelegate;
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.mapping.AndroidXMapFragment;
 import com.here.android.mpa.mapping.Map;
+import com.here.android.mpa.mapping.MapGesture;
 import com.here.android.mpa.mapping.MapMarker;
 import com.here.android.mpa.mapping.MapRoute;
 import com.here.android.mpa.routing.CoreRouter;
@@ -69,6 +76,7 @@ public class MapTemp extends Fragment {
     private AndroidXMapFragment m_mapFragment;
     private Button m_naviControlButton;
     private Map m_map;
+    private Context mContext;
     private NavigationManager m_navigationManager;
     private GeoBoundingBox m_geoBoundingBox;
     private Route m_route;
@@ -81,9 +89,9 @@ public class MapTemp extends Fragment {
     FloatingActionButton center;
     TextView eta,arrivalTime,speed,street,direction;
     ImageView img;
-    private java.util.EnumSet<NavigationManager.NaturalGuidanceMode> enumSet;
     Maneuver maneuver;
     FrameLayout tpMap, btMap;
+    LocationRequest mLocationRequest;
 
     @NonNull
     @Override
@@ -195,6 +203,7 @@ public class MapTemp extends Fragment {
                         } else {
                             getLocation();
                         }
+
                         m_map = m_mapFragment.getMap();
                         setMarker(latitude,longitude,R.drawable.label);
                         setMarker(d1,d2,R.drawable.map_label);
@@ -330,7 +339,7 @@ public class MapTemp extends Fragment {
                                 m_geoBoundingBox = routeResults.get(0).getRoute()
                                         .getBoundingBox();
                                 m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE,
-                                        Map.MOVE_PRESERVE_ORIENTATION);
+                                        0f);
                                 //arrivalTime.setText((CharSequence) m_navigationManager.getEta(true,null));
                                 startNavigation();
                             } else {
@@ -374,6 +383,7 @@ public class MapTemp extends Fragment {
                 if (m_route == null) {
                     //m_navigationManager = NavigationManager.getInstance();
                     createRoute(d1,d2);
+                    //MoveButton(rootView);
                     //startNavigation();
                 } else {
                     m_navigationManager.stop();
@@ -382,7 +392,7 @@ public class MapTemp extends Fragment {
                      * Restore the map orientation to show entire route on screen
                      */
                     m_map.setZoomLevel(13);
-                    m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE, 0f);
+                    //m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE, 0f);
                     m_naviControlButton.setText(R.string.start_navi);
                     m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.green));
                     m_route = null;
@@ -611,6 +621,9 @@ public class MapTemp extends Fragment {
                         }
                         street.setText(maneuver.getNextRoadName());
                         int hour = 0;
+                        if(m_route == null){
+                            createRoute(d1,d2);
+                        }
                         int seconds = m_route.getTtaIncludingTraffic(0).getDuration();
                         //int hour = currentTime.getHours()+m_navigationManager.getEta(false, Route.TrafficPenaltyMode.AVOID_LONG_TERM_CLOSURES).getHours();
                         //int minutes = currentTime.getMinutes()+m_navigationManager.getEta(false, Route.TrafficPenaltyMode.AVOID_LONG_TERM_CLOSURES).getMinutes();
@@ -626,6 +639,12 @@ public class MapTemp extends Fragment {
                         //arrivalTime.setText(hour+":"+minute);
 
                         arrivalTime.setText(h+":"+m);
+
+//                        mLocationRequest = new LocationRequest();
+//                        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//                        mLocationRequest.setInterval(1000);
+
+
                         //eta.setText(m_navigationManager.getRemainingDistance(1));
 
                         dis = m_navigationManager.getDestinationDistance()/1609;
@@ -635,14 +654,16 @@ public class MapTemp extends Fragment {
                 }
             };
 
+
+
     private NavigationManager.NavigationManagerEventListener m_navigationManagerEventListener =
             new NavigationManager.NavigationManagerEventListener() {
 
                 @Override
                 public void onRouteUpdated(Route route) {
                     Toast.makeText(getContext(), "Route updated", Toast.LENGTH_SHORT).show();
-                    dis = m_route.getLength();
-                    eta.setText(dis+"");
+                    //dis = m_route.getLength();
+                    //eta.setText(dis+"");
 
                     //arrivalTime.setText((CharSequence) m_navigationManager.getEta(true,null));
                 }
@@ -669,6 +690,7 @@ public class MapTemp extends Fragment {
             return false;
         }
     };
+    private FusedLocationProviderClient mFusedLocationProvierCilent;
 
     public void onDestroy() {
         /* Stop the navigation when app is destroyed */
@@ -681,9 +703,9 @@ public class MapTemp extends Fragment {
 
 
     private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (mContext!=null && ActivityCompat.checkSelfPermission(
+                (Activity) mContext,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                (Activity) mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         } else {
             Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);

@@ -81,7 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:elevation="2dp"
-                    android:text="Turn Right"
+                    android:text="Redirecting ..."
                     android:textSize="25dp"
 
                     android:layout_marginTop="5dp"
@@ -95,7 +95,7 @@
                     android:layout_marginLeft="5dp"
                     android:elevation="2dp"
                     android:padding="5dp"
-                    android:text="Concordia Street"
+                    android:text="Waiting for GPS .. "
                     android:textColor="@color/black"
                     android:translationZ="@dimen/cardview_default_elevation" />
             </LinearLayout>
@@ -157,7 +157,7 @@
                         android:id="@+id/speed"
                         android:layout_width="match_parent"
                         android:layout_height="51dp"
-                        android:text="60"
+                        android:text="--"
                         android:textSize="35dp"
                         android:textAlignment="center" />
                 </LinearLayout>
@@ -184,7 +184,7 @@
                         android:id="@+id/arrival_time"
                         android:layout_width="match_parent"
                         android:layout_height="51dp"
-                        android:text="9:07"
+                        android:text="--:--"
                         android:textSize="35dp"
                         android:textAlignment="center" />
                 </LinearLayout>
@@ -212,7 +212,7 @@
                         android:id="@+id/ETA"
                         android:layout_width="match_parent"
                         android:layout_height="51dp"
-                        android:text="3.0"
+                        android:text="--"
                         android:textSize="35dp"
                         android:textAlignment="center" />
                 </LinearLayout>
