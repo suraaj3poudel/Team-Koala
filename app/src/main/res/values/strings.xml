@@ -45,6 +45,7 @@
     <string name="clear">Clear</string>
     <string name="save">Save</string>
     <string name="signature">Signature</string>
+    <string name="password">Password</string>
 
 
 </resources>
