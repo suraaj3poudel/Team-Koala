@@ -32,7 +32,7 @@ public class MainActivity2 extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         notification = findViewById(R.id.bell);
-        //notification.setOnClickListener(this);
+
         notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,13 +40,16 @@ public class MainActivity2 extends AppCompatActivity  {
                 dialog.setContentView(R.layout.notification);
                 dialog.setTitle("Title...");
 
-                // set the custom dialog components - text, image and button
+                /**
+                 * set the custom dialog components - text, image and button
+                  */
                 TextView text = (TextView) dialog.findViewById(R.id.text);
                 text.setText("Here is your notification!");
-
-
                 Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-                // if button is clicked, close the custom dialog
+
+                /**
+                 * if button is clicked, close the custom dialog
+                 */
                 dialogButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -61,13 +64,21 @@ public class MainActivity2 extends AppCompatActivity  {
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
         bottomNavigationView.setActivated(true);
+        /**
+         * setting the default fragment for MainActivity2
+         * Adding slide animation to the fragment
+         */
         getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enterlefttoright,R.anim.exitlefttoright).replace(R.id.fragment_container, new ViewAllTripsFragment()).commit();
     }
 
-
-
+    /**
+     * creating a listener for bottom navigation
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
+        /**
+         *creating a listener to change the view fragments based on click
+         */
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
             Fragment select = null;
@@ -83,6 +94,9 @@ public class MainActivity2 extends AppCompatActivity  {
                     select = new SettingFragment();
                     break;
             }
+            /**
+             * displaying the view when clicked with animation
+             */
             getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enterrighttoleft, R.anim.exitrighttoleft).replace(R.id.fragment_container,  select).commit();
             return true;
         }

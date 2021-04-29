@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -32,11 +33,10 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.Driverid);
         password = findViewById(R.id.password);
 
-
         onClickLogin();
 
-    }
 
+    }
     private void onClickLogin() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,16 +54,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-        public void openActivity2(){
+
+    /**
+     * This method opens new activity when login button is pressed
+     */
+    public void openActivity2(){
 
             Intent intent= new Intent(this, MainActivity2.class);
             startActivity(intent);
-            final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
-
-            Bounce interpolator = new Bounce(0.2, 30);
-            myAnim.setInterpolator(interpolator);
-
-            login.startAnimation(myAnim);
+        /**
+         * animation for the login button
+         */
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        Bounce interpolator = new Bounce(0.2, 30);
+        myAnim.setInterpolator(interpolator);
+        login.startAnimation(myAnim);
         }
 
 
@@ -72,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         builder.setCancelable(true);
         builder.setTitle(title);
         builder.setMessage(message);
-
         builder.setPositiveButton("OK", null);
         AlertDialog dialog = builder.create();
         dialog.show();

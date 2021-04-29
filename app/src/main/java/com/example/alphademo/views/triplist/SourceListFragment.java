@@ -24,12 +24,7 @@ public class SourceListFragment extends Fragment {
 
     public SourceListFragment(RecyclerViewSource sourceAdapter) {
         adapter = sourceAdapter;
-
     }
-
-
-
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

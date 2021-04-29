@@ -257,10 +257,7 @@ public class SettingFragment extends Fragment {
 
     }
 
-    public void openDialog() {
-        DialogFragment dialog = new DialogFragment();
-        dialog.show(getChildFragmentManager(), "example ");
-    }
+
 
     public void saveFunction(String updateAddress1) {
         updateAddress = editAddress.getText().toString();
