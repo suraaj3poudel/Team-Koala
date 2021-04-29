@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".dummy.DeliveryForm"
-    android:background="@color/primary">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -62,6 +62,7 @@
                 android:drawablePadding="5dp"
                 android:focusable="false"
                 android:hint="@string/dd_mm_yy"
+                android:textColorHint="@color/lightgrey"
                 android:importantForAutofill="no"
                 android:inputType="date"
                 android:paddingStart="5dp"
@@ -95,6 +96,7 @@
                 android:drawablePadding="5dp"
                 android:focusable="false"
                 android:hint="@string/dd_mm_yy"
+                android:textColorHint="@color/lightgrey"
                 android:importantForAutofill="no"
                 android:inputType="date"
                 android:paddingStart="5dp"
@@ -126,6 +128,7 @@
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="Quantity"
+                android:textColorHint="@color/lightgrey"
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
@@ -156,11 +159,11 @@
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="@string/quantity"
+                android:textColorHint="@color/lightgrey"
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/white"
-                android:textStyle="bold"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -194,6 +197,7 @@
                 android:drawablePadding="5dp"
                 android:focusable="false"
                 android:hint="@string/start_time"
+                android:textColorHint="@color/lightgrey"
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
@@ -225,6 +229,7 @@
                 android:drawablePadding="5dp"
                 android:focusable="false"
                 android:hint="@string/end_time"
+                android:textColorHint="@color/lightgrey"
                 android:inputType="textPostalAddress"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
@@ -259,6 +264,7 @@
                 android:drawableStart="@drawable/ic_baseline_local_gas_station_24"
                 android:drawablePadding="5dp"
                 android:hint="@string/fuel_type"
+                android:textColorHint="@color/lightgrey"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/white"
@@ -292,6 +298,7 @@
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="@string/quantity"
+                android:textColorHint="@color/lightgrey"
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
@@ -323,6 +330,7 @@
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="Quantity"
+                android:textColorHint="@color/lightgrey"
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
@@ -354,6 +362,7 @@
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="Quantity"
+                android:textColorHint="@color/lightgrey"
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
@@ -383,12 +392,13 @@
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="@string/quantity"
+                android:textColorHint="@color/lightgrey"
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                />
 
         </LinearLayout>
 
