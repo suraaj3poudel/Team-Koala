@@ -3,6 +3,7 @@ package com.example.alphademo.views.setting;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -188,6 +189,14 @@ public class SettingFragment extends Fragment {
                     imagePhone.setVisibility(View.VISIBLE);
                     imageName.setVisibility(View.VISIBLE);
 
+
+                    backgroundAndPadding(textName);
+                    backgroundAndPadding(textEmail);
+                    backgroundAndPadding(textAddress);
+                    backgroundAndPadding(textPhone);
+                    backgroundAndPadding(textGender);
+
+
                     topSection.setVisibility(View.GONE);
 
 
@@ -314,6 +323,18 @@ public class SettingFragment extends Fragment {
         tv_address.setVisibility(View.VISIBLE);
         topSection.setVisibility(View.VISIBLE);
 
+        textName.setBackground(null);
+        textGender.setBackground(null);
+        textPhone.setBackground(null);
+        textAddress.setBackground(null);
+        textEmail.setBackground(null);
+
+        textName.setPadding(0, 0, 0, 0);
+        textPhone.setPadding(0, 0, 0, 0);
+        textAddress.setPadding(0, 0, 0, 0);
+        textEmail.setPadding(0, 0, 0, 0);
+        textGender.setPadding(0, 0, 0, 0);
+
 
     }
 
@@ -322,6 +343,11 @@ public class SettingFragment extends Fragment {
         appear.setText(db.getData(1, field));
         disappear.setVisibility(View.GONE);
         image.setVisibility(View.GONE);
+    }
+
+    public void backgroundAndPadding(TextView newAppearance){
+        newAppearance.setBackgroundResource(R.drawable.rectangled);
+        newAppearance.setPadding(50,50,50, 50);
     }
 }
 
