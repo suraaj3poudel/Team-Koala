@@ -76,7 +76,7 @@ public class MapTemp extends Fragment {
     private AndroidXMapFragment m_mapFragment;
     private Button m_naviControlButton;
     private Map m_map;
-    private Context mContext;
+    private Context mContext = getActivity();
     private NavigationManager m_navigationManager;
     private GeoBoundingBox m_geoBoundingBox;
     private Route m_route;
@@ -126,7 +126,8 @@ public class MapTemp extends Fragment {
     private void recenter() {
         m_map.setCenter(new GeoCoordinate(latitude,longitude,0.0), Map.Animation.BOW);
         Log.i("NewCenter",latitude+" "+longitude);
-        m_map.setZoomLevel(15);
+        m_map.setZoomLevel(18);
+        m_map.setTilt(60);
     }
 
 
@@ -271,7 +272,7 @@ public class MapTemp extends Fragment {
 
     private void createRoute(double d1,double d2) {
         /* Initialize a CoreRouter */
-        Toast.makeText(getContext(), "Working on it.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Working on it.", Toast.LENGTH_SHORT).show();
         CoreRouter coreRouter = new CoreRouter();
 
         /* Initialize a RoutePlan */
@@ -336,10 +337,10 @@ public class MapTemp extends Fragment {
                                  * We may also want to make sure the map view is orientated properly
                                  * so the entire route can be easily seen.
                                  */
-                                m_geoBoundingBox = routeResults.get(0).getRoute()
-                                        .getBoundingBox();
-                                m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE,
-                                        0f);
+                                //m_geoBoundingBox = routeResults.get(0).getRoute()
+                                        //.getBoundingBox();
+                                //m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE,
+                                        //0f);
                                 //arrivalTime.setText((CharSequence) m_navigationManager.getEta(true,null));
                                 startNavigation();
                             } else {
@@ -455,7 +456,9 @@ public class MapTemp extends Fragment {
          * by calling either simulate() or startTracking()
          */
         m_navigationManager.setRealisticViewMode(NavigationManager.RealisticViewMode.NIGHT);
-        m_navigationManager.startNavigation(m_route);
+
+       m_navigationManager.startNavigation(m_route);
+       m_navigationManager.setMapUpdateMode(NavigationManager.MapUpdateMode.POSITION_ANIMATION);
         m_navigationManager.getTta(Route.TrafficPenaltyMode.OPTIMAL, true);
 
         //m_navigationManager.setNaturalGuidanceMode(enumSet);
@@ -496,7 +499,9 @@ public class MapTemp extends Fragment {
          * recommended to set the map update mode to NONE first. Other supported update mode can be
          * found in HERE Mobile SDK for Android (Premium) API doc
          */
-        m_navigationManager.setMapUpdateMode(NavigationManager.MapUpdateMode.ROADVIEW);
+
+        //recenter();
+        m_map.setZoomLevel(18);
 
         /*
          * Sets the measuring unit system that is used by voice guidance.
@@ -703,10 +708,10 @@ public class MapTemp extends Fragment {
 
 
     private void getLocation() {
-        if (mContext!=null && ActivityCompat.checkSelfPermission(
-                (Activity) mContext,Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                (Activity) mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
+        if (ActivityCompat.checkSelfPermission(
+                getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity)getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
         } else {
             Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (locationGPS != null) {
@@ -716,6 +721,7 @@ public class MapTemp extends Fragment {
                 speed.setText(speeds+"");
                 latitude = Double.parseDouble(String.valueOf(lat));
                 longitude = Double.parseDouble(String.valueOf(longi));
+
             } else {
                 Toast.makeText(getContext(), "Unable to find location.", Toast.LENGTH_SHORT).show();
             }

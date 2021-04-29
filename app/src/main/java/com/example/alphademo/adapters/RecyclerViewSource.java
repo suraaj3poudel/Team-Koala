@@ -194,7 +194,8 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 FragmentManager manager = activity.getSupportFragmentManager();
 
                 final FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.fragment_container,fragment);
+                transaction.add(R.id.fragment_container,fragment,"map");
+                //transaction.replace(R.id.fragment_container,fragment);
                 Bundle args = new Bundle();
                 args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
                 args.putDouble("d2", mSourceInfo.get(pos).getLongitude());

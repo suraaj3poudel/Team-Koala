@@ -3,6 +3,7 @@ package com.example.alphademo.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Dialog;
 import android.app.FragmentManager;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -113,20 +115,29 @@ public class MainActivity2 extends AppCompatActivity  {
             {
                 case R.id.trip_list:
                     select = new ViewAllTripsFragment() ;
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
                     break;
                 case R.id.map:
-                    select = new MapTemp();
+                  if(getSupportFragmentManager().findFragmentByTag("map") == null) {
+                       select = new MapTemp();
+                      getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
+                   }
+                    else {
+                      select = (Fragment) getSupportFragmentManager().findFragmentByTag("map");
+                      FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                      //ft.remove(select);
+                      //ft.add(R.id.fragment_container,select,"map");
+                      ft.commit();
+                  }
                     break;
                 case R.id.setting:
                     select = new SettingFragment();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
                     break;
             }
-            if(select!=null) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
-            }
-            else{
-                getSupportFragmentManager().beginTransaction().show(select).commit();
-            }
+
+
+
             return true;
         }
 
