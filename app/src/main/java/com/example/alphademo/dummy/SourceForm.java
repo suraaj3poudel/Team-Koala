@@ -38,17 +38,19 @@ public class SourceForm extends AppCompatActivity {
     private static final int IMAGE_CAPTURE_CODE = 1001;
 
     //Initialize variable
-    EditText date1,date2;
+    EditText date1,date2,fuelStickB, meterB, grossGall, netGall, fuelStickA, meterA;
     DatePickerDialog datePickerDialog;
-    TextView time1,time2,fuelType;
+    TextView time1,time2,fuelType,barcode;
 
     Button mCaptureBtn;
     ImageView mImageView;
     Uri image_uri;
 
-    Button btScan;
+    Button btScan, doneBtn;
     View formfrag;
     boolean photo = false;
+
+    String startDate,endDate,fuelReadingB,meterReadingB,startTime,endTime,grossGallon,netGallon,fuelReadingA,meterReadingA,barcodeNum;
 
 
     @Override
@@ -77,6 +79,15 @@ public class SourceForm extends AppCompatActivity {
         /**perform click event on edit text for time */
         onClickTime1();
         onClickTime2();
+
+
+        fuelStickB = findViewById(R.id.fuelStickB);
+        meterB = findViewById(R.id.meterB);
+        grossGall = findViewById(R.id.grossGall);
+        netGall = findViewById(R.id.netGall);
+        fuelStickA = findViewById(R.id.fuelStickA);
+        meterA = findViewById(R.id.meterA);
+        barcode = findViewById(R.id.scanText);
 
         //initiate variable for camera
         mImageView = findViewById(R.id.image_view);
@@ -122,6 +133,16 @@ public class SourceForm extends AppCompatActivity {
                 intentIntegrator.setOrientationLocked(true);
                 intentIntegrator.setCaptureActivity(Capture.class);
                 intentIntegrator.initiateScan();
+            }
+        });
+
+        doneBtn = findViewById(R.id.doneBtn);
+        doneBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(validateInput()){
+                    finish();
+                }
             }
         });
 
@@ -303,7 +324,7 @@ public class SourceForm extends AppCompatActivity {
         if (intentResult.getContents() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(SourceForm.this);
             //set Title
-            builder.setTitle("Result");
+            builder.setTitle("Scanned Barcode");
             //set Message
             builder.setMessage(intentResult.getContents());
 
@@ -320,8 +341,124 @@ public class SourceForm extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Could not Scan anything... ", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    public boolean validateInput(){
 
+        boolean flag = false;
+
+        startDate = date1.getText().toString();
+        endDate = date2.getText().toString();
+        fuelReadingB = fuelStickB.getText().toString();
+        meterReadingB = meterB.getText().toString();
+        startTime = time1.getText().toString();
+        endTime = time2.getText().toString();
+        grossGallon = grossGall.getText().toString();
+        netGallon = netGall.getText().toString();
+        fuelReadingA = fuelStickA.getText().toString();
+        meterReadingA = meterA.getText().toString();
+        barcodeNum = barcode.getText().toString();
+
+//        Changing String to Integer
+//        int mB = Integer.parseInt(meterReadingB);
+//        int mA = Integer.parseInt(meterReadingA);
+//
+//        int fB = Integer.parseInt(fuelReadingB);
+//        int fA = Integer.parseInt(fuelReadingA);
+
+        if (startDate.equals("")){
+            Toast.makeText(this,"Please select Start Date", Toast.LENGTH_SHORT).show();
+            date1.setError("Please select Start Date");
+            date1.requestFocus();
+        }
+
+        else if (endDate.equals("")){
+            Toast.makeText(this,"Please select End Date", Toast.LENGTH_SHORT).show();
+            date2.setError("Please select End Date");
+            date2.requestFocus();
+        }
+
+        else if (fuelReadingB.equals("")){
+            Toast.makeText(this,"Please select Fuel Stick Reading Before", Toast.LENGTH_SHORT).show();
+            fuelStickB.setError("Please select Fuel Stick Reading Before");
+            fuelStickB.requestFocus();
+        }
+
+        else if (meterReadingB.equals("")){
+            Toast.makeText(this,"Please select Meter Reading Before", Toast.LENGTH_SHORT).show();
+            meterB.setError("Please select Meter Reading Before");
+            meterB.requestFocus();
+        }
+
+        else if (startTime.equals("")){
+            Toast.makeText(this,"Please select Start Time", Toast.LENGTH_SHORT).show();
+            time1.setError("Please select Start Time");
+            time1.requestFocus();
+        }
+
+        else if (endTime.equals("")){
+            Toast.makeText(this,"Please select End Time", Toast.LENGTH_SHORT).show();
+            time2.setError("Please select End Time");
+            time2.requestFocus();
+        }
+
+        else if (grossGallon.equals("")){
+            Toast.makeText(this,"Please select Gross Gallon Dropped", Toast.LENGTH_SHORT).show();
+            grossGall.setError("Please select Gross Gallon Dropped");
+            grossGall.requestFocus();
+        }
+
+        else if (netGallon.equals("")){
+            Toast.makeText(this,"Please select Net Gallon Dropped", Toast.LENGTH_SHORT).show();
+            netGall.setError("Please select Net Gallon Dropped");
+            netGall.requestFocus();
+        }
+
+        else if (fuelReadingA.equals("")){
+            Toast.makeText(this,"Please select Fuel Stick Reading After", Toast.LENGTH_SHORT).show();
+            fuelStickA.setError("Please select Fuel Reading After");
+            fuelStickA.requestFocus();
+        }
+
+//        else if(fB >= fA){
+//            Toast.makeText(this,"Fuel Reading After is less than Fuel Reading Before", Toast.LENGTH_SHORT).show();
+//            fuelStickA.setError("Fuel Reading After is less than Fuel Reading Before");
+//            fuelStickA.requestFocus();
+//        }
+
+        else if (meterReadingA.equals("")){
+            Toast.makeText(this,"Please select Meter Reading After", Toast.LENGTH_SHORT).show();
+            meterA.setError("Please select Meter Reading After");
+            meterA.requestFocus();
+        }
+
+//        else if(mB >= mA){
+//            Toast.makeText(this,"Meter Reading After is less than Meter Reading Before", Toast.LENGTH_SHORT).show();
+//            meterA.setError("Meter Reading After is less than Meter Reading Before");
+//            meterA.requestFocus();
+//        }
+
+        else if (barcodeNum.equals("")){
+            Toast.makeText(this,"Please Scan Barcode", Toast.LENGTH_SHORT).show();
+            barcode.setError("Please Scan Barcode");
+            barcode.requestFocus();
+        }
+
+        else{
+            flag = true;
+            date1.setError(null);
+            date2.setError(null);
+            fuelStickB.setError(null);
+            meterB.setError(null);
+            time1.setError(null);
+            time2.setError(null);
+            grossGall.setError(null);
+            netGall.setError(null);
+            fuelStickA.setError(null);
+            meterA.setError(null);
+            barcode.setError(null);
+        }
+        return flag;
     }
 
 }

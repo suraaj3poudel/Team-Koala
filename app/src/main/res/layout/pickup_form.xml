@@ -76,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="5dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -95,7 +96,7 @@
                     android:drawablePadding="5dp"
                     android:focusable="false"
                     android:hint="@string/dd_mm_yy"
-                    android:textColorHint="#999999"
+                    android:textColorHint="@color/lightgrey"
                     android:importantForAutofill="no"
                     android:inputType="date"
                     android:paddingStart="5dp"
@@ -122,13 +123,14 @@
                 android:textColor="@color/black"/>
 
             <EditText
+                android:id="@+id/fuelStickB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="Quantity"
                 android:textColorHint="@color/lightgrey"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
@@ -153,13 +155,14 @@
                 android:textColor="@color/black"/>
 
             <EditText
+                android:id="@+id/meterB"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="@string/quantity"
                 android:textColorHint="@color/lightgrey"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
@@ -210,7 +213,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginStart="5dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -234,8 +238,7 @@
                     android:paddingStart="5dp"
                     android:paddingEnd="5dp"
                     android:textSize="20sp"
-                    android:textColor="@color/black"
-                    />
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
 
@@ -286,13 +289,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="@string/gross_gallon_dropped"
+                android:text="Gross Gallon Picked"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
             <EditText
-                android:id="@+id/editTextNumber2"
+                android:id="@+id/grossGall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -300,7 +303,7 @@
                 android:drawablePadding="5dp"
                 android:hint="@string/quantity"
                 android:textColorHint="@color/lightgrey"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
@@ -319,12 +322,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_weight="1"
-                android:text="@string/net_gallon_dropped"
+                android:text="Net Gallon Picked"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:textColor="@color/black"/>
 
             <EditText
+                android:id="@+id/netGall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -332,7 +336,7 @@
                 android:drawablePadding="5dp"
                 android:hint="Quantity"
                 android:textColorHint="@color/lightgrey"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
@@ -357,6 +361,7 @@
                 android:textColor="@color/black"/>
 
             <EditText
+                android:id="@+id/fuelStickA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -364,7 +369,7 @@
                 android:drawablePadding="5dp"
                 android:hint="Quantity"
                 android:textColorHint="@color/lightgrey"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
@@ -388,20 +393,21 @@
                 android:textColor="@color/black"/>
 
             <EditText
+                android:id="@+id/meterA"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_baseline_pending_24"
                 android:drawablePadding="5dp"
                 android:hint="@string/quantity"
                 android:textColorHint="@color/lightgrey"
-                android:inputType="number"
+                android:inputType="numberDecimal"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textColor="@color/black"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -460,7 +466,9 @@
                 android:hint="@string/barcode"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColorHint="@color/lightgrey"
+                android:textColor="@color/black"/>
 
             <Button
                 android:id="@+id/buttonScan"

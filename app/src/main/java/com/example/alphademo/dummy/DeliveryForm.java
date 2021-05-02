@@ -13,9 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -33,7 +31,6 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Calendar;
-import java.util.zip.Inflater;
 
 public class DeliveryForm extends AppCompatActivity {
 
@@ -41,9 +38,9 @@ public class DeliveryForm extends AppCompatActivity {
     private static final int IMAGE_CAPTURE_CODE = 1001;
 
     //Initialize variable
-    EditText date1, date2;
+    EditText date1, date2, fuelStickB, meterB, grossGall, netGall, fuelStickA, meterA;
     DatePickerDialog datePickerDialog;
-    TextView time1,time2,fueltp;
+    TextView time1,time2,fueltp, barcode;
 
     Button mCaptureBtn;
     ImageView mImageView;
@@ -52,6 +49,8 @@ public class DeliveryForm extends AppCompatActivity {
     Button btScan;
     View formfrag;
     boolean photo = false;
+
+    String startDate,endDate,fuelReadingB,meterReadingB,startTime,endTime,grossGallon,netGallon,fuelReadingA,meterReadingA,barcodeNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +79,15 @@ public class DeliveryForm extends AppCompatActivity {
         /**perform click event on edit text for time */
         onClickTime1();
         onClickTime2();
+
+        fuelStickB = findViewById(R.id.fuelStickB);
+        meterB = findViewById(R.id.meterB);
+        grossGall = findViewById(R.id.grossGall);
+        netGall = findViewById(R.id.netGall);
+        fuelStickA = findViewById(R.id.fuelStickA);
+        meterA = findViewById(R.id.meterA);
+        barcode = findViewById(R.id.scanText);
+
 
         /**initiate variable for camera */
         mImageView = findViewById(R.id.image_view);
@@ -133,7 +141,10 @@ public class DeliveryForm extends AppCompatActivity {
         continueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DeliveryForm.this, SignaturePop.class));
+                if (validateInput()) {
+                    startActivity(new Intent(DeliveryForm.this, SignaturePop.class));
+                    finish();
+                }
             }
         });
     }
@@ -224,7 +235,7 @@ public class DeliveryForm extends AppCompatActivity {
     }
 
     /**
-     * method for end date picker
+     * method for end time picker
      */
 
     public void onClickTime2(){
@@ -299,12 +310,12 @@ public class DeliveryForm extends AppCompatActivity {
                 }
             }
         }
-
+        // Barcode Scan
         IntentResult intentResult = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (intentResult.getContents() != null) {
             AlertDialog.Builder builder = new AlertDialog.Builder(DeliveryForm.this);
             //set Title
-            builder.setTitle("Result");
+            builder.setTitle("Scanned Barcode");
             //set Message
             builder.setMessage(intentResult.getContents());
 
@@ -321,8 +332,127 @@ public class DeliveryForm extends AppCompatActivity {
         } else {
             Toast.makeText(getApplicationContext(), "Could not Scan anything... ", Toast.LENGTH_SHORT).show();
         }
+    }
 
+    /**
+     * This method validates the data entered
+     */
+    public boolean validateInput(){
 
+        boolean flag = false;
+
+        startDate = date1.getText().toString();
+        endDate = date2.getText().toString();
+        fuelReadingB = fuelStickB.getText().toString();
+        meterReadingB = meterB.getText().toString();
+        startTime = time1.getText().toString();
+        endTime = time2.getText().toString();
+        grossGallon = grossGall.getText().toString();
+        netGallon = netGall.getText().toString();
+        fuelReadingA = fuelStickA.getText().toString();
+        meterReadingA = meterA.getText().toString();
+        barcodeNum = barcode.getText().toString();
+
+//        Changing String to Double
+//        double mB = Double.parseDouble(meterReadingB);
+//        double mA = Double.parseDouble(meterReadingA);
+//
+//        double fB = Double.parseDouble(fuelReadingB);
+//        double fA = Double.parseDouble(fuelReadingA);
+
+        if (startDate.equals("")){
+            Toast.makeText(this,"Please select Start Date", Toast.LENGTH_SHORT).show();
+            date1.setError("Please select Start Date");
+            date1.requestFocus();
         }
+
+        else if (endDate.equals("")){
+            Toast.makeText(this,"Please select End Date", Toast.LENGTH_SHORT).show();
+            date2.setError("Please select End Date");
+            date2.requestFocus();
+        }
+
+        else if (fuelReadingB.equals("")){
+            Toast.makeText(this,"Please select Fuel Stick Reading Before", Toast.LENGTH_SHORT).show();
+            fuelStickB.setError("Please select Fuel Stick Reading Before");
+            fuelStickB.requestFocus();
+        }
+
+        else if (meterReadingB.equals("")){
+            Toast.makeText(this,"Please select Meter Reading Before", Toast.LENGTH_SHORT).show();
+            meterB.setError("Please select Meter Reading Before");
+            meterB.requestFocus();
+        }
+
+        else if (startTime.equals("")){
+            Toast.makeText(this,"Please select Start Time", Toast.LENGTH_SHORT).show();
+            time1.setError("Please select Start Time");
+            time1.requestFocus();
+        }
+
+        else if (endTime.equals("")){
+            Toast.makeText(this,"Please select End Time", Toast.LENGTH_SHORT).show();
+            time2.setError("Please select End Time");
+            time2.requestFocus();
+        }
+
+        else if (grossGallon.equals("")){
+            Toast.makeText(this,"Please select Gross Gallon Dropped", Toast.LENGTH_SHORT).show();
+            grossGall.setError("Please select Gross Gallon Dropped");
+            grossGall.requestFocus();
+        }
+
+        else if (netGallon.equals("")){
+            Toast.makeText(this,"Please select Net Gallon Dropped", Toast.LENGTH_SHORT).show();
+            netGall.setError("Please select Net Gallon Dropped");
+            netGall.requestFocus();
+        }
+
+        else if (fuelReadingA.equals("")){
+            Toast.makeText(this,"Please select Fuel Stick Reading After", Toast.LENGTH_SHORT).show();
+            fuelStickA.setError("Please select Fuel Reading After");
+            fuelStickA.requestFocus();
+        }
+
+//        else if(fB >= fA){
+//            Toast.makeText(this,"Fuel Reading After is less than Fuel Reading Before", Toast.LENGTH_SHORT).show();
+//            fuelStickA.setError("Fuel Reading After is less than Fuel Reading Before");
+//            fuelStickA.requestFocus();
+//        }
+
+        else if (meterReadingA.equals("")){
+            Toast.makeText(this,"Please select Meter Reading After", Toast.LENGTH_SHORT).show();
+            meterA.setError("Please select Meter Reading After");
+            meterA.requestFocus();
+        }
+
+//        else if(mB >= mA){
+//            Toast.makeText(this,"Meter Reading After is less than Meter Reading Before", Toast.LENGTH_SHORT).show();
+//            meterA.setError("Meter Reading After is less than Meter Reading Before");
+//            meterA.requestFocus();
+//        }
+
+        else if (barcodeNum.equals("")){
+            Toast.makeText(this,"Please Scan Barcode", Toast.LENGTH_SHORT).show();
+            barcode.setError("Please Scan Barcode");
+            barcode.requestFocus();
+        }
+
+        else{
+            flag = true;
+            date1.setError(null);
+            date2.setError(null);
+            fuelStickB.setError(null);
+            meterB.setError(null);
+            time1.setError(null);
+            time2.setError(null);
+            grossGall.setError(null);
+            netGall.setError(null);
+            fuelStickA.setError(null);
+            meterA.setError(null);
+            barcode.setError(null);
+        }
+        return flag;
+    }
 
 }

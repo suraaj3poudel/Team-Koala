@@ -92,8 +92,7 @@ public class SignaturePop extends DeliveryForm {
             public void onClick(View view) {
                 //sendData();
                 Toast.makeText(getApplicationContext(),"Sending Data to the Severs", Toast.LENGTH_SHORT);
-                onBackPressed();
-
+                finish();
             }
         });
     }
