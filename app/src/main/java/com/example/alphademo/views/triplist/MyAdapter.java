@@ -25,6 +25,10 @@ public class MyAdapter extends FragmentPagerAdapter {
 
     @NonNull
     @Override
+
+    /**
+     *Returns the fragment to display for that tab
+     */
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
@@ -39,6 +43,9 @@ public class MyAdapter extends FragmentPagerAdapter {
     }
 
     @Override
+    /**
+     * returns total number of tabs
+     */
     public int getCount() {
         return totalTabs;
     }

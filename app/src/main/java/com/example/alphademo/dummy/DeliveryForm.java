@@ -61,55 +61,55 @@ public class DeliveryForm extends AppCompatActivity {
         String fuel = getIntent().getStringExtra("fuelType");
         Log.i("FuelTP", getIntent().getStringExtra("fuelType")+"nice");
 
-        //initiate and display value for fueltype
+        /**initiate and display value for fueltype */
         fueltp = findViewById(R.id.fuelType);
         fueltp.setText(fuel);
 
-        // initiate variable for date picker
+        /**initiate variable for date picker */
         date1 = findViewById(R.id.date1);
         date2 = findViewById(R.id.date2);
 
-        //perform click event on edit text for date
+        /**perform click event on edit text for date */
         onClickDate1();
         onClickDate2();
 
-        //initiate variable for time picker
+        /**initiate variable for time picker*/
         time1 = findViewById(R.id.startToEnd);
         time2 = findViewById(R.id.endToStart);
 
-        ////perform click event on edit text for time
+        /**perform click event on edit text for time */
         onClickTime1();
         onClickTime2();
 
-        //initiate variable for camera
+        /**initiate variable for camera */
         mImageView = findViewById(R.id.image_view);
         mCaptureBtn = findViewById(R.id.button5);
 
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // if system os is >= marshmallow, request for run time permission
+                /**if system os is >= marshmallow, request for run time permission */
                 photo = true;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     if (checkSelfPermission(Manifest.permission.CAMERA) ==
                             PackageManager.PERMISSION_DENIED ||
                             checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
                                     PackageManager.PERMISSION_DENIED){
-                        //if permission not enabled, request for the permission
+                        /**if permission not enabled, request for the permission */
                         String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-                        //popup msg to request permission
+                        /**popup msg to request permission */
                         requestPermissions(permission, PERMISSION_CODE);
                     }
 
                     else {
-                        // if permission is already granted
+                        /** if permission is already granted */
                         openCamera();
                     }
 
                 }
                 else {
-                    // system os < marshmallow
+                    /**system os < marshmallow */
                     openCamera();
                 }
             }
@@ -138,12 +138,15 @@ public class DeliveryForm extends AppCompatActivity {
         });
     }
 
-    //method for start date picker
+    /**
+     * method for start date picker
+     */
+
     private void onClickDate1() {
         date1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // calender class's instance and get current date , month and year from calender
+                /** calender class's instance and get current date , month and year from calender */
                 Log.i("Infor ", "Date1 Clicked");
                 final Calendar cal = Calendar.getInstance();
                 int mYear = cal.get(Calendar.YEAR); // current year
@@ -155,7 +158,7 @@ public class DeliveryForm extends AppCompatActivity {
                             @Override
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
-                                // set day of month , month and year value in the edit text
+                                /**set day of month , month and year value in the edit text */
                                 date1.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
                             }
                         }, mYear, mMonth, mDay);
@@ -166,7 +169,10 @@ public class DeliveryForm extends AppCompatActivity {
         });
     }
 
-    //method for end date picker
+    /**
+     * method for end date picker
+     */
+
     private void onClickDate2() {
         date2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,7 +200,10 @@ public class DeliveryForm extends AppCompatActivity {
         });
     }
 
-    //method for start time picker
+    /**
+     * method for start time picker
+     */
+
     public void onClickTime1(){
         time1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -214,7 +223,10 @@ public class DeliveryForm extends AppCompatActivity {
         });
     }
 
-    //method for end date picker
+    /**
+     * method for end date picker
+     */
+
     public void onClickTime2(){
         time2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -233,9 +245,9 @@ public class DeliveryForm extends AppCompatActivity {
             }
         });
     }
-
-
-    // openCamera method
+    /**
+     * This method opens the camera
+     */
     private void openCamera() {
 
         ContentValues values = new ContentValues();
@@ -243,15 +255,13 @@ public class DeliveryForm extends AppCompatActivity {
         values.put(MediaStore.Images.Media.DESCRIPTION, "From the Camera");
         image_uri = getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);
 
-        //Camera intent
+        /**Camera intent */
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, image_uri);
         startActivityForResult(cameraIntent, IMAGE_CAPTURE_CODE);
 
     }
-
-
-    // handles permission result
+    /**handles permission result */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         //method is called when user chooses allow or deny from permission request popup
@@ -274,14 +284,12 @@ public class DeliveryForm extends AppCompatActivity {
     public void setBarCode(){
 
     }
-
-
-    // set the result
+    /**set the result */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        //called when image captured from camera
+        /**called when image captured from camera */
         if(photo) {
             if (mImageView != null) {
                 if (resultCode != RESULT_CANCELED) {

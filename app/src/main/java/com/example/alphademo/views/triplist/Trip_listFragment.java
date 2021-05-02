@@ -41,11 +41,16 @@ import java.util.ArrayList;
 
 public class Trip_listFragment extends Fragment {
 
+    /** initializing databinding */
 
     FragmentTripListBinding binding;
     RecyclerView recyclerView1,recyclerView2;
+
+    /** arralist for sourceobject */
     ArrayList<SourceObject> sourceList;
+    /** arralist for siteobject */
     ArrayList<SiteObject> siteList;
+
     TabLayout tabLayout;
     ViewPager viewPager;
 
@@ -74,7 +79,10 @@ public class Trip_listFragment extends Fragment {
 
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
-
+        /**
+         * creating and displaying the  tab layout
+         * changing  the tab label and icon
+         */
         tabLayout.addTab(tabLayout.newTab().setText("SOURCE").setIcon(R.drawable.ic_baseline_local_gas_station_24));
         tabLayout.addTab(tabLayout.newTab().setText("SITE").setIcon(R.drawable.site));
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#b53a09"));
@@ -83,6 +91,9 @@ public class Trip_listFragment extends Fragment {
 
         extractDriverNames();
 
+        /**
+         * notifies when any tab's selection state has been changed.
+         */
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
