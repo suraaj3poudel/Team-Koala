@@ -35,7 +35,7 @@
     <string name="barcode">Barcode</string>
     <string name="barcode_scanner">Barcode Scanner</string>
     <string name="capture">Capture</string>
-    <string name="bill_of_landing_number">Bill of Landing Number</string>
+    <string name="bill_of_landing_number">Bill of Lading Number</string>
     <string name="fuel_stick_reading_after">Fuel Stick Reading After</string>
     <string name="meter_reading_after">Meter Reading After</string>
     <string name="dd_mm_yy">dd/mm/yy</string>
@@ -46,6 +46,7 @@
     <string name="save">Save</string>
     <string name="signature">Signature</string>
     <string name="password">Password</string>
+    <string name="continues">Continue</string>
 
 
 </resources>

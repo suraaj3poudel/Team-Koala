@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".dummy.DeliveryForm"
-    android:background="@color/white">
+    android:background="#F5F5F5">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -67,7 +67,7 @@
                 android:inputType="date"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -101,7 +101,7 @@
                 android:inputType="date"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -132,7 +132,7 @@
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 tools:ignore="HardcodedText" />
 
@@ -163,7 +163,7 @@
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -201,7 +201,8 @@
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 
@@ -234,7 +235,7 @@
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textColor="@color/black"/>
 
         </LinearLayout>
 
@@ -267,7 +268,7 @@
                 android:textColorHint="@color/lightgrey"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 android:inputType="text" />
 
@@ -302,7 +303,7 @@
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -334,7 +335,7 @@
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -366,7 +367,7 @@
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp" />
 
         </LinearLayout>
@@ -396,7 +397,7 @@
                 android:inputType="number"
                 android:paddingStart="5dp"
                 android:paddingEnd="5dp"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp"
                 />
 
@@ -489,7 +490,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:backgroundTint="@color/green"
-                android:text="Continue"
+                android:text="@string/continues"
                 android:textSize="20sp"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"/>
