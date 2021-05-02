@@ -66,7 +66,7 @@ public class SourceForm extends AppCompatActivity {
         date1 = findViewById(R.id.date1);
         date2 = findViewById(R.id.date2);
 
-        //perform click event on edit text for date
+        /**perform click event on edit text for date */
         onClickDate1();
         onClickDate2();
 
@@ -74,7 +74,7 @@ public class SourceForm extends AppCompatActivity {
         time1 = findViewById(R.id.startToEnd);
         time2 = findViewById(R.id.endToStart);
 
-        ////perform click event on edit text for time
+        /**perform click event on edit text for time */
         onClickTime1();
         onClickTime2();
 
@@ -85,28 +85,28 @@ public class SourceForm extends AppCompatActivity {
         mCaptureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // if system os is >= marshmallow, request for run time permission
+                /**if system os is >= marshmallow, request for run time permission */
                 photo = true;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
                     if (checkSelfPermission(Manifest.permission.CAMERA) ==
                             PackageManager.PERMISSION_DENIED ||
                             checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) ==
                                     PackageManager.PERMISSION_DENIED){
-                        //if permission not enabled, request for the permission
+                        /**if permission not enabled, request for the permission */
                         String[] permission = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
-                        //popup msg to request permission
+                        /**popup msg to request permission */
                         requestPermissions(permission, PERMISSION_CODE);
                     }
 
                     else {
-                        // if permission is already granted
+                        /**if permission is already granted */
                         openCamera();
                     }
 
                 }
                 else {
-                    // system os < marshmallow
+                    /**system os < marshmallow */
                     openCamera();
                 }
             }
@@ -125,17 +125,11 @@ public class SourceForm extends AppCompatActivity {
             }
         });
 
-
-        /**Button continueBtn = findViewById(R.id.doneBtn);
-        continueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SourceForm.this, SignaturePop.class));
-            }
-        });**/
     }
 
-    //method for start date picker
+    /**
+     * method for start date picker
+     */
     private void onClickDate1() {
         date1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -163,7 +157,9 @@ public class SourceForm extends AppCompatActivity {
         });
     }
 
-    //method for end date picker
+    /**
+     * method for end date picker
+     */
     private void onClickDate2() {
         date2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +187,9 @@ public class SourceForm extends AppCompatActivity {
         });
     }
 
-    //method for start time picker
+    /**method for start time picker
+     *
+     */
     public void onClickTime1(){
         time1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,7 +209,9 @@ public class SourceForm extends AppCompatActivity {
         });
     }
 
-    //method for end date picker
+    /**method for end date picker
+     *
+     */
     public void onClickTime2(){
         time2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,7 +232,10 @@ public class SourceForm extends AppCompatActivity {
     }
 
 
-    // openCamera method
+    /**
+     *  openCamera method
+     */
+
     private void openCamera() {
 
         ContentValues values = new ContentValues();
@@ -249,10 +252,16 @@ public class SourceForm extends AppCompatActivity {
     }
 
 
-    // handles permission result
+    /**handles permission result
+     *
+     * @param requestCode first parameter of the the method ononRequestPermissionsResult
+     * @param permissions second parameter of the the method ononRequestPermissionsResult
+     * @param grantResults third parameter of the the method ononRequestPermissionsResult
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        //method is called when user chooses allow or deny from permission request popup
+
+        /**method is called when user chooses allow or deny from permission request popup */
         if (requestCode == PERMISSION_CODE) {//permission granted
             if (grantResults.length > 0 && grantResults[0] ==
                     PackageManager.PERMISSION_GRANTED) {
@@ -271,7 +280,10 @@ public class SourceForm extends AppCompatActivity {
     }
 
 
-    // set the result
+    /**
+     * set the result
+      */
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
