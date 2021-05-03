@@ -16,6 +16,44 @@ public class SiteObject {
     private String siteProductDesc;
     private JSONObject siteDetails;
     private double latitude;
+    private String quantity;
+
+    public String getFillInfo() {
+        return fillInfo;
+    }
+
+    public String getDelReqlineNum() {
+        return delReqlineNum;
+    }
+
+    private String fillInfo;
+    private String scc;
+    private  String scd;
+    private String drn;
+    private String delReqlineNum;
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    public String getScc() {
+        return scc;
+    }
+
+    public String getScd() {
+        return scd;
+    }
+
+    public String getDrn() {
+        return drn;
+    }
+
+    public String getPid() {
+        return pid;
+    }
+
+    private String pid;
+
 
     public double getLatitude() {
         return latitude;
@@ -64,6 +102,27 @@ public class SiteObject {
 
         double sourcelong = siteDetails.getDouble("Longitude");
         longitude = sourcelong;
+
+        String siCC = siteDetails.getString("SiteContainerCode");
+        scc = siCC;
+
+        String siCD = siteDetails.getString("SiteContainerDescription");
+        scd = siCD;
+
+        String deRN = siteDetails.getString("DelReqNum");
+        drn = deRN;
+
+        String deRLN = siteDetails.getString("DelReqLineNum");
+        delReqlineNum = deRLN;
+
+        String pID = siteDetails.getString("ProductId");
+        pid = pID;
+
+        String fiLL= siteDetails.getString("Fill");
+        fillInfo = fiLL;
+
+        String qTY= siteDetails.getString("RequestedQty");
+        quantity = qTY;
 
     }
     public String getSite() {

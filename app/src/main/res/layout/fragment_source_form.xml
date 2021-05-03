@@ -203,7 +203,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawableStart="@drawable/ic_baseline_local_gas_station_24"
+                android:drawableStart="@drawable/ic_baseline_local_gas_station_245"
                 android:drawablePadding="5dp"
                 android:hint="@string/fuel_type"
                 android:paddingStart="5dp"

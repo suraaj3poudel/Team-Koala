@@ -2,19 +2,24 @@ package com.example.alphademo.adapters;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -39,8 +44,9 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
     LayoutInflater inflator;
     private ArrayList<SiteObject> mSiteInfo = new ArrayList<>();
-    View mapFrag;
+    View mapFrag,more;
     Context context;
+    ViewGroup parents;
 
     public RecyclerViewSite( Context context, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
@@ -53,6 +59,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     public ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_siteinfo,parent,false);
         mapFrag = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main2,parent,false);
+        parents = parent;
         return new ViewHolder(view);
     }
 
@@ -84,6 +91,58 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             }
         });
 
+
+        //notification.setOnClickListener(this);
+        holder.moreInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //LayoutInflater inflater = (LayoutInflater) parents(Context.LAYOUT_INFLATER_SERVICE);
+
+                //PopupWindow pw = new PopupWindow(LayoutInflater.from(parents.getContext()).inflate(R.layout.moreinfo, null, false),1500,1500, true);
+
+                //pw.showAtLocation(parents, Gravity.CENTER, 0, 0);
+
+
+
+
+
+
+
+
+
+
+                final Dialog dialog = new Dialog(context, R.style.Theme_D1NoTitleDim);
+
+                dialog.requestWindowFeature(Window.FEATURE_ACTION_MODE_OVERLAY);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.moreinfo);
+                TextView text = (TextView) dialog.findViewById(R.id.siteContainerCode);
+                text.setText("Hi");
+               // holder.showMessage("", "");
+                //holder.scc.setText("Test");
+
+
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.ok);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+                dialog.getWindow().setAttributes(lp);
+                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+            }
+        });
+
         holder.site.setText(mSiteInfo.get(position).getSite());
         holder.sitet.setText(mSiteInfo.get(position).getSite());
         holder.sitecode.setText(mSiteInfo.get(position).getSiteCode());
@@ -92,6 +151,8 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         holder.sizip.setText(mSiteInfo.get(position).getSiteZIP());
         holder.site2p.setText(mSiteInfo.get(position).getSiteProduct());
         holder.site2pd.setText(mSiteInfo.get(position).getSiteProductDesc());
+        holder.ft.setText(mSiteInfo.get(position).getQuantity());
+        holder.rq.setText(mSiteInfo.get(position).getSiteProductDesc().trim());
 
         //message = "SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()
                 //+"\n"+mSiteInfo.get(position).getSiteCity()+"\n"+mSiteInfo.get(position).getLatitude()+"\n"+mSiteInfo.get(position).getLongitude();
@@ -213,13 +274,17 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         ExtendedFloatingActionButton navi;
         ImageView navicon;
         CardView card;
-
-
+        TextView scc, scd,drn,pid,info;
+        TextView ft, rq;
+        ImageView moreInfo;
 
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
-
+            more = LayoutInflater.from(parents.getContext()).inflate(R.layout.moreinfo,parents,false);
+            moreInfo = itemView.findViewById(R.id.moreinfo);
+            ft = itemView.findViewById(R.id.productDesc);
+            rq = itemView.findViewById(R.id.productQty);
             card = itemView.findViewById(R.id.card_viewSite);
             navi = itemView.findViewById(R.id.navSite);
             show_layout =itemView.findViewById(R.id.show_layout_site);
@@ -227,6 +292,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             arrowdown = itemView.findViewById(R.id.arrowdownSite);
             arrowup = itemView.findViewById(R.id.arrowupSite);
             deliverForm1 = itemView.findViewById(R.id.deliverForm1);
+            scc = more.findViewById(R.id.siteContainerCode);
             //deliverForm2 = itemView.findViewById(R.id.deliverForm2);
             site = itemView.findViewById(R.id.site);
             sitet = itemView.findViewById(R.id.siteT);
@@ -272,6 +338,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
             builder.setCancelable(true);
             builder.setTitle(title);
+            builder.setView(R.layout.moreinfo);
             builder.setMessage(message);
 
             builder.setPositiveButton("OK", null);

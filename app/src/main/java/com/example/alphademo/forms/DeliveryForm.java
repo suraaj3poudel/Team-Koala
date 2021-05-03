@@ -55,7 +55,7 @@ public class DeliveryForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delivery_form);
         String fuel = getIntent().getStringExtra("fuelType");
-        Log.i("FuelTP", getIntent().getStringExtra("fuelType")+"nice");
+        //Log.i("FuelTP", getIntent().getStringExtra("fuelType")+"nice");
 
         fueltp = findViewById(R.id.fuelType);
         fueltp.setText(fuel);

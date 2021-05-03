@@ -114,17 +114,19 @@
             android:layout_height="match_parent"
             android:background="@drawable/card_item_background2"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/teal_200"
                 android:orientation="horizontal">
 
                 <TextView
                     android:id="@+id/siteT"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@color/teal_200"
                     android:padding="10dp"
                     android:text="Site Name"
@@ -132,6 +134,15 @@
                     android:textColor="@android:color/white"
                     android:textSize="25dp"
                     android:textStyle="bold" />
+                <ImageView
+                    android:layout_width="50dp"
+                    android:background="@color/teal_200"
+                    android:id="@+id/moreinfo"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/ic_baseline_info_24">
+
+                </ImageView>
 
             </LinearLayout>
 
@@ -265,6 +276,61 @@
                     android:textSize="17sp" />
 
             </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                >
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:stretchColumns="1"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:background="@color/black"
+                    >
+                    <TableRow>
+
+                        <TextView
+                            android:layout_width="105dp"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="3dip"
+                            android:text="Fuel Type"
+                            android:textColor="@color/white"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:text="Requested Qty"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:textColor="@color/white"
+                            android:textStyle="bold"
+                            android:padding="3dip" />
+                    </TableRow>
+
+                    <TableRow>
+                        <TextView
+                            android:id="@+id/productDesc"
+                            android:text="-----"
+                            android:layout_width="match_parent"
+                            android:textColor="@color/white"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="3dip" />
+
+                        <TextView
+                            android:id="@+id/productQty"
+                            android:layout_width="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:padding="3dip"
+                            android:text="-----"
+                            android:textColor="@color/white" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
