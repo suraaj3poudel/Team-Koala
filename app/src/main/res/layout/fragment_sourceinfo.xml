@@ -11,7 +11,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/card_viewSource"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="7dp"
         android:layout_marginTop="3.5dp"
@@ -20,7 +20,7 @@
         android:outlineAmbientShadowColor="@color/black"
         app:background="@drawable/card_item_background2"
         app:cardCornerRadius="15dp"
-        app:cardElevation="20dp">
+        app:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,8 +38,9 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="5dp"
                     android:src="@drawable/ic_baseline_local_gas_station_24" />
 
             </LinearLayout>
@@ -66,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:text="Source Name"
                         android:textColor="#330000"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:textSize="20sp"
                         android:textStyle="bold" />
 
@@ -83,6 +84,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
                         android:text="Street Address"
+                        android:layout_marginBottom="3dp"
                         android:textColor="#330000"
                         android:textSize="15sp" />
                 </LinearLayout>
@@ -113,7 +115,7 @@
                 android:background="@drawable/card_item_background2"
                 android:orientation="vertical"
                 android:id="@+id/hidden_layout"
-                android:visibility="visible">
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="match_parent"

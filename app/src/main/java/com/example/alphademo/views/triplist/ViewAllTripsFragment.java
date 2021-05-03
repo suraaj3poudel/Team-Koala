@@ -43,7 +43,7 @@ public class ViewAllTripsFragment extends Fragment {
     ArrayList<SiteObject> siteList;
     ArrayList<TripInfo> trips;
     RecyclerViewTrip tripAdapter;
-    String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/D1?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
+    String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/TeamKoala?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
 
     DatabaseJson obj;
 
