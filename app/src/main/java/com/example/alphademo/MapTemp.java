@@ -657,10 +657,20 @@ public class MapTemp extends Fragment {
                         int h = currentTime.getHours()+p2;
                         int m = currentTime.getMinutes()+p3;
                         //arrivalTime.setText(m_navigationManager.getEta(true, Route.TrafficPenaltyMode.OPTIMAL).getTime()/60+"");
-
+                        if(m>60){
+                            m = m%60;
+                            h++;
+                        }
+                        String s ="";
+                        if(m<10){
+                            s="0";
+                        }
+                        if(h>12){
+                            h=h%12;
+                        }
                         //arrivalTime.setText(hour+":"+minute);
 
-                        arrivalTime.setText(h+":"+m);
+                        arrivalTime.setText(h+":"+s+m);
                         //eta.setText(m_navigationManager.getRemainingDistance(1));
 
                         dis = m_navigationManager.getDestinationDistance()/1609;
