@@ -253,24 +253,21 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:textColor="#000000"
-                            android:hint="Your Email Here"
+                            android:hint="Your Name Here"
                             android:textSize="18sp"
                             android:visibility="visible"
-                            android:background="@drawable/rectangled"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="15dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="10dp"
+
                             android:layout_marginTop="5dp"
 
                             />
 
                         <ImageView
                             android:id="@+id/imageName"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
+
                             android:layout_weight="1"
                             android:src="@drawable/ic_baseline_create_24"
                             android:visibility="gone" />
@@ -281,7 +278,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                        android:hint="Your Email"
+                        android:hint="Your Name"
                         android:inputType="textEmailAddress"
                         android:background="@drawable/rectangled"
                         android:padding="10dp"
@@ -313,7 +310,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="15dp">
 
 
 
@@ -351,20 +349,15 @@
                             android:hint="Your Email Here"
                             android:textSize="18sp"
                             android:visibility="visible"
-                            android:background="@drawable/rectangled"
-                            android:paddingLeft="10dp"
-                            android:paddingTop="15dp"
-                            android:paddingRight="10dp"
-                            android:paddingBottom="10dp"
                             android:layout_marginTop="5dp"
                             />
 
                         <ImageView
                             android:id="@+id/imageEmail"
-                            android:layout_width="50dp"
-                            android:layout_height="50dp"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
                             android:layout_marginLeft="5dp"
-                            android:layout_marginTop="5dp"
                             android:layout_weight="1"
                             android:src="@drawable/ic_baseline_create_24"
                             android:visibility="gone"/>
@@ -428,21 +421,17 @@
                         android:fontFamily="sans-serif-light"
                         android:inputType="number"
                         android:hint="Your Phone number"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="15dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="10dp"
                         android:textColor="#000000"
                         android:textSize="18sp"
-                        android:background="@drawable/rectangled"
+
                         android:layout_marginTop="5dp"
                         />
                          <ImageView
                         android:id="@+id/imagePhone"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                         android:layout_width="40dp"
+                         android:layout_height="40dp"
+                         android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:src="@drawable/ic_baseline_create_24"
                         android:visibility="gone"/>
@@ -501,21 +490,17 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
                         android:hint="Your Address"
-                        android:paddingLeft="10dp"
                         android:textColor="#000000"
                         android:textSize="18sp"
-                        android:background="@drawable/rectangled"
-                        android:paddingTop="15dp"
-                        android:paddingRight="10dp"
-                        android:paddingBottom="10dp"
+
                         android:layout_marginTop="5dp"
                         />
                          <ImageView
                         android:id="@+id/imageAddress"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:src="@drawable/ic_baseline_create_24"
                         android:visibility="gone"/>
@@ -573,19 +558,14 @@
                         android:hint="Select Gender"
                         android:textColor="#000000"
                         android:textSize="18sp"
-                        android:background="@drawable/rectangled"
-                        android:paddingLeft="10dp"
-                        android:paddingRight="10dp"
-                        android:paddingTop="15dp"
-                        android:paddingBottom="10dp"
                         android:layout_marginTop="5dp"
                         />
                         <ImageView
                         android:id="@+id/imageGender"
-                        android:layout_width="50dp"
-                        android:layout_height="50dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginTop="5dp"
                         android:layout_weight="1"
                         android:src="@drawable/ic_baseline_create_24"
                         android:visibility="gone"/>
@@ -607,7 +587,8 @@
                             android:layout_gravity="left"
                             android:layout_weight="1"
                             android:text="Male"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:buttonTintMode="@color/orange"/>
 
                         <RadioButton
                             android:id="@+id/radioF"
@@ -616,7 +597,8 @@
                             android:layout_gravity="right"
                             android:layout_weight="1"
                             android:text="Female"
-                            android:textSize="18sp" />
+                            android:textSize="18sp"
+                            android:buttonTintMode="@color/orange"/>
                     </RadioGroup>
 
                     <View
