@@ -45,7 +45,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="70dp"
-                android:background="@color/grey"
+                android:background="@color/white"
                 android:layout_marginBottom="65dp"
                 android:padding="2dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

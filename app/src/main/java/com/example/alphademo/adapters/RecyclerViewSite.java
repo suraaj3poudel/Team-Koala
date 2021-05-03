@@ -87,8 +87,8 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         holder.site.setText(mSiteInfo.get(position).getSite());
         holder.sitet.setText(mSiteInfo.get(position).getSite());
         holder.sitecode.setText(mSiteInfo.get(position).getSiteCode());
-        holder.siaddress.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity()+", "+mSiteInfo.get(position).getSiteState());
-        holder.siteaddresst.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity()+", "+mSiteInfo.get(position).getSiteState());
+        holder.siaddress.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity().trim()+", "+mSiteInfo.get(position).getSiteState());
+        holder.siteaddresst.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity().trim()+", "+mSiteInfo.get(position).getSiteState());
         holder.sizip.setText(mSiteInfo.get(position).getSiteZIP());
         holder.site2p.setText(mSiteInfo.get(position).getSiteProduct());
         holder.site2pd.setText(mSiteInfo.get(position).getSiteProductDesc());

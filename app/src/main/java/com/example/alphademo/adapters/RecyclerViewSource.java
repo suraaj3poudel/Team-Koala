@@ -96,8 +96,8 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.sourceT.setText(mSourceInfo.get(position).getSource());
 
         holder.sourcecode.setText(mSourceInfo.get(position).getSourceCode());
-        holder.address.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity()+", "+mSourceInfo.get(position).getSourceState());
-        holder.addressT.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity()+", "+mSourceInfo.get(position).getSourceState());
+        holder.address.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity().trim()+", "+mSourceInfo.get(position).getSourceState().trim());
+        holder.addressT.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity().trim()+", "+mSourceInfo.get(position).getSourceState().trim());
         holder.szipcode.setText(mSourceInfo.get(position).getSourceZIP());
         //holder.progressBar.setVisibility(View.INVISIBLE);
 

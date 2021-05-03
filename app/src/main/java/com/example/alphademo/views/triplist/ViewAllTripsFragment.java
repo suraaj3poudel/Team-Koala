@@ -100,24 +100,25 @@ public class ViewAllTripsFragment extends Fragment {
                 //for (int i = 0; i < response.length(); i++) {
                 try {
 
-                    JSONObject driverObject = response.getJSONObject("data".toString());
-                    JSONArray tripinfo = driverObject.getJSONArray("resultSet1".toString());
 
-                    for(int i = 0; i < tripinfo.length(); i++) {
-                        JSONObject object = (JSONObject) tripinfo.get(i);
-                        if(object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
-                            SourceObject source = new SourceObject(object);
-                            sourceList.add(source);
-                        }
 
-                        else{
-                            SiteObject site = new SiteObject(object);
-                            siteList.add(site);
+                    for(int j = 0; j < 1; j++) {
+                        JSONObject driverObject = response.getJSONObject("data".toString());
+                        JSONArray tripinfo = driverObject.getJSONArray("resultSet1".toString());
+                        for (int i = 0; i < tripinfo.length(); i++) {
+                            JSONObject object = (JSONObject) tripinfo.get(i);
+                            if (object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
+                                SourceObject source = new SourceObject(object);
+                                sourceList.add(source);
+                            } else {
+                                SiteObject site = new SiteObject(object);
+                                siteList.add(site);
+                            }
                         }
+                        TripInfo tripFound = new TripInfo(((JSONObject)tripinfo.get(j)).getString("TripName"), sourceList.size(),siteList.size());
+                        trips.add(tripFound);
                     }
 
-                    TripInfo tripFound = new TripInfo("R-123", sourceList.size(),siteList.size());
-                    trips.add(tripFound);
                     recyclerViewTrip.setLayoutManager(new LinearLayoutManager(getContext()));
 
                     tripAdapter = new RecyclerViewTrip(getContext(),trips);
@@ -137,29 +138,26 @@ public class ViewAllTripsFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
                 try {
-
                     obj = new DatabaseJson(getContext());
-                    JSONObject jsonObjects = obj.getObject(1);
-                    JSONArray tripinform = jsonObjects.getJSONArray("resultSet1".toString());
+                    for(int j = 0; j < 1; j++) {
+                        JSONObject jsonObjects = obj.getObject(1);
+                        JSONArray tripinform = jsonObjects.getJSONArray("resultSet1".toString());
 
 
-
-
-                    for(int i = 0; i < tripinform.length(); i++) {
-                        JSONObject object = (JSONObject) tripinform.get(i);
-                        if(object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
-                            SourceObject source = new SourceObject(object);
-                            sourceList.add(source);
+                        for (int i = 0; i < tripinform.length(); i++) {
+                            JSONObject object = (JSONObject) tripinform.get(i);
+                            if (object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {
+                                SourceObject source = new SourceObject(object);
+                                sourceList.add(source);
+                            } else {
+                                SiteObject site = new SiteObject(object);
+                                siteList.add(site);
+                            }
                         }
-
-                        else{
-                            SiteObject site = new SiteObject(object);
-                            siteList.add(site);
-                        }
+                        TripInfo tripFound = new TripInfo(((JSONObject)tripinform.get(j)).getString("TripName"), sourceList.size(),siteList.size());
+                        trips.add(tripFound);
                     }
 
-                    TripInfo tripFound = new TripInfo("R-123", sourceList.size(),siteList.size());
-                    trips.add(tripFound);
                     recyclerViewTrip.setLayoutManager(new LinearLayoutManager(getContext()));
 
                     tripAdapter = new RecyclerViewTrip(getContext(),trips);

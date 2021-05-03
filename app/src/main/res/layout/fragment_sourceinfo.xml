@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fadeScrollbars="true"
+    android:padding="7dp"
     android:foregroundTint="@color/primary">
 
 
@@ -13,10 +14,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="7dp"
-        android:layout_marginTop="3.5dp"
-        android:layout_marginRight="7dp"
-        android:layout_marginBottom="3.5dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
         android:outlineAmbientShadowColor="@color/black"
         app:background="@drawable/card_item_background2"
         app:cardCornerRadius="15dp"
@@ -24,41 +23,43 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="@drawable/card_item_background2"
             android:orientation="horizontal"
             android:id="@+id/show_layout"
             android:visibility="visible">
 
-        <LinearLayout
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/fuelImg"
                 android:layout_weight="0"
+                android:layout_gravity="center_vertical"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_gravity="fill_vertical"
                     android:padding="5dp"
                     android:src="@drawable/ic_baseline_local_gas_station_24" />
 
             </LinearLayout>
 
-        <LinearLayout
+            <LinearLayout
                 android:id="@+id/sourceCard_layout"
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="5dp">
+                android:layout_marginLeft="5dp">
 
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
 
 
                     <TextView
@@ -68,7 +69,7 @@
                         android:text="Source Name"
                         android:textColor="#330000"
                         android:layout_marginTop="5dp"
-                        android:textSize="20sp"
+                        android:textSize="18sp"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -76,7 +77,8 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
 
                     <TextView
                         android:id="@+id/address"
@@ -89,8 +91,8 @@
                         android:textSize="15sp" />
                 </LinearLayout>
 
-        </LinearLayout>
-        <LinearLayout
+            </LinearLayout>
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="0"
@@ -100,8 +102,8 @@
 
             <ImageView
                 android:id="@+id/arrowdown"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_marginRight="5dp"
                 android:layout_gravity="center"
                 android:src="@drawable/ic_baseline_expand_more_24" />
@@ -110,151 +112,151 @@
 
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/card_item_background2"
+            android:orientation="vertical"
+            android:id="@+id/hidden_layout"
+            android:visibility="gone">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/card_item_background2"
-                android:orientation="vertical"
-                android:id="@+id/hidden_layout"
-                android:visibility="gone">
+                android:layout_height="wrap_content"
 
-                <LinearLayout
+                android:orientation="horizontal">
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@android:color/white"
+                    android:textAlignment="center"
+                    android:background="@color/teal_200"
+                    android:id="@+id/sourceT"
+                    android:textSize="25dp"
+                    android:padding="10dp"
+                    android:textStyle="bold"
+                    android:text="Source Name"/>
 
-                    android:orientation="horizontal">
+            </LinearLayout>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/white"
-                        android:textAlignment="center"
-                        android:background="@color/teal_200"
-                        android:id="@+id/sourceT"
-                        android:textSize="25dp"
-                        android:padding="10dp"
-                        android:textStyle="bold"
-                        android:text="Source Name"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp">
 
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp">
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:text="Source Code: "/>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:textSize="17sp"
-                        android:text="Source Code: "/>
-
-                    <TextView
-                        android:id="@+id/sourceCode"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="17sp"
-                        android:text="sc"
-                        android:textColor="@android:color/black" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:textSize="17sp"
-                        android:text="Address: "/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:id="@+id/addressT"
-                        android:textSize="17sp"
-                        android:text="Street Address"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textSize="17sp"
-                        android:textColor="@android:color/black"
-                        android:textStyle="bold"
-                        android:text="Zip Code: "/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textColor="@android:color/black"
-                        android:id="@+id/zipcode"
-                        android:textSize="20dp"
-                        android:text="12345"/>
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
+                <TextView
+                    android:id="@+id/sourceCode"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:orientation="horizontal"
-                    android:layout_marginTop="20dp">
+                    android:textSize="17sp"
+                    android:text="sc"
+                    android:textColor="@android:color/black" />
 
-                    <Button
-                        android:id="@+id/sourceForm"
+            </LinearLayout>
 
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginStart="10dp"
-                        android:layout_marginLeft="246dp"
-                        android:layout_marginRight="55dp"
-                        android:backgroundTint="@color/teal_200"
-                        android:text="Pick up"
-                        android:textAlignment="center"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp">
 
-                    <Button
-                        android:id="@+id/sourceNotes"
-                        android:layout_width="wrap_content"
-                        android:layout_height="60dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginStart="50dp"
-                        android:layout_marginLeft="246dp"
-                        android:layout_marginRight="100dp"
-                        android:backgroundTint="@color/teal_200"
-                        android:text="+ Add Notes"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="17sp"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:textSize="17sp"
+                    android:text="Address: "/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/addressT"
+                    android:textSize="17sp"
+                    android:text="Street Address"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="17sp"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold"
+                    android:text="Zip Code: "/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"
+                    android:id="@+id/zipcode"
+                    android:textSize="20dp"
+                    android:text="12345"/>
+
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="20dp">
+
+                <Button
+                    android:id="@+id/sourceForm"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="246dp"
+                    android:layout_marginRight="55dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:text="Pick up"
+                    android:textAlignment="center"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/sourceNotes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginStart="50dp"
+                    android:layout_marginLeft="246dp"
+                    android:layout_marginRight="100dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:text="+ Add Notes"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
