@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -59,8 +60,7 @@ public class SourceForm extends AppCompatActivity {
         String fuel = getIntent().getStringExtra("fuelType");
         setContentView(R.layout.pickup_form);
 
-
-
+        //initiate variable for fuel type and set the value
         fuelType = findViewById(R.id.fuelType);
         fuelType.setText(fuel);
 
@@ -80,7 +80,7 @@ public class SourceForm extends AppCompatActivity {
         onClickTime1();
         onClickTime2();
 
-
+        // initiate variable for fuel reading,meter reading, gross gallon and net gallon picked
         fuelStickB = findViewById(R.id.fuelStickB);
         meterB = findViewById(R.id.meterB);
         grossGall = findViewById(R.id.grossGall);
@@ -136,6 +136,7 @@ public class SourceForm extends AppCompatActivity {
             }
         });
 
+        //Close the form after all values has been entered
         doneBtn = findViewById(R.id.doneBtn);
         doneBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,7 +231,7 @@ public class SourceForm extends AppCompatActivity {
         });
     }
 
-    /**method for end date picker
+    /**method for end time picker
      *
      */
     public void onClickTime2(){
@@ -343,10 +344,12 @@ public class SourceForm extends AppCompatActivity {
         }
     }
 
+    /**
+     * This method validates the data entered
+     */
     public boolean validateInput(){
-
         boolean flag = false;
-
+        //converting value entered to string
         startDate = date1.getText().toString();
         endDate = date2.getText().toString();
         fuelReadingB = fuelStickB.getText().toString();
@@ -360,11 +363,11 @@ public class SourceForm extends AppCompatActivity {
         barcodeNum = barcode.getText().toString();
 
 //        Changing String to Integer
-//        int mB = Integer.parseInt(meterReadingB);
-//        int mA = Integer.parseInt(meterReadingA);
+//        double mB = Double.parseDouble(meterReadingB);
+//        double mA = Double.parseDouble(meterReadingA);
 //
-//        int fB = Integer.parseInt(fuelReadingB);
-//        int fA = Integer.parseInt(fuelReadingA);
+//        double fB = Double.parseDouble(fuelReadingB);
+//        double fA = Double.parseDouble(fuelReadingA);
 
         if (startDate.equals("")){
             Toast.makeText(this,"Please select Start Date", Toast.LENGTH_SHORT).show();
@@ -426,6 +429,17 @@ public class SourceForm extends AppCompatActivity {
 //            fuelStickA.requestFocus();
 //        }
 
+//        else if(!(TextUtils.isEmpty(fuelReadingB) && TextUtils.isEmpty(fuelReadingA))){
+//            double fB = Double.parseDouble(fuelReadingB);
+//            double fA = Double.parseDouble(fuelReadingA);
+//
+//            if(fB >= fA) {
+//                Toast.makeText(this, "Fuel Reading After is less than Fuel Reading Before", Toast.LENGTH_SHORT).show();
+//                fuelStickA.setError("Fuel Reading After is less than Fuel Reading Before");
+//                fuelStickA.requestFocus();
+//            }
+//        }
+
         else if (meterReadingA.equals("")){
             Toast.makeText(this,"Please select Meter Reading After", Toast.LENGTH_SHORT).show();
             meterA.setError("Please select Meter Reading After");
@@ -438,11 +452,19 @@ public class SourceForm extends AppCompatActivity {
 //            meterA.requestFocus();
 //        }
 
-        else if (barcodeNum.equals("")){
-            Toast.makeText(this,"Please Scan Barcode", Toast.LENGTH_SHORT).show();
-            barcode.setError("Please Scan Barcode");
-            barcode.requestFocus();
-        }
+//        else if(!(TextUtils.isEmpty(meterReadingB) && TextUtils.isEmpty(meterReadingA))){
+//            double mB = Double.parseDouble(meterReadingB);
+//            double mA = Double.parseDouble(meterReadingA);
+//
+//            if(mB >= mA) {
+//                Toast.makeText(this, "Meter Reading After is less than Meter Reading Before", Toast.LENGTH_SHORT).show();
+//                meterA.setError("Meter Reading After is less than Meter Reading Before");
+//                meterA.requestFocus();
+//
+//            }
+//        }
+
+
 
         else{
             flag = true;
@@ -456,7 +478,6 @@ public class SourceForm extends AppCompatActivity {
             netGall.setError(null);
             fuelStickA.setError(null);
             meterA.setError(null);
-            barcode.setError(null);
         }
         return flag;
     }

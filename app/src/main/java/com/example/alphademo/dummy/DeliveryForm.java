@@ -80,6 +80,7 @@ public class DeliveryForm extends AppCompatActivity {
         onClickTime1();
         onClickTime2();
 
+        // initiate variable for fuel reading,meter reading, gross gallon and net gallon dropped
         fuelStickB = findViewById(R.id.fuelStickB);
         meterB = findViewById(R.id.meterB);
         grossGall = findViewById(R.id.grossGall);
@@ -341,6 +342,7 @@ public class DeliveryForm extends AppCompatActivity {
 
         boolean flag = false;
 
+        //Converting the value entered to string
         startDate = date1.getText().toString();
         endDate = date2.getText().toString();
         fuelReadingB = fuelStickB.getText().toString();
@@ -415,7 +417,7 @@ public class DeliveryForm extends AppCompatActivity {
         }
 
 //        else if(fB >= fA){
-//            Toast.makeText(this,"Fuel Reading After is less than Fuel Reading Before", Toast.LENGTH_SHORT).show();
+//           Toast.makeText(this,"Fuel Reading After is less than Fuel Reading Before", Toast.LENGTH_SHORT).show();
 //            fuelStickA.setError("Fuel Reading After is less than Fuel Reading Before");
 //            fuelStickA.requestFocus();
 //        }
@@ -432,12 +434,6 @@ public class DeliveryForm extends AppCompatActivity {
 //            meterA.requestFocus();
 //        }
 
-        else if (barcodeNum.equals("")){
-            Toast.makeText(this,"Please Scan Barcode", Toast.LENGTH_SHORT).show();
-            barcode.setError("Please Scan Barcode");
-            barcode.requestFocus();
-        }
-
         else{
             flag = true;
             date1.setError(null);
@@ -450,7 +446,6 @@ public class DeliveryForm extends AppCompatActivity {
             netGall.setError(null);
             fuelStickA.setError(null);
             meterA.setError(null);
-            barcode.setError(null);
         }
         return flag;
     }
