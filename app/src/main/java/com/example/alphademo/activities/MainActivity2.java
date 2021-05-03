@@ -23,11 +23,21 @@ import com.example.alphademo.views.setting.SettingFragment;
 import com.example.alphademo.views.triplist.ViewAllTripsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity2 extends AppCompatActivity  {
 
 
     ImageView notification;
     final Context context = this;
+    int currentSelectedItemId = 0;
+
+    public MainActivity2() throws IOException {
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,15 +84,7 @@ public class MainActivity2 extends AppCompatActivity  {
             home = getSupportFragmentManager().findFragmentByTag("TripList");
         }
         FragmentManager fm = getFragmentManager();
-//        if (fm.getBackStackEntryCount() > 1) {
-//            //Log.i("MainActivity", "popping backstack");
-//            fm.popBackStack();
-//        } else {
-//            //Log.i("MainActivity", "nothing on backstack, calling super");
-//            Intent intent = new Intent(Intent.ACTION_MAIN);
-//            intent.addCategory(Intent.CATEGORY_HOME);
-//            startActivity(intent);
-//        }
+//
 
 
         if (home != null) {
@@ -90,7 +92,6 @@ public class MainActivity2 extends AppCompatActivity  {
                 //Log.i("waht",getSupportFragmentManager().getBackStackEntryCount()+"");
                 if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     getSupportFragmentManager().popBackStack();
-                    Log.i("waht", getSupportFragmentManager().getBackStackEntryCount() + "");
                 } else {
                     super.onBackPressed();
                 }
@@ -99,58 +100,68 @@ public class MainActivity2 extends AppCompatActivity  {
                 //Primary fragment
                 moveTaskToBack(true);
             }
-
-
-
     }
 
-
+    Fragment map =  new MapTemp();
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
             Fragment select = null;
             switch (item.getItemId())
             {
                 case R.id.trip_list:
-                    select = new ViewAllTripsFragment() ;
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
+                    //select = new ViewAllTripsFragment() ;
+//                    getSupportFragmentManager()
+//                            .beginTransaction()
+//                            .show(select).hide(new MapTemp())
+//                            .commit();
+                    swapFragments(new ViewAllTripsFragment(),item.getItemId(),"TRIPS");
                     break;
                 case R.id.map:
-                  if(getSupportFragmentManager().findFragmentByTag("map") == null) {
-                       select = new MapTemp();
-                      getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
-                   }
-                    else {
-                      select = (Fragment) getSupportFragmentManager().findFragmentByTag("map");
-                      FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                      //ft.remove(select);
-                      //ft.add(R.id.fragment_container,select,"map");
-                      ft.commit();
-                  }
+                    select = map;
+                    swapFragments(map,item.getItemId(),"MAP");
                     break;
                 case R.id.setting:
                     select = new SettingFragment();
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
+                    swapFragments(new SettingFragment(),item.getItemId(),"SETTING");
                     break;
             }
 
 
-
+            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
             return true;
         }
 
 
     };
 
-    private View.OnLayoutChangeListener layoutChangeListener = new View.OnLayoutChangeListener(){
-
-        @Override
-        public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
-
+    private void swapFragments(Fragment fragment, int itemId, String tag) {
+        if (getSupportFragmentManager().findFragmentByTag(tag) == null) {
+            saveFragmentState(itemId, tag);
+            createFragment(fragment, itemId, tag);
         }
-    };
+    }
+
+    Map<Integer, Fragment.SavedState> fragmentStateArray = new HashMap<Integer, Fragment.SavedState>();
+
+    private void saveFragmentState(int itemId, String tag) {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_container);
+
+        if (currentFragment != null) {
+            fragmentStateArray.put(currentSelectedItemId, getSupportFragmentManager().saveFragmentInstanceState(currentFragment));
+        }
+
+        currentSelectedItemId = itemId;
+    }
+
+    private void createFragment(Fragment fragment, int itemId, String tag) { fragment.setInitialSavedState(fragmentStateArray.get(itemId));
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, fragment, tag)
+                .commit();
+    }
 
 
 

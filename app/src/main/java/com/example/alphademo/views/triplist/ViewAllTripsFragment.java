@@ -69,7 +69,7 @@ public class ViewAllTripsFragment extends Fragment {
                 siteList = new ArrayList<SiteObject>();
                 trips = new ArrayList<TripInfo>();
                 extractDriverNames();// your code
-                pullToRefresh.setRefreshing(true);
+                pullToRefresh.setRefreshing(false);
             }
         });
 

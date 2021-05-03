@@ -35,6 +35,7 @@ import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.ViewHolder>{
@@ -190,7 +191,9 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 BottomNavigationView bottomNavigationView = mapFrag.findViewById(R.id.bottomNavigationView);
                 bottomNavigationView.setOnNavigationItemSelectedListener(navigationItemSelected);
                 AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
-                Fragment fragment = new MapTemp();
+                Fragment fragment = null;
+                fragment = new MapTemp();
+
                 FragmentManager manager = activity.getSupportFragmentManager();
 
                 final FragmentTransaction transaction = manager.beginTransaction();

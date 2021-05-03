@@ -43,6 +43,7 @@ public class Trip_listFragment extends Fragment {
 
 
     FragmentTripListBinding binding;
+    //ViewDataBinding binding;
     RecyclerView recyclerView1,recyclerView2;
     ArrayList<SourceObject> sourceList;
     ArrayList<SiteObject> siteList;
