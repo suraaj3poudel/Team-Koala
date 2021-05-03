@@ -222,7 +222,7 @@ public class SourceForm extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(SourceForm.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        time1.setText(selectedHour + ":" + selectedMinute);
+                        time1.setText(String.format("%02d:%02d",selectedHour, selectedMinute));
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.show();
@@ -244,7 +244,7 @@ public class SourceForm extends AppCompatActivity {
                 nTimePicker = new TimePickerDialog(SourceForm.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        time2.setText(selectedHour + ":" + selectedMinute);
+                        time2.setText(String.format("%02d:%02d",selectedHour, selectedMinute));
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 nTimePicker.show();
