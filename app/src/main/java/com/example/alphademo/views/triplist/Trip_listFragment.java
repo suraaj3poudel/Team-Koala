@@ -162,7 +162,6 @@ public class Trip_listFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                //}
 
             }
         }, new Response.ErrorListener() {
@@ -204,6 +203,7 @@ public class Trip_listFragment extends Fragment {
                     e.printStackTrace();
 
                 }
+
             }
         });
 
