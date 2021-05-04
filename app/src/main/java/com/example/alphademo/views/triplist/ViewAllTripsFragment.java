@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.database.TripInfo;
 import com.example.alphademo.adapters.RecyclerViewTrip;
+import com.github.ybq.android.spinkit.SpinKitView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -38,11 +40,12 @@ public class ViewAllTripsFragment extends Fragment {
 
 
     RecyclerView recyclerViewTrip;
-    ProgressBar pbar;
+    SpinKitView pbar;
     ArrayList<SourceObject> sourceList;
     ArrayList<SiteObject> siteList;
     ArrayList<TripInfo> trips;
     RecyclerViewTrip tripAdapter;
+    TextView ic;
     String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/TeamKoala?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
 
     DatabaseJson obj;
@@ -55,10 +58,11 @@ public class ViewAllTripsFragment extends Fragment {
 
         //ViewGroup root = (ViewGroup) inflater.inflate(R.layout.activity_trip_details,null);
         recyclerViewTrip = view.findViewById(R.id.trips);
-        //pbar = view.findViewById(R.id.progressBar2);
+        pbar = view.findViewById(R.id.spin_kit);
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
         trips = new ArrayList<TripInfo>();
+        ic = view.findViewById(R.id.ic);
 
         final SwipeRefreshLayout pullToRefresh = view.findViewById(R.id.pullToRefresh);
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -90,7 +94,8 @@ public class ViewAllTripsFragment extends Fragment {
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
         Log.i("Message: ", "I am fetching data from JSON",null);
-        //pbar.setVisibility(View.VISIBLE);
+        pbar.setVisibility(View.VISIBLE);
+        ic.setVisibility(View.GONE);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
 
 
@@ -125,7 +130,7 @@ public class ViewAllTripsFragment extends Fragment {
 
                     recyclerViewTrip.setAdapter(tripAdapter);
 
-                    //pbar.setVisibility(View.VISIBLE);
+                    pbar.setVisibility(View.GONE);
 
 
                 } catch (JSONException e) {
@@ -164,14 +169,14 @@ public class ViewAllTripsFragment extends Fragment {
 
                     recyclerViewTrip.setAdapter(tripAdapter);
 
-                    //pbar.setVisibility(View.VISIBLE);
+                    pbar.setVisibility(View.GONE);
 
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
 
                 }
-                Toast.makeText(getContext(),"no Internet", Toast.LENGTH_LONG).show();
+                ic.setVisibility(View.VISIBLE);
                 Log.d("TAG", "onErrorResponse: ");
             }
 
