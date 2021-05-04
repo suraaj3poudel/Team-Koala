@@ -1,10 +1,17 @@
 package com.example.alphademo.adapters;
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -21,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -30,6 +36,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.alphademo.MainActivity;
+import com.example.alphademo.MainActivity2;
 import com.example.alphademo.MapTemp;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.R;
@@ -45,13 +53,14 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     LayoutInflater inflator;
     private ArrayList<SiteObject> mSiteInfo = new ArrayList<>();
     View mapFrag,more;
-    Context context;
+    Context context,how;
     ViewGroup parents;
+    BlurMaskFilter blurMaskFilter;
 
-    public RecyclerViewSite( Context context, ArrayList<SiteObject> siteInfo){
+    public RecyclerViewSite( Context contexts, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
-        inflator= LayoutInflater.from(context);
-        this.context = context;
+        inflator= LayoutInflater.from(contexts);
+        this.context = contexts;
     }
 
     @NonNull
@@ -62,6 +71,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         parents = parent;
         return new ViewHolder(view);
     }
+
 
 
 
@@ -110,15 +120,28 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
 
 
+//                PopupWindow menuPopup = null;
+//                View menuView= parents.getLayoutInflater().inflate(R.layout.moreinfo, null);
+//                menuPopup.setContentView(R.layout.moreinfo);
+//                menuPopup=new PopupWindow(menuView, 200, 200, false);
+//                menuPopup.showAtLocation(menuView, Gravity.TOP | Gravity.RIGHT, 0, 100);
 
-
-                final Dialog dialog = new Dialog(context, R.style.Theme_D1NoTitleDim);
+                final Dialog dialog = new Dialog(context);
 
                 dialog.requestWindowFeature(Window.FEATURE_ACTION_MODE_OVERLAY);
                 dialog.setCancelable(true);
                 dialog.setContentView(R.layout.moreinfo);
-                TextView text = (TextView) dialog.findViewById(R.id.siteContainerCode);
-                text.setText("Hi");
+                //dialog.getWindow().setDimAmount(100);
+                TextView scc = (TextView) dialog.findViewById(R.id.siteContainerCode);
+                TextView scd = (TextView) dialog.findViewById(R.id.siteContaienrDesc);
+                TextView drn = (TextView) dialog.findViewById(R.id.deliveryReqNo);
+                TextView pid= (TextView) dialog.findViewById(R.id.productID);
+                TextView fill = (TextView) dialog.findViewById(R.id.fill);
+                scc.setText(mSiteInfo.get(position).getScc());
+                scd.setText(mSiteInfo.get(position).getScd());
+                drn.setText(mSiteInfo.get(position).getDrn());
+                pid.setText(mSiteInfo.get(position).getPid());
+                fill.setText(mSiteInfo.get(position).getFillInfo());
                // holder.showMessage("", "");
                 //holder.scc.setText("Test");
 
@@ -137,9 +160,15 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
                     }
                 });
 
+                //Bitmap map=takeScreenShot(MainActivity.ge);
+
+                //Bitmap fast=fastblur(map, 10);
+                //final Drawable draw=new BitmapDrawable(parents.getResources(),fast);
+                dialog.setCanceledOnTouchOutside(true);
+
                 dialog.show();
                 dialog.getWindow().setAttributes(lp);
-                dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
+                //dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
             }
         });
 
@@ -151,8 +180,11 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         holder.sizip.setText(mSiteInfo.get(position).getSiteZIP());
         holder.site2p.setText(mSiteInfo.get(position).getSiteProduct());
         holder.site2pd.setText(mSiteInfo.get(position).getSiteProductDesc());
-        holder.ft.setText(mSiteInfo.get(position).getQuantity());
-        holder.rq.setText(mSiteInfo.get(position).getSiteProductDesc().trim());
+        holder.rq.setText(mSiteInfo.get(position).getQuantity());
+        String check = mSiteInfo.get(position).getSiteProductDesc().trim();
+        if((check.charAt(check.length()-1)+"").equals("."))
+                check = check.substring(0,check.length()-2).trim();
+        holder.ft.setText(check);
 
         //message = "SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()
                 //+"\n"+mSiteInfo.get(position).getSiteCity()+"\n"+mSiteInfo.get(position).getLatitude()+"\n"+mSiteInfo.get(position).getLongitude();
@@ -277,10 +309,12 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         TextView scc, scd,drn,pid,info;
         TextView ft, rq;
         ImageView moreInfo;
+        ImageView img;
 
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
+            how = itemView.getContext();
             more = LayoutInflater.from(parents.getContext()).inflate(R.layout.moreinfo,parents,false);
             moreInfo = itemView.findViewById(R.id.moreinfo);
             ft = itemView.findViewById(R.id.productDesc);

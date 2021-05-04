@@ -217,7 +217,7 @@
                     android:layout_height="wrap_content"
                     android:text="12345"
                     android:textColor="@android:color/black"
-                    android:textSize="20dp" />
+                    android:textSize="17dp" />
 
             </LinearLayout>
 
@@ -276,73 +276,105 @@
                     android:textSize="17sp" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                >
-                <TableLayout
+                android:orientation="horizontal"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/grey">
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:stretchColumns="1"
-                    android:layout_marginLeft="50dp"
-                    android:layout_marginRight="50dp"
+                    android:background="@color/grey"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:background="@color/teal_200"
+                        android:text="Product"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/productDesc"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0"
+                        android:text="Diesel"
+                        android:layout_gravity="center_vertical"
+                        android:padding="5dp"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/black"
+                        android:textSize="17sp" />
+
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="match_parent"
                     android:background="@color/black"
                     >
-                    <TableRow>
 
-                        <TextView
-                            android:layout_width="105dp"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:padding="3dip"
-                            android:text="Fuel Type"
-                            android:textColor="@color/white"
-                            android:textStyle="bold" />
+                </View>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/grey"
+                    android:orientation="vertical"
+                    android:layout_weight="1">
 
-                        <TextView
-                            android:text="Requested Qty"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:textColor="@color/white"
-                            android:textStyle="bold"
-                            android:padding="3dip" />
-                    </TableRow>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/teal_200"
+                        android:padding="5dp"
+                        android:text="Quantity "
+                        android:textAlignment="center"
+                        android:textColor="@android:color/white"
+                        android:textSize="19sp"
+                        android:textStyle="bold" />
 
-                    <TableRow>
-                        <TextView
-                            android:id="@+id/productDesc"
-                            android:text="-----"
-                            android:layout_width="match_parent"
-                            android:textColor="@color/white"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:padding="3dip" />
+                    <TextView
+                        android:id="@+id/productQty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:layout_weight="0"
+                        android:text="5000"
+                        android:textStyle="bold"
+                        android:textAlignment="center"
+                        android:layout_gravity="center_vertical"
+                        android:textColor="@android:color/black"
+                        android:textSize="17sp" />
+                </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/productQty"
-                            android:layout_width="match_parent"
-                            android:layout_gravity="center"
-                            android:layout_weight="1"
-                            android:padding="3dip"
-                            android:text="-----"
-                            android:textColor="@color/white" />
-                    </TableRow>
-                </TableLayout>
+
             </LinearLayout>
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/deliverForm1"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
+                    android:layout_weight="1"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
@@ -352,13 +384,14 @@
                     android:backgroundTint="@color/teal_200"
                     android:text="Deliver"
                     android:textAlignment="center"
-                    android:textSize="18sp"
+                    android:textSize="17sp"
                     android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/siteNotes1"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
+                    android:layout_weight="1"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
@@ -448,7 +481,7 @@
             <ImageView
                 android:id="@+id/arrowupSite"
                 android:layout_width="182dp"
-                android:layout_height="50dp"
+                android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/ic_baseline_expand_less_24">
