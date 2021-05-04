@@ -428,6 +428,18 @@ public class DeliveryForm extends AppCompatActivity {
             meterA.requestFocus();
         }
 
+        else if (Double.parseDouble(meterReadingB) >= Double.parseDouble(meterReadingA)) {
+            Toast.makeText(this, "Meter Reading After is less than or equal to Meter Reading Before", Toast.LENGTH_SHORT).show();
+            meterA.setError("Meter Reading After is less than Meter Reading Before");
+            meterA.requestFocus();
+        }
+
+        else if (Double.parseDouble(fuelReadingB) >= Double.parseDouble(fuelReadingA)) {
+            Toast.makeText(this, "Fuel Stick Reading After is less than or equal to Fuel Stick Reading Before", Toast.LENGTH_SHORT).show();
+            fuelStickA.setError("Fuel Reading After is less than Fuel Reading Before");
+            fuelStickA.requestFocus();
+        }
+
 //        else if(mB >= mA){
 //            Toast.makeText(this,"Meter Reading After is less than Meter Reading Before", Toast.LENGTH_SHORT).show();
 //            meterA.setError("Meter Reading After is less than Meter Reading Before");

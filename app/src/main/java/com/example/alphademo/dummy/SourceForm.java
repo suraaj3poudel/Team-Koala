@@ -304,7 +304,7 @@ public class SourceForm extends AppCompatActivity {
 
     /**
      * set the result
-      */
+     */
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -348,86 +348,65 @@ public class SourceForm extends AppCompatActivity {
      * This method validates the data entered
      */
     public boolean validateInput(){
-        boolean flag = false;
-        //converting value entered to string
-        startDate = date1.getText().toString();
-        endDate = date2.getText().toString();
-        fuelReadingB = fuelStickB.getText().toString();
-        meterReadingB = meterB.getText().toString();
-        startTime = time1.getText().toString();
-        endTime = time2.getText().toString();
-        grossGallon = grossGall.getText().toString();
-        netGallon = netGall.getText().toString();
-        fuelReadingA = fuelStickA.getText().toString();
-        meterReadingA = meterA.getText().toString();
-        barcodeNum = barcode.getText().toString();
+        try {
+            boolean flag = false;
+            //converting value entered to string
+            startDate = date1.getText().toString();
+            endDate = date2.getText().toString();
+            fuelReadingB = fuelStickB.getText().toString();
+            meterReadingB = meterB.getText().toString();
+            startTime = time1.getText().toString();
+            endTime = time2.getText().toString();
+            grossGallon = grossGall.getText().toString();
+            netGallon = netGall.getText().toString();
+            fuelReadingA = fuelStickA.getText().toString();
+            meterReadingA = meterA.getText().toString();
+            barcodeNum = barcode.getText().toString();
 
-//        Changing String to Integer
-//        double mB = Double.parseDouble(meterReadingB);
-//        double mA = Double.parseDouble(meterReadingA);
-//
-//        double fB = Double.parseDouble(fuelReadingB);
-//        double fA = Double.parseDouble(fuelReadingA);
 
-        if (startDate.equals("")){
-            Toast.makeText(this,"Please select Start Date", Toast.LENGTH_SHORT).show();
-            date1.setError("Please select Start Date");
-            date1.requestFocus();
-        }
+            if (startDate.equals("")) {
+                Toast.makeText(this, "Please select Start Date", Toast.LENGTH_SHORT).show();
+                date1.setError("Please select Start Date");
+                date1.requestFocus();
+            } else if (endDate.equals("")) {
+                Toast.makeText(this, "Please select End Date", Toast.LENGTH_SHORT).show();
+                date2.setError("Please select End Date");
+                date2.requestFocus();
+            } else if (fuelReadingB.equals("")) {
+                Toast.makeText(this, "Please select Fuel Stick Reading Before", Toast.LENGTH_SHORT).show();
+                fuelStickB.setError("Please select Fuel Stick Reading Before");
+                fuelStickB.requestFocus();
+            } else if (meterReadingB.equals("")) {
+                Toast.makeText(this, "Please select Meter Reading Before", Toast.LENGTH_SHORT).show();
+                meterB.setError("Please select Meter Reading Before");
+                meterB.requestFocus();
+            } else if (startTime.equals("")) {
+                Toast.makeText(this, "Please select Start Time", Toast.LENGTH_SHORT).show();
+                time1.setError("Please select Start Time");
+                time1.requestFocus();
+            } else if (endTime.equals("")) {
+                Toast.makeText(this, "Please select End Time", Toast.LENGTH_SHORT).show();
+                time2.setError("Please select End Time");
+                time2.requestFocus();
+            } else if (grossGallon.equals("")) {
+                Toast.makeText(this, "Please select Gross Gallon Dropped", Toast.LENGTH_SHORT).show();
+                grossGall.setError("Please select Gross Gallon Dropped");
+                grossGall.requestFocus();
+            } else if (netGallon.equals("")) {
+                Toast.makeText(this, "Please select Net Gallon Dropped", Toast.LENGTH_SHORT).show();
+                netGall.setError("Please select Net Gallon Dropped");
+                netGall.requestFocus();
+            } else if (fuelReadingA.equals("")) {
+                Toast.makeText(this, "Please select Fuel Stick Reading After", Toast.LENGTH_SHORT).show();
+                fuelStickA.setError("Please select Fuel Reading After");
+                fuelStickA.requestFocus();
+            }
 
-        else if (endDate.equals("")){
-            Toast.makeText(this,"Please select End Date", Toast.LENGTH_SHORT).show();
-            date2.setError("Please select End Date");
-            date2.requestFocus();
-        }
-
-        else if (fuelReadingB.equals("")){
-            Toast.makeText(this,"Please select Fuel Stick Reading Before", Toast.LENGTH_SHORT).show();
-            fuelStickB.setError("Please select Fuel Stick Reading Before");
-            fuelStickB.requestFocus();
-        }
-
-        else if (meterReadingB.equals("")){
-            Toast.makeText(this,"Please select Meter Reading Before", Toast.LENGTH_SHORT).show();
-            meterB.setError("Please select Meter Reading Before");
-            meterB.requestFocus();
-        }
-
-        else if (startTime.equals("")){
-            Toast.makeText(this,"Please select Start Time", Toast.LENGTH_SHORT).show();
-            time1.setError("Please select Start Time");
-            time1.requestFocus();
-        }
-
-        else if (endTime.equals("")){
-            Toast.makeText(this,"Please select End Time", Toast.LENGTH_SHORT).show();
-            time2.setError("Please select End Time");
-            time2.requestFocus();
-        }
-
-        else if (grossGallon.equals("")){
-            Toast.makeText(this,"Please select Gross Gallon Dropped", Toast.LENGTH_SHORT).show();
-            grossGall.setError("Please select Gross Gallon Dropped");
-            grossGall.requestFocus();
-        }
-
-        else if (netGallon.equals("")){
-            Toast.makeText(this,"Please select Net Gallon Dropped", Toast.LENGTH_SHORT).show();
-            netGall.setError("Please select Net Gallon Dropped");
-            netGall.requestFocus();
-        }
-
-        else if (fuelReadingA.equals("")){
-            Toast.makeText(this,"Please select Fuel Stick Reading After", Toast.LENGTH_SHORT).show();
-            fuelStickA.setError("Please select Fuel Reading After");
-            fuelStickA.requestFocus();
-        }
-
-//        else if(fB >= fA){
-//            Toast.makeText(this,"Fuel Reading After is less than Fuel Reading Before", Toast.LENGTH_SHORT).show();
-//            fuelStickA.setError("Fuel Reading After is less than Fuel Reading Before");
-//            fuelStickA.requestFocus();
-//        }
+            else if (Double.parseDouble(fuelReadingB) >= Double.parseDouble(fuelReadingA)) {
+                Toast.makeText(this, "Fuel Stick Reading After is less than or equal to Fuel Stick Reading Before", Toast.LENGTH_SHORT).show();
+                fuelStickA.setError("Fuel Reading After is less than Fuel Reading Before");
+                fuelStickA.requestFocus();
+            }
 
 //        else if(!(TextUtils.isEmpty(fuelReadingB) && TextUtils.isEmpty(fuelReadingA))){
 //            double fB = Double.parseDouble(fuelReadingB);
@@ -440,17 +419,24 @@ public class SourceForm extends AppCompatActivity {
 //            }
 //        }
 
-        else if (meterReadingA.equals("")){
-            Toast.makeText(this,"Please select Meter Reading After", Toast.LENGTH_SHORT).show();
-            meterA.setError("Please select Meter Reading After");
-            meterA.requestFocus();
-        }
+            else if (meterReadingA.equals("")) {
+                Toast.makeText(this, "Please select Meter Reading After", Toast.LENGTH_SHORT).show();
+                meterA.setError("Please select Meter Reading After");
+                meterA.requestFocus();
+            }
 
-//        else if(mB >= mA){
-//            Toast.makeText(this,"Meter Reading After is less than Meter Reading Before", Toast.LENGTH_SHORT).show();
-//            meterA.setError("Meter Reading After is less than Meter Reading Before");
-//            meterA.requestFocus();
-//        }
+            //        Changing String to Integer
+//        int mB = Integer.parseInt(meterReadingB);
+//        int mA = Integer.parseInt(meterReadingA);
+//
+//        double fB = Double.parseDouble(fuelReadingB);
+//        double fA = Double.parseDouble(fuelReadingA);
+
+            else if (Double.parseDouble(meterReadingB) >= Double.parseDouble(meterReadingA)) {
+                Toast.makeText(this, "Meter Reading After is less than or equal to Meter Reading Before", Toast.LENGTH_SHORT).show();
+                meterA.setError("Meter Reading After is less than Meter Reading Before");
+                meterA.requestFocus();
+            }
 
 //        else if(!(TextUtils.isEmpty(meterReadingB) && TextUtils.isEmpty(meterReadingA))){
 //            double mB = Double.parseDouble(meterReadingB);
@@ -465,21 +451,26 @@ public class SourceForm extends AppCompatActivity {
 //        }
 
 
-
-        else{
-            flag = true;
-            date1.setError(null);
-            date2.setError(null);
-            fuelStickB.setError(null);
-            meterB.setError(null);
-            time1.setError(null);
-            time2.setError(null);
-            grossGall.setError(null);
-            netGall.setError(null);
-            fuelStickA.setError(null);
-            meterA.setError(null);
+            else {
+                Log.i("ERRORE", "somethings wrong");
+                flag = true;
+                date1.setError(null);
+                date2.setError(null);
+                fuelStickB.setError(null);
+                meterB.setError(null);
+                time1.setError(null);
+                time2.setError(null);
+                grossGall.setError(null);
+                netGall.setError(null);
+                fuelStickA.setError(null);
+                meterA.setError(null);
+            }
+            return flag;
         }
-        return flag;
+        catch (Exception e){
+
+            return false;
+        }
     }
 
 }
