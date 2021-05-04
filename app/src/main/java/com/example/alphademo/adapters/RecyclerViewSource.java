@@ -51,8 +51,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_sourceinfo,parent,false);
         mapFrag = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main2,parent,false);
-
-
         return new ViewHolder(view);
     }
 
