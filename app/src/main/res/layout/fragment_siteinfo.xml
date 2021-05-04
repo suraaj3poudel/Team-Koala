@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="5dp"
+    android:elevation="10dp"
     android:fadeScrollbars="true"
     android:padding="7dp"
     android:foregroundTint="@color/primary">
@@ -17,95 +17,119 @@
         android:layout_gravity="center"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
-        app:background="@drawable/card_item_background2"
         app:cardCornerRadius="10dp"
+        app:backgroundTint="@drawable/card_item_background2"
         app:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/card_item_background2"
-            android:orientation="horizontal"
-            android:id="@+id/show_layout_site"
-            android:visibility="visible">
-
+            android:orientation="vertical">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/fuelImgSite"
-                android:layout_weight="0"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/ic_baseline_local_gas_station_24" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/siteCard_layout"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginLeft="5dp">
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
-
-
-                    <TextView
-                        android:id="@+id/site"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Site Name"
-                        android:textColor="#330000"
-                        android:layout_marginTop="5dp"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
+                android:orientation="horizontal"
+                android:id="@+id/show_layout_site"
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:layout_weight="1">
+                    android:id="@+id/fuelImgSite"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/siteAddress"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="5dp"
-                        android:text="Street Address"
-                        android:layout_marginBottom="3dp"
-                        android:textColor="#330000"
-                        android:textSize="15sp" />
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:src="@drawable/ic_baseline_local_gas_station_24" />
+
                 </LinearLayout>
 
+                <LinearLayout
+                    android:id="@+id/siteCard_layout"
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="5dp">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+
+                        <TextView
+                            android:id="@+id/site"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Site Name"
+                            android:textColor="#330000"
+                            android:layout_marginTop="5dp"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:id="@+id/siteAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text="Street Address"
+                            android:layout_marginBottom="3dp"
+                            android:textColor="#330000"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0"
+                    android:orientation="vertical">
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/arrowdownSite"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_baseline_expand_more_24" />
+
+
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="0"
-                android:orientation="vertical">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
+                <TextView
+                    android:id="@+id/complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Trip Complete"
+                    android:background="@color/green"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="15dp" />
             </LinearLayout>
-
-            <ImageView
-                android:id="@+id/arrowdownSite"
-                android:layout_width="45dp"
-                android:layout_height="45dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_baseline_expand_more_24" />
 
         </LinearLayout>
+
+
 
 
         <LinearLayout
@@ -378,8 +402,8 @@
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginStart="10dp"
-                    android:layout_marginLeft="246dp"
-                    android:layout_marginRight="55dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
                     android:backgroundTint="@color/teal_200"
                     android:text="Deliver"
                     android:textAlignment="center"
@@ -390,13 +414,13 @@
                     android:id="@+id/siteNotes1"
                     android:layout_width="wrap_content"
                     android:layout_height="60dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_marginLeft="15dp"
                     android:layout_weight="1"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentLeft="true"
                     android:layout_alignParentRight="true"
                     android:layout_marginStart="50dp"
-                    android:layout_marginLeft="246dp"
-                    android:layout_marginRight="100dp"
                     android:backgroundTint="@color/teal_200"
                     android:text="+ Add Notes"
                     android:textAlignment="center"
@@ -489,8 +513,8 @@
 
         </LinearLayout>
 
-
     </androidx.cardview.widget.CardView>
+
 
 
 </ScrollView>
