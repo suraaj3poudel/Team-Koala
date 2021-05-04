@@ -27,6 +27,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.alphademo.R;
+import com.example.alphademo.database.DatabaseSQLiteForms;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -45,6 +46,8 @@ public class DeliveryForm extends AppCompatActivity {
     Button mCaptureBtn;
     ImageView mImageView;
     Uri image_uri;
+    DatabaseSQLiteForms myDB;
+    String id,data;
 
     Button btScan;
     View formfrag;
@@ -56,9 +59,10 @@ public class DeliveryForm extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.delivery_form);
-
+        myDB = new DatabaseSQLiteForms(this);
         String fuel = getIntent().getStringExtra("fuelType");
-        Log.i("FuelTP", getIntent().getStringExtra("fuelType")+"nice");
+        id =  getIntent().getStringExtra("id");
+        data = myDB.getData(id);
 
         /**initiate and display value for fueltype */
         fueltp = findViewById(R.id.fuelType);
@@ -89,7 +93,26 @@ public class DeliveryForm extends AppCompatActivity {
         meterA = findViewById(R.id.meterA);
         barcode = findViewById(R.id.scanText);
 
+        if(!data.equals("")){
+            try {
+                String[] datas = data.split(",");
+                date1.setText(datas[0]);
+                date2.setText(datas[1]);
+                fuelStickB.setText(datas[2]);
+                meterB.setText(datas[3]);
+                time1.setText(datas[4]);
+                time2.setText(datas[5]);
+                grossGall.setText(datas[6]);
+                netGall.setText(datas[7]);
+                fuelStickA.setText(datas[8]);
+                meterA.setText(datas[9]);
+            }
+            catch (Exception e){
 
+            }
+        }
+
+        myDB.addData(id,null);
         /**initiate variable for camera */
         mImageView = findViewById(R.id.image_view);
         mCaptureBtn = findViewById(R.id.button5);
@@ -171,7 +194,10 @@ public class DeliveryForm extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 /**set day of month , month and year value in the edit text */
-                                date1.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                String put = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                                date1.setText(put);
+                                myDB.updateData(id,date1.getText()+","+date2.getText()+","+fuelStickB.getText().toString()+","+meterB.getText().toString()
+                                        +","+time1.getText()+","+time2.getText()+","+grossGall.getText().toString()+","+netGall.getText().toString()+","+fuelStickA.getText().toString()+","+ meterA.getText().toString());
                             }
                         }, mYear, mMonth, mDay);
                 //disable future date
@@ -202,7 +228,11 @@ public class DeliveryForm extends AppCompatActivity {
                             public void onDateSet(DatePicker view, int year,
                                                   int monthOfYear, int dayOfMonth) {
                                 // set day of month , month and year value in the edit text
-                                date2.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                                String put = dayOfMonth + "/" + (monthOfYear + 1) + "/" + year;
+                                date2.setText(put);
+                                myDB.updateData(id,date1.getText()+","+date2.getText()+","+fuelStickB.getText().toString()+","+meterB.getText().toString()
+                                        +","+time1.getText()+","+time2.getText()+","+grossGall.getText().toString()+","+netGall.getText().toString()+","+fuelStickA.getText().toString()+","+ meterA.getText().toString());
+                                //myDB.addData(id,data);
                             }
                         }, mYear, mMonth, mDay);
                 //disable past date
@@ -227,7 +257,10 @@ public class DeliveryForm extends AppCompatActivity {
                 mTimePicker = new TimePickerDialog(DeliveryForm.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        time1.setText(String.format("%02d:%02d",selectedHour, selectedMinute));
+                        String put=String.format("%02d:%02d",selectedHour, selectedMinute);
+                        time1.setText(put);
+                        myDB.updateData(id,date1.getText()+","+date2.getText()+","+fuelStickB.getText().toString()+","+meterB.getText().toString()
+                                +","+time1.getText()+","+time2.getText()+","+grossGall.getText().toString()+","+netGall.getText().toString()+","+fuelStickA.getText().toString()+","+ meterA.getText().toString());
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 mTimePicker.show();
@@ -250,7 +283,10 @@ public class DeliveryForm extends AppCompatActivity {
                 nTimePicker = new TimePickerDialog(DeliveryForm.this, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        time2.setText(String.format("%02d:%02d",selectedHour, selectedMinute));
+                        String put=String.format("%02d:%02d",selectedHour, selectedMinute);
+                        time2.setText(put);
+                        myDB.updateData(id,date1.getText()+","+date2.getText()+","+fuelStickB.getText().toString()+","+meterB.getText().toString()
+                                +","+time1.getText()+","+time2.getText()+","+grossGall.getText().toString()+","+netGall.getText().toString()+","+fuelStickA.getText().toString()+","+ meterA.getText().toString());
                     }
                 }, hour, minute, true);//Yes 24 hour time
                 nTimePicker.show();
@@ -354,6 +390,10 @@ public class DeliveryForm extends AppCompatActivity {
         fuelReadingA = fuelStickA.getText().toString();
         meterReadingA = meterA.getText().toString();
         barcodeNum = barcode.getText().toString();
+
+        myDB.updateData(id,startDate+","+endDate+","+fuelReadingB+","+meterReadingB+","+startTime+","+endTime+","+grossGallon+","+netGallon+","+fuelReadingA+","+meterReadingA);
+
+
 
 //        Changing String to Double
 //        double mB = Double.parseDouble(meterReadingB);

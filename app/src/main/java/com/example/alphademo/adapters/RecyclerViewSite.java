@@ -64,15 +64,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final Intent intent= new Intent(context, DeliveryForm.class);
-        intent.putExtra("fuelType",mSiteInfo.get(position).getSiteProductDesc());
 
-
-        holder.deliverForm1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) { context.startActivity(intent);
-            }
-        });
 
 
         holder.moreInfo.setOnClickListener(new View.OnClickListener() {
@@ -132,7 +124,17 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         holder.ft.setText(check);
 
 
-        final String siteID1 = holder.sitecode.getText().toString().trim()+position;
+        final String siteID1 = holder.sitecode.getText().toString().trim();
+
+        final Intent intent= new Intent(context, DeliveryForm.class);
+        intent.putExtra("fuelType",mSiteInfo.get(position).getSiteProductDesc());
+        intent.putExtra("id",siteID1);
+
+        holder.deliverForm1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { context.startActivity(intent);
+            }
+        });
 
         String siteNotes = holder.myDB.getNotes(siteID1);
 

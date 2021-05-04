@@ -61,15 +61,8 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        final Intent intent= new Intent(context, SourceForm.class);
-        intent.putExtra("fuelType",mSourceInfo.get(position).getFuelType());
 
-        holder.sourceForm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                context.startActivity(intent);
-            }
-        });
+
 
 
         pos = position;
@@ -82,7 +75,19 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.addressT.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity().trim()+", "+mSourceInfo.get(position).getSourceState().trim());
         holder.szipcode.setText(mSourceInfo.get(position).getSourceZIP());
 
-        final String sourceID = holder.sourcecode.getText().toString().trim()+position;
+        //final String sourceID = holder.sourcecode.getText().toString().trim()+position;
+
+        final String sourceID = holder.sourcecode.getText().toString().trim();
+        final Intent intent= new Intent(context, SourceForm.class);
+        intent.putExtra("fuelType",mSourceInfo.get(position).getFuelType());
+        intent.putExtra("id",sourceID);
+
+        holder.sourceForm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                context.startActivity(intent);
+            }
+        });
 
         final String sourceNotes =holder.myDB.getNotes(sourceID);
 
@@ -152,6 +157,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 holder.show_layout.setVisibility(View.VISIBLE);
             }
         });
+
         final BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
