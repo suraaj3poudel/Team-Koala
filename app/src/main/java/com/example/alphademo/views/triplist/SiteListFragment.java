@@ -18,9 +18,11 @@ public class SiteListFragment extends Fragment {
 
     FragmentSiteListBinding binding;
     RecyclerViewSite adapter;
+    boolean tr;
 
-    public SiteListFragment(RecyclerViewSite siteAdapter) {
+    public SiteListFragment(RecyclerViewSite siteAdapter,boolean t) {
         adapter = siteAdapter;
+        tr=t;
     }
 
     @Nullable
@@ -29,5 +31,19 @@ public class SiteListFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_site_list,container,false);
         binding.siteList.setAdapter(adapter);
         return binding.getRoot();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+
+        if(tr){
+            binding.ic.setVisibility(View.VISIBLE);
+        }
+        else{
+            binding.ic.setVisibility(View.GONE);
+        }
+
+        binding.spinKit2.setVisibility(View.GONE);
     }
 }

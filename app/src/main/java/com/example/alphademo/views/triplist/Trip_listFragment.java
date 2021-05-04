@@ -49,13 +49,14 @@ public class Trip_listFragment extends Fragment {
     ArrayList<SiteObject> siteList;
     TabLayout tabLayout;
     ViewPager viewPager;
+    TextView ic,ic2;
 
     String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/TeamKoala?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
     DatabaseJson obj;
+    ViewGroup g1,g2;
     DatabaseProfile extractedName;
-    TextView profileName;
 
     @Nullable
     @Override
@@ -65,8 +66,9 @@ public class Trip_listFragment extends Fragment {
 
 
 
-        ViewGroup root1 = (ViewGroup) inflater.inflate(R.layout.fragment_source_list,null);
-        ViewGroup root2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
+        g1 = (ViewGroup) inflater.inflate(R.layout.fragment_source_list,null);
+        g2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
+
 //        recyclerView1 = view.findViewById(R.id.sourceList);
 //        recyclerView2 = view.findViewById(R.id.siteList);
 
@@ -75,7 +77,6 @@ public class Trip_listFragment extends Fragment {
 
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
-
         tabLayout.addTab(tabLayout.newTab().setText("SOURCE").setIcon(R.drawable.ic_baseline_local_gas_station_24));
         tabLayout.addTab(tabLayout.newTab().setText("SITE").setIcon(R.drawable.site));
         tabLayout.setSelectedTabIndicatorColor(Color.parseColor("#b53a09"));
@@ -118,12 +119,13 @@ public class Trip_listFragment extends Fragment {
         final String[] abc = {""};
 
 
-
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
-
-
-        //pbar.setVisibility(View.VISIBLE);
+        ic= g1.findViewById(R.id.ic);
+        ic2 = g2.findViewById(R.id.ic);
+        final boolean[] tr = {false};
+        ic.setVisibility(View.GONE);
+        ic2.setVisibility(View.GONE);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
 
 
@@ -132,6 +134,7 @@ public class Trip_listFragment extends Fragment {
                 //Toast.makeText(getApplicationContext(),"fetching all data",Toast.LENGTH_SHORT).show();
                 //for (int i = 0; i < response.length(); i++) {
                 String abc= "";
+                tr[0] =false;
                 try {
 
                     JSONObject driverObject = response.getJSONObject("data".toString());
@@ -171,8 +174,7 @@ public class Trip_listFragment extends Fragment {
                     siteAdapter = new RecyclerViewSite(getContext(), siteList);
 
 
-                    final MyAdapter adapter = new MyAdapter(requireContext(),getChildFragmentManager(),
-                            tabLayout.getTabCount(), sourceAdapter, siteAdapter);
+                    final MyAdapter adapter = new MyAdapter(requireContext(),getChildFragmentManager(), tabLayout.getTabCount(), sourceAdapter, siteAdapter, tr[0]);
                     viewPager.setAdapter(adapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -196,6 +198,7 @@ public class Trip_listFragment extends Fragment {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                tr[0] = true;
                 try{
                     obj = new DatabaseJson(getContext());
                     JSONObject jsonObjects = obj.getObject(1);
@@ -215,11 +218,12 @@ public class Trip_listFragment extends Fragment {
                             siteList.add(site);
                         }
                     }
+                    ic2.setVisibility(View.VISIBLE);
                     sourceAdapter = new RecyclerViewSource(getContext(), sourceList);
                     siteAdapter = new RecyclerViewSite(getContext(), siteList);
 
                     final MyAdapter adapter = new MyAdapter(requireContext(),getChildFragmentManager(),
-                            tabLayout.getTabCount(), sourceAdapter, siteAdapter);
+                            tabLayout.getTabCount(), sourceAdapter, siteAdapter, tr[0]);
                     viewPager.setAdapter(adapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
@@ -230,12 +234,15 @@ public class Trip_listFragment extends Fragment {
                     e.printStackTrace();
 
                 }
-                Toast.makeText(getContext(),"no Internet", Toast.LENGTH_LONG).show();
+
+                ic.setVisibility(View.VISIBLE);
+
+                ic2.setVisibility(View.VISIBLE);
                 Log.d("TAG", "onErrorResponse: ");
             }
         });
 
-        //pbar.setVisibility(View.VISIBLE);
+
         queue.add(jsonObjectRequest);
     }
 

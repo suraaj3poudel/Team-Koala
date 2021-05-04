@@ -15,13 +15,15 @@ public class MyAdapter extends FragmentPagerAdapter {
     int totalTabs;
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
+    boolean tr;
 
-    public MyAdapter(Context c, FragmentManager fm, int tabCount, RecyclerViewSource sourceAdapter, RecyclerViewSite siteAdapter) {
+    public MyAdapter(Context c, FragmentManager fm, int tabCount, RecyclerViewSource sourceAdapter, RecyclerViewSite siteAdapter,boolean t) {
         super(fm);
         context = c;
         this.totalTabs = tabCount;
         this.sourceAdapter = sourceAdapter;
         this.siteAdapter = siteAdapter;
+        tr=t;
     }
 
     @NonNull
@@ -29,10 +31,10 @@ public class MyAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0:
-                SourceListFragment sourceListFragment = new SourceListFragment(sourceAdapter);
+                SourceListFragment sourceListFragment = new SourceListFragment(sourceAdapter,tr);
                 return sourceListFragment;
             case 1:
-                SiteListFragment siteListFragment = new SiteListFragment(siteAdapter);
+                SiteListFragment siteListFragment = new SiteListFragment(siteAdapter,tr);
                 return siteListFragment;
             default:
                 return null;

@@ -19,12 +19,11 @@ import com.example.alphademo.databinding.FragmentSourceListBinding;
 public class SourceListFragment extends Fragment {
     FragmentSourceListBinding binding;
     RecyclerViewSource adapter;
-    ImageButton img;
+    boolean b;
 
-
-    public SourceListFragment(RecyclerViewSource sourceAdapter) {
+    public SourceListFragment(RecyclerViewSource sourceAdapter,boolean t) {
         adapter = sourceAdapter;
-
+        b=t;
     }
 
 
@@ -34,7 +33,7 @@ public class SourceListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_source_list,container,false);
-        binding.spinKit1.setVisibility(View.VISIBLE);
+        //binding.spinKit1.setVisibility(View.VISIBLE);
         binding.sourceList.setAdapter(adapter);
         return binding.getRoot();
     }
@@ -42,7 +41,12 @@ public class SourceListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        binding.spinKit1.setVisibility(View.INVISIBLE);
-        //binding.spinKit1.setVisibility(View.INVISIBLE);
+        if(b){
+            binding.ic.setVisibility(View.VISIBLE);
+        }
+        else{
+            binding.ic.setVisibility(View.GONE);
+        }
+        binding.spinKit1.setVisibility(View.GONE);
     }
 }

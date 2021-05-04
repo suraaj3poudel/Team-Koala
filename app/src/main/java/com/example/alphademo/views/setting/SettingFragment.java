@@ -111,7 +111,7 @@ public class SettingFragment extends Fragment {
         //db.addData(1, "jhhjhj", "", "", "","");
         //name = "ABCDEFGH";
         //db.getData(2, "EMAIL");
-        Toast.makeText(getContext(), db.getData(1, "NAME").toString(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), db.getData(1, "NAME").toString(), Toast.LENGTH_SHORT).show();
 
 
 
