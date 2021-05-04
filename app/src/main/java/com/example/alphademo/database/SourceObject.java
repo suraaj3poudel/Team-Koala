@@ -12,7 +12,51 @@ public class SourceObject {
     private String sourceState;
     private String sourceZIP;
     private  String fuelType;
+
+    public String getSourceProduct() {
+        return sourceProduct;
+    }
+
+    private String sourceProduct;
     private JSONObject sourceDetails;
+    private String pid;
+
+    public String getPid() {
+        return pid;
+    }
+
+    public String getQuantity() {
+        return quantity;
+    }
+
+    private String quantity;
+
+    private String fillInfo;
+    private String scc;
+
+    public String getFillInfo() {
+        return fillInfo;
+    }
+
+    public String getScc() {
+        return scc;
+    }
+
+    public String getScd() {
+        return scd;
+    }
+
+    public String getDrn() {
+        return drn;
+    }
+
+    public String getDelReqlineNum() {
+        return delReqlineNum;
+    }
+
+    private  String scd;
+    private String drn;
+    private String delReqlineNum;
 
     public double getLatitude() {
         return latitude;
@@ -50,6 +94,9 @@ public class SourceObject {
         String sourcezip = sourceDetails.getString("PostalCode");
         sourceZIP = sourcezip;
 
+        String site2p= sourceDetails.getString("ProductCode");
+        sourceProduct= site2p;
+
         double sourcelat = sourceDetails.getDouble("Latitude");
         latitude = sourcelat;
 
@@ -58,6 +105,27 @@ public class SourceObject {
 
         String fueltype = sourceDetails.getString("ProductDesc");
         fuelType = fueltype;
+
+        String siCC = sourceDetails.getString("SiteContainerCode");
+        scc = siCC;
+
+        String siCD = sourceDetails.getString("SiteContainerDescription");
+        scd = siCD;
+
+        String deRN = sourceDetails.getString("DelReqNum");
+        drn = deRN;
+
+        String deRLN = sourceDetails.getString("DelReqLineNum");
+        delReqlineNum = deRLN;
+
+        String pID = sourceDetails.getString("ProductId");
+        pid = pID;
+
+        String fiLL= sourceDetails.getString("Fill");
+        fillInfo = fiLL;
+
+        String qTY= sourceDetails.getString("RequestedQty");
+        quantity = qTY;
     }
 
     public String getSource() {
@@ -89,4 +157,5 @@ public class SourceObject {
 
         return fuelType;
     }
+
 }

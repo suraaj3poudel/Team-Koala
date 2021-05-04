@@ -1,6 +1,7 @@
 package com.example.alphademo.adapters;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -63,17 +66,65 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
 
+        holder.moreInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Dialog dialog = new Dialog(context);
+
+                dialog.requestWindowFeature(Window.FEATURE_ACTION_MODE_OVERLAY);
+                dialog.setCancelable(true);
+                dialog.setContentView(R.layout.moreinfo);
+                TextView scc = (TextView) dialog.findViewById(R.id.siteContainerCode);
+                TextView scd = (TextView) dialog.findViewById(R.id.siteContaienrDesc);
+                TextView drn = (TextView) dialog.findViewById(R.id.deliveryReqNo);
+                TextView pid= (TextView) dialog.findViewById(R.id.productID);
+                TextView fill = (TextView) dialog.findViewById(R.id.fill);
+                scc.setText(mSourceInfo.get(position).getScc());
+                scd.setText(mSourceInfo.get(position).getScd());
+                drn.setText(mSourceInfo.get(position).getDrn());
+                pid.setText(mSourceInfo.get(position).getPid());
+                fill.setText(mSourceInfo.get(position).getFillInfo());
+
+
+
+                Button dialogButton = (Button) dialog.findViewById(R.id.ok);
+                WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+                lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+                lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.setCanceledOnTouchOutside(true);
+
+                dialog.show();
+                dialog.getWindow().setAttributes(lp);
+            }
+        });
 
 
         pos = position;
 
-        holder.sourcename.setText(mSourceInfo.get(position).getSource());
-        holder.sourceT.setText(mSourceInfo.get(position).getSource());
+        holder.sourcename.setText(mSourceInfo.get(position).getSource().trim());
+        holder.sourceT.setText(mSourceInfo.get(position).getSource().trim());
 
         holder.sourcecode.setText(mSourceInfo.get(position).getSourceCode());
         holder.address.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity().trim()+", "+mSourceInfo.get(position).getSourceState().trim());
         holder.addressT.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity().trim()+", "+mSourceInfo.get(position).getSourceState().trim());
         holder.szipcode.setText(mSourceInfo.get(position).getSourceZIP());
+        holder.site2p.setText(mSourceInfo.get(position).getSourceProduct());
+        holder.site2pd.setText(mSourceInfo.get(position).getFuelType());
+        holder.rq.setText(mSourceInfo.get(position).getQuantity() == null ? "N/A": mSourceInfo.get(position).getQuantity());
+        String check = mSourceInfo.get(position).getFuelType()==null ? "N/A" :  mSourceInfo.get(position).getFuelType().trim() ;
+        if((check.charAt(check.length()-1)+"").equals("."))
+            check = check.substring(0,check.length()-2).trim();
+        holder.ft.setText(check);
 
         //final String sourceID = holder.sourcecode.getText().toString().trim()+position;
 
@@ -213,12 +264,19 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         DatabaseSQLite myDB;
         ExtendedFloatingActionButton navi;
         CardView card;
+        TextView ft, rq,site2p,site2pd;
+        ImageView moreInfo;
 
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
             navi = itemView.findViewById(R.id.navSource);
+            site2p = itemView.findViewById(R.id.productCode1);
+            site2pd = itemView.findViewById(R.id.productDesc1);
+            moreInfo = itemView.findViewById(R.id.moreinfo);
+            ft = itemView.findViewById(R.id.productDesc);
+            rq = itemView.findViewById(R.id.productQty);
             card= itemView.findViewById(R.id.card_viewSource);
 //            progressBar = itemView.findViewById(R.id.spin_kit1);
             sourcename = itemView.findViewById(R.id.source);

@@ -131,65 +131,40 @@ public class SiteObject {
         return site;
     }
 
-    public void setSite(String site) {
-        this.site = site;
-    }
 
     public String getSiteCode() {
         return siteCode;
     }
 
-    public void setSiteCode(String siteCode) {
-        this.siteCode = siteCode;
-    }
 
     public String getSiteAddress() {
         return siteAddress;
-    }
-
-    public void setSiteAddress(String siteAddress) {
-        this.siteAddress = siteAddress;
     }
 
     public String getSiteCity() {
         return siteCity;
     }
 
-    public void setSiteCity(String siteCity) {
-        this.siteCity = siteCity;
-    }
 
     public String getSiteState() {
         return siteState;
     }
 
-    public void setSiteState(String siteState) {
-        this.siteState = siteState;
-    }
 
     public String getSiteZIP() {
         return siteZIP;
     }
 
-    public void setSiteZIP(String siteZIP) {
-        this.siteZIP = siteZIP;
-    }
 
     public String getSiteProduct() {
         return siteProduct;
     }
 
-    public void setSiteProduct(String siteProduct) {
-        this.siteProduct = siteProduct;
-    }
 
     public String getSiteProductDesc() {
         return siteProductDesc;
     }
 
-    public void setSiteProductDesc(String siteProductDesc) {
-        this.siteProductDesc = siteProductDesc;
-    }
 
 
 }

@@ -109,8 +109,8 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             }
         });
 
-        holder.site.setText(mSiteInfo.get(position).getSite());
-        holder.sitet.setText(mSiteInfo.get(position).getSite());
+        holder.site.setText(mSiteInfo.get(position).getSite().trim());
+        holder.sitet.setText(mSiteInfo.get(position).getSite().trim());
         holder.sitecode.setText(mSiteInfo.get(position).getSiteCode());
         holder.siaddress.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity().trim()+", "+mSiteInfo.get(position).getSiteState());
         holder.siteaddresst.setText(mSiteInfo.get(position).getSiteAddress()+", "+mSiteInfo.get(position).getSiteCity().trim()+", "+mSiteInfo.get(position).getSiteState());
@@ -247,18 +247,15 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         EditText typeSpaceSite1;
         DatabaseSQLite myDB;
         ExtendedFloatingActionButton navi;
-        ImageView navicon;
         CardView card;
-        TextView scc, scd,drn,pid,info;
         TextView ft, rq;
         ImageView moreInfo;
-        ImageView img;
 
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             how = itemView.getContext();
-            more = LayoutInflater.from(parents.getContext()).inflate(R.layout.moreinfo,parents,false);
+           // more = LayoutInflater.from(parents.getContext()).inflate(R.layout.moreinfo,parents,false);
             moreInfo = itemView.findViewById(R.id.moreinfo);
             ft = itemView.findViewById(R.id.productDesc);
             rq = itemView.findViewById(R.id.productQty);
@@ -269,7 +266,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             arrowdown = itemView.findViewById(R.id.arrowdownSite);
             arrowup = itemView.findViewById(R.id.arrowupSite);
             deliverForm1 = itemView.findViewById(R.id.deliverForm1);
-            scc = more.findViewById(R.id.siteContainerCode);
+            //scc = more.findViewById(R.id.siteContainerCode);
             site = itemView.findViewById(R.id.site);
             sitet = itemView.findViewById(R.id.siteT);
             sitecode = itemView.findViewById(R.id.siteCode);
