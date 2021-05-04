@@ -55,7 +55,6 @@ public class Trip_listFragment extends Fragment {
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
     DatabaseJson obj;
-    ViewGroup g1,g2;
     DatabaseProfile extractedName;
 
     @Nullable
@@ -63,17 +62,6 @@ public class Trip_listFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_trip_list, container, false);
-
-
-
-        g1 = (ViewGroup) inflater.inflate(R.layout.fragment_source_list,null);
-        g2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
-
-//        recyclerView1 = view.findViewById(R.id.sourceList);
-//        recyclerView2 = view.findViewById(R.id.siteList);
-
-
-        //Toast.makeText(getContext(), profileName.getText(), Toast.LENGTH_SHORT).show();
 
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
@@ -105,10 +93,6 @@ public class Trip_listFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //Toast.makeText(getContext(), profileName.getText().toString(), Toast.LENGTH_SHORT).show();
-        //Log.i("Running ", "Trip_listFragment "+sourceList.size());
-        //extractDriverNames();
-
     }
 
 
@@ -121,8 +105,6 @@ public class Trip_listFragment extends Fragment {
 
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
-        ic= g1.findViewById(R.id.ic);
-        ic2 = g2.findViewById(R.id.ic);
         final boolean[] tr = {false};
         ic.setVisibility(View.GONE);
         ic2.setVisibility(View.GONE);
@@ -131,8 +113,6 @@ public class Trip_listFragment extends Fragment {
 
             @Override
             public void onResponse(JSONObject response) {
-                //Toast.makeText(getApplicationContext(),"fetching all data",Toast.LENGTH_SHORT).show();
-                //for (int i = 0; i < response.length(); i++) {
                 String abc= "";
                 tr[0] =false;
                 try {
@@ -179,20 +159,9 @@ public class Trip_listFragment extends Fragment {
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-
-
-
-
-//                    recyclerView1.setAdapter(sourceAdapter);
-//                    recyclerView2.setAdapter(siteAdapter);
-
-                    //pbar.setVisibility(View.VISIBLE);
-
-
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                //}
 
             }
         }, new Response.ErrorListener() {
@@ -235,10 +204,6 @@ public class Trip_listFragment extends Fragment {
 
                 }
 
-                ic.setVisibility(View.VISIBLE);
-
-                ic2.setVisibility(View.VISIBLE);
-                Log.d("TAG", "onErrorResponse: ");
             }
         });
 

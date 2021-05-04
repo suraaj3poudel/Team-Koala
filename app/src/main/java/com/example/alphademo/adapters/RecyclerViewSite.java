@@ -6,16 +6,10 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BlurMaskFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +20,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,9 +28,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.alphademo.MainActivity;
-import com.example.alphademo.MainActivity2;
 import com.example.alphademo.MapTemp;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.R;
@@ -55,7 +45,6 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     View mapFrag,more;
     Context context,how;
     ViewGroup parents;
-    BlurMaskFilter blurMaskFilter;
 
     public RecyclerViewSite( Context contexts, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
@@ -73,65 +62,28 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     }
 
 
-
-
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        //final Dialog myDialogue = new Dialog(context);
         final Intent intent= new Intent(context, DeliveryForm.class);
         intent.putExtra("fuelType",mSiteInfo.get(position).getSiteProductDesc());
 
-        //myDialogue.setContentView(R.layout.delivery_form);
-        //DisplayMetrics dm = new DisplayMetrics();
-        //dm = context.getResources().getDisplayMetrics();
-
-        //int height = dm.heightPixels;
-        //int width = dm.widthPixels;
-
-       // myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));
 
         holder.deliverForm1.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                context.startActivity(intent);
-                //myDialogue.show();
-//                startActivity(new Intent(view.getContext(), DeliveryForm.class));
-//                Intent intent = new Intent(view.getContext(), MainActivity4.class);
-//                view.getContext().startActivity(intent);
+            public void onClick(View view) { context.startActivity(intent);
             }
         });
 
 
-        //notification.setOnClickListener(this);
         holder.moreInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //LayoutInflater inflater = (LayoutInflater) parents(Context.LAYOUT_INFLATER_SERVICE);
-
-                //PopupWindow pw = new PopupWindow(LayoutInflater.from(parents.getContext()).inflate(R.layout.moreinfo, null, false),1500,1500, true);
-
-                //pw.showAtLocation(parents, Gravity.CENTER, 0, 0);
-
-
-
-
-
-
-
-
-//                PopupWindow menuPopup = null;
-//                View menuView= parents.getLayoutInflater().inflate(R.layout.moreinfo, null);
-//                menuPopup.setContentView(R.layout.moreinfo);
-//                menuPopup=new PopupWindow(menuView, 200, 200, false);
-//                menuPopup.showAtLocation(menuView, Gravity.TOP | Gravity.RIGHT, 0, 100);
 
                 final Dialog dialog = new Dialog(context);
 
                 dialog.requestWindowFeature(Window.FEATURE_ACTION_MODE_OVERLAY);
                 dialog.setCancelable(true);
                 dialog.setContentView(R.layout.moreinfo);
-                //dialog.getWindow().setDimAmount(100);
                 TextView scc = (TextView) dialog.findViewById(R.id.siteContainerCode);
                 TextView scd = (TextView) dialog.findViewById(R.id.siteContaienrDesc);
                 TextView drn = (TextView) dialog.findViewById(R.id.deliveryReqNo);
@@ -142,8 +94,6 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
                 drn.setText(mSiteInfo.get(position).getDrn());
                 pid.setText(mSiteInfo.get(position).getPid());
                 fill.setText(mSiteInfo.get(position).getFillInfo());
-               // holder.showMessage("", "");
-                //holder.scc.setText("Test");
 
 
 
@@ -160,15 +110,10 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
                     }
                 });
 
-                //Bitmap map=takeScreenShot(MainActivity.ge);
-
-                //Bitmap fast=fastblur(map, 10);
-                //final Drawable draw=new BitmapDrawable(parents.getResources(),fast);
                 dialog.setCanceledOnTouchOutside(true);
 
                 dialog.show();
                 dialog.getWindow().setAttributes(lp);
-                //dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
             }
         });
 
@@ -186,8 +131,6 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
                 check = check.substring(0,check.length()-2).trim();
         holder.ft.setText(check);
 
-        //message = "SiteData\n\n"+mSiteInfo.get(position).getSite()+"\n"+mSiteInfo.get(position).getSiteAddress()
-                //+"\n"+mSiteInfo.get(position).getSiteCity()+"\n"+mSiteInfo.get(position).getLatitude()+"\n"+mSiteInfo.get(position).getLongitude();
 
         final String siteID1 = holder.sitecode.getText().toString().trim()+position;
 
@@ -233,14 +176,12 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
                     holder.sourcenote2.setVisibility(View.GONE);
                     notes = holder.myDB.getNotes(siteID1);
 
-                    //Log.i("INFO: ", siteID1 + " " + sourceID);
                     if (notes != null) {
                         holder.typeSpaceSite1.setText(notes);
                     } else {
                         holder.typeSpaceSite1.setHint("Your Notes..");
                     }
                 }
-                //onBindViewHolder(holder,position);
             }
         });
 
@@ -327,7 +268,6 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             arrowup = itemView.findViewById(R.id.arrowupSite);
             deliverForm1 = itemView.findViewById(R.id.deliverForm1);
             scc = more.findViewById(R.id.siteContainerCode);
-            //deliverForm2 = itemView.findViewById(R.id.deliverForm2);
             site = itemView.findViewById(R.id.site);
             sitet = itemView.findViewById(R.id.siteT);
             sitecode = itemView.findViewById(R.id.siteCode);
@@ -359,9 +299,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
         public void hideKeyboard(Activity activity) {
             InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-            //Find the currently focused view, so we can grab the correct window token from it.
             View view = activity.getCurrentFocus();
-            //If no view currently has focus, create a new one, just so we can grab a window token from it
             if (view == null) {
                 view = new View(activity);
             }
@@ -374,7 +312,6 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             builder.setTitle(title);
             builder.setView(R.layout.moreinfo);
             builder.setMessage(message);
-
             builder.setPositiveButton("OK", null);
             AlertDialog dialog = builder.create();
             dialog.show();
