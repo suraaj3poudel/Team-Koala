@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/peach"
-    tools:context=".activities.MainActivity">
+    tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/backgroundPic"
@@ -84,10 +84,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="2dp"
+            android:layout_marginTop="50dp"
             android:layout_marginRight="30dp"
             android:background="@drawable/driveridbox"
-            app:layout_constraintBottom_toTopOf="@+id/layoutPassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/aims">
@@ -110,11 +109,12 @@
             android:id="@+id/layoutPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:layout_marginBottom="3dp"
             android:background="@drawable/driveridbox"
-            app:layout_constraintBottom_toTopOf="@+id/layout3"
+
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/layoutDriverId">
@@ -125,7 +125,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Password"
+                android:hint="@string/password"
                 android:background="@drawable/rectangled"
                 android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
                 android:inputType="textPassword"
@@ -139,9 +139,10 @@
             android:id="@+id/layout3"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="1dp"
             android:layout_marginLeft="70dp"
             android:layout_marginRight="50dp"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

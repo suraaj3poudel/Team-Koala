@@ -58,13 +58,13 @@ public class ForegroundService extends Service {
                     PendingIntent.getActivity(this, 0, notificationIntent,0);
 
             Notification notification =
-                new NotificationCompat.Builder(this.getApplicationContext(), CHANNEL)
-                    .setContentTitle("Guidance")
-                    .setContentText("Guidance in progress ...")
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentIntent(pendingIntent)
-                    .setLocalOnly(true)
-                    .build();
+                    new NotificationCompat.Builder(this.getApplicationContext(), CHANNEL)
+                            .setContentTitle("Guidance")
+                            .setContentText("Guidance in progress ...")
+                            .setSmallIcon(R.mipmap.ic_launcher)
+                            .setContentIntent(pendingIntent)
+                            .setLocalOnly(true)
+                            .build();
 
             startForeground(FOREGROUND_SERVICE_ID, notification);
         } else if (intent.getAction().equals(STOP_ACTION)) {

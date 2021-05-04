@@ -7,191 +7,191 @@
     >
 
 
-<RelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/topSection" >
     <RelativeLayout
-        android:id="@+id/rellay1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/grad"
-        android:paddingBottom="20dp">
-
-
-
+        android:id="@+id/topSection" >
         <RelativeLayout
-            android:id="@+id/imgUser"
-            android:layout_width="wrap_content"
+            android:id="@+id/rellay1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/circle_border">
+            android:background="@drawable/grad"
+            android:paddingBottom="20dp">
+
+
+
+            <RelativeLayout
+                android:id="@+id/imgUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/circle_border">
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="9dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/circle"
+                    android:padding="3dp"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_user" />
+
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/displayName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgUser"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15sp"
+                android:fontFamily="sans-serif-light"
+                android:hint="Your Name"
+                android:textAlignment="center"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:textSize="32sp"
+                android:gravity="center_horizontal" />
+
+
+            <EditText
+                android:id="@+id/editName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgUser"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15sp"
+                android:fontFamily="sans-serif-light"
+                android:hint="Your Name"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:inputType="text"
+                android:textSize="32sp"
+                android:visibility="gone"
+                android:textAlignment="center"
+                android:gravity="center_horizontal" />
+
+
+            <TextView
+                android:id="@+id/tv_address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/displayName"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif"
+                android:hint="Your Address"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textColorHint="@color/white"
+                android:textAlignment="center"
+                android:gravity="center_horizontal"/>
+
+
+
 
             <ImageView
-                android:layout_width="120dp"
-                android:layout_height="120dp"
-                android:layout_margin="9dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentRight="true"
+                android:id="@+id/settingIcon"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="15dp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/circle"
-                android:padding="3dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_user" />
+                android:src="@drawable/ic_settings" />
 
         </RelativeLayout>
 
-
-        <TextView
-            android:id="@+id/displayName"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linlay1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/imgUser"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
-            android:fontFamily="sans-serif-light"
-            android:hint="Your Name"
-            android:textAlignment="center"
-            android:textColorHint="@color/white"
-            android:textColor="@color/white"
-            android:textSize="32sp"
-            android:gravity="center_horizontal" />
+            android:layout_below="@id/rellay1"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/gradspread1"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="45"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Trips Completed"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
 
 
-        <EditText
-            android:id="@+id/editName1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/imgUser"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="15sp"
-            android:fontFamily="sans-serif-light"
-            android:hint="Your Name"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"
-            android:inputType="text"
-            android:textSize="32sp"
-            android:visibility="gone"
-            android:textAlignment="center"
-            android:gravity="center_horizontal" />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@drawable/gradspread1"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="1412"
+                        android:textColor="@color/white"
+                        android:textSize="25sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:text="Miles Covered"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
 
 
-        <TextView
-            android:id="@+id/tv_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/displayName"
-            android:layout_centerHorizontal="true"
-            android:fontFamily="sans-serif"
-            android:hint="Your Address"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:textColorHint="@color/white"
-            android:textAlignment="center"
-            android:gravity="center_horizontal"/>
 
-
-
-
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:id="@+id/settingIcon"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="15dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerInside"
-            android:src="@drawable/ic_settings" />
-
+        </LinearLayout>
     </RelativeLayout>
-
-    <LinearLayout
-        android:id="@+id/linlay1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rellay1"
-        android:orientation="horizontal">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/gradspread1"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="45"
-                    android:textColor="@color/white"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Trips Completed"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="13sp" />
-
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:background="@drawable/gradspread1"
-            android:gravity="center"
-            android:paddingBottom="5dp"
-            android:paddingTop="5dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="1412"
-                    android:textColor="@color/white"
-                    android:textSize="25sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Miles Covered"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="13sp" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
-
-
-
-    </LinearLayout>
-</RelativeLayout>
 
 
 
@@ -414,28 +414,28 @@
                         android:paddingTop="20px"
                         android:weightSum="3">
 
-                    <TextView
-                        android:id="@+id/textPhone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:inputType="number"
-                        android:hint="Your Phone number"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
+                        <TextView
+                            android:id="@+id/textPhone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:inputType="number"
+                            android:hint="Your Phone number"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
 
-                        android:layout_marginTop="5dp"
-                        />
-                         <ImageView
-                        android:id="@+id/imagePhone"
-                         android:layout_width="40dp"
-                         android:layout_height="40dp"
-                         android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_baseline_create_24"
-                        android:visibility="gone"/>
-                </LinearLayout>
+                            android:layout_marginTop="5dp"
+                            />
+                        <ImageView
+                            android:id="@+id/imagePhone"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_baseline_create_24"
+                            android:visibility="gone"/>
+                    </LinearLayout>
 
 
                     <EditText
@@ -484,34 +484,34 @@
                         android:orientation="horizontal"
                         android:paddingTop="20px"
                         android:weightSum="3">
-                    <TextView
-                        android:id="@+id/textAddress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:hint="Your Address"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
+                        <TextView
+                            android:id="@+id/textAddress"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="Your Address"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
 
-                        android:layout_marginTop="5dp"
-                        />
-                         <ImageView
-                        android:id="@+id/imageAddress"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_baseline_create_24"
-                        android:visibility="gone"/>
-                </LinearLayout>
+                            android:layout_marginTop="5dp"
+                            />
+                        <ImageView
+                            android:id="@+id/imageAddress"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_baseline_create_24"
+                            android:visibility="gone"/>
+                    </LinearLayout>
 
                     <EditText
                         android:id="@+id/editAddress"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="sans-serif-light"
-                       android:hint="Your Address"
+                        android:hint="Your Address"
                         android:textColor="#000000"
                         android:background="@drawable/rectangled"
                         android:padding="10dp"
@@ -550,26 +550,26 @@
                         android:paddingTop="20px"
                         android:weightSum="3">
 
-                    <TextView
-                        android:id="@+id/textGender"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-light"
-                        android:hint="Select Gender"
-                        android:textColor="#000000"
-                        android:textSize="18sp"
-                        android:layout_marginTop="5dp"
-                        />
+                        <TextView
+                            android:id="@+id/textGender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:hint="Select Gender"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:layout_marginTop="5dp"
+                            />
                         <ImageView
-                        android:id="@+id/imageGender"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_weight="1"
-                        android:src="@drawable/ic_baseline_create_24"
-                        android:visibility="gone"/>
-                </LinearLayout>
+                            android:id="@+id/imageGender"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="5dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/ic_baseline_create_24"
+                            android:visibility="gone"/>
+                    </LinearLayout>
 
                     <RadioGroup
                         android:id="@+id/radioGrp"

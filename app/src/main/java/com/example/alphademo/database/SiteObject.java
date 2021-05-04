@@ -16,6 +16,7 @@ public class SiteObject {
     private String siteProductDesc;
     private JSONObject siteDetails;
     private double latitude;
+
     private String quantity;
 
     public String getFillInfo() {
@@ -102,6 +103,7 @@ public class SiteObject {
 
         double sourcelong = siteDetails.getDouble("Longitude");
         longitude = sourcelong;
+
 
         String siCC = siteDetails.getString("SiteContainerCode");
         scc = siCC;

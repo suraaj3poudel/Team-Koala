@@ -71,7 +71,7 @@ public class Trip_listFragment extends Fragment {
 //        recyclerView2 = view.findViewById(R.id.siteList);
 
 
-       //Toast.makeText(getContext(), profileName.getText(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), profileName.getText(), Toast.LENGTH_SHORT).show();
 
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;

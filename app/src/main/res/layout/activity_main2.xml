@@ -23,7 +23,7 @@
         android:background="@color/orange"
         app:itemIconTint="@drawable/bottom_nav_foreground"
         app:itemTextColor="@drawable/bottom_nav_foreground"
-       android:layout_alignParentBottom="true"
+        android:layout_alignParentBottom="true"
         app:menu="@menu/menu_bottom">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>

@@ -63,13 +63,11 @@ public class SettingFragment extends Fragment {
                 openDialog();
             }
         });
-
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity().getApplication(), MainActivity.class);
                 startActivity(intent);
-
             }
         });*/
 
@@ -121,8 +119,6 @@ public class SettingFragment extends Fragment {
         gender = textGender.getText().toString();
         email  = textEmail.getText().toString();
         gender = textGender.getText().toString();
-
-
         db.addData(1, name, address, email, phone, gender);*/
 
         textEmail.setText(db.getData(1, "EMAIL"));
@@ -350,5 +346,3 @@ public class SettingFragment extends Fragment {
         newAppearance.setPadding(50,50,50, 50);
     }
 }
-
-

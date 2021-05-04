@@ -33,7 +33,7 @@
         <activity android:name=".forms.MainActivity3" />
         <activity android:name=".activities.MainActivity2" />
         <activity android:name=".forms.DeliveryForm"
-                  android:theme="@style/Theme.AppCompat.Dialog.Alert"></activity>
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"></activity>
         <activity android:name=".forms.SourceForm"
             android:theme="@style/Theme.AppCompat.Dialog.Alert"></activity>
         <activity android:name=".forms.Capture"></activity>

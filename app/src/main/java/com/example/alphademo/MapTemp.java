@@ -491,7 +491,7 @@ public class MapTemp extends Fragment {
         //m_map.setTilt(60);
         //startForegroundService();
 
-         //Choose navigation modes between real time navigation and simulation
+        //Choose navigation modes between real time navigation and simulation
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getContext());
         alertDialogBuilder.setTitle("Navigation");
         alertDialogBuilder.setMessage("Choose Mode");
