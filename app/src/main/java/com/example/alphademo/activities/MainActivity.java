@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         password = findViewById(R.id.password);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
 
-        if(sharedpreferences.getBoolean("loggedIn", true))
+        if(sharedpreferences.getBoolean("loggedIn", false))
             openActivity2();
 
         onClickLogin();

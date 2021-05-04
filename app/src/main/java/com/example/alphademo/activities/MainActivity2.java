@@ -102,7 +102,6 @@ public class MainActivity2 extends AppCompatActivity  {
             }
     }
 
-    Fragment map =  new MapTemp();
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationItemSelected = new BottomNavigationView.OnNavigationItemSelectedListener() {
         @Override
@@ -111,25 +110,25 @@ public class MainActivity2 extends AppCompatActivity  {
             switch (item.getItemId())
             {
                 case R.id.trip_list:
-                    //select = new ViewAllTripsFragment() ;
+                    select = new ViewAllTripsFragment() ;
 //                    getSupportFragmentManager()
 //                            .beginTransaction()
 //                            .show(select).hide(new MapTemp())
 //                            .commit();
-                    swapFragments(new ViewAllTripsFragment(),item.getItemId(),"TRIPS");
+                    //swapFragments(new ViewAllTripsFragment(),item.getItemId(),"TRIPS");
                     break;
                 case R.id.map:
-                    select = map;
-                    swapFragments(map,item.getItemId(),"MAP");
+                    select = new MapTemp();
+                    //swapFragments(map,item.getItemId(),"MAP");
                     break;
                 case R.id.setting:
                     select = new SettingFragment();
-                    swapFragments(new SettingFragment(),item.getItemId(),"SETTING");
+                    //swapFragments(new SettingFragment(),item.getItemId(),"SETTING");
                     break;
             }
 
 
-            //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, select).commit();
             return true;
         }
 

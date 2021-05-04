@@ -4,6 +4,7 @@ package com.example.alphademo.adapters;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -42,11 +43,14 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     int pos;
     View mapFrag;
     Context context;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCE = "TRIP_STATUS" ;
 
     public RecyclerViewSource( Context context, ArrayList<SourceObject> sourceInfo){
         mSourceInfo = sourceInfo;
         inflator= LayoutInflater.from(context);
         this.context=context;
+        sharedpreferences = context.getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -54,6 +58,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_sourceinfo,parent,false);
         mapFrag = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main2,parent,false);
+
         return new ViewHolder(view);
     }
 
@@ -190,8 +195,9 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         });
 
 
-
-
+        Log.i("MessageC",sharedpreferences.getString("status"+sourceID,"work")+"");
+        if(sharedpreferences.getString("status"+sourceID,"not_complete").equals("complete"))
+            holder.complete.setVisibility(View.VISIBLE);
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -257,7 +263,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         TextView sourcename, sourcecode;
         TextView address,szipcode;
         TextView sourcenote1,sourceT,addressT;
-        LinearLayout hidden_layout,show_layout;
+        LinearLayout hidden_layout,show_layout,complete;
         ImageView arrowdown,arrowup;
         Button addsourceNotes, sourceForm;
         EditText typeSpaceSource;
@@ -271,6 +277,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
 
+            complete = itemView.findViewById(R.id.complete);
             navi = itemView.findViewById(R.id.navSource);
             site2p = itemView.findViewById(R.id.productCode1);
             site2pd = itemView.findViewById(R.id.productDesc1);

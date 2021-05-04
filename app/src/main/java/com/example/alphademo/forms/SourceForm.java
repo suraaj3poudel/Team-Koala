@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -44,6 +46,10 @@ public class SourceForm extends AppCompatActivity {
     EditText date1,date2,fuelStickB, meterB, grossGall, netGall, fuelStickA, meterA;
     DatePickerDialog datePickerDialog;
     TextView time1,time2,fuelType,barcode;
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
+    public static final String MyPREFERENCE = "TRIP_STATUS" ;
+    //public static final String status = "not_complete";
 
     Button mCaptureBtn;
     ImageView mImageView;
@@ -61,7 +67,9 @@ public class SourceForm extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         String fuel = getIntent().getStringExtra("fuelType");
         setContentView(R.layout.pickup_form);
-
+        sharedpreferences = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
+        //editor.putBoolean("tripComplete",false);
         myDB = new DatabaseSQLiteForms(this);
 
         id =  getIntent().getStringExtra("id");
@@ -169,6 +177,9 @@ public class SourceForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(validateInput()){
+                    editor.putString("status"+id, "complete").apply();
+                    editor.commit();
+                    //Log.i("MessageT",sharedpreferences.getString("status","work")+"");
                     finish();
                 }
             }
