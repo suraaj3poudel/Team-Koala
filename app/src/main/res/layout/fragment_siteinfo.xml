@@ -114,7 +114,7 @@
             android:layout_height="match_parent"
             android:background="@drawable/card_item_background2"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -384,7 +384,7 @@
                     android:backgroundTint="@color/teal_200"
                     android:text="Deliver"
                     android:textAlignment="center"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
 
                 <Button
@@ -402,7 +402,7 @@
                     android:text="+ Add Notes"
                     android:textAlignment="center"
                     android:textColor="@color/white"
-                    android:textSize="17sp"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
@@ -443,10 +443,10 @@
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/navSite"
-                android:layout_width="250dp"
-                android:layout_height="72dp"
+                android:layout_width="230dp"
+                android:layout_height="60dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="12dp"
                 android:backgroundTint="@android:color/holo_green_dark"
                 android:orientation="horizontal"
                 android:text="Start Navigation"
