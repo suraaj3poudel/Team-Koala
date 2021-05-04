@@ -106,8 +106,6 @@ public class Trip_listFragment extends Fragment {
         sourceList = new ArrayList<SourceObject>();
         siteList = new ArrayList<SiteObject>();
         final boolean[] tr = {false};
-        ic.setVisibility(View.GONE);
-        ic2.setVisibility(View.GONE);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, JSON_URL, null, new Response.Listener<JSONObject>() {
 
 
@@ -148,8 +146,6 @@ public class Trip_listFragment extends Fragment {
                         }
                     }
 
-
-
                     sourceAdapter = new RecyclerViewSource(getContext(), sourceList);
                     siteAdapter = new RecyclerViewSite(getContext(), siteList);
 
@@ -187,7 +183,6 @@ public class Trip_listFragment extends Fragment {
                             siteList.add(site);
                         }
                     }
-                    ic2.setVisibility(View.VISIBLE);
                     sourceAdapter = new RecyclerViewSource(getContext(), sourceList);
                     siteAdapter = new RecyclerViewSite(getContext(), siteList);
 
