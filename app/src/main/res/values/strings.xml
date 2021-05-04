@@ -1,0 +1,52 @@
+<resources>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="mm_dd_yy">mm/dd/yy</string>
+    <string name="voice_skins">Voice Skins</string>
+    <string name="download_voices">Download Voices…</string>
+    <string name="voice_packages">Voice Packages</string>
+    <string name="remove_package">Are you sure you want to delete the voice package?</string>
+    <string name="install_package">Are you sure you want to download the voice package?</string>
+    <string name="start_navi">Start Navigation</string>
+    <string name="stop_navi">Stop Navigation</string>
+    <string name="engine_init_error">Map engine initialization</string>
+    <string name="app_name">Login</string>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="date">Date</string>
+    <string name="fuel_type">Fuel Type</string>
+    <string name="enter_date">Enter date</string>
+    <string name="address">Address</string>
+    <string name="todo">TODO</string>
+    <string name="site_record_information">Site Record Information</string>
+    <string name="site_record_form">Site Record Form</string>
+    <string name="source_record_form">Source Record Form</string>
+    <string name="fuel_stick_reading_before">Fuel Stick Reading Before</string>
+    <string name="quantity">Quantity</string>
+    <string name="meter_reading_before">Meter Reading Before</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="gross_gallon_dropped">Gross Gallon Dropped</string>
+    <string name="net_gallon_dropped">Net Gallon Dropped</string>
+    <string name="scan_now">Scan Now</string>
+    <string name="barcode">Barcode</string>
+    <string name="barcode_scanner">Barcode Scanner</string>
+    <string name="capture">Capture</string>
+    <string name="bill_of_landing_number">Bill of Lading Number</string>
+    <string name="fuel_stick_reading_after">Fuel Stick Reading After</string>
+    <string name="meter_reading_after">Meter Reading After</string>
+    <string name="dd_mm_yy">dd/mm/yy</string>
+    <string name="start_date">Start date</string>
+    <string name="end_date">End date</string>
+    <string name="done">Done</string>
+    <string name="clear">Clear</string>
+    <string name="save">Save</string>
+    <string name="signature">Signature</string>
+    <string name="password">Password</string>
+    <string name="continues">Continue</string>
+
+
+</resources>
