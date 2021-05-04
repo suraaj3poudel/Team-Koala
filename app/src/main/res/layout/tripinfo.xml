@@ -41,7 +41,7 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/ic_baseline_local_gas_station_245" />
+                    android:src="@drawable/ic_baseline_local_gas_station_24" />
 
             </LinearLayout>
 

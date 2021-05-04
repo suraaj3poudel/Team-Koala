@@ -5,17 +5,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,7 +25,6 @@ import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.database.TripInfo;
 import com.example.alphademo.adapters.RecyclerViewTrip;
 import com.github.ybq.android.spinkit.SpinKitView;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +51,6 @@ public class ViewAllTripsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
 
-        //ViewGroup root = (ViewGroup) inflater.inflate(R.layout.activity_trip_details,null);
         recyclerViewTrip = view.findViewById(R.id.trips);
         pbar = view.findViewById(R.id.spin_kit);
         sourceList = new ArrayList<SourceObject>();
@@ -68,7 +62,6 @@ public class ViewAllTripsFragment extends Fragment {
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Log.i("Ref1: ", "I am refershing");
                 sourceList = new ArrayList<SourceObject>();
                 siteList = new ArrayList<SiteObject>();
                 trips = new ArrayList<TripInfo>();
@@ -101,12 +94,7 @@ public class ViewAllTripsFragment extends Fragment {
 
             @Override
             public void onResponse(JSONObject response) {
-                //Toast.makeText(getApplicationContext(),"fetching all data",Toast.LENGTH_SHORT).show();
-                //for (int i = 0; i < response.length(); i++) {
                 try {
-
-
-
                     for(int j = 0; j < 1; j++) {
                         JSONObject driverObject = response.getJSONObject("data".toString());
                         JSONArray tripinfo = driverObject.getJSONArray("resultSet1".toString());
@@ -136,7 +124,6 @@ public class ViewAllTripsFragment extends Fragment {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                //}
 
             }
         }, new Response.ErrorListener() {
@@ -147,7 +134,6 @@ public class ViewAllTripsFragment extends Fragment {
                     for(int j = 0; j < 1; j++) {
                         JSONObject jsonObjects = obj.getObject(1);
                         JSONArray tripinform = jsonObjects.getJSONArray("resultSet1".toString());
-
 
                         for (int i = 0; i < tripinform.length(); i++) {
                             JSONObject object = (JSONObject) tripinform.get(i);
@@ -183,7 +169,6 @@ public class ViewAllTripsFragment extends Fragment {
 
         });
 
-        //pbar.setVisibility(View.VISIBLE);
         queue.add(jsonObjectRequest);
     }
 

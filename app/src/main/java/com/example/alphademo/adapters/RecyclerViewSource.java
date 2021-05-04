@@ -1,7 +1,6 @@
 package com.example.alphademo.adapters;
 
-import android.app.Activity;
-import android.app.AlertDialog;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,13 +10,11 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -25,17 +22,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.example.alphademo.MapTemp;
 import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.forms.SourceForm;
-import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.ViewHolder>{
@@ -72,14 +65,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         final Intent intent= new Intent(context, SourceForm.class);
         intent.putExtra("fuelType",mSourceInfo.get(position).getFuelType());
-        //myDialogue.setContentView(R.layout.delivery_form);
-        //DisplayMetrics dm = new DisplayMetrics();
-        //dm = context.getResources().getDisplayMetrics();
-
-        //int height = dm.heightPixels;
-        //int width = dm.widthPixels;
-
-        // myDialogue.getWindow().setLayout((int) (width * .9),(int) (height*.9));
 
         holder.sourceForm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,7 +73,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             }
         });
 
-        //holder.pbar1.setVisibility(View.INVISIBLE);
 
         pos = position;
 
@@ -99,10 +83,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         holder.address.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity().trim()+", "+mSourceInfo.get(position).getSourceState().trim());
         holder.addressT.setText(mSourceInfo.get(position).getSourceAddress()+", "+mSourceInfo.get(position).getSourceCity().trim()+", "+mSourceInfo.get(position).getSourceState().trim());
         holder.szipcode.setText(mSourceInfo.get(position).getSourceZIP());
-        //holder.progressBar.setVisibility(View.INVISIBLE);
-
-        message = "SourceData\n\n"+mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()
-                +"\n"+mSourceInfo.get(position).getSourceCity()+"\n"+mSourceInfo.get(position).getLatitude()+"\n"+mSourceInfo.get(position).getLongitude();
 
         final String sourceID = holder.sourcecode.getText().toString().trim()+position;
 
@@ -121,9 +101,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             @Override
             public void onClick(View v) {
                 String notes;
-                //sourceID = driverCode.getText().toString().trim()+tripid.getText().toString().trim()+sourcecode.getText().toString().trim();
 
-                //String oldnote = "EMPTY";
                 if (holder.typeSpaceSource.getVisibility() == View.VISIBLE) {
 
                     holder.addsourceNotes.setText("+ Add Notes");
@@ -221,11 +199,9 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        SpinKitView pbar1,pbar2;
         TextView sourcename, sourcecode;
         TextView address,szipcode;
         TextView sourcenote1,sourceT,addressT;
-        //SpinKitView progressBar;
         LinearLayout hidden_layout,show_layout;
         ImageView arrowdown,arrowup;
         Button addsourceNotes, sourceForm;
@@ -233,8 +209,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         DatabaseSQLite myDB;
         ExtendedFloatingActionButton navi;
         CardView card;
-
-
 
 
         public ViewHolder(@NonNull final View itemView) {
@@ -270,30 +244,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
             sourcenote1 = itemView.findViewById(R.id.sourcenotes1);
 
-
-        }
-
-
-        public void hideKeyboard(Activity activity) {
-            InputMethodManager imm = (InputMethodManager) activity.getSystemService(Activity.INPUT_METHOD_SERVICE);
-            //Find the currently focused view, so we can grab the correct window token from it.
-            View view = activity.getCurrentFocus();
-            //If no view currently has focus, create a new one, just so we can grab a window token from it
-            if (view == null) {
-                view = new View(activity);
-            }
-            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-        }
-
-        private void showMessage(String title, String message) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-            builder.setCancelable(true);
-            builder.setTitle(title);
-            builder.setMessage(message);
-
-            builder.setPositiveButton("OK", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
 
         }
 

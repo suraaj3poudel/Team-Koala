@@ -10,10 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.alphademo.R;
 import com.example.alphademo.adapters.RecyclerViewSource;
+import com.example.alphademo.database.SiteObject;
+import com.example.alphademo.database.SourceObject;
+import com.example.alphademo.database.TripInfo;
 import com.example.alphademo.databinding.FragmentSourceListBinding;
+
+import java.util.ArrayList;
 
 
 public class SourceListFragment extends Fragment {
@@ -27,14 +33,19 @@ public class SourceListFragment extends Fragment {
     }
 
 
-
-
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable final Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_source_list,container,false);
-        //binding.spinKit1.setVisibility(View.VISIBLE);
         binding.sourceList.setAdapter(adapter);
+        final SwipeRefreshLayout pullToRefresh = binding.pullToRefresh1;
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Trip_listFragment frag = new Trip_listFragment();
+
+            }
+        });
         return binding.getRoot();
     }
 

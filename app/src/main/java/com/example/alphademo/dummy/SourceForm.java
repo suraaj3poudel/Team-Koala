@@ -297,10 +297,6 @@ public class SourceForm extends AppCompatActivity {
         }
     }
 
-    public void setBarCode(){
-
-    }
-
 
     /**
      * set the result
@@ -425,30 +421,12 @@ public class SourceForm extends AppCompatActivity {
                 meterA.requestFocus();
             }
 
-            //        Changing String to Integer
-//        int mB = Integer.parseInt(meterReadingB);
-//        int mA = Integer.parseInt(meterReadingA);
-//
-//        double fB = Double.parseDouble(fuelReadingB);
-//        double fA = Double.parseDouble(fuelReadingA);
-
             else if (Double.parseDouble(meterReadingB) >= Double.parseDouble(meterReadingA)) {
                 Toast.makeText(this, "Meter Reading After is less than or equal to Meter Reading Before", Toast.LENGTH_SHORT).show();
                 meterA.setError("Meter Reading After is less than Meter Reading Before");
                 meterA.requestFocus();
             }
 
-//        else if(!(TextUtils.isEmpty(meterReadingB) && TextUtils.isEmpty(meterReadingA))){
-//            double mB = Double.parseDouble(meterReadingB);
-//            double mA = Double.parseDouble(meterReadingA);
-//
-//            if(mB >= mA) {
-//                Toast.makeText(this, "Meter Reading After is less than Meter Reading Before", Toast.LENGTH_SHORT).show();
-//                meterA.setError("Meter Reading After is less than Meter Reading Before");
-//                meterA.requestFocus();
-//
-//            }
-//        }
 
 
             else {

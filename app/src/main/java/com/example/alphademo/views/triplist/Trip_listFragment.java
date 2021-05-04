@@ -69,11 +69,6 @@ public class Trip_listFragment extends Fragment {
         g1 = (ViewGroup) inflater.inflate(R.layout.fragment_source_list,null);
         g2 = (ViewGroup) inflater.inflate(R.layout.fragment_site_list,null);
 
-//        recyclerView1 = view.findViewById(R.id.sourceList);
-//        recyclerView2 = view.findViewById(R.id.siteList);
-
-
-        //Toast.makeText(getContext(), profileName.getText(), Toast.LENGTH_SHORT).show();
 
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
@@ -105,10 +100,6 @@ public class Trip_listFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        //Toast.makeText(getContext(), profileName.getText().toString(), Toast.LENGTH_SHORT).show();
-        //Log.i("Running ", "Trip_listFragment "+sourceList.size());
-        //extractDriverNames();
-
     }
 
 
@@ -131,8 +122,6 @@ public class Trip_listFragment extends Fragment {
 
             @Override
             public void onResponse(JSONObject response) {
-                //Toast.makeText(getApplicationContext(),"fetching all data",Toast.LENGTH_SHORT).show();
-                //for (int i = 0; i < response.length(); i++) {
                 String abc= "";
                 tr[0] =false;
                 try {
@@ -177,16 +166,6 @@ public class Trip_listFragment extends Fragment {
                     final MyAdapter adapter = new MyAdapter(requireContext(),getChildFragmentManager(), tabLayout.getTabCount(), sourceAdapter, siteAdapter, tr[0]);
                     viewPager.setAdapter(adapter);
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-
-
-
-
-
-//                    recyclerView1.setAdapter(sourceAdapter);
-//                    recyclerView2.setAdapter(siteAdapter);
-
-                    //pbar.setVisibility(View.VISIBLE);
 
 
                 } catch (JSONException e) {
@@ -234,11 +213,6 @@ public class Trip_listFragment extends Fragment {
                     e.printStackTrace();
 
                 }
-
-                ic.setVisibility(View.VISIBLE);
-
-                ic2.setVisibility(View.VISIBLE);
-                Log.d("TAG", "onErrorResponse: ");
             }
         });
 

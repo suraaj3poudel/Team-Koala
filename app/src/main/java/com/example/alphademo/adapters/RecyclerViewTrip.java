@@ -25,14 +25,12 @@ import java.util.ArrayList;
 
 public class RecyclerViewTrip extends RecyclerView.Adapter<RecyclerViewTrip.ViewHolder>{
 
-    //LayoutInflater inflator;
     private ArrayList<TripInfo> mTrips = new ArrayList<>();
     View view2;
 
 
     public RecyclerViewTrip( Context context, ArrayList<TripInfo> tripInfo){
         mTrips = tripInfo;
-        //inflator= LayoutInflater.from(context);
     }
 
     @NonNull
@@ -41,10 +39,6 @@ public class RecyclerViewTrip extends RecyclerView.Adapter<RecyclerViewTrip.View
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tripinfo,parent,false);
         view2 = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_main2,parent,false);
         return new ViewHolder(view);
-    }
-
-    public void onClickAction(){
-
     }
 
 
@@ -69,24 +63,6 @@ public class RecyclerViewTrip extends RecyclerView.Adapter<RecyclerViewTrip.View
             }
         });
 
-//        holder.navi.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //holder.showMessage("Important!","Coming Soon");
-//                AppCompatActivity activity = (AppCompatActivity) mapFrag.getContext();
-//                Fragment fragment = new MapFragmentTemp();
-//                FragmentManager manager = activity.getSupportFragmentManager();
-//                FragmentTransaction transaction = manager.beginTransaction();
-//                transaction.replace(R.id.fragment_container,fragment);
-//                Bundle args = new Bundle();
-//                args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
-//                args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
-//                args.putString("Message",mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()+"\n"+mSourceInfo.get(position).getSourceCity());
-//                Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
-//                fragment.setArguments(args);
-//                transaction.commit();
-//            }
-//        });
     }
 
     @Override
@@ -95,33 +71,15 @@ public class RecyclerViewTrip extends RecyclerView.Adapter<RecyclerViewTrip.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-
         TextView num1,num2,header;
-        LinearLayout tripcard;
         CardView card;
-
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
-
             header = itemView.findViewById(R.id.tripNum);
             num1 = itemView.findViewById(R.id.numSources);
             num2 = itemView.findViewById(R.id.numSites);
-            //tripcard = itemView.findViewById(R.id.tripCard);
             card = itemView.findViewById(R.id.card_viewTrips);
-        }
-
-
-        private void showMessage(String title, String message) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(itemView.getContext());
-            builder.setCancelable(true);
-            builder.setTitle(title);
-            builder.setMessage(message);
-
-            builder.setPositiveButton("OK", null);
-            AlertDialog dialog = builder.create();
-            dialog.show();
-
         }
 
     }
