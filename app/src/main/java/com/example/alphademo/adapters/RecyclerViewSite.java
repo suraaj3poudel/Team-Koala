@@ -196,6 +196,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         if(sharedpreferences.getString("status"+siteID1,"not_complete").equals("complete")) {
             holder.complete.setVisibility(View.VISIBLE);
             holder.card.setBackgroundColor(Color.GRAY);
+            holder.hide_layout.setBackgroundColor(Color.GRAY);
         }
 
         holder.card.setOnClickListener(new View.OnClickListener() {

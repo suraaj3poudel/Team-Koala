@@ -198,6 +198,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         if(sharedpreferences.getString("status"+sourceID,"not_complete").equals("complete")) {
             holder.complete.setVisibility(View.VISIBLE);
             holder.card.setBackgroundColor(Color.GRAY);
+            holder.hidden_layout.setBackgroundColor(Color.GRAY);
         }
 
         holder.card.setOnClickListener(new View.OnClickListener() {
