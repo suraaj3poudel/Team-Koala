@@ -39,20 +39,25 @@ public class SourceListFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_source_list,container,false);
 
         binding.sourceList.setAdapter(adapter);
-        final SwipeRefreshLayout pullToRefresh = binding.pullToRefresh1;
-        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                Trip_listFragment frag = new Trip_listFragment();
 
-            }
-        });
+
         return binding.getRoot();
     }
+
+
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
+        final SwipeRefreshLayout pullToRefresh = binding.pullToRefresh1;
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                binding.sourceList.setAdapter(adapter);
+                pullToRefresh.setRefreshing(false);
+            }
+        });
         if(b){
             binding.ic.setVisibility(View.VISIBLE);
         }
@@ -60,5 +65,8 @@ public class SourceListFragment extends Fragment {
             binding.ic.setVisibility(View.GONE);
         }
         binding.spinKit1.setVisibility(View.GONE);
+
     }
+
+
 }

@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
@@ -50,7 +51,7 @@ public class Trip_listFragment extends Fragment {
     TabLayout tabLayout;
     ViewPager viewPager;
     TextView ic,ic2;
-
+    SwipeRefreshLayout swipeRefreshLayout;
     String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/TeamKoala?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
@@ -83,6 +84,14 @@ public class Trip_listFragment extends Fragment {
             }
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
+            }
+        });
+
+        tabLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener(){
+
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+
             }
         });
 
@@ -151,8 +160,12 @@ public class Trip_listFragment extends Fragment {
 
 
                     final MyAdapter adapter = new MyAdapter(requireContext(),getChildFragmentManager(), tabLayout.getTabCount(), sourceAdapter, siteAdapter, tr[0]);
-                    viewPager.setAdapter(adapter);
+
                     viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+
+                    viewPager.setAdapter(adapter);
+
 
 
                 } catch (JSONException e) {

@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.example.alphademo.R;
 import com.example.alphademo.adapters.RecyclerViewSite;
@@ -36,7 +37,14 @@ public class SiteListFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
+        final SwipeRefreshLayout pullToRefresh = binding.pullToRefresh2;
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                binding.siteList.setAdapter(adapter);
+                binding.pullToRefresh2.setRefreshing(false);
+            }
+        });
         if(tr){
             binding.ic.setVisibility(View.VISIBLE);
         }
