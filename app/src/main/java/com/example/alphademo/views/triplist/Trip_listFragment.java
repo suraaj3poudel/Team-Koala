@@ -1,5 +1,7 @@
 package com.example.alphademo.views.triplist;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,10 +51,13 @@ public class Trip_listFragment extends Fragment {
     ArrayList<SourceObject> sourceList;
     ArrayList<SiteObject> siteList;
     TabLayout tabLayout;
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
+    public static final String MyPREFERENCES = "MyPrefs" ;
     ViewPager viewPager;
     TextView ic,ic2;
     SwipeRefreshLayout swipeRefreshLayout;
-    String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/TeamKoala?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
+    String JSON_URL ;
     RecyclerViewSource sourceAdapter;
     RecyclerViewSite siteAdapter;
     DatabaseJson obj;
@@ -63,7 +68,10 @@ public class Trip_listFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_trip_list, container, false);
-
+        sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
+        String user = sharedpreferences.getString("username", "TeamKoala");
+        JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/"+user+"?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
         tabLayout = binding.tabLayout;
         viewPager = binding.viewPager;
         tabLayout.addTab(tabLayout.newTab().setText("SOURCE").setIcon(R.drawable.ic_baseline_local_gas_station_24));

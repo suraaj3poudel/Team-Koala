@@ -1,5 +1,7 @@
 package com.example.alphademo.views.triplist;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,7 +46,10 @@ public class ViewAllTripsFragment extends Fragment {
     ArrayList<TripInfo> trips;
     RecyclerViewTrip tripAdapter;
     TextView ic;
-    String JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/TeamKoala?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
+    public static final String MyPREFERENCES = "MyUsers" ;
+    SharedPreferences sharedPreferences ;
+    SharedPreferences.Editor editor;
+    String JSON_URL;
 
     DatabaseJson obj;
 
@@ -53,6 +58,10 @@ public class ViewAllTripsFragment extends Fragment {
     public View onCreateView(@NonNull  LayoutInflater inflater, @Nullable  ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_trips, container, false);
+        sharedPreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        String user = sharedPreferences.getString("username", "TeamKoala");
+        JSON_URL = "https://api.appery.io/rest/1/apiexpress/api/DispatcherMobileApp/GetTripListDetailByDriver/"+user+"?apiKey=f20f8b25-b149-481c-9d2c-41aeb76246ef";
 
         recyclerViewTrip = view.findViewById(R.id.trips);
         pbar = view.findViewById(R.id.spin_kit);

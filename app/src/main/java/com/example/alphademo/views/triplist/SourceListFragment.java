@@ -54,8 +54,10 @@ public class SourceListFragment extends Fragment {
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                binding.ic.setVisibility(View.VISIBLE);
                 binding.sourceList.setAdapter(adapter);
                 pullToRefresh.setRefreshing(false);
+                binding.ic.setVisibility(View.GONE);
             }
         });
         if(b){

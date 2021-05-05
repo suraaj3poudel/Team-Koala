@@ -15,6 +15,8 @@ import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseSQLite;
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     public FirebaseAuth mAuth;
@@ -26,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     public static final String Username = "username";
     public static final String Password = "password";
     public static final boolean LoggedIn = false;
+    //private String[] user = new String[]{"TeamKoala","2BNot2B","404Found","BrewingJava","CodeOfDuty","GitSetCode","KotlinKillers","RuntimeTerrorRD"};
+    ArrayList<String> user = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,15 @@ public class MainActivity extends AppCompatActivity {
         username = findViewById(R.id.Driverid);
         password = findViewById(R.id.password);
         sharedpreferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
+        user.add("teamkoala");
+        user.add("2bnot2b");
+        user.add("brewingjava");
+        user.add("codeofduty");
+        user.add("gitsetcode");
+        user.add("kotlinkillers");
+        user.add("runtimeterrorrd");
+        user.add("404found");
 
         if(sharedpreferences.getBoolean("loggedIn", false))
             openActivity2();
@@ -60,8 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 String m_username  = username.getText().toString();
                 String m_password  = password.getText().toString();
                 SharedPreferences.Editor editor = sharedpreferences.edit();
-
-                if(m_username.equals("") && m_password.equals("")){
+                if(m_username.equals("")){
+                    m_username= "TeamKoala";
+                }
+                if(user.contains(m_username.toLowerCase())){
                     editor.putString(Username, m_username).apply();
                     editor.putString(Password, m_password).apply();
                     editor.putBoolean("loggedIn", true).apply();

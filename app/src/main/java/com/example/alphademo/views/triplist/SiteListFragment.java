@@ -41,8 +41,10 @@ public class SiteListFragment extends Fragment {
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                binding.ic.setVisibility(View.VISIBLE);
                 binding.siteList.setAdapter(adapter);
                 binding.pullToRefresh2.setRefreshing(false);
+                binding.ic.setVisibility(View.GONE);
             }
         });
         if(tr){
