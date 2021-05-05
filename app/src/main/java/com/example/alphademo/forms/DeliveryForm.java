@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
@@ -48,6 +50,9 @@ public class DeliveryForm extends AppCompatActivity {
     Uri image_uri;
     DatabaseSQLiteForms myDB;
     String id,data;
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
+    public static final String MyPREFERENCE = "TRIP_STATUS_SITE" ;
 
     Button btScan;
     View formfrag;
@@ -63,7 +68,8 @@ public class DeliveryForm extends AppCompatActivity {
         String fuel = getIntent().getStringExtra("fuelType");
         id =  getIntent().getStringExtra("id");
         data = myDB.getData(id);
-
+        sharedpreferences = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
         /**initiate and display value for fueltype */
         fueltp = findViewById(R.id.fuelType);
         fueltp.setText(fuel);
@@ -167,6 +173,8 @@ public class DeliveryForm extends AppCompatActivity {
             public void onClick(View v) {
                 if (validateInput()) {
                     startActivity(new Intent(DeliveryForm.this, SignaturePop.class));
+                    editor.putString("status"+id, "complete").apply();
+                    editor.commit();
                     finish();
                 }
             }

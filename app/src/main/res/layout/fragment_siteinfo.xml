@@ -114,10 +114,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:id="@+id/complete"
+                android:visibility="gone">
 
                 <TextView
-                    android:id="@+id/complete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Trip Complete"

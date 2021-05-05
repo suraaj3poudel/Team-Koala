@@ -194,8 +194,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             }
         });
 
-
-        Log.i("MessageC",sharedpreferences.getString("status"+sourceID,"work")+"");
         if(sharedpreferences.getString("status"+sourceID,"not_complete").equals("complete"))
             holder.complete.setVisibility(View.VISIBLE);
 

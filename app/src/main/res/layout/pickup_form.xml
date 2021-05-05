@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dummy.DeliveryForm"
+    tools:context=".forms.DeliveryForm"
     android:background="#F5F5F5">
 
     <LinearLayout

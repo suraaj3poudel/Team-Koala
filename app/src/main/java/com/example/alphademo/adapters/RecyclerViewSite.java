@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.BlurMaskFilter;
 import android.os.Bundle;
 import android.text.Html;
@@ -45,11 +46,14 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     View mapFrag,more;
     Context context,how;
     ViewGroup parents;
+    SharedPreferences sharedpreferences;
+    public static final String MyPREFERENCE = "TRIP_STATUS_SITE" ;
 
     public RecyclerViewSite( Context contexts, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
         inflator= LayoutInflater.from(contexts);
         this.context = contexts;
+        sharedpreferences = context.getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -187,8 +191,10 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             }
         });
 
-
-
+        Log.i("FRT",sharedpreferences.getString("status"+siteID1,"not_complete"));
+        if(sharedpreferences.getString("status"+siteID1,"not_complete").equals("complete")) {
+            holder.complete.setVisibility(View.VISIBLE);
+        }
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,7 +247,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
         TextView site, sitecode, siaddress, sizip;
         TextView sourcenote2,site2p,site2pd,sitet,siteaddresst;
-        LinearLayout siteLayout,show_layout,hide_layout;
+        LinearLayout siteLayout,show_layout,hide_layout,complete;
         ImageView arrowup,arrowdown;
         Button siteNotes1, deliverForm1;
         EditText typeSpaceSite1;
@@ -257,6 +263,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
             how = itemView.getContext();
            // more = LayoutInflater.from(parents.getContext()).inflate(R.layout.moreinfo,parents,false);
             moreInfo = itemView.findViewById(R.id.moreinfo);
+            complete = itemView.findViewById(R.id.complete);
             ft = itemView.findViewById(R.id.productDesc);
             rq = itemView.findViewById(R.id.productQty);
             card = itemView.findViewById(R.id.card_viewSite);
