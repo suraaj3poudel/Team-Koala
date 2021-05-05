@@ -13,12 +13,12 @@ public class DatabaseProfile extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "JsonProfile.db";
     public static final String TABLE_NAME = "Profile_Data";
-    public static final String COL1 = "ID";
-    public static final String COL2 = "NAME";
-    public static final String COL3 = "ADDRESS";
-    public static final String COL4 = "EMAIL";
-    public static final String COL5 = "PHONE";
-    public static final String COL6 = "GENDER";
+    public static final String COL2 = "ID";
+    public static final String COL3 = "NAME";
+    public static final String COL4= "ADDRESS";
+    public static final String COL5 = "EMAIL";
+    public static final String COL6 = "PHONE";
+    public static final String COL7 = "GENDER";
 
 
 
@@ -41,12 +41,12 @@ public class DatabaseProfile extends SQLiteOpenHelper {
     public boolean addData(Integer id,String name, String address, String email, String phone, String gender) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL1, id);
-        contentValues.put(COL2, name);
-        contentValues.put(COL3, address);
-        contentValues.put(COL4, email);
-        contentValues.put(COL5, phone);
-        contentValues.put(COL6, gender);
+        contentValues.put(COL2, id);
+        contentValues.put(COL3, name);
+        contentValues.put(COL4, address);
+        contentValues.put(COL5, email);
+        contentValues.put(COL6, phone);
+        contentValues.put(COL7, gender);
         long result = db.insert(TABLE_NAME, null, contentValues);
 
         //if date as inserted incorrectly it will return -1
@@ -59,8 +59,8 @@ public class DatabaseProfile extends SQLiteOpenHelper {
     public boolean addName(Integer id,String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL1, id);
-        contentValues.put(COL2, name);
+        contentValues.put(COL2, id);
+        contentValues.put(COL3, name);
         long result = db.insert(TABLE_NAME, null, contentValues);
 
         //if date as inserted incorrectly it will return -1

@@ -25,6 +25,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.alphademo.R;
 import com.example.alphademo.database.DatabaseJson;
+import com.example.alphademo.database.DatabaseProfile;
 import com.example.alphademo.database.SiteObject;
 import com.example.alphademo.database.SourceObject;
 import com.example.alphademo.database.TripInfo;
@@ -46,12 +47,13 @@ public class ViewAllTripsFragment extends Fragment {
     ArrayList<TripInfo> trips;
     RecyclerViewTrip tripAdapter;
     TextView ic;
-    public static final String MyPREFERENCES = "MyUsers" ;
+    public static final String MyPREFERENCES = "MyPrefs" ;
     SharedPreferences sharedPreferences ;
     SharedPreferences.Editor editor;
     String JSON_URL;
-
     DatabaseJson obj;
+    DatabaseProfile extractedName;
+
 
     @Nullable
     @Override
@@ -98,6 +100,8 @@ public class ViewAllTripsFragment extends Fragment {
 
     private void extractDriverNames() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
+
+        final String[] abc = {""};
         Log.i("Message: ", "I am fetching data from JSON",null);
         pbar.setVisibility(View.VISIBLE);
         ic.setVisibility(View.GONE);
@@ -107,9 +111,24 @@ public class ViewAllTripsFragment extends Fragment {
             @Override
             public void onResponse(JSONObject response) {
                 try {
+                    JSONObject driverObject = response.getJSONObject("data".toString());
+                    JSONArray tripinfo = driverObject.getJSONArray("resultSet1");
+                    JSONObject jsonObject = tripinfo.getJSONObject(0);
+                    abc[0] = jsonObject.getString("DriverName").toString();
+                    Log.i("NAME23",abc[0]);
+
+                    extractedName = new DatabaseProfile(getContext());
+                    if(extractedName.getData(1,"NAME") == null){
+                        extractedName.addData(1, abc[0], "", "", "","");
+                    }
+                   else {
+                        extractedName.updateInfo(1, abc[0], "", "", "", "");
+                        Log.i("UPDATED23",extractedName.getData(1,"NAME"));
+                    }
+
                     for(int j = 0; j < 1; j++) {
-                        JSONObject driverObject = response.getJSONObject("data".toString());
-                        JSONArray tripinfo = driverObject.getJSONArray("resultSet1".toString());
+                        driverObject = response.getJSONObject("data".toString());
+                        tripinfo = driverObject.getJSONArray("resultSet1".toString());
                         for (int i = 0; i < tripinfo.length(); i++) {
                             JSONObject object = (JSONObject) tripinfo.get(i);
                             if (object.getString("WaypointTypeDescription".toString().trim()).equals("Source")) {

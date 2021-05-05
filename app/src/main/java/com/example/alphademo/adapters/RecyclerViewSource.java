@@ -281,6 +281,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 editor.putString("d2", mSourceInfo.get(pos).getLongitude()+"").apply();
                 editor.putString("lat", latLon[0]).apply();
                 editor.putString("lon", latLon[1]).apply();
+                Log.i("HGTY",latLon[0]+ " "+latLon[1]+" "+mSourceInfo.get(pos).getLatitude()+" "+mSourceInfo.get(pos).getLongitude());
                 editor.commit();
                 args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
                 args.putDouble("d2", mSourceInfo.get(pos).getLongitude());

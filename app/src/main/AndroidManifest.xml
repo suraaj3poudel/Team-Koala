@@ -54,6 +54,12 @@
             </intent-filter>
         </service>
 
+        <service
+            android:name=".views.map.ForegroundService"
+            android:foregroundServiceType="location" >
+        <!-- Any inner elements would go here. -->
+        </service>
+
         <meta-data
             android:name="com.here.android.maps.appid"
             android:value="cWO7aMlVGQbTjFXjHsEv" />

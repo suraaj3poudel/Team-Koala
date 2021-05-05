@@ -140,11 +140,11 @@ public class Trip_listFragment extends Fragment {
                     JSONObject driverObject = response.getJSONObject("data".toString());
                     JSONArray tripinfo = driverObject.getJSONArray("resultSet1");
 
-                    JSONObject jsonObject = tripinfo.getJSONObject(0);
-                    abc = jsonObject.getString("DriverName");
+                    //JSONObject jsonObject = tripinfo.getJSONObject(0);
+                    //abc = jsonObject.getString("DriverName");
 
-                    extractedName = new DatabaseProfile(getContext());
-                    extractedName.addData(1, abc, "", "", "","");
+                    //extractedName = new DatabaseProfile(getContext());
+                    //extractedName.addData(1, abc, "", "", "","");
 
 
                     JSONObject jsonObjects = new JSONObject();

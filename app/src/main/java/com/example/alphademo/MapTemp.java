@@ -30,6 +30,8 @@ import androidx.navigation.Navigator;
 
 import com.example.alphademo.views.map.ForegroundService;
 import com.example.alphademo.views.map.VoiceSkinsActivity;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.here.android.mpa.common.GeoBoundingBox;
 import com.here.android.mpa.common.GeoCoordinate;
@@ -43,6 +45,7 @@ import com.here.android.mpa.mapping.Map;
 import com.here.android.mpa.mapping.MapGesture;
 import com.here.android.mpa.mapping.MapMarker;
 import com.here.android.mpa.mapping.MapRoute;
+import com.here.android.mpa.mapping.customization.CustomizableScheme;
 import com.here.android.mpa.routing.CoreRouter;
 import com.here.android.mpa.routing.Maneuver;
 import com.here.android.mpa.routing.Route;
@@ -83,7 +86,7 @@ public class MapTemp extends Fragment {
     public static final String MyPREFERENCES = "MapPrefs" ;
     double latitude, longitude;
     View rootView ;
-    FloatingActionButton center,highways;
+    FloatingActionButton center,highways,mode;
     TextView eta,arrivalTime,speed,street,direction;
     ImageView img;
     private java.util.EnumSet<NavigationManager.NaturalGuidanceMode> enumSet;
@@ -94,6 +97,11 @@ public class MapTemp extends Fragment {
     Bundle savedInstance;
     Route routeop;
     RouteOptions routeOptions;
+    ActivityCompat a;
+    private FusedLocationProviderClient fusedLocationClient;
+    private static int c =0;
+    CustomizableScheme scheme1 ;
+    CustomizableScheme scheme2 ;
 
 
     @NonNull
@@ -104,6 +112,8 @@ public class MapTemp extends Fragment {
             d1 = getArguments().getDouble("d1");
             d2 = getArguments().getDouble("d2");
         }
+        //fusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
+
         sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
         highway = sharedpreferences.getBoolean("highway", true);
@@ -112,6 +122,17 @@ public class MapTemp extends Fragment {
         eta = rootView.findViewById(R.id.ETA);
         highways = rootView.findViewById(R.id.highway);
         return rootView;
+    }
+
+    public void changeMode(int i){
+
+        String mode = "day";
+
+        if(i%2 ==0) {
+            mode = "night";
+        }
+        Log.i("StaticInt",mode+"");
+        m_map.setMapScheme(mode);
     }
 
     private void clickHighway(){
@@ -157,6 +178,7 @@ public class MapTemp extends Fragment {
         img = rootView.findViewById(R.id.direction_img);
         btMap = rootView.findViewById(R.id.bottomMap);
         tpMap = rootView.findViewById(R.id.topMap);
+        mode = rootView.findViewById(R.id.mode);
 
         center.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,6 +192,12 @@ public class MapTemp extends Fragment {
                 clickHighway();
             }
         });
+        mode.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                changeMode(c++);
+            }
+        });
 
         initNaviControlButton();
         initVoicePackagesButton();
@@ -178,17 +206,22 @@ public class MapTemp extends Fragment {
 
         if(d1 !=0 & d2 !=0) {
             initNaviControlButton();
+            highways.setVisibility(View.VISIBLE);
         }
 
         else if(sd1!=0 && sd2 !=0){
+            Log.i("PosTG","I am here now");
+            highways.setVisibility(View.VISIBLE);
             latitude=Double.parseDouble(sharedpreferences.getString("lat","0"));
             longitude=Double.parseDouble(sharedpreferences.getString("lon","0"));
-                        initNaviControlButton();
                         initMapFragment();
+                        initNaviControlButton();
                         createRoute(sd1,sd2);
         }
         else{
+            highways.setVisibility(View.INVISIBLE);
             m_naviControlButton.setVisibility(View.INVISIBLE);
+            mode.setVisibility(View.INVISIBLE);
             showMessage("Start Trip", "Select a trip from trip Menu to start Navigation!");
         }
     }
@@ -233,6 +266,8 @@ public class MapTemp extends Fragment {
                             getLocation();
                         }
                         m_map = m_mapFragment.getMap();
+                        scheme1 = m_map.createCustomizableScheme("night", Map.Scheme.NORMAL_NIGHT_GREY);
+                        scheme2 = m_map.createCustomizableScheme("day", Map.Scheme.NORMAL_DAY);
                         Image image = new Image();
                         try {
                             image.setImageResource(R.drawable.currentlocationmarker);
@@ -426,7 +461,10 @@ public class MapTemp extends Fragment {
                     //startNavigation();
                 } else {
                     m_navigationManager.stop();
-
+                    latitude=Double.parseDouble(sharedpreferences.getString("lat","0"));
+                    longitude=Double.parseDouble(sharedpreferences.getString("lon","0"));
+                    d1 = Double.parseDouble(sharedpreferences.getString("d1","0"));
+                    d2 = Double.parseDouble(sharedpreferences.getString("d2","0"));
                     /*
                      * Restore the map orientation to show entire route on screen
                      */

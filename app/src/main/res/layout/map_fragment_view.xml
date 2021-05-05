@@ -44,7 +44,23 @@
             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/highway"
+            android:id="@+id/mode"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom|right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="15dp"
+            app:elevation="5dp"
+            app:fabCustomSize="60dp"
+            android:layout_marginBottom="400dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:src="@drawable/ic_baseline_nights_stay_24"
+            app:maxImageSize="35dp"
+
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/voiceCtrlButton"
             android:textColor="@color/white"
             android:layout_gravity="bottom|right"
             android:layout_width="60dp"
@@ -53,6 +69,22 @@
             android:layout_marginRight="15dp"
             android:elevation="4dp"
             android:layout_marginBottom="300dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:src="@drawable/ic_baseline_language_24"
+            app:maxImageSize="35dp"
+
+            />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/highway"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom|right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:fabCustomSize="60dp"
+            android:layout_marginRight="15dp"
+            android:elevation="4dp"
+            android:layout_marginBottom="490dp"
             android:backgroundTint="@android:color/darker_gray"
             android:src="@drawable/ic_baseline_edit_road_24"
             app:maxImageSize="35dp"
@@ -120,21 +152,7 @@
             </LinearLayout>
         </FrameLayout>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/voiceCtrlButton"
-            android:textColor="@color/white"
-            android:layout_gravity="bottom|right"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginRight="15dp"
-            app:elevation="5dp"
-            app:fabCustomSize="60dp"
-            android:layout_marginBottom="400dp"
-            android:backgroundTint="@android:color/darker_gray"
-            android:src="@drawable/ic_settings"
-            app:maxImageSize="35dp"
 
-            />
 
         <FrameLayout
             android:layout_width="match_parent"
