@@ -43,6 +43,22 @@
 
             />
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/highway"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom|right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:fabCustomSize="60dp"
+            android:layout_marginRight="15dp"
+            android:elevation="4dp"
+            android:layout_marginBottom="300dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:src="@drawable/ic_baseline_edit_road_24"
+            app:maxImageSize="35dp"
+
+            />
+
         <FrameLayout
             android:id="@+id/topMap"
             android:layout_width="match_parent"

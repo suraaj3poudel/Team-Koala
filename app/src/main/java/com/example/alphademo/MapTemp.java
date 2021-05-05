@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
@@ -77,15 +78,22 @@ public class MapTemp extends Fragment {
     double d1;
     double d2;
     LocationManager locationManager;
+    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
+    public static final String MyPREFERENCES = "MapPrefs" ;
     double latitude, longitude;
     View rootView ;
-    FloatingActionButton center;
+    FloatingActionButton center,highways;
     TextView eta,arrivalTime,speed,street,direction;
     ImageView img;
     private java.util.EnumSet<NavigationManager.NaturalGuidanceMode> enumSet;
     Maneuver maneuver;
     FrameLayout tpMap, btMap;
     MapMarker customMarker2;
+    boolean highway = false;
+    Bundle savedInstance;
+    Route routeop;
+    RouteOptions routeOptions;
 
 
     @NonNull
@@ -96,12 +104,22 @@ public class MapTemp extends Fragment {
             d1 = getArguments().getDouble("d1");
             d2 = getArguments().getDouble("d2");
         }
-
+        sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        editor = sharedpreferences.edit();
+        highway = sharedpreferences.getBoolean("highway", true);
         m_naviControlButton = (Button)rootView.findViewById(R.id.naviCtrlButton);
         center = rootView.findViewById(R.id.recenter);
         eta = rootView.findViewById(R.id.ETA);
-
+        highways = rootView.findViewById(R.id.highway);
         return rootView;
+    }
+
+    private void clickHighway(){
+        highway = sharedpreferences.getBoolean("highway",false);
+        editor.putBoolean("highway",!highway).apply();
+        editor.commit();
+        routeOptions.setHighwaysAllowed(!highway);
+        createRoute(d1,d2);
     }
 
     // declare the listeners
@@ -128,6 +146,7 @@ public class MapTemp extends Fragment {
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        savedInstance= savedInstanceState;
         super.onActivityCreated(savedInstanceState);
 
         initMapFragment();
@@ -145,11 +164,15 @@ public class MapTemp extends Fragment {
                 recenter();
             }
         });
-
+        highways.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickHighway();
+            }
+        });
 
         initNaviControlButton();
         initVoicePackagesButton();
-
 
         if(d1 !=0 & d2 !=0) {
             initNaviControlButton();
@@ -289,11 +312,11 @@ public class MapTemp extends Fragment {
          * route calculation,including transport modes,route types and route restrictions etc.Please
          * refer to API doc for full list of APIs
          */
-        RouteOptions routeOptions = new RouteOptions();
+        routeOptions = new RouteOptions();
         /* Other transport modes are also available e.g Pedestrian */
         routeOptions.setTransportMode(RouteOptions.TransportMode.CAR);
         /* Disable highway in this route. */
-        routeOptions.setHighwaysAllowed(true);
+        //routeOptions.setHighwaysAllowed(true);
         /* Calculate the shortest route available. */
         routeOptions.setRouteType(RouteOptions.Type.SHORTEST);
         /* Calculate 1 route. */
