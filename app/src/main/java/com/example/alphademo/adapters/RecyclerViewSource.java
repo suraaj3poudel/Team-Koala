@@ -1,11 +1,16 @@
 package com.example.alphademo.adapters;
 
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -20,9 +25,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -44,7 +52,9 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     int pos;
     View mapFrag;
     Context context;
-    SharedPreferences sharedpreferences;
+    SharedPreferences.Editor editor;
+    public static final String MapPrefs = "MapPrefs" ;
+    SharedPreferences sharedpreferences,mapi;
     public static final String MyPREFERENCE = "TRIP_STATUS" ;
 
     public RecyclerViewSource( Context context, ArrayList<SourceObject> sourceInfo){
@@ -52,6 +62,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         inflator= LayoutInflater.from(context);
         this.context=context;
         sharedpreferences = context.getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
+        mapi = context.getSharedPreferences(MapPrefs, Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -63,14 +74,37 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         return new ViewHolder(view);
     }
 
-    public void onClickAction(){
+    public String getLocation(){
+        String latLon = "0 0";
+        if (ActivityCompat.checkSelfPermission(
+                context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions((Activity) context, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            locationManager = (LocationManager) context.getSystemService(Context.LOCATION_SERVICE);
+            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (locationGPS != null) {
+                double lat = locationGPS.getLatitude();
+                double longi = locationGPS.getLongitude();
+                int speeds = (int) Math.floor(locationGPS.getSpeed());
+                //speed.setText(speeds+"");
+                String latitude = String.valueOf(lat);
+                String longitude = String.valueOf(longi);
+                latLon = latitude+" "+longitude;
 
+            } else {
+                Toast.makeText(context, "Unable to find location.", Toast.LENGTH_SHORT).show();
+            }
+        }
+        return latLon;
     }
 
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
 
+        String location = getLocation();
+        final String[] latLon = location.split(" ");
 
         holder.moreInfo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -241,6 +275,13 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 transaction.add(R.id.fragment_container,fragment,"map");
                 //transaction.replace(R.id.fragment_container,fragment);
                 Bundle args = new Bundle();
+
+                editor = mapi.edit();
+                editor.putString("d1", mSourceInfo.get(pos).getLatitude()+"").apply();
+                editor.putString("d2", mSourceInfo.get(pos).getLongitude()+"").apply();
+                editor.putString("lat", latLon[0]).apply();
+                editor.putString("lon", latLon[1]).apply();
+                editor.commit();
                 args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
                 args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
                 args.putString("Message",mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()+"\n"+mSourceInfo.get(position).getSourceCity());
@@ -253,12 +294,18 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
 
             }
         });
+
+
+
     }
 
     @Override
     public int getItemCount() {
         return mSourceInfo.size();
     }
+
+    LocationManager locationManager;
+
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 

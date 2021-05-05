@@ -173,9 +173,19 @@ public class MapTemp extends Fragment {
 
         initNaviControlButton();
         initVoicePackagesButton();
+        double sd1=Double.parseDouble(sharedpreferences.getString("d1","0"));
+        double sd2=Double.parseDouble(sharedpreferences.getString("d2","0"));
 
         if(d1 !=0 & d2 !=0) {
             initNaviControlButton();
+        }
+
+        else if(sd1!=0 && sd2 !=0){
+            latitude=Double.parseDouble(sharedpreferences.getString("lat","0"));
+            longitude=Double.parseDouble(sharedpreferences.getString("lon","0"));
+                        initNaviControlButton();
+                        initMapFragment();
+                        createRoute(sd1,sd2);
         }
         else{
             m_naviControlButton.setVisibility(View.INVISIBLE);
