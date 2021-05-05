@@ -218,8 +218,6 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         });
 
 
-
-
         holder.navi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

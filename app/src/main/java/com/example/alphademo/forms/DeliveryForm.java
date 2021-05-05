@@ -172,13 +172,40 @@ public class DeliveryForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (validateInput()) {
-                    startActivity(new Intent(DeliveryForm.this, SignaturePop.class));
-                    editor.putString("status"+id, "complete").apply();
-                    editor.commit();
-                    finish();
+
+                    createDialog();
+
                 }
             }
         });
+    }
+
+    public void createDialog(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Confirm Submission");
+        alertDialogBuilder.setIcon(R.drawable.ic_baseline_check_circle_24);
+        alertDialogBuilder.setMessage("Are you sure you want to submit the form and mark this trip as complete? ");
+        alertDialogBuilder.setCancelable(false);
+
+        alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                editor.putString("status"+id, "complete").apply();
+                editor.commit();
+                startActivity(new Intent(DeliveryForm.this, SignaturePop.class));
+                finish();
+                Toast.makeText(DeliveryForm.this, "Lading Form transmitted to AIMS",Toast.LENGTH_SHORT );
+
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onBackPressed();
+            }
+        });
+        alertDialogBuilder.show();
     }
 
     /**

@@ -17,6 +17,7 @@ import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -177,10 +178,8 @@ public class SourceForm extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(validateInput()){
-                    editor.putString("status"+id, "complete").apply();
-                    editor.commit();
+                    createDialog();
                     //Log.i("MessageT",sharedpreferences.getString("status","work")+"");
-                    finish();
                 }
             }
         });
@@ -404,6 +403,32 @@ public class SourceForm extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Could not Scan anything... ", Toast.LENGTH_SHORT).show();
         }
     }
+    
+    public void createDialog(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Confirm Submission");
+        alertDialogBuilder.setIcon(R.drawable.ic_baseline_check_circle_24);
+        alertDialogBuilder.setMessage("Are you sure you want to submit the form and mark this trip as complete? ");
+        alertDialogBuilder.setCancelable(false);
+
+        alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface arg0, int arg1) {
+                editor.putString("status"+id, "complete").apply();
+                editor.commit();
+                Toast.makeText(getApplication(), "Lading Form transmitted to AIMS",Toast.LENGTH_SHORT );
+                finish();
+            }
+        });
+
+        alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                onBackPressed();
+            }
+        });
+        alertDialogBuilder.show();
+    }
 
     /**
      * This method validates the data entered
@@ -515,7 +540,6 @@ public class SourceForm extends AppCompatActivity {
 
 
             else {
-                Log.i("ERRORE", "somethings wrong");
                 flag = true;
                 date1.setError(null);
                 date2.setError(null);
