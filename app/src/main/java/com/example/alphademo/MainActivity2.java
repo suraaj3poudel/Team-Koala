@@ -97,7 +97,7 @@ public class MainActivity2 extends AppCompatActivity  {
             /**
              * displaying the view when clicked with animation
              */
-            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enterrighttoleft, R.anim.exitrighttoleft).replace(R.id.fragment_container,  select).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().setCustomAnimations(R.anim.enterrighttoleft, R.anim.exitrighttoleft).replace(R.id.fragment_container,  select).commit();
             return true;
         }
     };
