@@ -9,7 +9,7 @@ import android.widget.Toast;
 import com.example.alphademo.R;
 import com.github.gcacace.signaturepad.views.SignaturePad;
 
-public class SignaturePop extends MainActivity4 {
+public class SignaturePop extends DeliveryForm {
 
     private SignaturePad signature_pad;
     private Button clear;
