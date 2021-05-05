@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BlurMaskFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -194,6 +195,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         Log.i("FRT",sharedpreferences.getString("status"+siteID1,"not_complete"));
         if(sharedpreferences.getString("status"+siteID1,"not_complete").equals("complete")) {
             holder.complete.setVisibility(View.VISIBLE);
+            holder.card.setBackgroundColor(Color.GRAY);
         }
 
         holder.card.setOnClickListener(new View.OnClickListener() {
@@ -247,13 +249,12 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
 
         TextView site, sitecode, siaddress, sizip;
         TextView sourcenote2,site2p,site2pd,sitet,siteaddresst;
-        LinearLayout siteLayout,show_layout,hide_layout,complete;
+        LinearLayout siteLayout,show_layout,hide_layout,complete,card;
         ImageView arrowup,arrowdown;
         Button siteNotes1, deliverForm1;
         EditText typeSpaceSite1;
         DatabaseSQLite myDB;
         ExtendedFloatingActionButton navi;
-        CardView card;
         TextView ft, rq;
         ImageView moreInfo;
 

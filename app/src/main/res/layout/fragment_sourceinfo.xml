@@ -10,7 +10,6 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_viewSource"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -23,12 +22,12 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/card_viewSource"
             android:background="@drawable/card_item_background2"
             android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card_item_background2"
             android:orientation="horizontal"
             android:id="@+id/show_layout"
             android:visibility="visible">

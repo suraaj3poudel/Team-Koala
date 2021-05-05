@@ -11,18 +11,17 @@
 
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/card_viewSite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
         app:cardCornerRadius="10dp"
-        app:backgroundTint="@drawable/card_item_background2"
         app:cardElevation="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
+            android:id="@+id/card_viewSite"
             android:layout_height="wrap_content"
             android:background="@drawable/card_item_background2"
             android:orientation="vertical">

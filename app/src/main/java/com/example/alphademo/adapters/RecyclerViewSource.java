@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Html;
 import android.util.Log;
@@ -194,8 +195,10 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             }
         });
 
-        if(sharedpreferences.getString("status"+sourceID,"not_complete").equals("complete"))
+        if(sharedpreferences.getString("status"+sourceID,"not_complete").equals("complete")) {
             holder.complete.setVisibility(View.VISIBLE);
+            holder.card.setBackgroundColor(Color.GRAY);
+        }
 
         holder.card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -261,13 +264,12 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         TextView sourcename, sourcecode;
         TextView address,szipcode;
         TextView sourcenote1,sourceT,addressT;
-        LinearLayout hidden_layout,show_layout,complete;
+        LinearLayout hidden_layout,show_layout,complete,card;
         ImageView arrowdown,arrowup;
         Button addsourceNotes, sourceForm;
         EditText typeSpaceSource;
         DatabaseSQLite myDB;
         ExtendedFloatingActionButton navi;
-        CardView card;
         TextView ft, rq,site2p,site2pd;
         ImageView moreInfo;
 
