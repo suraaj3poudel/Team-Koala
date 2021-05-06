@@ -58,6 +58,8 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
     public static final String MapPrefs = "MapPrefs" ;
     SharedPreferences sharedpreferences,mapi;
     public static final String MyPREFERENCE = "TRIP_STATUS_SITE" ;
+    public static final String NAME = "MyPrefs" ;
+    SharedPreferences sharedPreferencesName ;
 
     public RecyclerViewSite( Context contexts, ArrayList<SiteObject> siteInfo){
         mSiteInfo = siteInfo;
@@ -65,6 +67,7 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         this.context = contexts;
         sharedpreferences = context.getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
         mapi = context.getSharedPreferences(MapPrefs, Context.MODE_PRIVATE);
+        sharedPreferencesName = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -232,7 +235,9 @@ public class RecyclerViewSite extends RecyclerView.Adapter<RecyclerViewSite.View
         });
 
         Log.i("FRT",sharedpreferences.getString("status"+siteID1,"not_complete"));
-        if(sharedpreferences.getString("status"+siteID1,"not_complete").equals("complete")) {
+        String name = sharedPreferencesName.getString("dname","Name");
+        if(sharedpreferences.getString(name+siteID1,"not_complete").equals("complete")) {
+
             holder.complete.setVisibility(View.VISIBLE);
             holder.card.setBackgroundColor(Color.GRAY);
             holder.hide_layout.setBackgroundColor(Color.GRAY);

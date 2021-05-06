@@ -51,6 +51,8 @@ public class SourceForm extends AppCompatActivity {
     SharedPreferences.Editor editor;
     public static final String MyPREFERENCE = "TRIP_STATUS" ;
     //public static final String status = "not_complete";
+    public static final String NAME = "MyPrefs" ;
+    SharedPreferences sharedPreferencesName ;
 
     Button mCaptureBtn;
     ImageView mImageView;
@@ -69,6 +71,7 @@ public class SourceForm extends AppCompatActivity {
         String fuel = getIntent().getStringExtra("fuelType");
         setContentView(R.layout.pickup_form);
         sharedpreferences = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
+        sharedPreferencesName = getSharedPreferences(NAME, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
         //editor.putBoolean("tripComplete",false);
         myDB = new DatabaseSQLiteForms(this);
@@ -415,7 +418,8 @@ public class SourceForm extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                editor.putString("status"+id, "complete").apply();
+                String name = sharedPreferencesName.getString("dname","Name");
+                editor.putString(name+id, "complete").apply();
                 editor.commit();
                 Toast.makeText(getApplication(), "Lading Form transmitted to AIMS",Toast.LENGTH_SHORT );
                 finish();

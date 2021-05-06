@@ -53,7 +53,8 @@ public class DeliveryForm extends AppCompatActivity {
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
     public static final String MyPREFERENCE = "TRIP_STATUS_SITE" ;
-
+    public static final String NAME = "MyPrefs" ;
+    SharedPreferences sharedPreferencesName ;
     Button btScan;
     View formfrag;
     boolean photo = false;
@@ -70,6 +71,7 @@ public class DeliveryForm extends AppCompatActivity {
         data = myDB.getData(id);
         sharedpreferences = getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
+        sharedPreferencesName = getSharedPreferences(NAME, Context.MODE_PRIVATE);
         /**initiate and display value for fueltype */
         fueltp = findViewById(R.id.fuelType);
         fueltp.setText(fuel);
@@ -190,7 +192,8 @@ public class DeliveryForm extends AppCompatActivity {
         alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
-                editor.putString("status"+id, "complete").apply();
+                String name = sharedPreferencesName.getString("dname","Name");
+                editor.putString(name+id, "complete").apply();
                 editor.commit();
                 startActivity(new Intent(DeliveryForm.this, SignaturePop.class));
                 finish();

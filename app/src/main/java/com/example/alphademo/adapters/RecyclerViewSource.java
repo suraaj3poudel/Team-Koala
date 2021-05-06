@@ -56,6 +56,10 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public static final String MapPrefs = "MapPrefs" ;
     SharedPreferences sharedpreferences,mapi;
     public static final String MyPREFERENCE = "TRIP_STATUS" ;
+    public static final String NAME = "MyPrefs" ;
+    SharedPreferences sharedPreferencesName ;
+
+
 
     public RecyclerViewSource( Context context, ArrayList<SourceObject> sourceInfo){
         mSourceInfo = sourceInfo;
@@ -63,6 +67,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         this.context=context;
         sharedpreferences = context.getSharedPreferences(MyPREFERENCE, Context.MODE_PRIVATE);
         mapi = context.getSharedPreferences(MapPrefs, Context.MODE_PRIVATE);
+        sharedPreferencesName = context.getSharedPreferences(NAME, Context.MODE_PRIVATE);
     }
 
     @NonNull
@@ -230,7 +235,9 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
             }
         });
 
-        if(sharedpreferences.getString("status"+sourceID,"not_complete").equals("complete")) {
+        String name = sharedPreferencesName.getString("dname","Name");
+
+        if(sharedpreferences.getString(name+sourceID,"not_complete").equals("complete")) {
             holder.complete.setVisibility(View.VISIBLE);
             holder.card.setBackgroundColor(Color.GRAY);
             holder.hidden_layout.setBackgroundColor(Color.GRAY);
