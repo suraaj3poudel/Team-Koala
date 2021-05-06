@@ -113,9 +113,7 @@ public class VoiceSkinsActivity extends AppCompatActivity {
         @SuppressLint("SetTextI18n") @Override
         public void onBindViewHolder(@NonNull VoiceViewHolder holder, final int position) {
             VoiceSkin voiceSkin = m_voiceSkins.get(position);
-            holder.m_idView.setText(Long.toString(voiceSkin.getId()));
             holder.m_languageView.setText(voiceSkin.getLanguage());
-            holder.m_typeView.setText(voiceSkin.getOutputType().toString());
             holder.m_selectedView.setChecked(m_selectedId == voiceSkin.getId());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -137,17 +135,13 @@ public class VoiceSkinsActivity extends AppCompatActivity {
 
         private static class VoiceViewHolder extends RecyclerView.ViewHolder {
             RadioButton m_selectedView;
-            TextView m_idView;
             TextView m_languageView;
-            TextView m_typeView;
 
             VoiceViewHolder(View itemView) {
                 super(itemView);
 
                 m_selectedView = itemView.findViewById(R.id.voiceSelected);
-                m_idView = itemView.findViewById(R.id.voiceId);
                 m_languageView = itemView.findViewById(R.id.voiceLanguage);
-                m_typeView = itemView.findViewById(R.id.voiceType);
             }
         }
     }

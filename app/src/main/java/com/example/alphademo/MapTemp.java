@@ -153,8 +153,6 @@ public class MapTemp extends Fragment {
         modes = sharedpreferences.getString("mode","night");
         modesd=modes;
 
-
-
         editor.commit();
         m_map.setMapScheme(modes);
 

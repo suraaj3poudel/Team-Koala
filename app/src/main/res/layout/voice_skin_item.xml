@@ -18,28 +18,20 @@
         android:clickable="false" />
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/voiceId"
-            android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content" />
+        android:orientation="vertical"
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/voiceLanguage"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/voiceType"
-            android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:textSize="20dp"
+            android:layout_marginBottom="6dp"
+            android:text="Beeps and Vibrations"
+            android:textColor="@color/black" />
     </LinearLayout>
 </LinearLayout>

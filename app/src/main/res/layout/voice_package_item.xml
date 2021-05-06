@@ -25,46 +25,21 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/voiceId"
-            android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/voiceName"
-            android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/voiceMarc"
-            android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content" />
-
-        <TextView
             android:id="@+id/voiceLanguage"
             android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content" />
-
-        <TextView
-            android:id="@+id/voiceType"
-            android:layout_width="match_parent"
+            android:text="English"
+            android:textSize="20dp"
             android:textColor="@color/black"
             android:layout_height="wrap_content" />
 
         <TextView
             android:id="@+id/voiceSize"
             android:layout_width="match_parent"
+            android:textSize="15dp"
+            android:text="5.0 MB"
             android:textColor="@color/black"
             android:layout_height="wrap_content" />
 
-        <TextView
-            android:id="@+id/voiceTts"
-            android:layout_width="match_parent"
-            android:textColor="@color/black"
-            android:layout_height="wrap_content" />
     </LinearLayout>
 
     <ProgressBar

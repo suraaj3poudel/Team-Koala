@@ -111,13 +111,8 @@ public class VoicePackagesActivity extends AppCompatActivity {
         public void onBindViewHolder(@NonNull final VoiceViewHolder holder, final int position) {
             final VoicePackage voicePackage = m_packages.get(position);
             holder.m_isDownloaded.setChecked(voicePackage.isLocal());
-            holder.m_idView.setText(Long.toString(voicePackage.getId()));
-            holder.m_nameView.setText(voicePackage.getName());
-            holder.m_marcView.setText(voicePackage.getMarcCode());
             holder.m_languageView.setText(voicePackage.getLocalizedLanguage());
-            holder.m_typeView.setText(voicePackage.getLocalizedType());
             holder.m_sizeView.setText(String.format("%.2f Mb", voicePackage.getDownloadSize()));
-            holder.m_ttsView.setText("TTS : " + voicePackage.isTts());
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -185,24 +180,15 @@ public class VoicePackagesActivity extends AppCompatActivity {
             CheckBox m_isDownloaded;
             TextView m_idView;
             TextView m_nameView;
-            TextView m_marcView;
             TextView m_languageView;
-            TextView m_typeView;
             TextView m_sizeView;
-            TextView m_ttsView;
             ProgressBar m_progressBar;
 
             VoiceViewHolder(View itemView) {
                 super(itemView);
-
                 m_isDownloaded = itemView.findViewById(R.id.voiceDownloaded);
-                m_idView = itemView.findViewById(R.id.voiceId);
-                m_nameView = itemView.findViewById(R.id.voiceName);
-                m_marcView = itemView.findViewById(R.id.voiceMarc);
                 m_languageView = itemView.findViewById(R.id.voiceLanguage);
-                m_typeView = itemView.findViewById(R.id.voiceType);
                 m_sizeView = itemView.findViewById(R.id.voiceSize);
-                m_ttsView = itemView.findViewById(R.id.voiceTts);
                 m_progressBar = itemView.findViewById(R.id.progressBar);
             }
         }
