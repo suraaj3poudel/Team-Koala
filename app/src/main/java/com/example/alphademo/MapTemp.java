@@ -161,9 +161,15 @@ public class MapTemp extends Fragment {
     }
 
     private void clickHighway(){
-        highway = sharedpreferences.getBoolean("highway",false);
         editor.putBoolean("highway",!highway).apply();
         editor.commit();
+        highway = sharedpreferences.getBoolean("highway",false);
+        if(highway){
+            highways.setImageResource(R.drawable.highwayon);
+        }
+        else{
+            highways.setImageResource(R.drawable.highwayoff);
+        }
         routeOptions.setHighwaysAllowed(!highway);
         createRoute(d1,d2);
     }

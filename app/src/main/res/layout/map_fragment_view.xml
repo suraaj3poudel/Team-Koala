@@ -87,7 +87,7 @@
             android:visibility="invisible"
             android:layout_marginBottom="490dp"
             android:backgroundTint="@android:color/darker_gray"
-            android:src="@drawable/highway"
+            android:src="@drawable/highwayon"
             app:maxImageSize="35dp"
 
             />
