@@ -12,7 +12,7 @@
         android:layout_gravity="bottom|center"
         android:layout_width="200dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="100dp"
         android:elevation="4dp"
         android:gravity="center"
         android:translationZ="5dp"
@@ -84,22 +84,62 @@
             app:fabCustomSize="60dp"
             android:layout_marginRight="15dp"
             android:elevation="4dp"
+            android:visibility="invisible"
             android:layout_marginBottom="490dp"
             android:backgroundTint="@android:color/darker_gray"
             android:src="@drawable/ic_baseline_edit_road_24"
             app:maxImageSize="35dp"
 
             />
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/stop"
+            android:textColor="@color/white"
+            android:layout_gravity="bottom|right"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:fabCustomSize="60dp"
+            android:layout_marginRight="15dp"
+            android:visibility="gone"
+            android:elevation="4dp"
+            android:layout_marginBottom="100dp"
+            android:backgroundTint="@android:color/darker_gray"
+            android:src="@drawable/ic_baseline_cancel_24"
+            app:maxImageSize="35dp"
+
+            />
+
 
         <FrameLayout
-            android:id="@+id/topMap"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:foregroundGravity="center_horizontal"
             android:elevation="5dp"
-            android:visibility="gone"
-            android:background="@color/grey">
 
+            android:background="#C1C1C1">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:id="@+id/whereto"
+                    android:layout_height="match_parent"
+                    android:text="Navigating to"
+                    android:visibility="visible"
+                    android:background="@color/green"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:id="@+id/topMap"
+                android:visibility="gone"
+                android:layout_marginTop="5dp"
+                android:padding="5dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -108,8 +148,8 @@
 
                 <ImageView
                     android:id="@+id/direction_img"
-                    android:layout_width="94dp"
-                    android:layout_height="94dp"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
                     android:layout_gravity="center"
                     android:elevation="2dp"
                     android:maxWidth="50dp"
@@ -131,9 +171,8 @@
                         android:layout_height="wrap_content"
                         android:elevation="2dp"
                         android:text="Redirecting ..."
-                        android:textSize="25dp"
-
-                        android:layout_marginTop="5dp"
+                        android:textSize="30dp"
+                        android:layout_marginTop="3dp"
                         android:padding="5dp"
                         android:textColor="@color/black"
                         android:translationZ="@dimen/cardview_default_elevation" />
@@ -146,8 +185,13 @@
                         android:padding="5dp"
                         android:text="Waiting for GPS .. "
                         android:textColor="@color/black"
+                        android:textSize="17dp"
                         android:translationZ="@dimen/cardview_default_elevation" />
+
                 </LinearLayout>
+
+
+            </LinearLayout>
 
             </LinearLayout>
         </FrameLayout>
@@ -161,7 +205,7 @@
             android:elevation="5dp"
             android:visibility="gone"
             android:layout_gravity="bottom"
-            android:background="@color/grey"
+            android:background="#C1C1C1"
             android:id="@+id/bottomMap">
 
             <LinearLayout

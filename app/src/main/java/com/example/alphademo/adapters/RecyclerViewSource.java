@@ -74,6 +74,7 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
         return new ViewHolder(view);
     }
 
+    LocationManager locationManager;
     public String getLocation(){
         String latLon = "0 0";
         if (ActivityCompat.checkSelfPermission(
@@ -277,14 +278,16 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
                 Bundle args = new Bundle();
 
                 editor = mapi.edit();
-                editor.putString("d1", mSourceInfo.get(pos).getLatitude()+"").apply();
-                editor.putString("d2", mSourceInfo.get(pos).getLongitude()+"").apply();
+                editor.putString("d1", mSourceInfo.get(position).getLatitude()+"").apply();
+                editor.putString("d2", mSourceInfo.get(position).getLongitude()+"").apply();
                 editor.putString("lat", latLon[0]).apply();
                 editor.putString("lon", latLon[1]).apply();
+                editor.putString("info","Navigating to " +mSourceInfo.get(position).getSource());
                 Log.i("HGTY",latLon[0]+ " "+latLon[1]+" "+mSourceInfo.get(pos).getLatitude()+" "+mSourceInfo.get(pos).getLongitude());
                 editor.commit();
-                args.putDouble("d1", mSourceInfo.get(pos).getLatitude());
-                args.putDouble("d2", mSourceInfo.get(pos).getLongitude());
+                args.putDouble("d1", mSourceInfo.get(position).getLatitude());
+                args.putDouble("d2", mSourceInfo.get(position).getLongitude());
+                args.putString("info","Navigating to " +mSourceInfo.get(position).getSource());
                 args.putString("Message",mSourceInfo.get(position).getSource()+"\n"+mSourceInfo.get(position).getSourceAddress()+"\n"+mSourceInfo.get(position).getSourceCity());
                 Log.i("Long Sent", mSourceInfo.get(pos).getLatitude()+"");
                 fragment.setArguments(args);
@@ -304,8 +307,6 @@ public class RecyclerViewSource extends RecyclerView.Adapter<RecyclerViewSource.
     public int getItemCount() {
         return mSourceInfo.size();
     }
-
-    LocationManager locationManager;
 
 
     public class ViewHolder extends RecyclerView.ViewHolder{

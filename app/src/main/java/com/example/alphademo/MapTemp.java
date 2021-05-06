@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.PointF;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ import com.here.android.mpa.common.GeoCoordinate;
 import com.here.android.mpa.common.GeoPosition;
 import com.here.android.mpa.common.Image;
 import com.here.android.mpa.common.OnEngineInitListener;
+import com.here.android.mpa.common.ViewObject;
 import com.here.android.mpa.guidance.AudioPlayerDelegate;
 import com.here.android.mpa.guidance.NavigationManager;
 import com.here.android.mpa.mapping.AndroidXMapFragment;
@@ -74,6 +77,7 @@ public class MapTemp extends Fragment {
     private AndroidXMapFragment m_mapFragment;
     private Button m_naviControlButton;
     private Map m_map;
+    //CoreRouter coreRouter;
     private NavigationManager m_navigationManager;
     private GeoBoundingBox m_geoBoundingBox;
     private Route m_route;
@@ -86,12 +90,13 @@ public class MapTemp extends Fragment {
     public static final String MyPREFERENCES = "MapPrefs" ;
     double latitude, longitude;
     View rootView ;
-    FloatingActionButton center,highways,mode;
-    TextView eta,arrivalTime,speed,street,direction;
+    FloatingActionButton center,highways,stop,mode;
+    TextView eta,arrivalTime,speed,street,direction,whereto;
     ImageView img;
     private java.util.EnumSet<NavigationManager.NaturalGuidanceMode> enumSet;
     Maneuver maneuver;
-    FrameLayout tpMap, btMap;
+    FrameLayout btMap;
+    LinearLayout tpMap;
     MapMarker customMarker2;
     boolean highway = false;
     Bundle savedInstance;
@@ -102,6 +107,7 @@ public class MapTemp extends Fragment {
     private static int c =0;
     CustomizableScheme scheme1 ;
     CustomizableScheme scheme2 ;
+    String target;
 
 
     @NonNull
@@ -111,9 +117,12 @@ public class MapTemp extends Fragment {
         if(getArguments() != null) {
             d1 = getArguments().getDouble("d1");
             d2 = getArguments().getDouble("d2");
+            target = getArguments().getString("info");
         }
         //fusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
-
+        whereto = rootView.findViewById(R.id.whereto);
+        whereto.setText(target);
+        stop = rootView.findViewById(R.id.stop);
         sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
         editor = sharedpreferences.edit();
         highway = sharedpreferences.getBoolean("highway", true);
@@ -121,6 +130,9 @@ public class MapTemp extends Fragment {
         center = rootView.findViewById(R.id.recenter);
         eta = rootView.findViewById(R.id.ETA);
         highways = rootView.findViewById(R.id.highway);
+
+
+
         return rootView;
     }
 
@@ -159,7 +171,7 @@ public class MapTemp extends Fragment {
 
     private void recenter() {
         m_map.setCenter(new GeoCoordinate(latitude,longitude,0.0), Map.Animation.BOW);
-        m_navigationManager.setMapUpdateMode(NavigationManager.MapUpdateMode.POSITION_ANIMATION);
+        m_navigationManager.setMapUpdateMode(NavigationManager.MapUpdateMode.ROADVIEW);
         Log.i("NewCenter",latitude+" "+longitude);
         m_map.setZoomLevel(18);
     }
@@ -169,7 +181,12 @@ public class MapTemp extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         savedInstance= savedInstanceState;
         super.onActivityCreated(savedInstanceState);
-
+        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            OnGPS();
+        } else {
+            getLocation();
+        }
         initMapFragment();
         arrivalTime = rootView.findViewById(R.id.arrival_time);
         speed = rootView.findViewById(R.id.speed);
@@ -206,17 +223,15 @@ public class MapTemp extends Fragment {
 
         if(d1 !=0 & d2 !=0) {
             initNaviControlButton();
-            highways.setVisibility(View.VISIBLE);
+            //Visibility(View.VISIBLE);
         }
 
         else if(sd1!=0 && sd2 !=0){
             Log.i("PosTG","I am here now");
-            highways.setVisibility(View.VISIBLE);
-            latitude=Double.parseDouble(sharedpreferences.getString("lat","0"));
-            longitude=Double.parseDouble(sharedpreferences.getString("lon","0"));
-                        initMapFragment();
-                        initNaviControlButton();
-                        createRoute(sd1,sd2);
+            //highways.setVisibility(View.VISIBLE);
+          whereto.setText(sharedpreferences.getString("info","N/A"));
+            d1=sd1;
+            d2=sd2;
         }
         else{
             highways.setVisibility(View.INVISIBLE);
@@ -259,18 +274,19 @@ public class MapTemp extends Fragment {
 
                     if (error == Error.NONE) {
 
-                        locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
-                        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
-                            OnGPS();
-                        } else {
-                            getLocation();
-                        }
+
                         m_map = m_mapFragment.getMap();
+                        try{
                         scheme1 = m_map.createCustomizableScheme("night", Map.Scheme.NORMAL_NIGHT_GREY);
-                        scheme2 = m_map.createCustomizableScheme("day", Map.Scheme.NORMAL_DAY);
+                        scheme2 = m_map.createCustomizableScheme("day", Map.Scheme.NORMAL_DAY);}
+                        catch (Exception e){
+                            scheme1 = m_map.getCustomizableScheme("night");
+                            scheme2 = m_map.getCustomizableScheme("day");
+
+                        }
                         Image image = new Image();
                         try {
-                            image.setImageResource(R.drawable.currentlocationmarker);
+                            image.setImageResource(R.drawable.location);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -279,6 +295,9 @@ public class MapTemp extends Fragment {
                         m_map.addMapObject(customMarker2);
                         //setMarker(latitude,longitude,R.drawable.currentlocationmarker,true);
                         setMarker(d1,d2,R.drawable.map_label,true);
+                        //if(latitude==0){
+                           // getLocation();
+                        //}
                         m_map.setCenter(new GeoCoordinate(latitude, longitude),
                                 Map.Animation.NONE);
                         //Put this call in Map.onTransformListener if the animation(Linear/Bow)
@@ -290,6 +309,84 @@ public class MapTemp extends Fragment {
                          * Get the NavigationManager instance.It is responsible for providing voice
                          * and visual instructions while driving and walking
                          */
+                        //coreRouter = new CoreRouter();
+
+                        m_mapFragment.getMapGesture().addOnGestureListener(new MapGesture.OnGestureListener() {
+                            @Override
+                            public void onPanStart() {
+                                m_navigationManager.setMapUpdateMode(NavigationManager.MapUpdateMode.POSITION_ANIMATION);
+                            }
+
+                            @Override
+                            public void onPanEnd() {
+
+                            }
+
+                            @Override
+                            public void onMultiFingerManipulationStart() {
+
+                            }
+
+                            @Override
+                            public void onMultiFingerManipulationEnd() {
+
+                            }
+
+                            @Override
+                            public boolean onMapObjectsSelected(@NonNull List<ViewObject> list) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onTapEvent(@NonNull PointF pointF) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onDoubleTapEvent(@NonNull PointF pointF) {
+                                return false;
+                            }
+
+                            @Override
+                            public void onPinchLocked() {
+
+                            }
+
+                            @Override
+                            public boolean onPinchZoomEvent(float v, @NonNull PointF pointF) {
+                                return false;
+                            }
+
+                            @Override
+                            public void onRotateLocked() {
+
+                            }
+
+                            @Override
+                            public boolean onRotateEvent(float v) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onTiltEvent(float v) {
+                                return false;
+                            }
+
+                            @Override
+                            public boolean onLongPressEvent(@NonNull PointF pointF) {
+                                return false;
+                            }
+
+                            @Override
+                            public void onLongPressRelease() {
+
+                            }
+
+                            @Override
+                            public boolean onTwoFingerTapEvent(@NonNull PointF pointF) {
+                                return false;
+                            }
+                        },0,true);
 
                     } else {
                         new AlertDialog.Builder(getActivity()).setMessage(
@@ -346,8 +443,10 @@ public class MapTemp extends Fragment {
 
     private void createRoute(double d1,double d2) {
         /* Initialize a CoreRouter */
-        Toast.makeText(getContext(), "Working on it.", Toast.LENGTH_SHORT).show();
+        //initMapFragment();
         CoreRouter coreRouter = new CoreRouter();
+        Toast.makeText(getContext(), "Working on it.", Toast.LENGTH_SHORT).show();
+
 
         /* Initialize a RoutePlan */
         RoutePlan routePlan = new RoutePlan();
@@ -406,6 +505,7 @@ public class MapTemp extends Fragment {
                                 /* Add the MapRoute to the map */
                                 m_map.addMapObject(mapRoute);
                                 m_map.setTrafficInfoVisible(true);
+                                m_map.removeMapObject(customMarker2);
 
                                 /*
                                  * We may also want to make sure the map view is orientated properly
@@ -434,7 +534,7 @@ public class MapTemp extends Fragment {
     }
 
     private void initNaviControlButton() {
-        //m_naviControlButton = rootView.findViewById(R.id.naviCtrlButton);
+        m_naviControlButton = rootView.findViewById(R.id.naviCtrlButton);
         m_naviControlButton.setText(R.string.start_navi);
         m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.green));
 
@@ -455,25 +555,52 @@ public class MapTemp extends Fragment {
                  *
                  */
                 Toast.makeText(getContext(),"Working on it", Toast.LENGTH_SHORT);
-                if (m_route == null) {
+               // if (m_route == null) {
+                    stop.setVisibility(View.VISIBLE);
+                    m_naviControlButton.setVisibility(View.GONE);
+                    highways.setVisibility(View.VISIBLE);
                     //m_navigationManager = NavigationManager.getInstance();
                     createRoute(d1,d2);
                     //startNavigation();
-                } else {
-                    m_navigationManager.stop();
-                    latitude=Double.parseDouble(sharedpreferences.getString("lat","0"));
-                    longitude=Double.parseDouble(sharedpreferences.getString("lon","0"));
-                    d1 = Double.parseDouble(sharedpreferences.getString("d1","0"));
-                    d2 = Double.parseDouble(sharedpreferences.getString("d2","0"));
-                    /*
-                     * Restore the map orientation to show entire route on screen
-                     */
-                    m_map.setZoomLevel(13);
-                    m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE, 0f);
-                    m_naviControlButton.setText(R.string.start_navi);
-                    m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.green));
-                    m_route = null;
-                }
+                //} else {
+//                    m_navigationManager.stop();
+////                    latitude=Double.parseDouble(sharedpreferences.getString("lat","0"));
+////                    longitude=Double.parseDouble(sharedpreferences.getString("lon","0"));
+//                    d1 = Double.parseDouble(sharedpreferences.getString("d1","0"));
+//                    d2 = Double.parseDouble(sharedpreferences.getString("d2","0"));
+//                    /*
+//                     * Restore the map orientation to show entire route on screen
+//                     */
+//                    m_map.setZoomLevel(13);
+//                    m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE, 0f);
+//                    m_naviControlButton.setText(R.string.start_navi);
+//                    m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.green));
+//                    m_route = null;
+//                }
+            }
+        });
+
+        stop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tpMap.setVisibility(View.GONE);
+                btMap.setVisibility(View.GONE);
+                stop.setVisibility(View.INVISIBLE);
+                highways.setVisibility(View.INVISIBLE);
+                m_naviControlButton.setVisibility(View.VISIBLE);
+                m_navigationManager.stop();
+//                    latitude=Double.parseDouble(sharedpreferences.getString("lat","0"));
+//                    longitude=Double.parseDouble(sharedpreferences.getString("lon","0"));
+                d1 = Double.parseDouble(sharedpreferences.getString("d1","0"));
+                d2 = Double.parseDouble(sharedpreferences.getString("d2","0"));
+                /*
+                 * Restore the map orientation to show entire route on screen
+                 */
+                m_map.setZoomLevel(13);
+                m_map.zoomTo(m_geoBoundingBox, Map.Animation.NONE, 0f);
+                m_naviControlButton.setText(R.string.start_navi);
+                m_naviControlButton.setBackgroundColor(getResources().getColor(R.color.green));
+                m_route = null;
             }
         });
     }
@@ -592,7 +719,7 @@ public class MapTemp extends Fragment {
          * recommended to set the map update mode to NONE first. Other supported update mode can be
          * found in HERE Mobile SDK for Android (Premium) API doc
          */
-        m_navigationManager.setMapUpdateMode(NavigationManager.MapUpdateMode.POSITION_ANIMATION);
+        m_navigationManager.setMapUpdateMode(NavigationManager.MapUpdateMode.ROADVIEW);
 
         /*
          * Sets the measuring unit system that is used by voice guidance.
@@ -628,6 +755,7 @@ public class MapTemp extends Fragment {
         });
 
         m_navigationManager.addNewInstructionEventListener(new WeakReference<NavigationManager.NewInstructionEventListener>(m_newInstructionEventListener));
+
 
     }
 
@@ -795,25 +923,39 @@ public class MapTemp extends Fragment {
         }
     }
 
-
+    Location locationGPS ;
     private void getLocation() {
-        if (ActivityCompat.checkSelfPermission(
-                getContext(),Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
-        } else {
-            Location locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (locationGPS != null) {
-                double lat = locationGPS.getLatitude();
-                double longi = locationGPS.getLongitude();
-                int speeds = (int) Math.floor(locationGPS.getSpeed());
-                speed.setText(speeds+"");
-                latitude = Double.parseDouble(String.valueOf(lat));
-                longitude = Double.parseDouble(String.valueOf(longi));
+
+        try {
+            if (ActivityCompat.checkSelfPermission(
+                    getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION);
             } else {
-                Toast.makeText(getContext(), "Unable to find location.", Toast.LENGTH_SHORT).show();
+                 locationGPS=locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if (locationGPS != null) {
+                    double lat = locationGPS.getLatitude();
+                    double longi = locationGPS.getLongitude();
+                    int speeds = (int) Math.floor(locationGPS.getSpeed());
+                    speed = rootView.findViewById(R.id.speed);
+                    speed.setText(speeds + "");
+                    latitude = Double.parseDouble(String.valueOf(lat));
+                    longitude = Double.parseDouble(String.valueOf(longi));
+                } else {
+                    Toast.makeText(getContext(), "Unable to find location.", Toast.LENGTH_SHORT).show();
+                }
             }
         }
+        catch (Exception e){
+            locationGPS = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            double lat = locationGPS.getLatitude();
+            double longi = locationGPS.getLongitude();
+            int speeds = (int) Math.floor(locationGPS.getSpeed());
+            speed.setText(speeds + "");
+            latitude = Double.parseDouble(String.valueOf(lat));
+            longitude = Double.parseDouble(String.valueOf(longi));
+        }
     }
+
 
 }

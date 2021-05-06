@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(user.contains(m_username.toLowerCase())){
                     editor.putString(Username, m_username).apply();
-                    editor.putString(Password, m_password).apply();
+                    //editor.putString(Password, m_password).apply();
                     editor.putBoolean("loggedIn", true).apply();
                     editor.commit();
                     openActivity2();

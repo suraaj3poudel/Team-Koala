@@ -84,12 +84,9 @@ public class MainActivity2 extends AppCompatActivity  {
             home = getSupportFragmentManager().findFragmentByTag("TripList");
         }
         FragmentManager fm = getFragmentManager();
-//
-
 
         if (home != null) {
             if (!(home instanceof ViewAllTripsFragment) && home.isVisible()) {
-                //Log.i("waht",getSupportFragmentManager().getBackStackEntryCount()+"");
                 if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
                     getSupportFragmentManager().popBackStack();
                 } else {
@@ -97,7 +94,6 @@ public class MainActivity2 extends AppCompatActivity  {
                 }
             }
         }else {
-                //Primary fragment
                 moveTaskToBack(true);
             }
     }
