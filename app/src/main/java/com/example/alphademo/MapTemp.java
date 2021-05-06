@@ -84,6 +84,7 @@ public class MapTemp extends Fragment {
     private boolean m_foregroundServiceStarted;
     double d1;
     double d2;
+    String modes;
     LocationManager locationManager;
     SharedPreferences sharedpreferences;
     SharedPreferences.Editor editor;
@@ -107,7 +108,7 @@ public class MapTemp extends Fragment {
     private static int c =0;
     CustomizableScheme scheme1 ;
     CustomizableScheme scheme2 ;
-    String target;
+    String target,modesd;
 
 
     @NonNull
@@ -120,10 +121,12 @@ public class MapTemp extends Fragment {
             target = getArguments().getString("info");
         }
         //fusedLocationClient = LocationServices.getFusedLocationProviderClient(getContext());
+        sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        modesd = sharedpreferences.getString("mode","day");
         whereto = rootView.findViewById(R.id.whereto);
         whereto.setText(target);
         stop = rootView.findViewById(R.id.stop);
-        sharedpreferences = getContext().getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+
         editor = sharedpreferences.edit();
         highway = sharedpreferences.getBoolean("highway", true);
         m_naviControlButton = (Button)rootView.findViewById(R.id.naviCtrlButton);
@@ -136,15 +139,27 @@ public class MapTemp extends Fragment {
         return rootView;
     }
 
-    public void changeMode(int i){
+    public void changeMode(String modes){
 
-        String mode = "day";
-
-        if(i%2 ==0) {
-            mode = "night";
+        if(modes.equals("day")) {
+            editor.putString("mode", "night").apply();
+            mode.setImageResource(R.drawable.day);
         }
-        Log.i("StaticInt",mode+"");
-        m_map.setMapScheme(mode);
+        else {
+            editor.putString("mode", "day").apply();
+            mode.setImageResource(R.drawable.ic_baseline_nights_stay_24);
+
+        }
+        modes = sharedpreferences.getString("mode","night");
+        modesd=modes;
+
+
+
+        editor.commit();
+        m_map.setMapScheme(modes);
+
+
+
     }
 
     private void clickHighway(){
@@ -188,6 +203,7 @@ public class MapTemp extends Fragment {
             getLocation();
         }
         initMapFragment();
+
         arrivalTime = rootView.findViewById(R.id.arrival_time);
         speed = rootView.findViewById(R.id.speed);
         direction = rootView.findViewById(R.id.direction);
@@ -212,7 +228,7 @@ public class MapTemp extends Fragment {
         mode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                changeMode(c++);
+                changeMode(modesd);
             }
         });
 
@@ -256,6 +272,7 @@ public class MapTemp extends Fragment {
                 .findFragmentById(R.id.mapfragment);
     }
 
+
     private void initMapFragment() {
         /* Locate the mapFragment UI element */
         m_mapFragment = getMapFragment();
@@ -276,6 +293,9 @@ public class MapTemp extends Fragment {
 
 
                         m_map = m_mapFragment.getMap();
+                        String mapTheme = sharedpreferences.getString("mode","day");
+                        Log.i("MAPTHEME",mapTheme);
+
                         try{
                         scheme1 = m_map.createCustomizableScheme("night", Map.Scheme.NORMAL_NIGHT_GREY);
                         scheme2 = m_map.createCustomizableScheme("day", Map.Scheme.NORMAL_DAY);}
@@ -284,6 +304,8 @@ public class MapTemp extends Fragment {
                             scheme2 = m_map.getCustomizableScheme("day");
 
                         }
+                        Log.i("MAPTHEME",mapTheme);
+                        m_map.setMapScheme(mapTheme);
                         Image image = new Image();
                         try {
                             image.setImageResource(R.drawable.location);

@@ -11,7 +11,7 @@
             android:id="@+id/map"
             android:title="Maps"
             android:iconTint="@color/grey"
-            android:icon ="@drawable/maps"/>
+            android:icon ="@drawable/map"/>
         <item
             android:id="@+id/setting"
             android:title="Settings"

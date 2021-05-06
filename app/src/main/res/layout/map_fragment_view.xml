@@ -12,7 +12,7 @@
         android:layout_gravity="bottom|center"
         android:layout_width="200dp"
         android:layout_height="62dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="15dp"
         android:elevation="4dp"
         android:gravity="center"
         android:translationZ="5dp"
@@ -38,7 +38,7 @@
             android:elevation="4dp"
             android:layout_marginBottom="200dp"
             android:backgroundTint="@android:color/darker_gray"
-            android:src="@drawable/center"
+            android:src="@drawable/position"
             app:maxImageSize="35dp"
 
             />
@@ -54,7 +54,7 @@
             app:fabCustomSize="60dp"
             android:layout_marginBottom="400dp"
             android:backgroundTint="@android:color/darker_gray"
-            android:src="@drawable/ic_baseline_nights_stay_24"
+            android:src="@drawable/day"
             app:maxImageSize="35dp"
 
             />
@@ -70,7 +70,7 @@
             android:elevation="4dp"
             android:layout_marginBottom="300dp"
             android:backgroundTint="@android:color/darker_gray"
-            android:src="@drawable/ic_baseline_language_24"
+            android:src="@drawable/language"
             app:maxImageSize="35dp"
 
             />
@@ -87,7 +87,7 @@
             android:visibility="invisible"
             android:layout_marginBottom="490dp"
             android:backgroundTint="@android:color/darker_gray"
-            android:src="@drawable/ic_baseline_edit_road_24"
+            android:src="@drawable/highway"
             app:maxImageSize="35dp"
 
             />
@@ -103,7 +103,7 @@
             android:elevation="4dp"
             android:layout_marginBottom="100dp"
             android:backgroundTint="@android:color/darker_gray"
-            android:src="@drawable/ic_baseline_cancel_24"
+            android:src="@drawable/cross"
             app:maxImageSize="35dp"
 
             />
