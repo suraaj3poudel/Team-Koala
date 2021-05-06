@@ -4,18 +4,18 @@
         <item
             android:id="@+id/trip_list"
             android:title="Trip List"
-            android:iconTint="@color/white"
+            android:iconTint="@color/grey"
             android:icon="@drawable/ic_baseline_local_gas_station_24"
             />
         <item
             android:id="@+id/map"
-            android:title="Direction"
-            android:iconTint="@color/white"
-            android:icon ="@drawable/ic_baseline_directions_24"/>
+            android:title="Maps"
+            android:iconTint="@color/grey"
+            android:icon ="@drawable/maps"/>
         <item
             android:id="@+id/setting"
             android:title="Settings"
-            android:iconTint="@color/white"
+            android:iconTint="@color/grey"
             android:icon="@drawable/ic_baseline_settings_24"
             />
 
