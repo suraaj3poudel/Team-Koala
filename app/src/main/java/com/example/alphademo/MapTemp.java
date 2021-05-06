@@ -704,7 +704,7 @@ public class MapTemp extends Fragment {
         });
         alertDialogBuilder.setPositiveButton("Simulation", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialoginterface, int i) {
-                m_navigationManager.simulate(m_route, 180);//Simualtion speed is set to 60 m/s
+                m_navigationManager.simulate(m_route, 50);//Simualtion speed is set to 60 m/s
                 m_map.setTilt(60);
                 m_map.setZoomLevel(18);
                 startForegroundService();
@@ -806,12 +806,62 @@ public class MapTemp extends Fragment {
                 @Override
                 public void onPositionUpdated(GeoPosition geoPosition) {
                     getLocation();
+                    Date currentTime = Calendar.getInstance().getTime();
+                    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+                    int speedNav = (int) m_navigationManager.getAverageSpeed();
+                    speed = rootView.findViewById(R.id.speed);
+                    speed.setText(speedNav + "");
+                    if(speedNav==0){
+                        speedNav=30;
+                    }
+
+                    //int seconds = m_route.getTtaIncludingTraffic(0).getDuration();
+
+                    //int hour = currentTime.getHours()+m_navigationManager.getEta(false, Route.TrafficPenaltyMode.AVOID_LONG_TERM_CLOSURES).getHours();
+                    //int minutes = currentTime.getMinutes()+m_navigationManager.getEta(false, Route.TrafficPenaltyMode.AVOID_LONG_TERM_CLOSURES).getMinutes();
+
+                    //eta.setText(m_navigationManager.getRemainingDistance(1));
+
+                    dis = m_navigationManager.getDestinationDistance()/(1609.0);
+                    String distance = String.format("%.1f",dis);
+
+
+                    eta.setText(distance+"");
+                    double calc = Double.parseDouble(distance)/speedNav;
+                    String calcs = String.format("%.2f",calc);
+
+                    int seconds = (int)(Double.parseDouble(calcs)*3600);
+                    Log.i("ETAS1", seconds+"");
+
+                    Log.i("ETAS2", seconds+"");
+
+                    int p1 = seconds % 60;
+                    int p2 = seconds / 60;
+                    int p3 = p2 % 60;
+                    p2 = p2 / 60;
+                    //Log.i("TIME",p2+":"+p3+"");
+                    int h = currentTime.getHours()+p2;
+                    int m = currentTime.getMinutes()+p3;
+                    //arrivalTime.setText(m_navigationManager.getEta(true, Route.TrafficPenaltyMode.OPTIMAL).getTime()/60+"");
+                    if(m>60){
+                        m = m%60;
+                        h++;
+                    }
+                    String s ="";
+                    if(m<10){
+                        s="0";
+                    }
+                    if(h>12){
+                        h=h%12;
+                    }
+                    //arrivalTime.setText(hour+":"+minute);
+
+                    arrivalTime.setText(h+":"+s+m);
                     /* Current position information can be retrieved in this callback */
                 }
             };
 
-    Date currentTime = Calendar.getInstance().getTime();
-    SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
+
 
     private NavigationManager.NewInstructionEventListener m_newInstructionEventListener =
             new NavigationManager.NewInstructionEventListener() {
@@ -845,35 +895,7 @@ public class MapTemp extends Fragment {
                         }
                         street.setText(maneuver.getNextRoadName());
                         int hour = 0;
-                        int seconds = m_route.getTtaIncludingTraffic(0).getDuration();
-                        //int hour = currentTime.getHours()+m_navigationManager.getEta(false, Route.TrafficPenaltyMode.AVOID_LONG_TERM_CLOSURES).getHours();
-                        //int minutes = currentTime.getMinutes()+m_navigationManager.getEta(false, Route.TrafficPenaltyMode.AVOID_LONG_TERM_CLOSURES).getMinutes();
-                        int p1 = seconds % 60;
-                        int p2 = seconds / 60;
-                        int p3 = p2 % 60;
-                        p2 = p2 / 60;
-                        Log.i("TIME",p2+":"+p3+"");
-                        int h = currentTime.getHours()+p2;
-                        int m = currentTime.getMinutes()+p3;
-                        //arrivalTime.setText(m_navigationManager.getEta(true, Route.TrafficPenaltyMode.OPTIMAL).getTime()/60+"");
-                        if(m>60){
-                            m = m%60;
-                            h++;
-                        }
-                        String s ="";
-                        if(m<10){
-                            s="0";
-                        }
-                        if(h>12){
-                            h=h%12;
-                        }
-                        //arrivalTime.setText(hour+":"+minute);
 
-                        arrivalTime.setText(h+":"+s+m);
-                        //eta.setText(m_navigationManager.getRemainingDistance(1));
-
-                        dis = m_navigationManager.getDestinationDistance()/1609;
-                        eta.setText(dis+"");
 
                     }
                 }
@@ -937,8 +959,7 @@ public class MapTemp extends Fragment {
                     double lat = locationGPS.getLatitude();
                     double longi = locationGPS.getLongitude();
                     int speeds = (int) Math.floor(locationGPS.getSpeed());
-                    speed = rootView.findViewById(R.id.speed);
-                    speed.setText(speeds + "");
+
                     latitude = Double.parseDouble(String.valueOf(lat));
                     longitude = Double.parseDouble(String.valueOf(longi));
                 } else {
