@@ -36,7 +36,7 @@
                     android:background="@drawable/circle"
                     android:padding="3dp"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_user" />
+                    android:src="@drawable/ic_baseline_person_outline_24" />
 
             </RelativeLayout>
 
@@ -534,6 +534,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="25dp"
                     android:orientation="vertical">
 
                     <TextView

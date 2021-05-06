@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/peach"
+    android:background="@drawable/grad"
     tools:context=".MainActivity">
 
     <ImageView
@@ -98,10 +98,11 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="Driver Id"
+                android:textCursorDrawable="@null"
                 android:background="@drawable/rectangled"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="30dp"
-                android:textColorHint="#F44336"
+                android:textColorHint="#ffb3b3"
                 android:textSize="20sp" />
         </LinearLayout>
 
@@ -126,12 +127,14 @@
                 android:layout_weight="1"
                 android:ems="10"
                 android:hint="@string/password"
+                android:textCursorDrawable="@null"
                 android:background="@drawable/rectangled"
                 android:drawableRight="@drawable/ic_baseline_remove_red_eye_24"
                 android:inputType="textPassword"
                 android:paddingHorizontal="30dp"
-                android:textColorHint="#F44336"
+                android:textColorHint="#ffb3b3"
                 android:textSize="18sp" />
+
 
         </LinearLayout>
 
