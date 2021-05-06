@@ -46,6 +46,8 @@ public class SettingFragment extends Fragment {
     ImageView imageEmail, imagePhone, imageAddress, imageGender, imageName;
     Button save;
     RelativeLayout topSection;
+    public static final String NAME = "MyPrefs" ;
+    SharedPreferences sharedPreferencesName ;
 
 
     FirebaseAuth mAuth;
@@ -79,6 +81,7 @@ public class SettingFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         Log.d("TAG", "onErrorResponse1: ");
+        sharedPreferencesName = getContext().getSharedPreferences(NAME, Context.MODE_PRIVATE);
         setting = (ImageView) getView().findViewById(R.id.settingIcon);
         editemail = (EditText) getView().findViewById(R.id.edittextemail);
         editPhone = (EditText) getView().findViewById(R.id.editPhone);
@@ -99,6 +102,7 @@ public class SettingFragment extends Fragment {
         textName = (TextView) getView().findViewById(R.id.textName);
         tv_address = (TextView) getView().findViewById(R.id.tv_address);
         displayName = (TextView) getView().findViewById(R.id.displayName);
+
 
         topSection = getView().findViewById(R.id.topSection);
 
@@ -122,15 +126,23 @@ public class SettingFragment extends Fragment {
         db.addData(1, name, address, email, phone, gender);*/
 
         textEmail.setText(db.getData(1, "EMAIL"));
-        textName.setText(db.getData(1, "NAME"));
+
         textAddress.setText(db.getData(1, "ADDRESS"));
         textPhone.setText(db.getData(1, "PHONE"));
         textGender.setText(db.getData(1, "GENDER"));
         tv_address.setText(db.getData(1, "ADDRESS"));
-        displayName.setText(db.getData(1, "NAME"));
 
+        if(db.getData(1, "NAME")==""){
+            displayName.setText(sharedPreferencesName.getString("dname","Name"));
+            editName.setText(sharedPreferencesName.getString("dname","Name"));
+            textName.setText(sharedPreferencesName.getString("dname","Name"));
+        }
+        else{
+            displayName.setText(db.getData(1, "NAME"));
+            editName.setText(db.getData(1, "NAME"));
+            textName.setText(db.getData(1, "NAME"));
+        }
 
-        editName.setText(db.getData(1, "NAME"));
         editemail.setText(db.getData(1, "EMAIL"));
         editPhone.setText(db.getData(1, "PHONE"));
         editAddress.setText(db.getData(1, "ADDRESS"));

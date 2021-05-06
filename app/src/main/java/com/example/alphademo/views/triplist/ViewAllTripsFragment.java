@@ -116,15 +116,9 @@ public class ViewAllTripsFragment extends Fragment {
                     JSONObject jsonObject = tripinfo.getJSONObject(0);
                     abc[0] = jsonObject.getString("DriverName").toString();
                     Log.i("NAME23",abc[0]);
-
+                    editor.putString("dname",abc[0]);
+                    editor.commit();
                     extractedName = new DatabaseProfile(getContext());
-                    if(extractedName.getData(1,"NAME") == null){
-                        extractedName.addData(1, abc[0], "", "", "","");
-                    }
-                   else {
-                        extractedName.updateInfo(1, abc[0], "", "", "", "");
-                        Log.i("UPDATED23",extractedName.getData(1,"NAME"));
-                    }
 
                     for(int j = 0; j < 1; j++) {
                         driverObject = response.getJSONObject("data".toString());
