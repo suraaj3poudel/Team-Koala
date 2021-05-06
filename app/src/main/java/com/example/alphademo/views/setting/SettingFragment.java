@@ -50,28 +50,10 @@ public class SettingFragment extends Fragment {
     SharedPreferences sharedPreferencesName ;
 
 
-    FirebaseAuth mAuth;
-    FirebaseAuth.AuthStateListener mAuthListener;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
-       /* button = (Button) view.findViewById(R.id.about_btn);
-        logoutBtn=(Button)view.findViewById(R.id.logout_btn);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDialog();
-            }
-        });
-        logoutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity().getApplication(), MainActivity.class);
-                startActivity(intent);
-            }
-        });*/
 
 
         return view;
@@ -112,18 +94,7 @@ public class SettingFragment extends Fragment {
 
 
         db = new DatabaseProfile(getContext());
-        //db.addData(1, "jhhjhj", "", "", "","");
-        //name = "ABCDEFGH";
-        //db.getData(2, "EMAIL");
-        //Toast.makeText(getContext(), db.getData(1, "NAME").toString(), Toast.LENGTH_SHORT).show();
 
-
-
-      /*  address = textAddress.getText().toString();
-        gender = textGender.getText().toString();
-        email  = textEmail.getText().toString();
-        gender = textGender.getText().toString();
-        db.addData(1, name, address, email, phone, gender);*/
 
         textEmail.setText(db.getData(1, "EMAIL"));
 
@@ -149,7 +120,7 @@ public class SettingFragment extends Fragment {
 
 
 
-        if (db.getData(1, "GENDER").toString().equals("Female"))
+        if (db.getData(1, "GENDER").equals("Female"))
             radioGender.check(R.id.radioF);
         else
             radioGender.check(R.id.radioM);
@@ -195,10 +166,8 @@ public class SettingFragment extends Fragment {
                     imageAddress.setVisibility(View.VISIBLE);
                     imageGender.setVisibility(View.VISIBLE);
                     imagePhone.setVisibility(View.VISIBLE);
-                    imageName.setVisibility(View.VISIBLE);
 
 
-                    backgroundAndPadding(textName);
                     backgroundAndPadding(textEmail);
                     backgroundAndPadding(textAddress);
                     backgroundAndPadding(textPhone);
@@ -225,12 +194,6 @@ public class SettingFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             appears(editAddress, textAddress, imageAddress, "ADDRESS");
-                        }
-                    });
-                    imageName.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            appears(editName, textName, imageName, "NAME");
                         }
                     });
                     imageGender.setOnClickListener(new View.OnClickListener() {

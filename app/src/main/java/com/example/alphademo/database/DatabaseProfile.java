@@ -100,6 +100,3 @@ public class DatabaseProfile extends SQLiteOpenHelper {
 //        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
 //        return res;
 //    }
-
-
-
