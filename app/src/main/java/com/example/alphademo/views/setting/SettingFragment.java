@@ -103,16 +103,10 @@ public class SettingFragment extends Fragment {
         textGender.setText(db.getData(1, "GENDER"));
         tv_address.setText(db.getData(1, "ADDRESS"));
 
-        if(db.getData(1, "NAME")==""){
             displayName.setText(sharedPreferencesName.getString("dname","Name"));
             editName.setText(sharedPreferencesName.getString("dname","Name"));
             textName.setText(sharedPreferencesName.getString("dname","Name"));
-        }
-        else{
-            displayName.setText(db.getData(1, "NAME"));
-            editName.setText(db.getData(1, "NAME"));
-            textName.setText(db.getData(1, "NAME"));
-        }
+
 
         editemail.setText(db.getData(1, "EMAIL"));
         editPhone.setText(db.getData(1, "PHONE"));
